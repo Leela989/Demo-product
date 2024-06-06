@@ -1,0 +1,30 @@
+/* .dialogueBoxbtns{
+    display: flex;
+} */
+
+.yesButton{
+    height: 32px;
+    width: 90px;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    background-color: #003B95;
+    border-radius: 4px;
+    margin-right: 8px;
+}
+
+.yesButton:hover{
+    box-shadow: 0 0 5px var(--border-color, #003B95);
+}
+
+.noButton{
+    height: 32px;
+    width: 90px;
+    border: 1px solid #003B95;
+    border-radius: 4px;
+}
+
+.dialogueBoxbtns{
+    padding: 8px;
+}
+

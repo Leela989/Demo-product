@@ -1,0 +1,21 @@
+.form-card {
+    margin: 12px 0;
+}
+.form-card .p-card-body {
+    width: 100%;
+}
+.form-card .p-card-body .p-card-content {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+.plan-tab-container {
+    margin: 24px 0;
+    position: relative;
+}
+.plan-tab-container .top-button {
+    position: absolute;
+    top: 12px;
+    right: 24px;
+}

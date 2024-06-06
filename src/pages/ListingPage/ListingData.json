@@ -1,0 +1,212 @@
+[
+  {
+    "name": "1001-Motor Comprehensive",
+    "effectiveFrom": "2024-05-15T08:30:00",
+    "effectiveTo": "2024-06-15T15:45:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "1002-Motor Private",
+    "effectiveFrom": "2024-06-01T10:20:00",
+    "effectiveTo": "2024-07-01T14:00:00",
+    "status": "Approved",
+    "action": "edit"
+  },
+  {
+    "name": "2001-Marine Open Cover",
+    "effectiveFrom": "2024-07-10T12:00:00",
+    "effectiveTo": "2024-08-10T18:30:00",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "name": "2002-Marine Certificate",
+    "effectiveFrom": "2024-08-05T09:45:00",
+    "effectiveTo": "2024-09-05T16:20:00",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "name": "3001-Fire & Allied Perils",
+    "effectiveFrom": "2024-09-20T11:10:00",
+    "effectiveTo": "2024-10-20T17:55:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "4001-Workman compensation",
+    "effectiveFrom": "2024-10-03T13:25:00",
+    "effectiveTo": "2024-11-03T14:30:00",
+    "status": "Approved",
+    "action": "edit"
+  },
+  {
+    "name": "5001-Liability",
+    "effectiveFrom": "2024-11-12T15:40:00",
+    "effectiveTo": "2024-12-12T18:15:00",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "name": "6001-Aviation",
+    "effectiveFrom": "2024-12-25T08:00:00",
+    "effectiveTo": "2025-01-25T16:45:00",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "name": "Product-somename9",
+    "effectiveFrom": "2025-01-10T09:30:00",
+    "effectiveTo": "2025-02-10T15:20:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "Product-somename10",
+    "effectiveFrom": "2025-02-05T11:15:00",
+    "effectiveTo": "2025-03-05T17:00:00",
+    "status": "Approved",
+    "action": "edit"
+  },
+  {
+    "name": "Product-somename11",
+    "effectiveFrom": "2025-03-20T13:00:00",
+    "effectiveTo": "2025-04-20T14:45:00",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "name": "Product-somename12",
+    "effectiveFrom": "2025-04-01T08:45:00",
+    "effectiveTo": "2025-05-01T16:30:00",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "name": "Product-somename13",
+    "effectiveFrom": "2025-05-15T10:20:00",
+    "effectiveTo": "2025-06-15T18:15:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "Product-somename14",
+    "effectiveFrom": "2025-06-10T12:30:00",
+    "effectiveTo": "2025-07-10T15:00:00",
+    "status": "Approved",
+    "action": "edit"
+  },
+  {
+    "name": "Product-somename15",
+    "effectiveFrom": "2025-07-25T14:50:00",
+    "effectiveTo": "2025-08-25T17:30:00",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "name": "Product-somename16",
+    "effectiveFrom": "2025-08-05T08:30:00",
+    "effectiveTo": "2025-09-05T16:15:00",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "name": "Product-somename17",
+    "effectiveFrom": "2025-09-20T10:00:00",
+    "effectiveTo": "2025-10-20T17:45:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "Product-somename18",
+    "effectiveFrom": "2025-10-03T12:15:00",
+    "effectiveTo": "2025-11-03T18:00:00",
+    "status": "Approved",
+    "action": "edit"
+  },
+  {
+    "name": "Product-somename19",
+    "effectiveFrom": "2025-11-15T13:40:00",
+    "effectiveTo": "2025-12-15T15:20:00",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "name": "Product-somename20",
+    "effectiveFrom": "2025-12-01T15:00:00",
+    "effectiveTo": "2026-01-01T17:30:00",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "name": "Product-somename21",
+    "effectiveFrom": "2026-01-15T08:20:00",
+    "effectiveTo": "2026-02-15T16:45:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "Product-somename22",
+    "effectiveFrom": "2026-02-10T10:45:00",
+    "effectiveTo": "2026-03-10T18:30:00",
+    "status": "Approved",
+    "action": "edit"
+  },
+  {
+    "name": "Product-somename23",
+    "effectiveFrom": "2026-03-25T12:10:00",
+    "effectiveTo": "2026-04-25T15:45:00",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "name": "Product-somename24",
+    "effectiveFrom": "2026-04-05T14:30:00",
+    "effectiveTo": "2026-05-05T17:00:00",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "name": "Product-somename25",
+    "effectiveFrom": "2026-05-20T08:50:00",
+    "effectiveTo": "2026-06-20T16:15:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "Product-somename26",
+    "effectiveFrom": "2026-06-01T10:00:00",
+    "effectiveTo": "2026-07-01T17:45:00",
+    "status": "Approved",
+    "action": "edit"
+  },
+  {
+    "name": "Product-somename27",
+    "effectiveFrom": "2026-07-15T12:20:00",
+    "effectiveTo": "2026-08-15T15:30:00",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "name": "Product-somename28",
+    "effectiveFrom": "2026-08-05T14:45:00",
+    "effectiveTo": "2026-09-05T16:00:00",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "name": "Product-somename29",
+    "effectiveFrom": "2026-09-20T08:10:00",
+    "effectiveTo": "2026-10-20T17:30:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "name": "Product-somename30",
+    "effectiveFrom": "2026-10-03T10:30:00",
+    "effectiveTo": "2026-11-03T18:15:00",
+    "status": "Approved",
+    "action": "edit"
+  }
+]

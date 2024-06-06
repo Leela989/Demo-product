@@ -1,0 +1,605 @@
+
+
+
+.p-tabview .p-tabview-nav li.p-highlight a {
+  background-color: #003B95;
+  color: white;
+}
+
+button.p-highlight {
+  background-color: #003B95;
+  border: 1px solid #003B95 !important;
+  color: white;
+}
+.p-tabview .p-tabview-nav li a {
+  text-decoration: none;
+}
+
+.p-tabview-title {
+  line-height: 0.6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 13px;
+  /* color: white; */
+}
+
+.p-tabview-selected{
+  color: white !important;
+}
+
+
+
+
+
+
+
+.buttons {
+  width: 70px;
+  height: 30px;
+  background-color: #003B95;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--border-color, #003B95);
+  padding-left: 8px;
+}
+
+.attributeName {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  color: #003B95;
+}
+
+.attributeBtn {
+  margin-top: 10px;
+}
+
+.attributeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 12px;
+}
+
+.attributeBtn {
+  gap: 15px;
+}
+
+.buttons {
+  margin: 5px;
+}
+
+.attributesListing {
+  margin: 0px;
+  padding: 0px;
+  width: 270px;
+  display: flex;
+  overflow: auto;
+  height: 300px;
+}
+
+.p-datepicker-trigger{
+    border: 1px solid black;
+}
+
+.addBtn{
+    width: 60px;
+    height: 30px;
+    background-color: #003B95;
+    border-radius: 3px;
+    color: black;
+    margin-left: 3px;
+    margin-top: 16px;
+}
+
+.attributeText {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  color: black;
+  width: 60%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 5px;
+}
+
+.attributeText:hover {
+  max-width: none;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+.attributeBox {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+.attributeBox1 {
+  display: flex;
+  /* padding: 3px; */
+}
+.attributeCheckBox {
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.attributeCheckBox1 {
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+}
+
+
+
+/* listingPage styles */
+
+.p-paginator {
+  display: flex;
+}
+
+.p-paginator-page {
+  font-size: 20px;
+}
+
+.p-paginator-pages {
+  gap: 10px;
+}
+
+span.p-paginator-pages {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchContainer {
+  display: flex;
+}
+
+.searchField:focus {
+  outline: none;
+  border-color: #ff5100;
+  border-radius: 3px;
+}
+
+.searchField {
+  width: 150px;
+  height: 35px;
+  margin-left: 10px;
+}
+
+.buttonContainer {
+  padding-left: 550px;
+}
+
+button,
+[role="button"] {
+  cursor: pointer;
+}
+
+/* body{
+    overflow: hidden;
+} */
+
+.breadCrumbLine {
+  display: flex;
+  margin-top: 1px;
+}
+
+.createdBy {
+  display: flex;
+}
+
+.status {
+  display: flex;
+}
+
+.createdOn {
+  display: flex;
+}
+
+input {
+  border: 1px solid black;
+}
+
+.statusList {
+  display: flex;
+  gap: 50px;
+  margin-left: 120px;
+  margin-top: 11px;
+  font-size: 14px;
+}
+
+.topContainer {
+  display: flex;
+  gap: 50px;
+  font-size: 12px;
+}
+input:focus {
+  border: 1px solid orangered;
+}
+
+.bottomContainer {
+  display: flex;
+  gap: 50px;
+  padding-top: 15px;
+}
+
+.CalenderIcon {
+  margin-left: -20px;
+}
+
+.box1 {
+  gap: 20px;
+  display: flex;
+  width: auto;
+  margin-left: 4px;
+}
+
+.box2 {
+  gap: 20px;
+  display: flex;
+  width: auto;
+  margin-top: 8px;
+  margin-left: 4px;
+}
+
+.card{
+  margin-left: 4px;
+}
+
+
+.lineOfBusinessDropDown{
+  border: 1px solid black;
+  height: 26px;
+  width: 160px;
+}
+
+
+
+.attributeInputBox {
+  border-radius: 10px;
+  border: 2px solid rgb(206, 201, 201);
+  height: 26px;
+}
+
+.inpuFieldClassDescription {
+  width: 160px;
+  height: 26px;
+}
+
+.inpuFieldClassDescription:focus {
+  outline: none;
+  border: 1px solid #ff5100;
+}
+
+.languageIcon {
+  cursor: pointer;
+  border: 1px solid black;
+  width: 24px;
+}
+
+.p-inputtext {
+  height: 24px;
+  width: 100%;
+}
+
+.attributeListing {
+  width: 320px;
+  height: 90%;
+  overflow: auto;
+}
+
+/* .discountLoadingContainer {
+  width: 600px;
+  height: 800px;
+} */
+
+.tab-header {
+  padding-top: 10px;
+}
+
+.discountBox1 {
+  width: 100%;
+  height: calc(100vh - 340px);
+  overflow: auto;
+}
+
+.fixed-header-table {
+  width: 50%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.fixed-header-table thead th {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  text-align: center;
+  font-weight: bold;
+}
+
+.fixed-header-table tbody td {
+  text-align: center;
+}
+
+.discountBox2 {
+  height: 250px;
+  border: 1px solid black;
+  padding-left: 10px;
+  padding: 5px;
+  font-size: 13px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 4px;
+}
+
+.inpuFielddescriptionBox{
+    width: 140px;
+    height: 26px;
+}
+
+
+
+.addButton {
+  padding: 2px 12px;
+  background-color: #003B95;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--border-color, #003B95);
+  z-index: 2;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.typeLabel {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  display: flex;
+}
+
+.typeContainer {
+  display: flex;
+  padding-top: 0px;
+  justify-content: space-around;
+}
+
+.Codebox {
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+
+.descriptionBox {
+  display: flex;
+  padding-top: 15px;
+}
+
+.inpuFieldCodebox {
+  width: 150px;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.TypeDropDown {
+  border: 1px solid black;
+}
+
+/* .descriptionContainer {
+  width: 450px !important;
+} */
+
+.discountBox3 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.labelCheckboxPair {
+  margin-right: 10px;
+}
+
+.popUp{
+  width: 370px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 86px;
+  margin: 2px;
+}
+
+.tableHeader{
+    width: 100px;
+}
+
+.saveButton{
+    background-color: #003B95;
+    color: black;
+    width: 80px;
+    height: 28px;
+    margin-left: 250px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    margin-top: 25px;
+}
+
+.popUpbutton{
+  width: 60px;
+  height: 30px;
+  background-color: #003B95;
+  border-radius: 3px;
+  color: white;
+}
+
+
+
+.descriptionBox2{
+  display: flex;
+  justify-content: space-evenly;
+  padding-left: 2px;
+}
+
+
+.productStepper{
+  width: 40%;
+}
+
+.productStepperBox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+
+.p-steps-title{
+  margin-top: 0px;
+}
+
+.topBox{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+}
+
+.product-step{
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+} 
+
+.descriptionContainer{
+  width: 350px;
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  margin: 0px;
+  padding: 10px;
+  background-color: rgba(192, 192, 255, 0.226);
+  color: #003B95;
+}
+
+.modalContent{
+  background-color: #fefefe;
+  margin: auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 500px; 
+  overflow-y: auto;
+  margin-top: 20%;
+  height: 300px;
+  border-radius: 15px;
+}
+
+.Modeheading{
+  color: #003B95;
+  font-weight: bold;
+  padding-left: 40%;
+}
+
+.popUpbtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buttonsave{
+  width: 70px;
+  height: 30px;
+  background-color: #003B95;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--border-color, #003B95);
+  margin-left: 260px;
+}
+
+.p-datatable .p-datatable-thead > tr > th{
+  padding: 0px;
+}
+
+.KebabMen{
+  width: 30px;
+  height: 20px;
+}
+
+
+.kebab-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.KebabMen {
+  cursor: pointer;
+}
+
+.kebab-menu-popup {
+  position: absolute;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  z-index: 1000;
+  width: 100px;
+}
+
+.kebab-menu-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.kebab-menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.attributes-container {
+  height: calc(100vh - 290px);
+  /* overflow: auto; */
+}
+
+.popUpadd{
+  padding: 2px 12px;
+  background-color: #003B95;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 12px;
+  border-radius: 4px;
+  box-shadow: 0 0 5px var(--border-color, #003B95);
+  z-index: 2;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
+}
+
+.p-1{
+  margin-top: -5px;
+}
+
+.sortOrder{
+  width: 36px;
+}
+
+/* .createFormPage{
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  margin-top: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
+} */
+
+.navigationButtons{
+  padding-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}

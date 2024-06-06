@@ -1,0 +1,33 @@
+input,
+input:hover,
+input:active,
+input:focus,
+ 
+button,
+button:hover,
+button:active,
+button:focus{
+    box-shadow: none !important;
+    outline: none !important;
+}
+ 
+.p-inputtext {
+    height: 36px;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+.p-inputtext:enabled:hover,
+.p-inputtext:enabled:active,
+.p-inputtext:enabled:focus {
+    border-color: rgba(0, 60, 149, 0.5);
+    outline: none;
+    box-shadow: none;
+}
+ 
+.top-label label {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    color: rgba(0, 0, 0, 0.60);
+}

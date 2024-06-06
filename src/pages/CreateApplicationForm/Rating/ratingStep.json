@@ -1,0 +1,26 @@
+[
+    {
+        "insurableProduct" : "Vehicle",
+        "parameter": "Vehicle Age",
+        "type": "Slab(between)",
+        "source": ""
+    },
+    {
+        "insurableProduct" : "Vehicle",
+        "parameter": "Make",
+        "type": "Equals",
+        "source": ""
+    },
+    {
+        "insurableProduct" : "Vehicle",
+        "parameter": "Equals",
+        "type": "",
+        "source": ""
+    },
+    {
+        "insurableProduct" : "",
+        "parameter": "XXXX",
+        "type": "Eqals",
+        "source": "service"
+    }
+]

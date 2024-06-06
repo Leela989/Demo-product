@@ -1,0 +1,40 @@
+.p-calendar{
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 5px;
+    overflow: hidden;
+}
+.p-calendar .p-inputtext {
+    margin: 0;
+    padding-left: 10px;
+}
+.p-calendar .p-button.p-button-icon-only{
+    border: none;
+    background-color: rgba(191, 217, 255, 0.5) !important;
+    color: rgba(0, 60, 149, 1) !important;
+    box-shadow: none !important;
+    outline: none !important;
+    height: 36px;
+}
+.p-calendar button:hover {
+    background-color: rgba(0, 60, 149, 0.12);
+}
+.p-highlight{
+    border-radius: 0;
+    color: #003B95;
+    font-weight: bold;
+}
+
+.p-datepicker-title{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.p-datepicker table th, .p-datepicker table td {
+    padding: 4px;
+}
+.p-datepicker table th span, .p-datepicker table td span{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}

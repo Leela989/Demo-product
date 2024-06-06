@@ -1,0 +1,43 @@
+[
+    {
+       "type":"Discount",
+        "code": "Special discount",
+        "mandatory": "true",
+         "default": "true",
+          "sortOrder":"5",
+          "DefaultOnRenewal":"false"
+    },
+    {
+       "type":"Loading",
+        "code": "Premium Loading",
+        "mandatory": "true",
+         "default": "true",
+          "sortOrder":"4",
+          "DefaultOnRenewal":"false"
+    },
+    {
+       "type":"Discount",
+        "code": "Special discount",
+        "mandatory": "true",
+         "default": "true",
+          "sortOrder":"3",
+          "DefaultOnRenewal":"false"
+    },
+    {
+      "type":"Discount",
+       "code": "Special discount",
+       "mandatory": "true",
+        "default": "true",
+         "sortOrder":"2",
+         "DefaultOnRenewal":"false"
+   },
+   {
+      "type":"Discount",
+       "code": "Special discount",
+       "mandatory": "true",
+        "default": "true",
+         "sortOrder":"1",
+         "DefaultOnRenewal":"false"
+   }
+]
+    

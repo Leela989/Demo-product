@@ -1,0 +1,27 @@
+[
+    {
+        "type": "Charge",
+        "charge": "Levies",
+        "annualRate": "5",
+        "shortRate": "10",
+        "mandatory": "true",
+        "dafault": "true"
+    },
+    {
+        "type": "Charge",
+        "charge": "Stamp Duty",
+        "annualRate": "15",
+        "shortRate": "20",
+        "mandatory": "true",
+        "dafault": "true"
+    },
+    {
+        "type": "Charge",
+        "charge": "Levies",
+        "annualRate": "5",
+        "shortRate": "10",
+        "mandatory": "true",
+        "dafault": "true"
+    }
+
+]

@@ -1,0 +1,219 @@
+*{
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.main{
+  display: flex;
+}
+.content{
+  width: calc(100% - 250px);
+  flex: 1;
+  padding: 24px;
+}
+
+.p-checkbox{
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+.p-checkbox-box{
+  height: 21px;
+  border-radius: 4px;
+}
+td .w-3 input{
+  width: 3rem;
+  text-align: center;
+}
+
+/* Tab View */
+.tab-content-section {
+  padding: 16px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+}
+
+/* ScrollBar styles here */
+.p-tabview .p-tabview-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* tab view styles here */
+.p-tabview .p-tabview-nav {
+  width: 85%;
+  overflow: auto;
+  border: none !important;
+}
+.p-tabview .p-tabview-nav-container .p-tabview-nav-content {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li + li {
+  padding-left: 4px;
+}
+.p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li a {
+  padding: 10px 12px;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 10px 10px 0 0;
+  background-color: rgba(191, 217, 255, 0.5);
+}
+.p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li a:hover {
+  background-color: rgba(191, 217, 255, 1) !important;
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+.p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li.p-tabview-selected.p-highlight a {
+  background-color: rgba(0, 60, 149, 0.85) !important;
+  color: rgba(255, 255, 255, 1) !important;
+  box-shadow: none;
+}
+.p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li.p-tabview-ink-bar {
+  display: none;
+}
+
+.p-tabview.p-component .p-tabview-panels {
+  padding: 1rem;
+}
+
+
+/* Dropdown styles here */
+.p-dropdown {
+  min-width: 120px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 6px;
+}
+.p-dropdown .p-inputtext {
+  border: none;
+  border-radius: 0;
+}
+.p-dropdown,
+.p-dropdown:not(.p-disabled):hover,
+.p-dropdown:not(.p-disabled):active,
+.p-dropdown:not(.p-disabled):focus {
+  outline: none;
+  box-shadow: none;
+}
+.p-dropdown:not(.p-disabled):hover,
+.p-dropdown:not(.p-disabled):active,
+.p-dropdown:not(.p-disabled):focus {
+  border-color: rgba(0, 60, 149, 0.5);
+}
+
+.p-dropdown-items-wrapper .p-dropdown-item .p-highlight {
+  color: rgb(0, 60, 149);
+}
+
+/* Dropdown container styles here */
+.dropdown-container label{
+  font-size: 14px;
+  font-weight: 600;
+  line-height: normal;
+  color: rgba(0, 0, 0, 0.60);
+}
+
+/* card styles her */
+.p-component.p-card {
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.12);
+}
+.p-card .p-card-content {
+  padding: 0 !important;
+}
+
+/* Card Header Text styles here */
+.card-header-text {
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(0, 60, 149);
+  margin-bottom: 12px;
+}
+
+/* Search input styles here */
+.search-input {
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  padding-right: 12px;
+}
+.search-input input {
+  margin-right: 8px;
+}
+.search-input input,
+.search-input .p-inputtext:enabled:hover,
+.search-input .p-inputtext:enabled:active,
+.search-input .p-inputtext:enabled:focus {
+  padding: 4px 0 4px 12px;
+  border-radius: 0 !important;
+  outline: none;
+  box-shadow: none;
+}
+
+/* Button styles here */
+
+/* Button common styles */
+.p-component.p-button {
+  padding: 0 12px;
+  font-size: 16px;
+  padding: 9px 12px 12px;
+  height: 40px;
+  text-transform: capitalize;
+}
+.small-btn .p-component.p-button {
+  height: 32px;
+}
+.p-button + .p-button {
+  margin-left: 10px !important;
+}
+
+/** ---> Disabled button <--- **/
+.p-button.p-component.p-disabled,
+.p-button.p-component.p-disabled:hover,
+.p-button.p-component.p-disabled:active,
+.p-button.p-component.p-disabled:focus {
+  background-color: rgb(52, 52, 52) !important;
+  border: none;
+  color: rgb(185, 185, 185) !important;
+  cursor: not-allowed !important;
+  pointer-events: all;
+}
+.p-button.p-component.p-disabled:hover {
+  box-shadow: 0 0 4px 1px rgba(52, 52, 52, 0.5);
+}
+
+/** ---> Fill button <--- **/
+.p-button.p-component {
+  background-color: rgba(0, 59, 149, 0.9);
+}
+button.p-button.p-component:hover {
+  background-color: rgb(0, 59, 149);
+}
+
+/** ---> Outlined button <--- **/
+.p-button.p-component.p-button-outlined {
+  border-color: rgba(0, 59, 149, 1);
+}
+button.p-button.p-component.p-button-outlined:hover {
+  background-color: rgba(0, 59, 149, 0.12);
+}
+
+/* checkbox styles here */
+
+.p-checkbox .p-checkbox-box {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  width: 20px;
+  height: 20px;
+}
+
+.p-checkbox .p-checkbox-box[data-p-highlight="true"]{
+  background-color: #003B95;
+}
+
+.p-checkbox .p-checkbox-box{
+    width: 20px;
+    height: 20px;
+}
+.checkbox-container label.left-label {
+  margin-right: 8px;
+} 
+.checkbox-container label.right-label {
+  margin-left: 8px;
+}

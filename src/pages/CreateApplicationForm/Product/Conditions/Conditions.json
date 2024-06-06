@@ -1,0 +1,17 @@
+[
+    {
+        "type": "Condition",
+        "conditions": "01-Parts & Sets clause",
+        "defaultOnRenewal": "true"
+    },
+    {
+        "type": "Exclusion",
+        "conditions": "02-Exclusion clause 01/090",
+        "defaultOnRenewal": "false"
+    },
+    {
+        "type": "Condition",
+        "conditions": "01-Parts & Sets clause",
+        "defaultOnRenewal": "true"
+    }
+]

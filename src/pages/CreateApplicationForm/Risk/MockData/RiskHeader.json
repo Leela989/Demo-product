@@ -1,0 +1,41 @@
+[
+    {
+        "riskType": "MC",
+        "insurableProduct": "Vehicle"
+    },
+    {
+        "riskType": "HC",
+        "insurableProduct": "Health"
+    },
+    {
+        "riskType": "LC",
+        "insurableProduct": "Phone"
+    },
+    {
+        "riskType": "HC",
+        "insurableProduct": "Health"
+    },
+    {
+        "riskType": "HC",
+        "insurableProduct": "Health"
+    },
+    {
+        "riskType": "HC",
+        "insurableProduct": "Health"
+    }, {
+        "riskType": "HC",
+        "insurableProduct": "Health"
+    },
+    {
+        "riskType": "LC",
+        "insurableProduct": "Phone"
+    },
+    {
+        "riskType": "LC",
+        "insurableProduct": "Phone"
+    },
+    {
+        "riskType": "LC",
+        "insurableProduct": "Phone"
+    }
+]

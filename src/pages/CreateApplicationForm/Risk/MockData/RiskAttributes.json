@@ -1,0 +1,29 @@
+[
+    {
+        "insurableProduct": "Vehicle",
+        "blockName": "Vehicle",
+        "parentBlockName": "Driver"
+    },
+    {
+        "insurableProduct": "Vehicle",
+        "blockName": "Driver",
+        "parentBlockName": "Vehicle"
+    },
+    {
+        "insurableProduct": "Vehicle",
+        "blockName": "Vehicle",
+        "parentBlockName": "Driver"
+    },
+    {
+        "insurableProduct": "Health",
+        "blockName": "Hospital",
+        "parentBlockName": "Hospital"
+    },
+    {
+        "insurableProduct": "Phone",
+        "blockName": "Oppo",
+        "parentBlockName": "Phone"
+    }
+]
+
+

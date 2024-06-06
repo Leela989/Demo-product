@@ -1,0 +1,21 @@
+.p-autocomplete.p-inputwrapper:hover,
+.p-autocomplete.p-inputwrapper:active,
+.p-autocomplete.p-inputwrapper:focus {
+    border-color: rgba(0, 60, 149, 0.5);
+}
+.p-autocomplete {
+    width: 100%;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+}
+.p-autocomplete .p-inputtext, .p-calendar .p-inputtext {
+    border: none;
+}
+.p-autocomplete .p-button {
+    border: none;
+    color: rgba(0, 60, 149, 1) !important;
+    background-color: rgba(191, 217, 255, 0.5) !important;
+    box-shadow: none !important;
+    outline: none !important;
+    height: 36px;
+}

@@ -1,0 +1,221 @@
+.transactions{
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 5px var(--border-color, #003B95);
+}
+
+.transactionsContainer{
+    display: flex;
+    justify-content: space-between;
+    margin: 8px;
+}
+
+.transactionsHeading{
+    background-color: #003B95;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+}
+
+.transactions{
+    width: 25%;
+    height: 130px;
+}
+
+.textBox{
+    margin-left: 15px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.transactionRefText{
+    color: #003B95;
+}
+
+.textBoxNumb{
+    margin-right: 15px;
+}
+
+.teamsPerformance{
+    color: #003B95;
+    text-decoration: underline;
+    /* align-items: center; */
+    /* justify-content: center; */
+}
+
+.transactionText{
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+}
+
+.teamsPerformanceLink{
+    margin-left: 50px;
+}
+
+.tasksName{
+    color: #003B95;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 20px;
+    font-weight:600;
+    margin-left: 13px;
+}
+
+.customTable{
+    width: 70%;
+    height: 150px;
+    margin-left: 8px;
+    overflow: auto;
+}
+
+.customTable2{
+    width: 95%;
+    height: 150px;
+    margin-left: 8px;
+    overflow: auto;
+}
+
+tbody{
+    overflow: auto;
+}
+
+/* .table-body{
+    width: 600px;
+    height: 300px;
+    overflow: auto;
+} */
+
+.p-column-header-content{
+    margin-left: 0px;
+}
+
+.p-datatable-tbody{
+    font-size: 12px;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    padding: 2px;
+}
+
+tr[data-pc-section="headerrow"] {
+    font-weight: bold; 
+    border-bottom: 1px solid black;
+}
+
+.transactionTable{
+    width: 250px;
+}
+
+.bottomLoginPage{
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottomText{
+    border: 1px solid black;
+    height: fit-content;
+    margin-left: 40px;
+    margin-top: 60px;
+}
+
+.bottomText p{
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.imgContainer{
+    display: flex;
+    justify-content: space-between;
+}
+
+.homePageImg{
+    width: 250px;
+    height: 160px;
+}
+
+.imgBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 12px;
+}
+  
+  .customTable th,
+  .customTable td {
+    padding: 4px; 
+  }
+
+  .customTable2 th,
+  .customTable2 td {
+    padding: 4px; 
+  }
+  
+
+.telephone{
+    width: 25px;
+    height: 25px;
+}
+
+.telephone1{
+    width: 25px;
+    height: 25px;
+}
+
+.imgBox {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .telephoneButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px; 
+    height: 60px; 
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 5px var(--border-color, #003B95);
+    text-align: center;
+  }
+  
+  .telephoneButton img {
+    width: 20px; 
+    height: 20px; 
+  }
+
+.quickLink{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    padding-left: 90px;
+    font-weight: bold;
+}
+
+.quickLinkContainer{
+    width: 30%;
+    margin-top: -25px;
+}
+
+.critical {
+    color: red;
+  }
+
+.quickLinkText{
+    color: #003B95;
+    font-size: 12px;
+    text-decoration: underline;
+    /* margin: 3px; */
+}
+
+.transactionBox{
+    width: 240px;
+    height: 80px;
+    overflow: auto;
+}
+
+
+  
+
+

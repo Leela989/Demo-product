@@ -1,0 +1,32 @@
+[
+  {
+      "name": "Transactions completed yesterday",
+      "data": {
+          "Applications": "15",
+          "Quatations": "20",
+          "Policies": "10",
+          "Endorsements": "30",
+          "claims": "41"
+      }
+  },
+  {
+      "name": "Transactions completed for the month",
+      "data": {
+          "Applications": "100",
+          "Quatations": "80",
+          "Policies": "50",
+          "Endorsements": "200",
+          "all":"101",
+          "claims":"28"
+      }
+  },
+  {
+      "name": "Average turn around time",
+      "data": {
+          "Applications": "30 secs",
+          "Quatations": "40 secs",
+          "Policies": "20 secs",
+          "Endorsements": "30 secs"
+      }
+  }
+]

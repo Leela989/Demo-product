@@ -1,0 +1,22 @@
+
+.p-checkbox .p-checkbox-box{
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  .p-checkbox-box[data-p-highlight="true"]{
+    background-color: #003B95;
+  }
+
+  .p-checkbox {
+      width: 20px !important;
+      height: 20px !important;
+  }
+  .checkbox-container label.left-label {
+    margin-right: 8px;
+  } 
+  .checkbox-container label.right-label {
+    margin-left: 8px;
+  }

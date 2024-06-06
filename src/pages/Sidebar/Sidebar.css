@@ -1,0 +1,40 @@
+.sidebar {
+    height: calc(100vh - 80px);
+    min-width: 250px;
+    width: 250px;
+    padding: 4px;
+    overflow: auto;
+    position: sticky;
+    left: 0;
+    top: 80px;
+    z-index: 10;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.4);
+    background-color: rgba(191, 217, 255, 0.5)
+}
+
+.submenu, .nav-link {
+    display: block;
+    padding: 8px 12px;
+    width: 100%;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+.submenu:hover, .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+.nav-link.active {
+    color: rgb(255, 255, 255);
+    background-color: #003B95;
+}
+.submenu-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.inner-ul {
+    padding-left: 20px;
+}
+

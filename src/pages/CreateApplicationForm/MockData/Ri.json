@@ -1,0 +1,14 @@
+[
+ 
+    { "label": "Annual product", "type": "checkbox" },
+    { "label": "Link policy applicable", "type": "checkbox" },
+    { "label": "Advice date applicable", "type": "checkbox" },
+    { "label": "First loss applicable", "type": "text" },
+    { "label": "Link policy applicable", "type": "checkbox" },
+    { "label": "Advice date applicable", "type": "checkbox" },
+    { "label": "First loss applicable", "type": "text" },
+    { "label": "Installment applicable", "type": "checkbox" },
+    { "label": "Tariff applicable", "type": "checkbox" },
+    { "label": "IDV calculation required", "type": "checkbox" }
+  ]
+  
