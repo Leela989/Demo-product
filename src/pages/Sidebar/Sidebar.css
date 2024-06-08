@@ -1,15 +1,33 @@
 .sidebar {
-    height: calc(100vh - 80px);
-    min-width: 250px;
+    height: calc(100vh - 80px); 
     width: 250px;
     padding: 4px;
     overflow: auto;
     position: sticky;
     left: 0;
     top: 80px;
-    z-index: 10;
-    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.4);
-    background-color: rgba(191, 217, 255, 0.5)
+    z-index: 10;    
+    width: 30px;
+    border: 1px solid;
+    background-color: 
+    rgba(191, 217, 255, 0.5);
+    transition: all 0.1s linear;
+    overflow: hidden;
+}
+.sidebar ul {
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.1s linear;
+}
+.sidebar:hover {
+    width: 280px;
+    overflow: auto;
+    transition: all 0.1s linear;
+}
+.sidebar:hover ul {
+    opacity: 1;
+    pointer-events: all;
+    transition: all 0.1s linear;
 }
 
 .submenu, .nav-link {
@@ -32,6 +50,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.p-sidebar-header{
+    display: none;
 }
 
 .inner-ul {

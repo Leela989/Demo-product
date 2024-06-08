@@ -3,7 +3,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import CheckBox from '../../../../components/CheckBox/CheckBox';
 import InputField from "../../../../components/InputField/InputField";
-import riskAttributeData from '../MockData/RiskAttributes.json';
+import riskAttributeData from '../MockData/RiskSMI.json';
 import KebabMen from '../../../../assets/kebab.svg';
 
 function RiskSMI() {

@@ -39,7 +39,7 @@
 }
 
 .purposeTextArea{
-    height: 97px !important;
+    /* height: 97px !important; */
 }
 
 .purposeContainer{
@@ -50,4 +50,9 @@
 
 .topRuleContainer{
     display: flex;
+}
+
+.submitButton{
+    display: flex;
+    justify-content: flex-end;
 }

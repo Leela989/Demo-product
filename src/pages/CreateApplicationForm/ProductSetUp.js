@@ -38,40 +38,48 @@ const ProductSetup = () => {
 
   return (
     <div className="card">
-      <div className="productStepperBox">
-        <div className="productStepper">
-          <Steps
-            model={items}
-            activeIndex={activeIndex}
-            onSelect={(e) => setActiveIndex(e.index)}
-            readOnly={false}
-            className="stepper"
-          />
+      <div className="statusList">
+        <div className="status">
+          <p>Status:</p>
+          <p>Pending</p>
         </div>
-        <div className="statusList">
-          <div className="status">
-            <p>Status:</p>
-            <p>Pending</p>
-          </div>
-          <div className="createdBy">
-            <p>Created By:</p>
-            <p>User</p>
-          </div>
-          <div className="createdOn">
-            <p>Created On:</p>
-            <p>Date</p>
-          </div>
+        <div className="createdBy">
+          <p>Created By:</p>
+          <p>User</p>
+        </div>
+        <div className="createdOn">
+          <p>Created On:</p>
+          <p>Date</p>
         </div>
       </div>
-      <div className="bodyContainer">
+
+      <div className="productStepper">
+        <Steps
+          model={items}
+          activeIndex={activeIndex}
+          onSelect={(e) => setActiveIndex(e.index)}
+          readOnly={true}
+          className="stepper"
+        />
+      </div>
+
+      <div>
         {activeIndex === 0 && <ProductPage />}
         {activeIndex === 1 && <RiskStep />}
         {activeIndex === 2 && <RatingStep />}
         {activeIndex === 3 && <RuleStep />}
       </div>
       <div className="navigationButtons">
-        <CustomButton label="Previous" disabled={prevButtonDisabled} onClick={handlePrevious} />
-        <CustomButton label="Next" disabled={nextButtonDisabled} onClick={handleNext} />
+        <CustomButton
+          label="Previous"
+          disabled={prevButtonDisabled}
+          onClick={handlePrevious}
+        />
+        <CustomButton
+          label="Next"
+          disabled={nextButtonDisabled}
+          onClick={handleNext}
+        />
       </div>
     </div>
   );

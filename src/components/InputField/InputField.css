@@ -31,3 +31,8 @@ button:focus{
     line-height: normal;
     color: rgba(0, 0, 0, 0.60);
 }
+
+.input-field.small .p-inputtext, .input-field.small .p-inputnumber {
+    width: 100%;
+    height: 32px;
+  }

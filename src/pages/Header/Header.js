@@ -1,26 +1,31 @@
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Header.css";
 import { InputText } from "primereact/inputtext";
-// import { IconField } from 'primereact/iconfield';
-// import { InputIcon } from 'primereact/inputicon';
-import { Toolbar } from "primereact/toolbar";
+import { useTranslation } from 'react-i18next';
+import countryData from '../../components/LanguageSelection/LanguageList.json';
+import "./Header.css";
+import { Tooltip } from 'primereact/tooltip';
 
 const Header = ({ setToken }) => {
   const menuLeft = useRef(null);
   const menuHelp = useRef(null);
-  const router = useNavigate();
+  const menuGlobe = useRef(null);
+  const navigate = useNavigate();
+  const { i18n } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState(null);
+
+  let userNameIs = localStorage.getItem("username");
 
   const handleLogout = () => {
     setToken(false);
-    router("/");
+    navigate("/");
   };
 
   const items = [
     {
-      label: "User",
+      label: userNameIs,
       items: [
         { label: "Profile", icon: "pi pi-user" },
         { label: "Settings", icon: "pi pi-cog" },
@@ -33,19 +38,40 @@ const Header = ({ setToken }) => {
     {
       label: "Help",
       items: [
-        { label: "Chat", icon: "pi pi-comment" },
         { label: "Self-Service", icon: "pi pi-server" },
         { label: "Customer 360 degree view", icon: "pi pi-ethereum" },
       ],
     },
   ];
 
-  const centerContent = (
-    <div className="p-inputgroup search-input">
-      <InputText placeholder="Search" />
-      <i className="pi pi-search" />
-    </div>
-  );
+  const dropdownOptions = countryData.countries.map((country) => ({
+    label: (
+      <div className="countryOption" style={{ display: 'flex' }}>
+        <div className="countryLanguage">
+          <span className="country-code ml-4">{country.language}</span>
+        </div>
+      </div>
+    ),
+    value: country.language
+  }));
+
+  const onLanguageChange = (e) => {
+    const selectedOption = e.item.value;
+    const selectedCountry = countryData.countries.find(
+      (country) => country.language === selectedOption
+    );
+    if (selectedCountry) {
+      const languageCode = selectedCountry.code.toLowerCase();
+      setSelectedLanguage(selectedCountry.language);
+      i18n.changeLanguage(languageCode);
+    }
+  };
+
+  const countryItems = dropdownOptions.map(option => ({
+    label: option.label,
+    command: onLanguageChange,
+    value: option.value
+  }));
 
   return (
     <div className="header">
@@ -57,15 +83,25 @@ const Header = ({ setToken }) => {
         </div>
       </div>
       <div className="header-panel">
-        <p className="user-text">Welcome User</p>
         <Menu model={items} popup ref={menuLeft} id="popup_menu_left" />
-        <Menu model={helpItems} popup ref={menuHelp} id="popup_menu_left" />
+        <Menu model={helpItems} popup ref={menuHelp} id="popup_menu_help" />
+        <Menu model={countryItems} popup ref={menuGlobe} id="popup_menu_globe" />
         <Button
           text
           icon="pi pi-user"
           rounded
           aria-label="User"
           className="header-buttons"
+          tooltip="Profile" tooltipOptions={{ position: 'bottom' }} 
+          onClick={(event) => menuLeft.current.toggle(event)}
+        />
+        <Button
+          text
+          icon="pi pi-clipboard"
+          rounded
+          aria-label="User"
+          className="header-buttons"
+          tooltip="Notes" tooltipOptions={{ position: 'bottom' }} 
           onClick={(event) => menuLeft.current.toggle(event)}
         />
         <Button
@@ -74,6 +110,7 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Notification"
           className="header-buttons"
+          tooltip="Notifications" tooltipOptions={{ position: 'bottom' }} 
         />
         <Button
           text
@@ -81,6 +118,7 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Mail"
           className="header-buttons"
+          tooltip="Mail" tooltipOptions={{ position: 'bottom' }} 
         />
         <Button
           text
@@ -88,6 +126,24 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Locale"
           className="header-buttons"
+          tooltip="Select Language" tooltipOptions={{ position: 'bottom' }} 
+          onClick={(event) => menuGlobe.current.toggle(event)}
+        />
+        <Button
+          text
+          icon="pi pi-comment"
+          rounded
+          aria-label="Comment"
+          className="header-buttons"
+          tooltip="Comments" tooltipOptions={{ position: 'bottom' }} 
+        />
+        <Button
+          text
+          icon="pi pi-ethereum"
+          rounded
+          aria-label="Ethereum"
+          className="header-buttons"
+          tooltip="360 degree Customer View" tooltipOptions={{ position: 'bottom' }} 
         />
         <Button
           text
@@ -95,6 +151,7 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Help"
           className="header-buttons"
+          tooltip="Help" tooltipOptions={{ position: 'bottom' }} 
           onClick={(event) => menuHelp.current.toggle(event)}
         />
       </div>

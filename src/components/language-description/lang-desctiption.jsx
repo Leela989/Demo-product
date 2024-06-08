@@ -3,36 +3,30 @@ import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
 import { OverlayPanel } from "primereact/overlaypanel";
 import "./lang-desctiption.css";
-
-const LanguageDescription = ({ langData, className, onLangUpdate }) => {
+ 
+const LanguageDescription = ({ langDefault, langData, className, onLangUpdate, labelName }) => {
   const [selectLang, setSelectedLang] = useState();
   const overlayOpen = useRef(null);
-
   useEffect(() => {
-    getSelectedLang(langData.default);
+    getSelectedLang(langDefault);
   }, []);
-
-  useEffect(() => {
-    console.log(selectLang, "selectLang");
-  }, [selectLang])
-  
-
+ 
+ 
   const capitalize = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
-
+ 
   const getLanguageCode = (value = "") => {
-    return langData.data
-      .map((data) => {
+    return langData.map((data) => {
         if (value !== "") {
-          if (data.code === langData.default) {
+          if (data.code === langDefault) {
             return data.description;
           } else {
             return null;
           }
         } else {
           if (
-            (!selectLang && data.code === langData.default) ||
+            (!selectLang && data.code === langDefault) ||
             (selectLang && data.code === selectLang.code)
           ) {
             return capitalize(data.lang);
@@ -43,35 +37,35 @@ const LanguageDescription = ({ langData, className, onLangUpdate }) => {
       })
       .filter((description) => description !== null);
   };
-
+ 
   const handleDescriptionChange = (event) => {
     setSelectedLang((prevData) => ({
       ...prevData,
       description: event.target.value,
     }));
   };
-
+ 
   const getSelectedLang = (selectedCode) => {
-    langData.data.map((data) => {
+    langData.map((data) => {
       if (data.code === selectedCode) {
         setSelectedLang(data);
       }
       return null;
     });
   };
-  
+ 
   const handelDropchange = (event) => {
     const selectedCode = event.value;
     onLangUpdate(selectLang);
     getSelectedLang(selectedCode);
   };
-
+ 
   return (
     <>
       {langData ? (
         <div className={`p-inputgroup ${className}`}>
           <label>
-            Description
+            {labelName}
             <span> ({getLanguageCode()})</span>
           </label>
           <div className="flex" onBlur={onLangUpdate(selectLang)}>
@@ -87,7 +81,7 @@ const LanguageDescription = ({ langData, className, onLangUpdate }) => {
               <Dropdown
                 value={selectLang?.lang}
                 onChange={handelDropchange}
-                options={langData.data}
+                options={langData}
                 placeholder="Select Language"
                 optionValue="code"
                 optionLabel="lang"
@@ -100,5 +94,5 @@ const LanguageDescription = ({ langData, className, onLangUpdate }) => {
     </>
   );
 };
-
+ 
 export default LanguageDescription;

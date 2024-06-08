@@ -1,0 +1,12 @@
+.defaultAllBranches{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.checkMark{
+    font-size: 2rem;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 5px;
+    background-color: green;
+}

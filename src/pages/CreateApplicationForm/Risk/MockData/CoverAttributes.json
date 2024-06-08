@@ -1,0 +1,38 @@
+[
+    {
+        "cover" : "1001- Motor Own damage",
+        "siType": "Derived from risk",
+        "siValidationType": "For the Claim",
+        "mandatory": "true",
+        "basicCover": "false",
+        "default": "true",
+        "defaultOnRenewal": "true",
+        "addSI": "false",
+        "addRI": "true",
+        "built-In" : "true"
+    },
+    {
+        "cover" : "3003- Motor external damage",
+        "siType": "Derived from risk",
+        "siValidationType": "For the Claim",
+        "mandatory": "true",
+        "basicCover": "true",
+        "default": "true",
+        "defaultOnRenewal": "false",
+        "addSI": "false",
+        "addRI": "true",
+        "built-In" : "true"
+    },
+    {
+        "cover" : "2002- Motor internal damage",
+        "siType": "Derived from risk",
+        "siValidationType": "For the Policy Period",
+        "mandatory": "false",
+        "basicCover": "true",
+        "default": "true",
+        "defaultOnRenewal": "false",
+        "addSI": "true",
+        "addRI": "true",
+        "built-In" : "true"
+    }
+]

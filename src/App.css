@@ -2,6 +2,10 @@
   box-sizing: border-box;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+a {
+  outline: none !important;
+  box-shadow: none !important;
+}
 .main{
   display: flex;
 }
@@ -9,7 +13,9 @@
   width: calc(100% - 250px);
   flex: 1;
   padding: 24px;
+  overflow: auto;
 }
+
 
 .p-checkbox{
   border: 1px solid lightgray;
@@ -26,9 +32,12 @@ td .w-3 input{
 
 /* Tab View */
 .tab-content-section {
-  padding: 16px;
+  padding: 14px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
   border-radius: 12px;
+  width: 100%;
+  height: 100%;
+  /* max-height: 500px; */
 }
 
 /* ScrollBar styles here */
@@ -71,13 +80,15 @@ td .w-3 input{
 
 .p-tabview.p-component .p-tabview-panels {
   padding: 1rem;
+  /* max-height: 400px; */
+  /* overflow: auto; */
 }
 
 
 /* Dropdown styles here */
 .p-dropdown {
-  min-width: 120px;
-  width: 100%;
+  min-width: 75px;
+  height: fit-content !important;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 6px;
 }
@@ -89,8 +100,8 @@ td .w-3 input{
 .p-dropdown:not(.p-disabled):hover,
 .p-dropdown:not(.p-disabled):active,
 .p-dropdown:not(.p-disabled):focus {
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 .p-dropdown:not(.p-disabled):hover,
 .p-dropdown:not(.p-disabled):active,
@@ -100,6 +111,10 @@ td .w-3 input{
 
 .p-dropdown-items-wrapper .p-dropdown-item .p-highlight {
   color: rgb(0, 60, 149);
+}
+
+.p-toolbar{
+  padding: 0px !important;
 }
 
 /* Dropdown container styles here */
@@ -120,9 +135,9 @@ td .w-3 input{
 
 /* Card Header Text styles here */
 .card-header-text {
-  font-size: 24px;
+  /* font-size: 24px; */
   font-weight: 600;
-  color: rgb(0, 60, 149);
+  /* color: rgb(0, 60, 149); */
   margin-bottom: 12px;
 }
 
@@ -153,7 +168,7 @@ td .w-3 input{
   padding: 0 12px;
   font-size: 16px;
   padding: 9px 12px 12px;
-  height: 40px;
+  /* height: 40px; */
   text-transform: capitalize;
 }
 .small-btn .p-component.p-button {
@@ -168,7 +183,7 @@ td .w-3 input{
 .p-button.p-component.p-disabled:hover,
 .p-button.p-component.p-disabled:active,
 .p-button.p-component.p-disabled:focus {
-  background-color: rgb(52, 52, 52) !important;
+  /* background-color: rgb(52, 52, 52) !important; */
   border: none;
   color: rgb(185, 185, 185) !important;
   cursor: not-allowed !important;
@@ -217,3 +232,102 @@ button.p-button.p-component.p-button-outlined:hover {
 .checkbox-container label.right-label {
   margin-left: 8px;
 }
+
+/* Pagination */
+.p-component.p-paginator {
+  display: flex;
+  align-items: center;
+}
+.p-component.p-paginator .p-link.p-paginator-element {
+  min-width: unset;
+  width: 1.75rem;
+  height: 1.75rem;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.p-component.p-paginator .p-link.p-paginator-element:hover {
+  background-color: rgba(0, 0, 0, 0.12);
+}
+.p-component.p-paginator .p-dropdown {
+  min-width: unset;
+  max-width: 60px;
+  height: 100%;
+}
+.p-component.p-paginator .p-dropdown
+.p-component.p-paginator .p-dropdown:hover,
+.p-component.p-paginator .p-dropdown:active,
+.p-component.p-paginator .p-dropdown.input-wrapper-focus {
+  outline: none;
+  box-shadow: none;
+}
+.p-component.p-paginator .p-dropdown .p-dropdown-trigger {
+  width: unset;
+  height: unset;
+  padding: 8px;
+}
+.p-component.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  border: 1px solid rgb(0, 59, 149);
+}
+ 
+/* stepper styles here */
+.p-component.p-steps .p-menuitem-link {
+  min-width: 80px;
+}
+.p-component.p-steps .p-steps-item:first-child {
+  justify-content: flex-start;
+}
+.p-component.p-steps .p-steps-item:first-child:before {
+  left: 50%;
+  width: 50%;
+}
+.p-component.p-steps .p-steps-item:last-child {
+  justify-content: flex-end;
+}
+.p-component.p-steps .p-steps-item:last-child:before {
+  left: unset;
+  right: 50%;
+  width: 50%;
+}
+.p-component.p-steps .p-steps-item.p-highlight.p-steps-current .p-steps-number {
+  background: #4338CA;
+  color: #EEF2FF;
+}
+.p-component.p-steps .p-menuitem-link:hover .p-steps-number {
+  background: #EEF2FF;
+  color: #4338CA;
+}
+
+
+/* Card styling */
+
+.bodyContainer{
+  margin-top: 15px;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
+}
+
+.sibeBarButton{
+  width: 30px; 
+  height: 30px; 
+  background-color: #3498db !important;
+  border-radius: 0px !important;
+}
+
+.p-button-outlined{
+  color: #003B95 !important;
+}
+
+.p-datatable{
+  width: 100%;
+}
+
+.disabled-row {
+  background-color: gray;
+  color: blue;
+}
+

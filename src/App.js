@@ -17,6 +17,10 @@ import ProductSetupSidebarData from "./pages/Sidebar/ProductSetupSidebarData";
 import ProductSetup from './pages/CreateApplicationForm/ProductSetUp';
 import Plan from "./pages/plan";
 import Documentation from "./pages/documentation";
+import SideBarHide from './pages/SideBarHide';
+import LineOfBusinessListing from './pages/LineOfBusiness/LineOfBusinessListing';
+import LineOfBusinessCreateForm from './pages/LineOfBusiness/LineOfBusinessCreateNew';
+import PlanTableData from "./pages/plan/table";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -27,17 +31,22 @@ function App() {
 
   return (
     <>
-      {!token ? (
+      {token ? (
         <div className="App">
           <Header setToken={setToken}/>
           <div className="main">
+            {/* <SideBarHide/> */}
             <Sidebar linksData={linkData} />
             <div className="content">
               <Routes>
               <Route path="/docs" element={<Documentation />} />
-                <Route path="/plan" element={<Plan />} />
                 <Route path="/tasks" element={<HomePage />} />
-                <Route path="/productConfigurator/productSetup/createApplication" element={<ProductSetup />} />
+                <Route path="/productConfigurator/productSetup/createApplication/:id" element={<ProductSetup />} />
+                <Route path="/productConfigurator/lineofbusiness" element={<LineOfBusinessListing/>} />
+                <Route path="/productConfigurator/LOB/createApplication" element = {<LineOfBusinessCreateForm/>} />
+                <Route path="/productConfigurator/productSetup/editApplication/:id/:key" element={<ProductSetup />} />
+                <Route path="/plan" element={<PlanTableData />} />
+                <Route path="/plan/:type/:id?" element={<Plan />} />
                 <Route
                   path="/productSetup"
                   element={<ListingPage />}

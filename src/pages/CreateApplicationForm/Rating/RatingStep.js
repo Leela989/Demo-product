@@ -6,6 +6,7 @@ import KebabMen from "../../../assets/kebab.svg";
 import ratingStepData from "./ratingStep.json";
 import "./RatingStep.css";
 import AutoCompleField from "../../../components/AutoCompleteField/AutoCompleteField";
+import CustomButton from "../../../components/Button/CustomButton";
 
 function RatingStep() {
   const options = [{ name: "edit" }, { name: "delete" }];
@@ -77,6 +78,7 @@ function RatingStep() {
           <InputField className="w-1/3 p-1" name="order" label="Order" />
         </div>
       <div className="tableContainer">
+        <div style={{display: 'flex'}}>
         <DataTable
           value={ratingStepData}
           header={"Tariff Parameters"}
@@ -124,6 +126,11 @@ function RatingStep() {
             style={{ width: "5%" }}
           />
         </DataTable>
+        <div>
+          <CustomButton label="ADD" onClick={() => console.log('')} className="small-btn mt-4 -ml-16"/>
+        </div>
+        </div>
+
       </div>
 
       <div></div>

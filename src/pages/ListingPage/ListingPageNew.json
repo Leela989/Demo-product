@@ -1,0 +1,639 @@
+[
+  {
+    "key": 2300,
+    "name": "1001-Motor Private",
+    "effectiveFrom": "10/01/2024 10:00",
+    "effectiveTo": "20/01/2024 01:00",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "key": 2301,
+    "name": "1002-Motor Commercial",
+    "effectiveFrom": "10/01/2024 10:20",
+    "effectiveTo": "20/01/2024 14:00",
+    "status": "Approved",
+    "action": "edit",
+    "productHeaderDetails": {
+      "key": 2301,
+      "Code": "1002",
+      "Description": "Motor Commercial",
+      "Short_description": "Motor Commercial",
+      "Line_of_Business": "10",
+      "Effective_from": "2000-01-01T00:00:00",
+      "Effective_to": null
+    },
+    "data": [
+      {
+        "Branches": [
+          { "Code": "01", "Name": "Head Office", "include": "true" },
+          { "Code": "02", "Name": "Mwanza Branch", "include": "true" },
+          { "Code": "03", "Name": "Mbeya Branch", "include": "true" }
+        ],
+        "Discount": [
+          {
+            "Type": "Discount",
+            "Code": "4001",
+            "Description": "Special Discount",
+            "Short_description": "Special Discount",
+            "Long_description": "Special Discount",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 1,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Discount",
+            "Code": "4002",
+            "Description": "General Discount",
+            "Short_description": "General Discount",
+            "Long_description": "General Discount",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 2,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Loading",
+            "Code": "5011",
+            "Description": "Policy Loading",
+            "Short_description": "Policy Loading",
+            "Long_description": "Policy Loading",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "0",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "1",
+            "Commission_apl": "1",
+            "Sort_order": 3,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Loading",
+            "Code": "5019",
+            "Description": "Fronting FAC Fee",
+            "Short_description": "Fronting FAC Fee",
+            "Long_description": "Fronting FAC Fee",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "0",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 4,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Discount",
+            "Code": "4008",
+            "Description": "LTA Discount",
+            "Short_description": "LTA Discount",
+            "Long_description": "Long Term Agreement Discount",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 3,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Discount",
+            "Code": "4011",
+            "Description": "Policy Discount",
+            "Short_description": "Policy Discount",
+            "Long_description": "Policy Discount",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "1",
+            "Commission_apl": "1",
+            "Sort_order": 4,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Discount",
+            "Code": "4020",
+            "Description": "Large Volume Discount",
+            "Short_description": "Large Volume Discount",
+            "Long_description": "Large Volume Discount",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 5,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Loading",
+            "Code": "5001",
+            "Description": "Special Loading",
+            "Short_description": "Special Loading",
+            "Long_description": "Special Loading",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 1,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "Loading",
+            "Code": "5004",
+            "Description": "General Loading",
+            "Short_description": "General Loading",
+            "Long_description": null,
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 2,
+            "Effective_from": null,
+            "Effective_to": null
+          }
+        ],
+        "Conditions": [
+          {
+            "Type": "06",
+            "Code": "1060001",
+            "Short_description": "The terms and conditions of a Comprehensive insurance policy for commercial vehicles shall be applied to Insurance Company.",
+            "Long_description": null,
+            "Default_yn": "1",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "06",
+            "Code": "1060005",
+            "Description": "30 days cancellation notice for both parties.",
+            "Short_description": "30 days cancellation notice for both parties.",
+            "Long_description": null,
+            "Default_yn": "1",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "06",
+            "Code": "1060006",
+            "Description": "Cancellation of the vehicle subject to the following: - The Vehicle registration has been cancelled. - The Vehicle registration has been cancelled. - The Vehicle’s Ownership is transferred to another owner. - Another Insurance policy is issued from another Insurance Company in replacement of this policy. - Submit all original Insurance documents such as certificate of Insurance and card.",
+            "Short_description": "Cancellation of the vehicle subject to the following: - The Vehicle registration has been cancelled. - The Vehicle registration has been cancelled. - The Vehicle’s Ownership is transferred to another owner. - Another Insurance policy is issued from another Insurance Company in replacement of this policy. - Submit all original Insurance documents such as certificate of Insurance and card.",
+            "Long_description": null,
+            "Default_yn": "1",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "06",
+            "Code": "1060007",
+            "Description": "Police report is essential for any clams to settle.",
+            "Short_description": "Police report is essential for any clams to settle.",
+            "Long_description": null,
+            "Default_yn": "1",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "06",
+            "Code": "1060008",
+            "Description": "No refund for deletion of vehicle on which claim is paid or under possessing.",
+            "Short_description": "No refund for deletion of vehicle on which claim is paid or under possessing.",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "06",
+            "Code": "1060010",
+            "Description": "Vehicles should not be repaired until the Company's confirmation is received.",
+            "Short_description": "Vehicles should not be repaired until the Company's confirmation is received.",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "04",
+            "Code": "1010001",
+            "Description": "Warranty",
+            "Short_description": "Warranty",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "04",
+            "Code": "1010009",
+            "Description": "7 Fire Extinguisher Warranty",
+            "Short_description": "7 Fire Extinguisher Warranty",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "04",
+            "Code": "1010010",
+            "Description": "8.ANTI THEFT DEVICES: (ATD)",
+            "Short_description": "8.ANTI THEFT DEVICES: (ATD)",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "04",
+            "Code": "1010011",
+            "Description": "SECTION II - LIABILITY TO THIRD PARTIES",
+            "Short_description": "SECTION II - LIABILITY TO THIRD PARTIES",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "04",
+            "Code": "1010012",
+            "Description": "SECTION III MEDICAL EXPENSES",
+            "Short_description": "SECTION III MEDICAL EXPENSES",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "04",
+            "Code": "1010013",
+            "Description": "AVOIDANCE OF CERTAIN TERMS AND RIGHTS OR RECOVERY",
+            "Short_description": "AVOIDANCE OF CERTAIN TERMS AND RIGHTS OR RECOVERY",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          },
+          {
+            "Type": "06",
+            "Code": "1060009",
+            "Description": "Agency repair coverage restricted for the last five years of the model except in case of high value vehicle.",
+            "Short_description": "Agency repair coverage restricted for the last five years of the model except in case of high value vehicle.",
+            "Long_description": null,
+            "Default_yn": "0",
+            "Effective_from": null,
+            "Effective_to": null
+          }
+        ],
+        "Deductible": [
+          {
+            "Code": "6023",
+            "Description": "Excess on % of Claim",
+            "Short_description": "Excess on % of Claim",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+          {
+            "Code": "6024",
+            "Description": "Voluntary excess - 1000 fixed value",
+            "Short_description": "Voluntary excess - 1000 fixed value",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": 1000,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+
+          {
+            "Code": "6025",
+            "Description": "Compulory excess - % of claim subject to min 2000",
+            "Short_description": "Compulory excess - % of claim subject to min 2000",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": 2000,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+          {
+            "Code": "2008013",
+            "Description": "Excess on % of Claim",
+            "Short_description": "Excess on % of Claim",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+          {
+            "Code": "2008015",
+            "Description": "Trailers",
+            "Short_description": "Trailers",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          },
+          {
+            "Code": "6668",
+            "Description": "Time Excess",
+            "Short_description": "Time Excess",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+          {
+            "Code": "6019",
+            "Description": "Voluntary Excess",
+            "Short_description": "Voluntary Excess",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+          {
+            "Code": "9000001",
+            "Description": "Windscreen Deductible",
+            "Short_description": "Windscreen Deductible",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          },
+          {
+            "Code": "9000002",
+            "Description": "Normal Excess - Partial loss",
+            "Short_description": "Normal Excess - Partial loss",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          },
+          {
+            "Code": "9000003",
+            "Description": "Geo-Extn Excess",
+            "Short_description": "Geo-Extn Excess",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          },
+          {
+            "Code": "9000004",
+            "Description": "Partial loss",
+            "Short_description": "Partial loss",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          },
+          {
+            "Code": "9000005",
+            "Description": "Total loss",
+            "Short_description": "Total loss",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          },
+          {
+            "Code": "9000006",
+            "Description": "Driver under 25 yrs old",
+            "Short_description": "Driver under 25 yrs old",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          },
+          {
+            "Code": "9000007",
+            "Description": "Third party Only Excess",
+            "Short_description": "Third party Only Excess",
+            "Default_yn": "0",
+            "Type": "8",
+            "Value": null,
+            "Perc": null,
+            "Effective_from": "2011-01-01T00:00:00",
+            "Effective_to": "2011-01-01T00:00:00"
+          }
+        ],
+        "Charge": [
+          {
+            "Code": "3020",
+            "Description": "Vat",
+            "Default_yn": "C",
+            "Type": "001",
+            "Rat_modify_yn": "1",
+            "Refund_yn": "1",
+            "Mandatory_yn": "1",
+            "Cust_share_perc": 100,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2099-12-31T00:00:00"
+          },
+          {
+            "Code": "01",
+            "Description": "Premium Tax",
+            "Default_yn": "C",
+            "Type": "003",
+            "Rat_modify_yn": "0",
+            "Refund_yn": "1",
+            "Mandatory_yn": "1",
+            "Cust_share_perc": 0,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2099-12-31T00:00:00"
+          },
+          {
+            "Code": "04",
+            "Description": "City Levy",
+            "Default_yn": "C",
+            "Type": "003",
+            "Rat_modify_yn": "0",
+            "Refund_yn": "1",
+            "Mandatory_yn": "1",
+            "Cust_share_perc": 0,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2099-12-31T00:00:00"
+          }
+        ],
+        "documentPrints": [
+          {
+            "srl": "01",
+            "documentId": "123",
+            "documentName": "Listing Document",
+            "printBeforeApproval": "false",
+            "reprintAllowed": "true",
+            "transactionType": "Proposal",
+            "numberOfPrints": "5"
+          },
+          {
+            "srl": "02",
+            "documentId": "223",
+            "documentName": "Product Document",
+            "printBeforeApproval": "true",
+            "reprintAllowed": "false",
+            "transactionType": "Quotation",
+            "numberOfPrints": "15"
+          },
+          {
+            "srl": "02",
+            "documentId": "225",
+            "documentName": "Product Document",
+            "printBeforeApproval": "true",
+            "reprintAllowed": "true",
+            "transactionType": "Endorsement",
+            "numberOfPrints": "15"
+          }
+        ],
+
+        "Covers": [
+          { "Type": "C", "Code": "3101", "Description": "Own Damage" },
+          {
+            "Type": "C",
+            "Code": "3106",
+            "Description": "PA Benefit to Driver"
+          },
+          {
+            "Type": "C",
+            "Code": "3176",
+            "Description": "Third party Bodily Injury / Death (AOA,AOY)"
+          },
+          {
+            "Type": "C",
+            "Code": "3178",
+            "Description": "Third Party Property Damage (AOA,AOY)"
+          },
+          { "Type": "C", "Code": "3195", "Description": "Road Assistance" },
+          {
+            "Type": "C",
+            "Code": "3105",
+            "Description": "Geographical Extension"
+          },
+          {
+            "Type": "C",
+            "Code": "3102",
+            "Description": "Personal Accident to Passenger"
+          },
+          { "Type": "C", "Code": "3103", "Description": "Towing charges" },
+          {
+            "Type": "C",
+            "Code": "3104",
+            "Description": "Legal liability to Driver"
+          },
+          { "Type": "C", "Code": "3103", "Description": "Agency Repair" }
+        ]
+      }
+    ]
+  },
+  {
+    "key": 2302,
+    "name": "2001-Marine Open Cover",
+    "effectiveFrom": "10/01/2024 12:00",
+    "effectiveTo": "20/01/2024 18:30",
+    "status": "Pending",
+    "action": "approve"
+  },
+  {
+    "key": 2303,
+    "name": "2002-Marine Certificate",
+    "effectiveFrom": "10/01/2024 09:45",
+    "effectiveTo": "20/01/2024 16:20",
+    "status": "Approved",
+    "action": "clone"
+  },
+  {
+    "key": 2304,
+    "name": "3001-Fire & Allied Perils",
+    "effectiveFrom": "10/01/2024 11:10",
+    "effectiveTo": "20/01/2024 17:55",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "key": 2501,
+    "name": "1001-Motor Private",
+    "effectiveFrom": "15/05/2024 08:30",
+    "effectiveTo": "15/06/2024 15:45",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "key": 2502,
+    "name": "1001-Motor Private",
+    "effectiveFrom": "15/05/2024 08:30",
+    "effectiveTo": "15/06/2024 15:45",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "key": 2503,
+    "name": "1001-Motor Private",
+    "effectiveFrom": "15/05/2024 08:30",
+    "effectiveTo": "15/06/2024 15:45",
+    "status": "Pending",
+    "action": "view"
+  },
+  {
+    "key": 2504,
+    "name": "1001-Motor Private",
+    "effectiveFrom": "15/05/2024 08:30",
+    "effectiveTo": "15/06/2024 15:45",
+    "status": "Pending",
+    "action": "view"
+  }
+]

@@ -94,9 +94,9 @@ button.p-highlight {
 
 .attributeText {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 12px;
+  font-size: 14px;
   color: black;
-  width: 60%;
+  width: 100%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -110,27 +110,30 @@ button.p-highlight {
   text-overflow: clip;
 }
 
+.att .p-inputtext .p-component{
+  height: 24px !important;
+}
+
 .attributeBox {
   display: flex;
   align-items: center;
-  padding: 3px;
+  padding: 10px;
 }
 
-.attributeBox1 {
-  display: flex;
-  /* padding: 3px; */
-}
-.attributeCheckBox {
-  flex: 1;
-  display: flex;
-  align-items: flex-start;
+.attributeInputField{
+  height: 24px !important;
 }
 
-.attributeCheckBox1 {
-  width: 15px;
-  height: 15px;
-  margin: 5px;
+.p-button-warn{
+  height: 32px !important;
 }
+
+.p-button-success {
+  background-color: green;
+  border-color: green;
+  height: 32px !important;
+}
+
 
 
 
@@ -156,22 +159,46 @@ span.p-paginator-pages {
 
 .searchContainer {
   display: flex;
+  justify-content: space-between;
+  margin: 0 20px;
 }
 
-.searchField:focus {
-  outline: none;
-  border-color: #ff5100;
-  border-radius: 3px;
+.attributesContainer{
+  margin-top: 20px;
 }
 
-.searchField {
-  width: 150px;
-  height: 35px;
+.w-2\/4{
+  width: 50% !important;
+}
+
+.w-1\/4{
+  width: 25% !important;
+}
+
+.tab-component-container {
+  /* flex: 0 0 73%; */
+  width: 67%;
+}
+
+
+.attributes-tab-container {
+  flex: 0 0 30%;
+  /* border: 1px solid black; */
+  padding: 10px;
+  border-radius: 12px;
   margin-left: 10px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
+  max-height:500px;
+  /* overflow: auto; */
 }
 
 .buttonContainer {
   padding-left: 550px;
+}
+
+.attributeTableCheckBox{
+  display: flex;
+  justify-content: space-around;
 }
 
 button,
@@ -206,10 +233,11 @@ input {
 
 .statusList {
   display: flex;
+  width: 100%;
   gap: 50px;
-  margin-left: 120px;
-  margin-top: 11px;
+  margin-top: -16px;
   font-size: 14px;
+  justify-content: flex-end;
 }
 
 .topContainer {
@@ -246,8 +274,13 @@ input:focus {
   margin-left: 4px;
 }
 
-.card{
-  margin-left: 4px;
+.Attributecard{
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
+  border-radius: 12px;
+  margin-left: 15px;
 }
 
 
@@ -287,8 +320,8 @@ input:focus {
 }
 
 .attributeListing {
-  width: 320px;
-  height: 90%;
+  width: 400px;
+  height: 350px;
   overflow: auto;
 }
 
@@ -342,20 +375,7 @@ input:focus {
 
 
 
-.addButton {
-  padding: 2px 12px;
-  background-color: #003B95;
-  color: white;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 12px;
-  border-radius: 4px;
-  box-shadow: 0 0 5px var(--border-color, #003B95);
-  z-index: 2;
-  font-weight: bold;
-  cursor: pointer;
-  align-items: center;
-  justify-content: center;
-}
+
 
 .typeLabel {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -447,14 +467,11 @@ input:focus {
 
 
 .productStepper{
-  width: 40%;
+  width: 100%;
+  padding-top: 15px;
 }
 
-.productStepperBox{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
 
 
 
@@ -466,6 +483,7 @@ input:focus {
   display: flex;
   justify-content: space-around;
   padding-top: 10px;
+  width: 100%;
 }
 
 .product-step{
@@ -563,22 +581,19 @@ input:focus {
 }
 
 .attributes-container {
-  height: calc(100vh - 290px);
-  /* overflow: auto; */
+  height: calc(100vh - 250px);
+  width: calc(100vw - 984px);
+  overflow: auto;
 }
 
-.popUpadd{
-  padding: 2px 12px;
-  background-color: #003B95;
-  color: white;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-size: 12px;
-  border-radius: 4px;
-  box-shadow: 0 0 5px var(--border-color, #003B95);
-  z-index: 2;
-  font-weight: bold;
-  cursor: pointer;
-  align-items: center;
+.Addbutton{
+  width: 48px !important;
+  height: 24px !important;
+}
+
+.tableaddButton{
+  margin-top: 20px;
+  margin-left: -174px;
 }
 
 .p-1{
@@ -587,6 +602,10 @@ input:focus {
 
 .sortOrder{
   width: 36px;
+}
+
+.createFormPage{
+  margin-top: 15px;
 }
 
 /* .createFormPage{
@@ -603,3 +622,11 @@ input:focus {
   display: flex;
   justify-content: space-between;
 }
+
+
+
+/* css */
+
+
+
+

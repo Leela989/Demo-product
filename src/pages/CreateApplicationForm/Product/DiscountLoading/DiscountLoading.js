@@ -1,25 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import discountdata from "./DiscountLoading.json";
 import "../../Styles/DetailLoginPage.css";
 import InputField from "../../../../components/InputField/InputField";
-import KebabMen from "../../../../assets/kebab.svg";
+import { useParams } from 'react-router-dom';
 import DialogueBox from "../../../../components/DialogueBox/DialogueBox";
 import AutoCompleField from "../../../../components/AutoCompleteField/AutoCompleteField";
 import DateField from "../../../../components/DateField/Datefield";
 import CheckBox from "../../../../components/CheckBox/CheckBox";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
+import CustomButton from "../../../../components/Button/CustomButton";
+import LanguageDescription from "../../../../components/language-description/lang-desctiption";
+import { useLocation } from "react-router-dom";
 
-const DiscountLoading = () => {
+const DiscountLoading = ({ productData }) => {
   const menuLeft = useRef(null);
+  const { id, key } = useParams();
   const [discounttableData, setDiscountTableData] = useState(discountdata);
   const [add, setAdd] = useState(false);
   const [menuOpen, setMenuOpen] = useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
   const [deletePopup, setDeletePopup] = useState(false);
   const [checkboxState, setCheckboxState] = useState(false);
+  const [tableData, setTableData] = useState([]);
+  const productKey = parseInt(key, 10);
+  const matchingProduct = productData.find(product => product.key === productKey);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (matchingProduct && matchingProduct.data?.[0]?.Discount) {
+      setTableData(matchingProduct.data[0].Discount);
+    }
+  }, [matchingProduct]);
 
   const [formData, setFormData] = useState({
     type: "",
@@ -57,24 +71,6 @@ const DiscountLoading = () => {
     setDiscountTableData(newData);
     setAdd(false);
     setSelectedRow(null);
-    resetFormData();
-  };
-
-  const resetFormData = () => {
-    setFormData({
-      type: "",
-      code: "",
-      description: "",
-      shortDescription: "",
-      longDescription: "",
-      mandatory: false,
-      DefaultOnRenewal: false,
-      rateModify: false,
-      default: false,
-      effectiveFrom: null,
-      effectiveTo: null,
-      sortOrder: "",
-    });
   };
 
   const handleEdit = (rowData, rowIndex) => {
@@ -84,34 +80,21 @@ const DiscountLoading = () => {
   };
 
   const handleDelete = () => {
-    console.log(selectedRow, "deletedRowIndex");
     const newData = [...discounttableData];
     newData.splice(selectedRow, 1);
     setDiscountTableData(newData);
-    setDeletePopup(false);
-    console.log(newData, "row1");
+    setDeletePopup(false); // Change to false to close the delete popup
   };
 
-  const options = [
-    {
-      name: "Edit",
-      onClick: (rowData, rowIndex) => handleEdit(rowData, rowIndex),
-    },
-    {
-      name: "Delete",
-      onClick: (rowData, rowIndex) => {
-        setDeletePopup(true);
-        setSelectedRow(rowIndex);
-      },
-    },
-  ];
-
   const items = [
+    { label : "View"},
     {
       label: "Edit",
+      command: () => handleEdit(selectedRow),
     },
     {
       label: "Delete",
+      command: () => setDeletePopup(true), // Set to true to open the delete popup
     },
   ];
 
@@ -133,7 +116,6 @@ const DiscountLoading = () => {
   };
 
   const onChange = (name, value) => {
-    console.log(name, value, "<---");
     const updatedValue = value && value.target ? value.target.value : value;
 
     setFormData((prevFormData) => ({
@@ -153,6 +135,26 @@ const DiscountLoading = () => {
     }));
   };
 
+  const langData = {
+    default: "en",
+    data: [
+      { code: "en", lang: "English", description: "" },
+      { code: "es", lang: "Spanish", description: "" },
+    ],
+  };
+
+  const languageDescription1 = {
+    default: "en",
+    data: [
+      { lang: "English", code: "en", description: "" },
+      { lang: "Spanish", code: "es", description: "" },
+    ],
+  };
+
+  const handleLangUpdate = (updatedLang) => {
+    console.log("Updated Language Data:", updatedLang);
+  };
+
   const discountPopUp = () => {
     return (
       <div>
@@ -166,6 +168,7 @@ const DiscountLoading = () => {
               options={list}
               dropdown
               onChange={handleInputChange}
+              value={formData.type}
             />
             <InputField
               className="w-1/3 p-1"
@@ -173,81 +176,96 @@ const DiscountLoading = () => {
               label="Code"
               labelType="left"
               onChange={handleInputChange}
+              value={formData.code}
             />
-
-            <InputField
-              className="w-1/3 p-1"
-              name="description"
-              label="Description"
-              labelType="left"
-              onChange={(e) => handleInputChange("description", e)}
+            <LanguageDescription
+              langDefault={languageDescription1.default}
+              langData={langData.data}
+              labelName="Description"
+              className="w-1/2 p-1"
+              onLangUpdate={handleLangUpdate}
+              value={formData.longDescription}
             />
           </div>
           <div className="topBox">
-            <InputField
-              className="w-1/2 p-1"
-              name="longDescription"
-              label="Long Description"
-              labelType="left"
-              onChange={(e) => handleInputChange("longDescription", e)}
-            />
-            <InputField
-              className="w-1/2 p-1"
-              name="shortDescription"
-              label="Short Description"
-              labelType="left"
-              onChange={(e) => handleInputChange("shortDescription", e)}
-            />
+            <div className="w-1/2 p-1">
+              <LanguageDescription
+                langDefault={languageDescription1.default}
+                langData={langData.data}
+                labelName="Long Description"
+                className="w-2/2 p-1"
+                onLangUpdate={handleLangUpdate}
+                value={formData.longDescription}
+              />
+            </div>
+            <div className="w-1/2 p-1">
+              <LanguageDescription
+                langDefault={languageDescription1.default}
+                langData={langData.data}
+                labelName="Short Description"
+                className="w-2/2 p-1"
+                onLangUpdate={handleLangUpdate}
+                value={formData.longDescription}
+              />
+            </div>
           </div>
-          <div className="topcheckBox">
-            <div className="checkboxes">
+          <div className="topBox">
+            <div className="checkboxes w-1/5">
               <CheckBox
                 labelName="Mandatory"
                 name="mandatory"
                 onChange={handleCheckboxChange}
+                checked={formData.mandatory}
               />
             </div>
-            <div className="checkboxes">
+            <div className="checkboxes w-2/5">
               <CheckBox
                 labelName="Default On Renewal"
                 name="DefaultOnRenewal"
                 onChange={handleCheckboxChange}
+                checked={formData.DefaultOnRenewal}
               />
             </div>
-            <div className="checkboxes">
+            <div className="checkboxes w-1/5">
               <CheckBox
                 labelName="Rate Modify"
                 name="rateModify"
                 onChange={handleCheckboxChange}
+                checked={formData.rateModify}
               />
             </div>
-            <div className="checkboxes">
+            <div className="checkboxes w-1/5">
               <CheckBox
-                labelName="Default Yes/No"
+                labelName="Default"
                 name="default"
                 onChange={handleCheckboxChange}
+                checked={formData.default}
               />
             </div>
           </div>
-          <div className="topcheckBox">
-            <div className="checkboxes">
+          <div className="topBox">
+            <div className="checkboxes w-1/4">
               <CheckBox
-                labelName="NCB Yes/No"
+                labelName="NCB "
                 onChange={handleCheckboxChange}
+                checked={formData.NCB}
               />
             </div>
-            <div className="checkboxes">
+            <div className="checkboxes w-2/4">
               <CheckBox
-                labelName="Add RI Yes/No"
+                labelName="Add RI SI"
                 onChange={handleCheckboxChange}
+                checked={formData.addRI}
               />
             </div>
-            <div className="checkboxes">
+            <div className="checkboxes w-1/4">
               <CheckBox
                 labelName="Commission apl"
                 onChange={handleCheckboxChange}
+                checked={formData.commissionApl}
               />
             </div>
+            
           </div>
           <div className="topBox">
             <InputField
@@ -256,20 +274,23 @@ const DiscountLoading = () => {
               label="Sort Order"
               labelType="left"
               onChange={onChange}
+              value={formData.sortOrder}
             />
             <DateField
-              className="w-2/4"
+              className="w-2/4 ml-1"
               name="effectiveFrom"
               label="Effective From"
               labelType="left"
               onChange={(e) => handleInputChange("effectiveFrom", e)}
+              value={formData.effectiveFrom}
             />
             <DateField
-              className="w-2/4"
+              className="w-2/4 ml-1"
               name="effectiveTo"
               label="Effective To"
               labelType="left"
               onChange={(e) => handleInputChange("effectiveTo", e)}
+              value={formData.effectiveTo}
             />
           </div>
         </div>
@@ -286,87 +307,76 @@ const DiscountLoading = () => {
           rounded
           className="action-menu"
           icon="pi pi-ellipsis-v"
-          onClick={(event) => menuLeft.current.toggle(event)}
+          onClick={(event) => {
+            menuLeft.current.toggle(event);
+            setSelectedRow(rowIndex);
+          }}
           aria-controls="popup_menu_left"
           aria-haspopup
         />
-        {menuOpen === rowIndex && (
-          <div className="kebab-menu-popup">
-            {options.map((option, i) => (
-              <div
-                key={i}
-                className="kebab-menu-item"
-                onClick={() => {
-                  option.onClick(rowData, rowIndex);
-                  setMenuOpen(null);
-                }}
-              >
-                {option.name}
-              </div>
-            ))}
-          </div>
-        )}
       </div>
     );
   };
 
   return (
     <div>
-      <div>
-        <div>
-          <Button onClick={() => setAdd(true)} className="popUpadd">
-            ADD
-          </Button>
-        </div>
+      <div style={{ display: "flex" }}>
         <DataTable
-          value={discounttableData}
+          header={"Discount & Loading data"}
+          value={(id >= productData.length || !productData[id]?.data?.[0]?.Discount) ? [] : tableData}
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}
         >
           <Column
-            field="type"
-            header="Type      "
+            style={{ width: "35%" }}
+            field="Type"
+            header="Type"
             body={(rowData) => (
-              <InputField type="text" value={rowData.type} disabled />
-            )}
-            // style={{ width: "40%" }}
-          />
-          <Column
-            field="code"
-            header="Code"
-            body={(rowData) => (
-              <InputField type="text" value={rowData.code} disabled />
+              <InputField type="text" value={rowData.Type} disabled/>
             )}
           />
           <Column
-            field="mandatory"
+            style={{ width: "35%" }}
+            field="discount/loading"
+            header="Discount/Loading"
+            body={(rowData) => (
+              <InputField
+                type="text"
+                value={rowData.Code + '' + rowData.Description}
+                disabled
+              />
+            )}
+          />
+          <Column
+            field="Mandatory"
             header="Mandatory"
             body={(rowData) => (
-              <input type="checkbox" checked={rowData.mandatory} disabled />
+              <input type="checkbox" checked={rowData.Mandatory || false} disabled />
             )}
           />
           <Column
-            field="default"
+            field="Default_yn"
             header="Default"
             body={(rowData) => (
-              <input type="checkbox" checked={rowData.default} disabled />
+              <input type="checkbox" checked={rowData.Default_yn || false} disabled />
             )}
           />
           <Column
-            field="sortOrder"
+            style={{ width: "5%" }}
+            field="Sort_order"
             header="Sort Order"
             body={(rowData) => (
-              <InputField type="number" value={rowData.sortOrder} disabled />
+              <InputField type="number" value={rowData.Sort_order || ""} disabled />
             )}
           />
           <Column
-            field="DefaultOnRenewal"
+            field="Default_renewal"
             header="Default On Renewal"
             body={(rowData) => (
               <input
                 type="checkbox"
-                checked={rowData.DefaultOnRenewal}
+                checked={rowData.Default_renewal || false}
                 disabled
               />
             )}
@@ -378,15 +388,25 @@ const DiscountLoading = () => {
             style={{ width: "5%" }}
           />
         </DataTable>
+        <div>
+          <CustomButton
+            label="ADD"
+            onClick={() => {
+              console.log("Add button clicked");
+              setAdd(true);
+            }}
+            className="small-btn mt-4 -ml-16"
+          />
+        </div>
       </div>
 
       {add && (
         <DialogueBox
           data={discountPopUp()}
           header={"Discount & Loading"}
-          setAdd={setAdd}
           yesButtonText="Save"
           noButtonText="Cancel"
+          visible={add}
           onSave={handleAddSave}
         />
       )}
@@ -395,7 +415,6 @@ const DiscountLoading = () => {
         <DialogueBox
           data={"Are you sure want to delete the row"}
           header={"Delete row message"}
-          setAdd={setDeletePopup}
           yesButtonText="Delete"
           noButtonText="Cancel"
           onSave={handleDelete}

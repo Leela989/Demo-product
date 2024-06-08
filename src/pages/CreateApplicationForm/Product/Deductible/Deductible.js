@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import deductibleData from "./Deductible.json";
@@ -7,47 +7,179 @@ import InputField from "../../../../components/InputField/InputField";
 import KebabMen from '../../../../assets/kebab.svg';
 import DeductibleModal from '../Deductible/DeductibleModal';
 import DialogueBox from "../../../../components/DialogueBox/DialogueBox";
+import CustomButton from "../../../../components/Button/CustomButton";
+import { Button } from "primereact/button";
+import { Menu } from "primereact/menu";
+import AutoCompleField from "../../../../components/AutoCompleteField/AutoCompleteField";
+import DateField from "../../../../components/DateField/Datefield";
+import CheckBox from "../../../../components/CheckBox/CheckBox";
+import LanguageDescription from "../../../../components/language-description/lang-desctiption";
+import { useParams } from "react-router-dom";
 
-const Deductible = () => {
+const Deductible = ({productData}) => {
  
-
-  const [tableData, setTableData] = useState(deductibleData);
+  const menuLeft = useRef(null);
+  const [tableData, setTableData] = useState([]);
   const [addDailogueBox, setAddDailogueBox] = useState(false);
   const [rowDetails, setRowDetails] = useState(null);
   const [menuOpen, setMenuOpen] = useState(null);
+  const [formData, setFormData] = useState({});
+  const [add, setAdd] = useState(false);
+  const {id, key} = useParams();
+  const productKey = parseInt(key, 10);
+  const matchingProduct = productData.find(product => product.key === productKey);
 
   const addRow = () => {
     setAddDailogueBox(true);
   };
 
+  useEffect(() => {
+    if (matchingProduct && matchingProduct.data?.[0]?.Deductible) {
+      setTableData(matchingProduct.data[0].Deductible);
+    }
+  }, [matchingProduct]);
+
   const options = [
-    { name: "Edit" },
-    { name: "Delete" },
+    { label: "View"},
+    { label: "Edit" },
+    { label: "Delete" },
   ];
+
+  const langData = {
+    default: "en",
+    data: [
+      { code: "en", lang: "English", description: "" },
+      { code: "es", lang: "Spanish", description: "" },
+    ],
+  };
+
+  const languageDescription1 = {
+    default: "en",
+    data: [
+      { lang: "English", code: "en", description: "" },
+      { lang: "Spanish", code: "es", description: "" },
+    ],
+  };
+
+  const handleLangUpdate = (updatedLang) => {
+    console.log("Updated Language Data:", updatedLang);
+  };
 
   const closeModal = () => {
     setAddDailogueBox(false);
     setRowDetails(null);
   };
 
-  const handleOptionSelect = (option) => {
-    setMenuOpen(null); 
+  const handleChange = (name, value) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const toggleMenu = (index) => {
     setMenuOpen(menuOpen === index ? null : index);
   };
 
+  const renderDeductibleModal = () => {
+    return (
+      <div className="productStep">
+        <div className="topBox">
+          <AutoCompleField
+            className="w-1/2"
+            name="type"
+            label="Type"
+            labelType="left"
+            dropdown
+            value={formData.type}
+            onChange={(e) => handleChange("type", e.value)}
+          />
+          <InputField
+            className="w-1/2 ml-4"
+            name="Code"
+            label="Code"
+            labelType="left"
+            value={formData.Code}
+            onChange={(e) => handleChange("Code", e.target.value)}
+          />
+        </div>
+        <div className="topBox">
+        <LanguageDescription
+              langDefault={languageDescription1.default}
+              langData={langData.data}
+              labelName="Short Description"
+              onLangUpdate={handleLangUpdate}
+              value={formData.longDescription}
+              className="w-1/2"
+            />
+             <LanguageDescription
+              langDefault={languageDescription1.default}
+              langData={langData.data}
+              labelName="Long Description"
+              onLangUpdate={handleLangUpdate}
+              value={formData.longDescription}
+              className="w-1/2 ml-4"
+            />
+        </div>
+        <div className="topBox">
+          <InputField
+            className="w-1/2"
+            name="percentage"
+            label="Percentage"
+            labelType="left"
+            value={formData.shortDescription}
+            onChange={(e) => handleChange("description", e.target.value)}
+          />
+          <InputField
+            className="w-1/2 ml-3"
+            name="value"
+            label="Value"
+            labelType="left"
+            value={formData.longDescription}
+            onChange={(e) => handleChange("longDescription", e.target.value)}
+          />
+          
+        </div>
+      
+        <div className="topBox">
+        <div className="checkboxes mt-4">
+            <CheckBox labelName="Default"/>
+          </div>
+          <DateField
+            className="w-1/3 mt-4"
+            name="effectiveFrom"
+            label="Effective From"
+            labelType="float"
+            value={formData.effectiveFrom}
+            onChange={(e) => handleChange("effectiveFrom", e.value)}
+          />
+          <DateField
+            className="w-1/3 ml-2 mt-4"
+            name="effectiveTo"
+            label="Effective To"
+            labelType="float"
+            value={formData.effectiveTo}
+            onChange={(e) => handleChange("effectiveTo", e.value)}
+          />
+        </div>
+      </div>
+    );
+  };
+
  
 
-  const actionBodyTemplate = (rowIndex) => {
+  const actionBodyTemplate = (rowData, rowIndex) => {
     return (
       <div className="kebab-menu-container">
-        <img
-          src={KebabMen}
-          alt="KebabMen"
-          className="KebabMen"
-          onClick={() => toggleMenu(rowIndex)}
+        <Menu model={options} popup ref={menuLeft} id="popup_menu_left" />
+        <Button
+          text
+          rounded
+          className="action-menu"
+          icon="pi pi-ellipsis-v"
+          onClick={(event) => menuLeft.current.toggle(event)}
+          aria-controls="popup_menu_left"
+          aria-haspopup
         />
         {menuOpen === rowIndex && (
           <div className="kebab-menu-popup">
@@ -55,7 +187,10 @@ const Deductible = () => {
               <div
                 key={i}
                 className="kebab-menu-item"
-                onClick={() => handleOptionSelect(option.name)}
+                onClick={() => {
+                  option.onClick(rowData, rowIndex);
+                  setMenuOpen(null);
+                }}
               >
                 {option.name}
               </div>
@@ -80,27 +215,32 @@ const Deductible = () => {
 
   return (
     <div>
-              <div>
-                <button onClick={() => addRow('deductible')} className="popUpadd">ADD</button>
-              </div>
-              <DataTable value={tableData}>
-                <Column  header="Type" body={(rowData) => cellInput(rowData.type, "text")} />
-                <Column  header="Deductible" body={(rowData) => cellInput(rowData.deductible, "text")} />
-                <Column  header="Percentage" body={(rowData) => cellInput(rowData.percentage, "text")} />
-                <Column  header="Value" body={(rowData) => cellInput(rowData.value, "text")} />
-                <Column  header="Default On Renewal" body={(rowData) => cellCheckBox(rowData.defaultOnRenewal)} />
+          <div style={{display:'flex'}}>
+              <DataTable value={(id >= productData.length || !productData[id]?.data?.[0]?.Deductible) ? [] : tableData} 
+                 paginator
+                 rows={5}
+                 rowsPerPageOptions={[5, 10, 25, 50]}
+              header="Deductible data">
+                <Column  header="Type" body={(rowData) => cellInput(rowData.Type, "text")} />
+                <Column  header="Deductible" body={(rowData) => cellInput(rowData.Code + '-' + rowData.Description, "text")} />
+                <Column  header="Percentage" body={(rowData) => cellInput(rowData.Perc, "text")} />
+                <Column  header="Value" body={(rowData) => cellInput(rowData.Value, "text")} />
+                <Column  header="Default" body={(rowData) => cellCheckBox(rowData.defaultOnRenewal)} />
                 <Column
                   body={(rowData, { rowIndex }) => actionBodyTemplate(rowData, rowIndex)} style={{ width: "5%" }}
                 />
               </DataTable>
-
+              <div>
+          <CustomButton label="ADD" onClick={() => setAddDailogueBox(true)} className="small-btn mt-4 -ml-16"/>
+        </div>
+        </div>
       {addDailogueBox  && (
         <>
-          <DialogueBox data={<DeductibleModal
-                        visible={addDailogueBox}
-                        rowDetails={rowDetails}
-                        onClose={closeModal}
-          />}/>
+          <DialogueBox data={renderDeductibleModal()}
+           header={"Deductible"}
+           setAdd={setAdd}
+           yesButtonText="Save"
+           noButtonText="Cancel"/>
         </>
       )}
     </div>

@@ -1,153 +1,47 @@
-.ListingPagecard {
-  padding-top: 8px;
-}
-
-td{
-  font-size: 14px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.p-column-header-content{
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.table-body {
-  width: 1600px;
-  max-height: 250px;
-  overflow: auto;
-}
-
-.p-paginator-page {
-  font-size: 15px;
-  border: 1px solid #003B95;
-  border-radius: 15px;
-  width: fit-content;
-  height: 30px;
-}
-
-.p-paginator-page:focus {
-  background-color: #003B95;
-  color: white;
-}
 
 
-.DataTable {
-  max-height: 400px; 
-  overflow-y: auto;
-  margin: 15px;
-  box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
+.listData {
+  width: 100%;
+  height: 100%;
   padding: 20px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);;
+  border-radius: 12px;
 }
 
-[role="row"]{
-  margin: 0px;
+.listingTable{
+  margin-top: 15px;
 }
 
-.attributeTab{
-    margin-left: 24px;
-    padding: 16px;
-    box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
-    border-radius: 12px;
-}
-
-.flexTab{
-    display: flex;
-    margin-top: 8px;
-}
-
-/* ListingPage.css */
-
-.pagination-container {
+.searchContainer {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: 1rem;
+  justify-content: space-between;
+  margin: 0 20px 0 0;
 }
 
-.pagination-button {
-  display: flex;
-  padding: 0.5rem 1rem;
-  background-color: #003B95;
-  color: white;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  width: 80px;
-  height: 25px;
-  text-align: center;
-  align-items: center;
+.listingPageContainer{
+  padding: 40px;
 }
 
-.pagination-button:disabled {
-  background-color: #d3d3d3;
-  cursor: not-allowed;
+.languageSelection{
+  width: 210px;
+  margin-right: 75px;
 }
 
-.pagination-status {
-  margin: 0 1rem;
+.productDetailsPopup{
+  margin-top: 15px;
 }
 
-.rows-per-page-selector {
-  padding: 0.5rem;
-  border-radius: 0.25rem;
-  border: 1px solid #ccc;
+.productDetailsPopup h1{
+  color: #003B95;
+  font-weight: bold;
 }
 
 
-.KebabMen{
-  width: 30px;
-  height: 20px;
-}
 
 
-.kebab-menu-container {
-  position: relative;
-  display: inline-block;
-}
 
-.KebabMen {
-  cursor: pointer;
-}
 
-.kebab-menu-popup {
-  position: absolute;
-  right: 0;
-  background-color: white;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  z-index: 1000;
-  width: 100px;
-}
 
-.kebab-menu-item {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.kebab-menu-item:hover {
-  background-color: #f0f0f0;
-}
-
-.submitBtn{
-  width: 80px;
-  height: 32px;
-}
-
-.table-body{
-  /* width: 850px;
-  max-height: 300px;
-  overflow: auto; */
-  padding-left: 14px;
-}
-
-.table-body-overflow{
-  overflow: auto;
-}
 
 
 

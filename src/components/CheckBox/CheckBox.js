@@ -5,37 +5,39 @@ import "./CheckBox.css";
 const CheckBox = ({
   onChange,
   name,
-  labelName = "left",
+  labelName = "",
   checkBoxId,
   varient,
-  labelPosition,
+  labelPosition = "left", 
 }) => {
   const [checked, setChecked] = useState(false);
 
   const handleInputChange = (event) => {
     setChecked(event.checked);
-    // onChange(name,event.checked);
+    if (onChange) {
+      onChange(name, event.checked);
+    }
   };
 
   return (
-    <div className="card flex justify-center items-center checkbox-container">
-      {labelName && labelPosition === "left" ? (
+    <div className="checkbox-container">
+      {labelName && labelPosition === "left" && (
         <label className="left-label" htmlFor={checkBoxId}>
           {labelName}
         </label>
-      ) : null}
+      )}
       <Checkbox
-        checkBoxId={checkBoxId}
+        id={checkBoxId} // Corrected the attribute for id
         name={name}
         onChange={handleInputChange}
         checked={checked}
         className="checkBox"
       />
-      {labelName && labelPosition === "right" ? (
+      {labelName && labelPosition === "right" && (
         <label className="right-label" htmlFor={checkBoxId}>
           {labelName}
         </label>
-      ) : null}
+      )}
     </div>
   );
 };

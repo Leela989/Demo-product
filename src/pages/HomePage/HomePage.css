@@ -15,11 +15,14 @@
     color: white;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 14px;
+    text-align: center;
+    font-weight: bold;
 }
 
 .transactions{
-    width: 25%;
-    height: 130px;
+    width: 100%;
+    height: calc(100% - 100px);
+    margin: 0px 80px 9px 0px;
 }
 
 .textBox{
@@ -79,18 +82,13 @@ tbody{
     overflow: auto;
 }
 
-/* .table-body{
-    width: 600px;
-    height: 300px;
-    overflow: auto;
-} */
 
 .p-column-header-content{
     margin-left: 0px;
 }
 
 .p-datatable-tbody{
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
@@ -163,7 +161,7 @@ tr[data-pc-section="headerrow"] {
 
 .imgBox {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
   }
   
@@ -189,13 +187,18 @@ tr[data-pc-section="headerrow"] {
 .quickLink{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 24px;
-    padding-left: 90px;
+    padding-left: 150px;
     font-weight: bold;
+    color: #003B95;
+}
+
+.transactionRefText a{
+    color: #003B95;
 }
 
 .quickLinkContainer{
     width: 30%;
-    margin-top: -25px;
+    margin-top: -30px;
 }
 
 .critical {
@@ -210,9 +213,14 @@ tr[data-pc-section="headerrow"] {
 }
 
 .transactionBox{
-    width: 240px;
+    width: 100%;
     height: 80px;
     overflow: auto;
+}
+
+.dailogueBox{
+    font-size: 20px;
+    font-weight: bold;
 }
 
 

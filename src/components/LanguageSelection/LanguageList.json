@@ -1,0 +1,68 @@
+{
+  "countries": [
+    {
+      "code": "prs",
+      "language": "دری"
+    },
+    {
+      "code": "sq",
+      "language": "Shqip"
+    },
+    {
+      "code": "ar",
+      "language": "العربية"
+    },
+    {
+      "code": "es",
+      "language": "Español"
+    },
+    {
+      "code": "en",
+      "language": "English"
+    },
+    {
+      "code": "bn",
+      "language": "বাংলা"
+    },
+    {
+      "code": "pt",
+      "language": "Português"
+    },
+    {
+      "code": "fr",
+      "language": "Français"
+    },
+    {
+      "code": "zh",
+      "language": "中文"
+    },
+    {
+      "code": "de",
+      "language": "Deutsch"
+    },
+    {
+      "code": "hi",
+      "language": "हिन्दी"
+    },
+    {
+      "code": "it",
+      "language": "Italiano"
+    },
+    {
+      "code": "ja",
+      "language": "日本語"
+    },
+    {
+      "code": "ur",
+      "language": "اردو"
+    },
+    {
+      "code": "ru",
+      "language": "русский"
+    },
+    {
+      "code": "zu",
+      "language": "isiZulu"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+[
+    {
+        "key": 2301,
+        "documentPrints": [
+            {
+                "srl" : "01",
+                "documentId": "123",
+                "documentName": "Listing Document",
+                "printBeforeApproval": "false",
+                "reprintAllowed": "true",
+                "transactionType": "transaction1",
+                "numberOfPrints" : "5"
+            },
+            {
+                "srl" : "02",
+                "documentId": "223",
+                "documentName": "Product Document",
+                "printBeforeApproval": "true",
+                "reprintAllowed": "false",
+                "transactionType": "transaction2",
+                "numberOfPrints" : "15"
+            }
+        ]
+   }
+]

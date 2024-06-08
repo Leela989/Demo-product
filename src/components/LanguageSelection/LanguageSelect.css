@@ -1,0 +1,39 @@
+.country{
+    width: 40px;
+    height: 40px;
+}
+
+.countryOption{
+  display: flex;
+}
+
+.countryLanguage{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+
+.countryDetails{
+    display: flex;
+}
+
+.country-container {
+    max-height: 400px; 
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  
+  .countryDetails {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+  
+  .country {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+  }

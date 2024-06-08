@@ -1,29 +1,103 @@
-[
-    {
-        "insurableProduct": "Vehicle",
-        "blockName": "Vehicle",
-        "parentBlockName": "Driver"
-    },
-    {
-        "insurableProduct": "Vehicle",
-        "blockName": "Driver",
-        "parentBlockName": "Vehicle"
-    },
-    {
-        "insurableProduct": "Vehicle",
-        "blockName": "Vehicle",
-        "parentBlockName": "Driver"
-    },
-    {
-        "insurableProduct": "Health",
-        "blockName": "Hospital",
-        "parentBlockName": "Hospital"
-    },
-    {
-        "insurableProduct": "Phone",
-        "blockName": "Oppo",
-        "parentBlockName": "Phone"
-    }
-]
-
-
+{
+    "name": "Block attributes",
+    "data": [
+        {
+            "insurableProduct": "Phone",
+            "blockName": "Oppo",
+            "parentBlockName": "Phone",
+            "attributes": [
+                {
+                    "FieldID": "1",
+                    "FieldName": "one",
+                    "dataType": "data",
+                    "FieldType": "type",
+                    "max-width": "width",
+                    "serial": "8",
+                    "Default-value": "1",
+                    "Mandatory": "true",
+                    "Hide Y/N": "true"
+                },
+                {
+                    "FieldID": "2",
+                    "FieldName": "one",
+                    "dataType": "datatype",
+                    "FieldType": "box",
+                    "max-width": "200",
+                    "serial": "18",
+                    "Default-value": "2",
+                    "Mandatory": "false",
+                    "Hide Y/N": "true"
+                }
+            ]
+        },
+        {
+            "insurableProduct": "Vehicle",
+            "blockName": "Lorry",
+            "parentBlockName": "Heavy Vehicle",
+            "attributes": [
+                {
+                    "FieldID": "230",
+                    "FieldName": "vehicle",
+                    "dataType": "heavyVehicle",
+                    "FieldType": "vehicl",
+                    "max-width": "100",
+                    "serial": "16",
+                    "Default-value": "2",
+                    "Mandatory": "true",
+                    "Hide Y/N": "true"
+                },
+                {
+                    "FieldID": "2",
+                    "FieldName": "one",
+                    "dataType": "datatype",
+                    "FieldType": "box",
+                    "max-width": "200",
+                    "serial": "18",
+                    "Default-value": "2",
+                    "Mandatory": "false",
+                    "Hide Y/N": "false"
+                },
+                {
+                    "FieldID": "1",
+                    "FieldName": "one",
+                    "dataType": "data",
+                    "FieldType": "type",
+                    "max-width": "width",
+                    "serial": "8",
+                    "Default-value": "1",
+                    "Mandatory": "true",
+                    "Hide Y/N": "true"
+                }
+            ]
+        },
+        {
+            "insurableProduct": "Health",
+            "blockName": "Health",
+            "parentBlockName": "Health",
+            "attributes": [
+                {
+                    "FieldID": "27",
+                    "FieldName": "fieldName",
+                    "dataType": "hospital",
+                    "FieldType": "rrr",
+                    "max-width": "200",
+                    "serial": "15",
+                    "Default-value": "health",
+                    "Mandatory": "true",
+                    "Hide Y/N": "false"
+                },
+                {
+                    "FieldID": "25",
+                    "FieldName": "field",
+                    "dataType": "data",
+                    "FieldType": "type",
+                    "max-width": "400px",
+                    "serial": "25",
+                    "Default-value": "field",
+                    "Mandatory": "false",
+                    "Hide Y/N": "true"
+                }
+            ]
+        }
+    ]
+}

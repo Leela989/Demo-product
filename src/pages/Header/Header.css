@@ -25,6 +25,10 @@
     height: 35px;
     width: 35px;
 }
+.header-buttons:hover{
+    color: red;
+}
+
 .header-buttons .p-button-icon{
     font-size: 20px;
     color: white;
@@ -47,4 +51,11 @@
 .pi-search{
     /* margin-left: 323px; */
     cursor: pointer;
+}
+
+#popup_menu_globe{
+    max-height: 300px;
+    overflow: auto;
+    max-width: 180px;
+    top: 64px;
 }

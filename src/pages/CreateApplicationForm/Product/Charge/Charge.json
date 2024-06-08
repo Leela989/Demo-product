@@ -1,27 +1,45 @@
-[
+{
+  "data": [
     {
-        "type": "Charge",
-        "charge": "Levies",
-        "annualRate": "5",
-        "shortRate": "10",
-        "mandatory": "true",
-        "dafault": "true"
-    },
-    {
-        "type": "Charge",
-        "charge": "Stamp Duty",
-        "annualRate": "15",
-        "shortRate": "20",
-        "mandatory": "true",
-        "dafault": "true"
-    },
-    {
-        "type": "Charge",
-        "charge": "Levies",
-        "annualRate": "5",
-        "shortRate": "10",
-        "mandatory": "true",
-        "dafault": "true"
+      "key": 2301,
+      "Charge": [
+        {
+          "Code": "3020",
+          "Description": "Vat",
+          "Default_yn": "C",
+          "Type": "001",
+          "Rat_modify_yn": "1",
+          "Refund_yn": "1",
+          "Mandatory_yn": "1",
+          "Cust_share_perc": 100,
+          "Effective_from": "2000-01-01T00:00:00",
+          "Effective_to": "2099-12-31T00:00:00"
+        },
+        {
+          "Code": "01",
+          "Description": "Premium Tax",
+          "Default_yn": "C",
+          "Type": "003",
+          "Rat_modify_yn": "0",
+          "Refund_yn": "1",
+          "Mandatory_yn": "1",
+          "Cust_share_perc": 0,
+          "Effective_from": "2000-01-01T00:00:00",
+          "Effective_to": "2099-12-31T00:00:00"
+        },
+        {
+          "Code": "04",
+          "Description": "City Levy",
+          "Default_yn": "C",
+          "Type": "003",
+          "Rat_modify_yn": "0",
+          "Refund_yn": "1",
+          "Mandatory_yn": "1",
+          "Cust_share_perc": 0,
+          "Effective_from": "2000-01-01T00:00:00",
+          "Effective_to": "2099-12-31T00:00:00"
+        }
+      ]
     }
-
-]
+  ]
+}

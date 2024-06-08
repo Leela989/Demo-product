@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { BreadCrumb } from "primereact/breadcrumb";
 import "../Styles/DetailLoginPage.css";
 import { TabView, TabPanel } from "primereact/tabview";
@@ -6,34 +6,66 @@ import InputField from "../../../components/InputField/InputField";
 import AutoCompleField from '../../../components/AutoCompleteField/AutoCompleteField';  
 import DiscountLoadings from "../Product/DiscountLoading/DiscountLoading";
 import DateField from "../../../components/DateField/Datefield";
-import  CustomButton  from '../../../components/Button/CustomButton';
+import CustomButton from '../../../components/Button/CustomButton';
+import LanguageDescription from '../../../components/language-description/lang-desctiption';
+import mandatory from '../../../assets/star-red-512.webp';
+import { Toast } from 'primereact/toast';
+import { useLocation } from "react-router";
+import emptyData from './ProductHeaderEmptyData.json';
+import { useParams } from 'react-router-dom';
+import { Code, Language } from "@mui/icons-material";
 
-export default function LoginContentPage() {
-  const [activeItem, setActiveItem] = useState(null);
+
+export default function LoginContentPage({ data }) {
+  const toast = useRef(null);
+  const { id } = useParams();
   const [activeIndex, setActiveIndex] = useState(1);
   const [showApprove, setShowApprove] = useState(true);
+  const location = useLocation();
+  const currentPath = location.pathname;
+  const [headerData, setHeaderData] = useState({});
   const [formData, setFormData] = useState({
-    code: "",
-    description: "",
-    shortDescription: "",
-    lineOfBusiness: "",
-    effectiveFrom: "",
-    effectiveTo: "",
+    code: data[id]?.productHeaderDetails?.Code || "",
+    description: data[id]?.productHeaderDetails?.Description || "",
+    shortDescription: data[id]?.productHeaderDetails?.Short_description || "",
+    lineOfBusiness: data[id]?.productHeaderDetails?.Line_of_Business || "",
+    effectiveFrom: data[id]?.productHeaderDetails?.Effective_from || "",
+    effectiveTo: data[id]?.productHeaderDetails?.Effective_to || "",
+  });
+  console.log(data, id, "helloWorld" );
+  console.log("formData:", headerData[0]);
+
+  const [langData, setLangData] = useState({
+    default: "en",
+    data: [
+      { lang: "English", code: "en", description: formData.description },
+      { lang: "Spanish", code: "es", description: "Descripción en español" },
+    ],
+  });
+
+  const languageDescription1 = {
+    default: "en",
+    data: [
+      { lang: "English", code: "en", description: "" },
+      { lang: "Spanish", code: "es", description: "" },
+    ],
+  }
+
+
+
+  const [shortLangData, setShortLangData] = useState({
+    default: "en",
+    data: [
+      { code: "en", lang: "English", description: formData.shortDescription },
+      { code: "es", lang: "Spanish", description: "Descripción en español" },
+    ]
   });
 
   const items = [
-    {
-      label: "Product",
-    },
-    {
-      label: "Risk",
-    },
-    {
-      label: "Rating",
-    },
-    {
-      label: "Rules",
-    },
+    { label: "Product" },
+    { label: "Risk" },
+    { label: "Rating" },
+    { label: "Rules" },
   ];
 
   const list = [
@@ -53,76 +85,89 @@ export default function LoginContentPage() {
     setFormData({ ...formData, [name]: value });
   };
 
-  const onClickingSave = () => {
-    setShowApprove(false);
-  }
-
-  const home = { icon: "pi pi-home", url: "https://primereact.org" };
-
-  const handleItemClick = (event) => {
-    setActiveItem(event.item);
+  const validateForm = () => {
+    const { code, lineOfBusiness, effectiveFrom, effectiveTo } = formData;
+    return code;
   };
 
+  const onClickingSave = () => {
+    if (validateForm()) {
+      setShowApprove(false);
+      showSuccess();
+    } else {
+      showMandatoryFill();
+    }
+  };
+
+  const showSuccess = () => {
+    toast.current.show({ severity: 'success', summary: 'Success', detail: 'Saved Successfully', life: 3000 });
+  };
+
+  const showMandatoryFill = () => {
+    toast.current.show({ severity: 'error', summary: 'Error', detail: 'Please fill all the required details', life: 3000 });
+  };
+
+
+
+  const handleLangUpdate = (updatedLang) => {
+    console.log("Updated Language Data:", updatedLang);
+  };
+
+ 
   return (
-      <div className="product-step">
-          <InputField
-            className="w-1/4 p-1"
-            name="Code"
-            label="Code"
-            // labelType="float"
-            value={formData.code}
-            onChange={handleInputChange}
-          />
+    <div className="product-step">
+      <Toast ref={toast} />
+      <InputField
+        className="w-1/4 p-1"
+        name="code"
+        label="Code"
+        value={formData.code}
+        onChange={handleInputChange}
+        mandatory={true}
+      />
+      
+      <LanguageDescription
+      langDefault = {languageDescription1.default}
+        langData={langData.data}
+        labelName="Description"
+        className="w-2/4 p-1"
+        onLangUpdate={handleLangUpdate}
+      />
+      <LanguageDescription
+      langDefault = {languageDescription1.default}
+        langData={shortLangData.data}
+        labelName="Short Description"
+        className="w-1/4 p-1"
+        onLangUpdate={handleLangUpdate}
+      />
+      <AutoCompleField
+        className="w-1/4 p-1"
+        name="lineOfBusiness"
+        label="Line of Business"
+        value={formData.lineOfBusiness}
+        onChange={handleInputChange}
+        options={list}
+        dropdown
+      />
+      <DateField
+        className="w-1/4 p-1"
+        name="effectiveFrom"
+        label="Effective From"
+        value={formData.effectiveFrom}
+        onChange={handleInputChange}
+      />
+      <DateField
+        className="w-1/4 p-1"
+        name="effectiveTo"
+        label="Effective To"
+        value={formData.effectiveTo}
+        onChange={handleInputChange}
+      />
 
-           <InputField
-            className="w-2/4 p-1" 
-            name="description"
-            label="Description"
-            // labelType="float"
-            value={formData.description}
-            onChange={handleInputChange}
-          />
-           <InputField
-            className="w-1/4 p-1"
-            name="shortDescription"
-            label="Short Description"
-            // labelType="float"
-            value={formData.shortDescription}
-            onChange={handleInputChange}
-          />
-            <AutoCompleField
-            className="w-1/4 p-1"
-            name="lineOfBusiness"
-            label="Line of Business"
-            // labelType="float"
-            value={formData.lineOfBusiness}
-            onChange={handleInputChange}
-            options={list}
-            dropdown
-          />
-            <DateField
-            className="w-1/4 p-1"
-            name="effectiveFrom"
-            label="Effective From"
-            // labelType="float"
-            value={formData.effectiveFrom}
-            onChange={handleInputChange}
-          />
-          <DateField
-            className="w-1/4 p-1"
-            name="effectiveTo"
-            label="Effective To"
-            // labelType="float"
-            value={formData.effectiveTo}
-            onChange={handleInputChange}
-          />
-
-          <div className="w-1/4 flex align-center justify-end p-1">
-              <CustomButton label={"Save"} className="custombtns me-1" onClick={onClickingSave}/>
-              <CustomButton label={"Approve"} className="" disabled={showApprove}/>
-          </div>
-
-        
+      <div className="w-1/4 flex align-center justify-end p-1">
+        <CustomButton label={"Save"} className="custombtns me-1" onClick={onClickingSave} />
+        <CustomButton label={"Approve"} className="" disabled={showApprove} />
       </div>
+    </div>
   );
 }

@@ -1,43 +1,18 @@
 [
-    {
-       "type":"Discount",
-        "code": "Special discount",
-        "mandatory": "true",
-         "default": "true",
-          "sortOrder":"5",
-          "DefaultOnRenewal":"false"
-    },
-    {
-       "type":"Loading",
-        "code": "Premium Loading",
-        "mandatory": "true",
-         "default": "true",
-          "sortOrder":"4",
-          "DefaultOnRenewal":"false"
-    },
-    {
-       "type":"Discount",
-        "code": "Special discount",
-        "mandatory": "true",
-         "default": "true",
-          "sortOrder":"3",
-          "DefaultOnRenewal":"false"
-    },
-    {
-      "type":"Discount",
-       "code": "Special discount",
-       "mandatory": "true",
-        "default": "true",
-         "sortOrder":"2",
-         "DefaultOnRenewal":"false"
-   },
-   {
-      "type":"Discount",
-       "code": "Special discount",
-       "mandatory": "true",
-        "default": "true",
-         "sortOrder":"1",
-         "DefaultOnRenewal":"false"
-   }
-]
-    
+      {
+          "Code": "",
+          "Description": "",
+          "Short_description": "",
+          "Long_description": "",
+          "Mandatory": "",
+          "Default_renewal": "",
+          "Rate_modify_yn": "",
+          "Default_yn": "",
+          "NCB_disc_yn": "",
+          "Add_RI_yn": "",
+          "Commission_apl": "",
+          "Sort_order": "",
+          "Effective_from": null,
+          "Effective_to": null
+      }
+  ]

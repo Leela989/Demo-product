@@ -1,6 +1,6 @@
-/* .dialogueBoxbtns{
-    display: flex;
-} */
+.p-dialog-header{
+    /* padding: 10px 10px 0px 10px !important; */
+}
 
 .yesButton{
     height: 32px;

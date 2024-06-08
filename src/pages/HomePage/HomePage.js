@@ -1,18 +1,35 @@
-import React, { useState } from "react";
-import { DataTable } from 'primereact/datatable';
-import { Column } from 'primereact/column';
+import React, { useState, useEffect, useRef } from "react";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Toast } from "primereact/toast";
 import transactionData from "./TransactionData.json";
 import notesAndDairiesData from "./NotesAndDairies.json";
 import Telephone from "../../assets/Telephone.png";
 import ContactImg from "../../assets/ContactImg.png";
 import data from "./MockHomePage.json";
 import "./HomePage.css";
-import './Modal.css';
+import "./Modal.css";
+import DialogueBox from "../../components/DialogueBox/DialogueBox";
 
 function HomePage() {
   const [selectedTransaction, setSelectedTransaction] = useState(null);
   const [selectedrow, setSelectedrow] = useState(null);
-  
+  const toast = useRef(null);
+  const [toastShown, setToastShown] = useState(false);
+  let userNameIs = localStorage.getItem("username");
+
+  // useEffect(() => {
+  //   if (!toastShown) {
+  //     toast.current.show({
+  //       severity: "success",
+  //       summary: "Welcome",
+  //       detail: userNameIs,
+  //       life: 3000,
+  //     });
+  //     setToastShown(true); 
+  //   }
+  // }, [userNameIs]);
+
   const openModal = (rowData) => {
     setSelectedTransaction(rowData);
   };
@@ -30,12 +47,8 @@ function HomePage() {
   };
 
   const priorityBodyTemplate = (rowData) => {
-    const priorityClass = rowData.priority === 'critical' ? 'critical' : '';
-    return (
-      <span className={priorityClass}>
-        {rowData.priority}
-      </span>
-    );
+    const priorityClass = rowData.priority === "critical" ? "critical" : "";
+    return <span className={priorityClass}>{rowData.priority}</span>;
   };
 
   const renderKeyValuePairs = (data) => {
@@ -49,24 +62,46 @@ function HomePage() {
 
   const renderLinkColumn = (rowData) => {
     return (
-      <a href="#" onClick={() => openModal(rowData)}>{rowData.transactionRef}</a>
-    );
-  };
-  const renderLinkColumn1 = (rowData) => {
-    return (
-      <a href="#" onClick={() => openModal1(rowData)}>{rowData.transactionRef}</a>
+      <a href="#" onClick={() => openModal(rowData)}>
+        {rowData.transactionRef}
+      </a>
     );
   };
 
+  const renderLinkColumn1 = (rowData) => {
+    return (
+      <a href="#" onClick={() => openModal1(rowData)}>
+        {rowData.transactionRef}
+      </a>
+    );
+  };
+
+  const renderPopUpMessage = () => (
+    <div>
+      <div style={{ display: "flex", alignItems: "center" }}>
+      <i className="pi pi-clipboard" style={{ fontSize: '2rem' }}></i>
+        <h1 className="dailogueBox">
+          <a
+            href={`#${selectedrow.transactionRef}`}
+            style={{ color: "#003B95", marginLeft: "5px" }}
+          >
+            {selectedrow.transactionRef}
+          </a>
+        </h1>
+      </div>
+      <p style={{paddingTop: '20px', color: "#003B95", fontSize: '18px'}}>Notes:</p>
+      <div style={{paddingTop: '10px', fontSize: '16px'}}>{selectedrow.notes}</div>
+    </div>
+  );
+
   return (
     <div>
+      <Toast ref={toast} position="top-left"/>
       <div className="transactionsContainer">
         {transactionData.map((item, index) => (
           <div key={index} className="transactions">
             <h1 className="transactionsHeading">{item.name}</h1>
-            <div className="transactionBox">
-              {renderKeyValuePairs(item.data)}
-            </div>
+            <div className="transactionBox">{renderKeyValuePairs(item.data)}</div>
             <div className="teamsPerformanceLink">
               <a href="/" className="teamsPerformance">
                 Team's Performance
@@ -75,82 +110,75 @@ function HomePage() {
           </div>
         ))}
       </div>
-      <h1 className="tasksName">Tasks</h1>
       <div>
+        <h1 className="tasksName">Tasks</h1>
         <div className="imgContainer">
-        <div className="customTable">
-        <DataTable value={data} tableStyle={{ minWidth: '35rem' }}>
-          <Column field="transactionRef" header="Transaction Ref#" className="transactionRefTexts" />
-          <Column field="taskDetails" header="Task Details" />
-          <Column field="priority" header="Priority" body={priorityBodyTemplate} />
-          <Column field="status" header="Status" />
-        </DataTable>
-      </div>
+          <div className="customTable">
+            <DataTable value={data} scrollable tableStyle={{ minWidth: "35rem" }}>
+              <Column field="transactionRef" header="Transaction Ref#" className="transactionRefTexts" />
+              <Column field="taskDetails" header="Task Details" />
+              <Column field="priority" header="Priority" body={priorityBodyTemplate} />
+              <Column field="status" header="Status" />
+            </DataTable>
+          </div>
           <div className="quickLinkContainer">
             <h1 className="quickLink">Quick Links</h1>
             <div>
               <div className="imgBox">
                 <div className="telephoneButton">
-                  <img src={Telephone} alt="Telephone" className="telephone1"/>
-                  <a href="/create-application" className="quickLinkText">Create Application</a>
+                  <img src={Telephone} alt="Telephone" className="telephone1" />
+                  <a href="/create-application" className="quickLinkText">
+                    Create Application
+                  </a>
                 </div>
                 <div className="telephoneButton">
-                  <img src={ContactImg} alt="ContactImg" className="telephone"/>
-                  <a href="/create-application" className="quickLinkText">Create Quote</a>
+                  <img src={ContactImg} alt="ContactImg" className="telephone" />
+                  <a href="/create-application" className="quickLinkText">
+                    Create Quote
+                  </a>
                 </div>
               </div>
               <div className="imgBox">
                 <div className="telephoneButton">
-                  <img src={Telephone} alt="Telephone" className="telephone1"/>
-                  <a href="/create-application" className="quickLinkText">Policy Serving</a>
+                  <img src={Telephone} alt="Telephone" className="telephone1" />
+                  <a href="/create-application" className="quickLinkText">
+                    Policy Serving
+                  </a>
                 </div>
                 <div className="telephoneButton">
-                  <img src={ContactImg} alt="ContactImg" className="telephone"/>
-                  <a href="/create-application" className="quickLinkText">Renewal</a>
+                  <img src={ContactImg} alt="ContactImg" className="telephone" />
+                  <a href="/create-application" className="quickLinkText">
+                    Renewal
+                  </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
       <h1 className="tasksName">Notes & Dairies</h1>
-      <div className="bottomLoginPage">
-        <div className="customTable2">
-          <DataTable value={notesAndDairiesData} tableStyle={{ minWidth: '50rem' }}>
-          <Column field="transactionRef" header="Transaction Ref#" body={renderLinkColumn1} className="transactionRefText"/>
-            <Column field="notes" header="Notes" />
-            <Column field="reminderDate" header="Reminder Date" />
-          </DataTable>
-        </div>
+      <div className="customTable2">
+        <DataTable value={notesAndDairiesData} scrollable tableStyle={{ minWidth: "50rem" }}>
+          <Column field="transactionRef" header="Transaction Ref#" body={renderLinkColumn1} className="transactionRefText" style={{width: "200px"}}/>
+          <Column field="notes" header="Notes" style={{ maxWidth: "200px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} />
+          <Column field="reminderDate" header="Reminder Date" />
+        </DataTable>
       </div>
       {/* Modal */}
       {selectedTransaction && (
-        <div className="modal">
-          <div className="modal-content">
-            <span className="close" onClick={closeModal}>&times;</span>
-            <h2>Transaction Details</h2>
-            <p>Transaction Ref#: {selectedTransaction.transactionRef}</p>
-            <p>Task Details: {selectedTransaction.taskDetails}</p>
-            <p>Priority: {selectedTransaction.priority}</p>
-            <p>Status: {selectedTransaction.status}</p>
-          </div>
-        </div>
+        <DialogueBox
+          data={renderPopUpMessage()}
+          header="Transaction Details"
+          onClose={closeModal}
+        />
       )}
       {selectedrow && (
-         <div className="modal">
-         <div className="modal-content">
-           <span className="close" onClick={closeModal1}>&times;</span>
-           <div style={{display: 'flex', alignItems: 'center'}}>
-             <p>
-               Transaction Ref#: 
-               <a href={`#${selectedrow.transactionRef}`} style={{ color: 'orange', marginLeft: '5px' }}>
-                 {selectedrow.transactionRef}
-               </a>
-             </p>
-           </div>
-           <p>Notes: {selectedrow.notes}</p>
-         </div>
-       </div>
+        <DialogueBox
+          data={renderPopUpMessage()}
+          showFooter={false}
+          onClose={closeModal1}
+        />
       )}
     </div>
   );

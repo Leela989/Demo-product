@@ -1,0 +1,11 @@
+{
+  "data": [
+    {
+      "Branch": [
+        { "Code": "03", "Name": "Mbeya Branch", "include" : "true" },
+        { "Code": "01", "Name": "Head Office", "include" : "true" },
+        { "Code": "02", "Name": "Mwanza Branch", "include" : "true" }
+      ]
+    }
+  ]
+}

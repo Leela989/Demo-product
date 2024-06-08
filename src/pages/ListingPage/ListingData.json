@@ -1,18 +1,27 @@
 [
   {
-    "name": "1001-Motor Comprehensive",
+    "name": "1001-Motor Private",
     "effectiveFrom": "2024-05-15T08:30:00",
     "effectiveTo": "2024-06-15T15:45:00",
     "status": "Pending",
     "action": "view"
   },
   {
-    "name": "1002-Motor Private",
+    "name": "1002-Motor Commercial",
     "effectiveFrom": "2024-06-01T10:20:00",
     "effectiveTo": "2024-07-01T14:00:00",
     "status": "Approved",
-    "action": "edit"
-  },
+    "action": "edit",
+    "productHeaderDetails": {
+        "key": 2301,
+        "Code": "1001",
+        "Description": "Motor Commercial",
+        "Short_description": "Motor Commercial",
+        "Line_of_Business": "10",
+        "Effective_from": "2000-01-01T00:00:00",
+        "Effective_to": null
+    }
+},
   {
     "name": "2001-Marine Open Cover",
     "effectiveFrom": "2024-07-10T12:00:00",
