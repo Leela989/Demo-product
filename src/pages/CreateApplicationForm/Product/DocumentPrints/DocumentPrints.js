@@ -6,7 +6,6 @@ import CustomButton from "../../../../components/Button/CustomButton";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import DocumentPrintData from "./DocumentPrint.json";
-import { OndemandVideoTwoTone } from "@mui/icons-material";
 import AutoCompleteField from "../../../../components/AutoCompleteField/AutoCompleteField";
 import { useParams } from "react-router";
 
@@ -16,19 +15,23 @@ function DocumentPrints({ productData }) {
   const [editingRows, setEditingRows] = useState({});
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [editingRowIndex, setEditingRowIndex] = useState(null);
-  const [newRowData, setNewRowData] = useState(null);
   const [tableData, setTableData] = useState([]);
 
   const items = [
     { label: "View" },
     { label: "Edit", command: () => onEdit(selectedIndex) },
-    { label: "Save" },
+    { label: "Save", command: () => onSave(selectedIndex) },
     { label: "Delete" },
   ];
 
   const onEdit = (rowIndex) => {
-    console.log("clickedEdit", rowIndex);
     setEditingRowIndex(rowIndex);
+    setEditingRows((prev) => ({ ...prev, [rowIndex]: true }));
+  };
+
+  const onSave = (rowIndex) => {
+    setEditingRowIndex(null);
+    setEditingRows((prev) => ({ ...prev, [rowIndex]: false }));
   };
 
   const { id, key } = useParams();
@@ -43,7 +46,7 @@ function DocumentPrints({ productData }) {
     }
   }, [matchingProduct]);
 
-  const actionBodyTemplate = (rowData, rowIndex) => {
+  const actionBodyTemplate = (rowData, options) => {
     return (
       <div className="kebab-menu-container">
         <Menu model={items} popup ref={menuLeft} id="popup_menu_left" />
@@ -53,7 +56,7 @@ function DocumentPrints({ productData }) {
           className="action-menu"
           icon="pi pi-ellipsis-v"
           onClick={(event) => {
-            setSelectedIndex(rowIndex.rowIndex);
+            setSelectedIndex(options.rowIndex);
             menuLeft.current.toggle(event);
           }}
           aria-controls="popup_menu_left"
@@ -72,24 +75,21 @@ function DocumentPrints({ productData }) {
       reprintAllowed: false,
       numberOfPrints: 0,
     };
-    setData([...data, newRow]);
-    setEditingRows((prev) => ({ ...prev, [data.length]: true }));
+    setTableData((prev) => [...prev, newRow]);
+    const newIndex = tableData.length;
+    setEditingRows((prev) => ({ ...prev, [newIndex]: true }));
+    setEditingRowIndex(newIndex);
   };
 
   const handleInputChange = (name, value, rowIndex) => {
-    const newData = [...data];
+    const newData = [...tableData];
     newData[rowIndex][name] = value;
-    setData(newData);
-  };
-
-  const onSave = () => {
-    setEditingRowIndex(null);
-    setNewRowData(null);
+    setTableData(newData);
   };
 
   const onCancel = () => {
     setEditingRowIndex(null);
-    setNewRowData(null);
+    setEditingRows((prev) => ({ ...prev, [editingRowIndex]: false }));
   };
 
   const renderCancelButton = (rowIndex) => {
@@ -126,7 +126,7 @@ function DocumentPrints({ productData }) {
             backgroundColor: "rgb(30 211 30 / 79%)",
             color: "white",
           }}
-          onClick={onSave}
+          onClick={() => onSave(rowIndex)}
         ></i>
       );
     } else {
@@ -148,11 +148,7 @@ function DocumentPrints({ productData }) {
       <div style={{ display: "flex" }}>
         <DataTable
           header={"Document prints"}
-          value={
-            id >= productData.length || !productData[id]?.data?.[0]?.Deductible
-              ? []
-              : tableData
-          }
+          value={tableData}
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}

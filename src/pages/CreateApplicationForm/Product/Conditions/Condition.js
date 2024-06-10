@@ -15,33 +15,29 @@ import { Menu } from "primereact/menu";
 import LanguageDescription from "../../../../components/language-description/lang-desctiption";
 import { useParams } from "react-router-dom";
 
-const Conditions = ( {productData} ) => {
+const Conditions = ({ productData }) => {
   const menuLeft = useRef(null);
   const [conditionsData, setConditionsData] = useState([]);
   const [menuOpen, setMenuOpen] = useState(null);
   const [add, setAdd] = useState(false);
-  const {id, key} = useParams();
+  const { id, key } = useParams();
   const [formData, setFormData] = useState({});
   const productKey = parseInt(key, 10);
-  const matchingProduct = productData.find(product => product.key === productKey);
-
+  const matchingProduct = productData.find((product) => product.key === productKey);
 
   const options = [{ name: "Edit" }, { name: "Delete" }];
 
-
   const items = [
-    {label: "View"},
-    {label: "Edit"},
-    {label: "Delete"}
-  ]
+    { label: "View" },
+    { label: "Edit" },
+    { label: "Delete" }
+  ];
 
   useEffect(() => {
     if (matchingProduct && matchingProduct.data?.[0]?.Conditions) {
       setConditionsData(matchingProduct.data[0].Conditions);
     }
   }, [matchingProduct]);
-
-
 
   const actionBodyTemplate = (rowData, rowIndex) => {
     return (
@@ -90,6 +86,7 @@ const Conditions = ( {productData} ) => {
       [name]: value,
     }));
   };
+
   const langData = {
     default: "en",
     data: [
@@ -98,17 +95,29 @@ const Conditions = ( {productData} ) => {
     ],
   };
 
-  const languageDescription1 = {
-    default: "en",
-    data: [
-      { lang: "English", code: "en", description: "" },
-      { lang: "Spanish", code: "es", description: "" },
-    ],
+  const handleAddSave = () => {
+    setConditionsData((prevData) => [...prevData, formData]);
+    setAdd(false);
+    setFormData({});
   };
 
   const handleLangUpdate = (updatedLang) => {
     console.log("Updated Language Data:", updatedLang);
   };
+
+  const handleClose = () => {
+    setAdd(false);
+    setFormData({});
+  };
+
+  const list = [
+    {name : "01"},
+    {name : "02"},
+    {name : "03"},
+    {name : "04"},
+    {name : "05"},
+    {name : "06"}
+  ]
 
   const renderConditionModal = () => {
     return (
@@ -120,8 +129,9 @@ const Conditions = ( {productData} ) => {
             label="Type"
             labelType="left"
             dropdown
+            options={list}
             value={formData.type}
-            onChange={(e) => handleChange("type", e.value)}
+            onChange={(e) => handleChange("Type", e.value)}
           />
           <InputField
             className="w-1/2 ml-2"
@@ -134,8 +144,8 @@ const Conditions = ( {productData} ) => {
         </div>
         <div className="topBox">
           <div className="w-1/2">
-          <LanguageDescription
-              langDefault={languageDescription1.default}
+            <LanguageDescription
+              langDefault={langData.default}
               langData={langData.data}
               labelName="Description"
               onLangUpdate={handleLangUpdate}
@@ -143,8 +153,8 @@ const Conditions = ( {productData} ) => {
             />
           </div>
           <div className="w-1/2 ml-4">
-          <LanguageDescription
-              langDefault={languageDescription1.default}
+            <LanguageDescription
+              langDefault={langData.default}
               langData={langData.data}
               labelName="Short Description1"
               onLangUpdate={handleLangUpdate}
@@ -153,9 +163,9 @@ const Conditions = ( {productData} ) => {
           </div>
         </div>
         <div className="topBox">
-        <div className="w-1/2">
-          <LanguageDescription
-              langDefault={languageDescription1.default}
+          <div className="w-1/2">
+            <LanguageDescription
+              langDefault={langData.default}
               langData={langData.data}
               labelName="Long Description1"
               onLangUpdate={handleLangUpdate}
@@ -163,19 +173,18 @@ const Conditions = ( {productData} ) => {
             />
           </div>
           <div className="w-1/2 ml-4">
-          <LanguageDescription
-              langDefault={languageDescription1.default}
+            <LanguageDescription
+              langDefault={langData.default}
               langData={langData.data}
               labelName="Long Description2"
               onLangUpdate={handleLangUpdate}
               value={formData.longDescription}
             />
           </div>
-         
         </div>
         <div className="topBox">
-        <div className="checkboxes w-1/3">
-            <CheckBox labelName="Default"/>
+          <div className="checkboxes w-1/3">
+            <CheckBox labelName="Default" />
           </div>
           <DateField
             className="w-1/3 ml-2"
@@ -201,22 +210,23 @@ const Conditions = ( {productData} ) => {
   return (
     <div>
       <div style={{ display: "flex" }}>
-        <DataTable value={(id >= productData.length || !productData[id]?.data?.[0]?.Conditions) ? [] : conditionsData} 
-        header="Conditions data"
-        paginator
-        rows={5}
-        rowsPerPageOptions={[5, 10, 25, 50]}
+        <DataTable
+          value={id >= productData.length || !productData[id]?.data?.[0]?.Conditions ? [] : conditionsData}
+          header="Conditions data"
+          paginator
+          rows={5}
+          rowsPerPageOptions={[5, 10, 25, 50]}
         >
           <Column
             field="Type"
             header="Type"
-            style={{width: '15%'}}
+            style={{ width: "15%" }}
             body={(rowData) => cellInput(rowData.Type, "text")}
           />
           <Column
             field="Conditions"
             header="Conditions"
-            body={(rowData) => cellInput(rowData.Code + rowData.Description, "text")}
+            body={(rowData) => cellInput(rowData.Code + '-' + rowData.Description, "text")}
           />
           <Column
             field="Default On Renewal"
@@ -229,7 +239,7 @@ const Conditions = ( {productData} ) => {
           />
         </DataTable>
         <div>
-          <CustomButton label="ADD" onClick={() => setAdd(true)}  className="small-btn mt-4 -ml-16"/>
+          <CustomButton label="ADD" onClick={() => setAdd(true)} className="small-btn mt-4 -ml-16" />
         </div>
       </div>
       {add && (
@@ -237,8 +247,11 @@ const Conditions = ( {productData} ) => {
           data={renderConditionModal()}
           header={"Conditions"}
           setAdd={setAdd}
+          visible={add}
           yesButtonText="Save"
           noButtonText="Cancel"
+          onSave={handleAddSave}
+          onClose={handleClose}
         />
       )}
     </div>

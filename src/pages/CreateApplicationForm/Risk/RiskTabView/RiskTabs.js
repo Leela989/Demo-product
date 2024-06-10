@@ -7,23 +7,24 @@ import DeductiblesComponent from '../../Product/Deductible/Deductible';
 import RiskAttributesComponent from '../../Risk/RiskTabView/RiskAttributes';
 import CoverComponent from '../RiskTabView/RiskCover';
 import SMIComponent from '../RiskTabView/RiskSMI';
+import data from '../../../ListingPage/ListingPageNew.json';
 
 
 function RiskTabs() {
   const componentBasedOnName = (name) => {
     switch (name) {
       case "Risk Attributes":
-        return <RiskAttributesComponent />;
+        return <RiskAttributesComponent productData={data}/>
       case "Cover":
-        return <CoverComponent />;
+        return <CoverComponent productData={data}/>
       case "SMI":
-        return <SMIComponent />;
+        return <SMIComponent productData={data}/>
       case "Discount & Loading":
-        return <DiscountLoadingComponent />;
+        return <DiscountLoadingComponent productData={data}/>
       case "Conditions":
-        return <ConditionsComponent />;
+        return <ConditionsComponent productData={data}/>
       case "Deductibles":
-        return <DeductiblesComponent />;
+        return <DeductiblesComponent productData={data}/>
       default:
         return null;
     }

@@ -10,11 +10,13 @@ import AutoCompleteField from "../../../../components/AutoCompleteField/AutoComp
 import DateField from "../../../../components/DateField/Datefield";
 import DialogueBox from "../../../../components/DialogueBox/DialogueBox";
 import LanguageDescription from "../../../../components/language-description/lang-desctiption";
+import { useParams } from 'react-router-dom';
 
 function RiskCover() {
   const [formData, setFormData] = useState({});
   const [add, setAdd] = useState(false);
   const [addDailogueBox, setAddDailogueBox] = useState(false);
+  const {id, key} = useParams();
 
   const checkboxTemplate = () => <CheckBox />;
 
@@ -215,7 +217,7 @@ function RiskCover() {
     <div>
       <div style={{ display: "flex" }}>
         <DataTable
-          value={CoverAttributesData}
+          value={key==2301 && CoverAttributesData}
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}

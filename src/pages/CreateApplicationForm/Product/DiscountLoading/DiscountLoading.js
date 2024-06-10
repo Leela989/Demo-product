@@ -4,7 +4,7 @@ import { Column } from "primereact/column";
 import discountdata from "./DiscountLoading.json";
 import "../../Styles/DetailLoginPage.css";
 import InputField from "../../../../components/InputField/InputField";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import DialogueBox from "../../../../components/DialogueBox/DialogueBox";
 import AutoCompleField from "../../../../components/AutoCompleteField/AutoCompleteField";
 import DateField from "../../../../components/DateField/Datefield";
@@ -26,7 +26,9 @@ const DiscountLoading = ({ productData }) => {
   const [checkboxState, setCheckboxState] = useState(false);
   const [tableData, setTableData] = useState([]);
   const productKey = parseInt(key, 10);
-  const matchingProduct = productData.find(product => product.key === productKey);
+  const matchingProduct = productData.find(
+    (product) => product.key === productKey
+  );
   const location = useLocation();
 
   useEffect(() => {
@@ -71,12 +73,18 @@ const DiscountLoading = ({ productData }) => {
     setDiscountTableData(newData);
     setAdd(false);
     setSelectedRow(null);
+    setTableData((prev) => [...prev, []])
   };
 
   const handleEdit = (rowData, rowIndex) => {
     setSelectedRow(rowIndex);
     setFormData({ ...rowData });
     setAdd(true);
+  };
+
+  const handleClose = () => {
+    setAdd(false);
+    setDeletePopup(false);
   };
 
   const handleDelete = () => {
@@ -87,7 +95,7 @@ const DiscountLoading = ({ productData }) => {
   };
 
   const items = [
-    { label : "View"},
+    { label: "View" },
     {
       label: "Edit",
       command: () => handleEdit(selectedRow),
@@ -265,7 +273,6 @@ const DiscountLoading = ({ productData }) => {
                 checked={formData.commissionApl}
               />
             </div>
-            
           </div>
           <div className="topBox">
             <InputField
@@ -323,7 +330,11 @@ const DiscountLoading = ({ productData }) => {
       <div style={{ display: "flex" }}>
         <DataTable
           header={"Discount & Loading data"}
-          value={(id >= productData.length || !productData[id]?.data?.[0]?.Discount) ? [] : tableData}
+          value={
+            id >= productData.length || !productData[id]?.data?.[0]?.Discount
+              ? []
+              : tableData
+          }
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}
@@ -333,7 +344,7 @@ const DiscountLoading = ({ productData }) => {
             field="Type"
             header="Type"
             body={(rowData) => (
-              <InputField type="text" value={rowData.Type} disabled/>
+              <InputField type="text" value={rowData.Type} disabled />
             )}
           />
           <Column
@@ -343,7 +354,7 @@ const DiscountLoading = ({ productData }) => {
             body={(rowData) => (
               <InputField
                 type="text"
-                value={rowData.Code + '' + rowData.Description}
+                value={rowData.Code + "-" + rowData.Description}
                 disabled
               />
             )}
@@ -352,14 +363,22 @@ const DiscountLoading = ({ productData }) => {
             field="Mandatory"
             header="Mandatory"
             body={(rowData) => (
-              <input type="checkbox" checked={rowData.Mandatory || false} disabled />
+              <input
+                type="checkbox"
+                checked={rowData.Mandatory || false}
+                disabled
+              />
             )}
           />
           <Column
             field="Default_yn"
             header="Default"
             body={(rowData) => (
-              <input type="checkbox" checked={rowData.Default_yn || false} disabled />
+              <input
+                type="checkbox"
+                checked={rowData.Default_yn || false}
+                disabled
+              />
             )}
           />
           <Column
@@ -367,7 +386,11 @@ const DiscountLoading = ({ productData }) => {
             field="Sort_order"
             header="Sort Order"
             body={(rowData) => (
-              <InputField type="number" value={rowData.Sort_order || ""} disabled />
+              <InputField
+                type="number"
+                value={rowData.Sort_order || ""}
+                disabled
+              />
             )}
           />
           <Column
@@ -408,6 +431,7 @@ const DiscountLoading = ({ productData }) => {
           noButtonText="Cancel"
           visible={add}
           onSave={handleAddSave}
+          onClose={handleClose}
         />
       )}
 
@@ -417,7 +441,9 @@ const DiscountLoading = ({ productData }) => {
           header={"Delete row message"}
           yesButtonText="Delete"
           noButtonText="Cancel"
+          visible={deletePopup}
           onSave={handleDelete}
+          onClose={handleClose}
         />
       )}
     </div>

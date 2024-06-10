@@ -5,8 +5,10 @@ import CheckBox from '../../../../components/CheckBox/CheckBox';
 import InputField from "../../../../components/InputField/InputField";
 import riskAttributeData from '../MockData/RiskSMI.json';
 import KebabMen from '../../../../assets/kebab.svg';
+import { useParams } from 'react-router-dom';
 
 function RiskSMI() {
+  const {id, key} = useParams();
     const checkboxTemplate = () => (
         <CheckBox/>
     )
@@ -28,7 +30,7 @@ function RiskSMI() {
     <div>
         
         <div>
-        <DataTable value={riskAttributeData} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} scrollable scrollHeight="200px">
+        <DataTable value={key==2301 && riskAttributeData} paginator rows={5} rowsPerPageOptions={[5, 10, 25, 50]} scrollable scrollHeight="200px">
           <Column
             field="code"
             header="Code"

@@ -29,9 +29,7 @@ const Deductible = ({productData}) => {
   const productKey = parseInt(key, 10);
   const matchingProduct = productData.find(product => product.key === productKey);
 
-  const addRow = () => {
-    setAddDailogueBox(true);
-  };
+
 
   useEffect(() => {
     if (matchingProduct && matchingProduct.data?.[0]?.Deductible) {
@@ -77,9 +75,16 @@ const Deductible = ({productData}) => {
     }));
   };
 
-  const toggleMenu = (index) => {
-    setMenuOpen(menuOpen === index ? null : index);
-  };
+
+
+  const list = [
+    {name : "01"},
+    {name : "02"},
+    {name : "03"},
+    {name : "04"},
+    {name : "05"},
+    {name : "06"}
+  ]
 
   const renderDeductibleModal = () => {
     return (
@@ -91,6 +96,7 @@ const Deductible = ({productData}) => {
             label="Type"
             labelType="left"
             dropdown
+            options={list}
             value={formData.type}
             onChange={(e) => handleChange("type", e.value)}
           />
@@ -181,22 +187,7 @@ const Deductible = ({productData}) => {
           aria-controls="popup_menu_left"
           aria-haspopup
         />
-        {menuOpen === rowIndex && (
-          <div className="kebab-menu-popup">
-            {options.map((option, i) => (
-              <div
-                key={i}
-                className="kebab-menu-item"
-                onClick={() => {
-                  option.onClick(rowData, rowIndex);
-                  setMenuOpen(null);
-                }}
-              >
-                {option.name}
-              </div>
-            ))}
-          </div>
-        )}
+        
       </div>
     );
   };
@@ -213,6 +204,14 @@ const Deductible = ({productData}) => {
     );
   };
 
+  const handleSave = () => {
+    setTableData((prev) => [...prev, formData])
+  }
+
+  const handleClose = () => {
+    addDailogueBox(false);
+  }
+
   return (
     <div>
           <div style={{display:'flex'}}>
@@ -225,7 +224,7 @@ const Deductible = ({productData}) => {
                 <Column  header="Deductible" body={(rowData) => cellInput(rowData.Code + '-' + rowData.Description, "text")} />
                 <Column  header="Percentage" body={(rowData) => cellInput(rowData.Perc, "text")} />
                 <Column  header="Value" body={(rowData) => cellInput(rowData.Value, "text")} />
-                <Column  header="Default" body={(rowData) => cellCheckBox(rowData.defaultOnRenewal)} />
+                <Column  header="Default" body={(rowData) => cellCheckBox(rowData.Default_yn)} />
                 <Column
                   body={(rowData, { rowIndex }) => actionBodyTemplate(rowData, rowIndex)} style={{ width: "5%" }}
                 />
@@ -240,6 +239,9 @@ const Deductible = ({productData}) => {
            header={"Deductible"}
            setAdd={setAdd}
            yesButtonText="Save"
+           onSave={handleSave}
+           onClose={closeModal}
+           visible={addDailogueBox}
            noButtonText="Cancel"/>
         </>
       )}

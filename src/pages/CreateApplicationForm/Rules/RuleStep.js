@@ -78,7 +78,7 @@ function RuleStep() {
       <div className="SourceCard">
         <h1 className="purposeText">Source</h1>
         <InputTextarea
-          className="sourceTextArea"
+          className="sourceTextArea h-136"
           autoResize
           name="source"
           value={ruleData.source}

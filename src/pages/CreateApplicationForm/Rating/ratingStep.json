@@ -1,18 +1,18 @@
 [
     {
-        "insurableProduct" : "Vehicle",
+        "insurableProduct" : "",
         "parameter": "Vehicle Age",
         "type": "Slab(between)",
         "source": ""
     },
     {
-        "insurableProduct" : "Vehicle",
+        "insurableProduct" : "",
         "parameter": "Make",
         "type": "Equals",
         "source": ""
     },
     {
-        "insurableProduct" : "Vehicle",
+        "insurableProduct" : "",
         "parameter": "Equals",
         "type": "",
         "source": ""

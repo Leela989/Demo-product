@@ -71,6 +71,14 @@ const Charge = ( { productData } ) => {
     }));
   };
 
+  const handleSave = () => {
+    setChargeTableData((prev) => [...prev, formData])
+  }
+
+  const closeModal = () => {
+    setAddDailogueBox(false);
+  }
+
   const renderChargeModal = () => {
     return (
       <div className="productStep">
@@ -230,9 +238,9 @@ const Charge = ( { productData } ) => {
                 <Column  header="Type" body={(rowData) => cellInput(rowData.Type, "text")} />
                 <Column  header="Charge" body={(rowData) => cellInput(rowData.Code + '-' + rowData.Description, "text")} />
                 <Column  header="Annual Rate" body={(rowData) => cellInput(rowData.Cust_share_perc, "text")} />
-                <Column  header="Short Rate" body={(rowData) => cellInput(rowData.shortRate, "text")} />
+                <Column  header="Short Rate" body={(rowData) => cellInput(rowData.Short_Rate, "text")} />
                 <Column  header="Mandatory" body={(rowData) => cellCheckBox(rowData.Mandatory_yn)} />
-                <Column  header="Default" body={(rowData) => cellCheckBox(rowData.default)} />
+                <Column  header="Default" body={(rowData) => cellCheckBox(rowData.Default_yn)} />
                 <Column
                   body={(rowData, { rowIndex }) => actionBodyTemplate(rowData, rowIndex)} style={{ width: "5%" }}
                 />
@@ -248,6 +256,9 @@ const Charge = ( { productData } ) => {
            header={"Charge"}
            setAdd={setAdd}
            yesButtonText="Save"
+           visible={addDailogueBox}
+           onSave={handleSave}
+           onClose={closeModal}
            noButtonText="Cancel"/>
         </>
       )}

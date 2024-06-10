@@ -55,10 +55,7 @@ const InputField =({label,type,name,value,invalid,disabled,className,locale,curr
                 </span>
                 :
                 <div className={styleClass}>
-                    <div style={{display: 'flex'}}>
-                    <label htmlFor={name} >{label}</label>
-                 {mandatory && <img src={mandatoryImg} alt="imageTag" width='12px' className="mb-2 ml-1"/>}
-                    </div>
+                    <label htmlFor={name} >{label} {mandatory && <span className="text-red-600 text-xl">*</span>}</label>
                 {fields()}
                 </div>   
             }
