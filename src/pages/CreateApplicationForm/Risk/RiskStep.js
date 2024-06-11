@@ -104,9 +104,9 @@ function RiskStep() {
   };
 
   const blockAttributeOptions = [
-    {label : "View"},
-    {label : "Edit", command: () =>  onEdit(selectedIndex)},
-    {label : "Delete"}
+    {name : "View"},
+    {name : "Edit", command: () =>  onEdit(selectedIndex)},
+    {name : "Delete"}
   ]
 
 
@@ -128,6 +128,7 @@ function RiskStep() {
           rounded
           text
           icon="pi pi-ellipsis-v"
+          className="action-menu"
           onClick={(event) =>{
             setSelectedIndex(rowIndex);
             menuLeft.current.toggle(event)}

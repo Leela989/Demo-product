@@ -68,6 +68,7 @@ function RiskAttributes() {
       setSelectedAttributes([]);
     }
   };
+  
 
   return (
     <div>
@@ -89,20 +90,6 @@ function RiskAttributes() {
                   selectionMode="single"
                   headerStyle={{ width: "3rem" }}
                 ></Column>
-                <Column
-                  field="insurableProduct"
-                  header="Insurable Product"
-                  body={(rowData) => (
-                    <AutoCompleField
-                      className="w-2/4 p-1"
-                      value={rowData.insurableProduct}
-                      onChange={handleInputChange}
-                      options={InsurableProductList}
-                      dropdown
-                      disabled
-                    />
-                  )}
-                />
                 <Column
                   field="blockName"
                   header="Block Name"
@@ -226,7 +213,7 @@ function RiskAttributes() {
                   body={(rowData) => (
                     <InputField
                       type="text"
-                      value={rowData.default_val}
+                      value={rowData.Default_Value}
                       disabled
                     />
                   )}
@@ -249,7 +236,7 @@ function RiskAttributes() {
                   body={(rowData) => (
                     <input
                       type="checkbox"
-                      checked={rowData["hide_y/n"] || false}
+                      checked={rowData.Hide_yn || false}
                       disabled
                     />
                   )}
@@ -261,7 +248,7 @@ function RiskAttributes() {
                   body={(rowData) => (
                     <input
                       type="checkbox"
-                      checked={rowData.claimLookupYN || false}
+                      checked={rowData.Claimlookup_yn || false}
                       disabled
                     />
                   )}

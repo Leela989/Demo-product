@@ -23,6 +23,7 @@ import LineOfBusinessCreateForm from './pages/LineOfBusiness/LineOfBusinessCreat
 import PlanTableData from "./pages/plan/table";
 import QuotesListing from "./pages/underWriting/quotesListing";
 import Quotes from "./pages/underWriting/quotes";
+import CompanyMasterSetup from "./pages/CompanyMaster/CompanyMasterSetup";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/productConfigurator/lineofbusiness" element={<LineOfBusinessListing/>} />
                 <Route path="/productConfigurator/LOB/createApplication" element = {<LineOfBusinessCreateForm/>} />
                 <Route path="/productConfigurator/productSetup/editApplication/:id/:key" element={<ProductSetup />} />
+                <Route path="/commonMaster/companyMaster" element={<CompanyMasterSetup/>} />
                 <Route path="/plan" element={<PlanTableData />} />
                 <Route path="/plan/:type/:id?" element={<Plan />} />
                 <Route path="/underWriting/proposal/:lob/:type/:id?" element={<QuotesListing />} />
