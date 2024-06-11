@@ -21,6 +21,8 @@ import SideBarHide from './pages/SideBarHide';
 import LineOfBusinessListing from './pages/LineOfBusiness/LineOfBusinessListing';
 import LineOfBusinessCreateForm from './pages/LineOfBusiness/LineOfBusinessCreateNew';
 import PlanTableData from "./pages/plan/table";
+import QuotesListing from "./pages/underWriting/quotesListing";
+import Quotes from "./pages/underWriting/quotes";
 
 function App() {
   const [token, setToken] = useState(false);
@@ -31,7 +33,7 @@ function App() {
 
   return (
     <>
-      {token ? (
+      {!token ? (
         <div className="App">
           <Header setToken={setToken}/>
           <div className="main">
@@ -47,6 +49,8 @@ function App() {
                 <Route path="/productConfigurator/productSetup/editApplication/:id/:key" element={<ProductSetup />} />
                 <Route path="/plan" element={<PlanTableData />} />
                 <Route path="/plan/:type/:id?" element={<Plan />} />
+                <Route path="/underWriting/proposal/:lob/:type/:id?" element={<QuotesListing />} />
+                <Route path="/underWriting/proposal/:lob" element={<Quotes />} />
                 <Route
                   path="/productSetup"
                   element={<ListingPage />}

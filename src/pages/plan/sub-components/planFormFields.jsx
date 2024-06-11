@@ -61,22 +61,33 @@ const PlanFormfields = ({ data, onUpdate }) => {
     onUpdate(formData);
   };
 
-  const memoizedDropdown = useMemo(() => (
-    <Dropdown
-      value={formData.type}
-      onChange={(e) => setFormData({ ...formData, type: e.value })}
-      options={selections}
-      optionLabel="name"
-      placeholder="Select Type"
-      className="w-full"
-    />
-  ), [formData.type]);
+  const memoizedDropdown = useMemo(
+    () => (
+      <Dropdown
+        value={formData.type}
+        onChange={(e) => setFormData({ ...formData, type: e.value })}
+        options={selections}
+        optionLabel="name"
+        placeholder="Select Type"
+        className="w-full"
+      />
+    ),
+    [formData.type]
+  );
 
   return (
     <Card className="form-card">
       <Toast ref={toast} />
       {formData ? (
         <>
+          <InputField
+            value={formData.code}
+            className={"p-1 w-1/4 form-field"}
+            type={"text"}
+            name={"code"}
+            label={"Code"}
+            onChange={handleChange}
+          />
           <div className="dropdown-container form-field p-1 w-1/4">
             <label>Product-Type</label>
             {memoizedDropdown}
@@ -88,14 +99,6 @@ const PlanFormfields = ({ data, onUpdate }) => {
               onLangUpdate={handleLangChnages}
             />
           </div>
-          <InputField
-            value={formData.code}
-            className={"p-1 w-1/4 form-field"}
-            type={"text"}
-            name={"code"}
-            label={"Code"}
-            onChange={handleChange}
-          />
           <AutoCompleteField
             className={"p-1 w-1/4 form-field"}
             name={"product"}
