@@ -1,0 +1,43 @@
+.quotes-form-container label {
+    text-transform: capitalize;
+}
+.form-display-field {
+    height: 36px;
+    width: 100%;
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+    padding: 4px 8px;
+}
+.quotes-add-overlay {
+    width: 100%;
+    max-width: 600px;
+}
+.header-card {
+    height: calc(100vh - 260px);
+    overflow: auto;
+}
+
+.create-overlay {
+    width: 100%;
+    max-width: 350px;
+}
+
+.party-container {
+    margin-inline-start: 24px;
+    width: 100%;
+    max-width: 300px;
+}
+.party-container .p-card-body {
+    padding: 0 0 20px;
+}
+.party-container .p-card-body .party-header {
+    padding: 20px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 1);
+}
+.party-container .p-card-body .party-details {
+    padding: 12px 20px;
+    border-bottom: 1px solid rgba(0,0, 0, 0.12);
+}

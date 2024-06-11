@@ -253,6 +253,7 @@ export const getPlanColumnData = {
     tableHeader: [
       { field: "covers", header: "Covers", fieldType: "autoComplete" },
       { field: "mandatory", header: "Mandatory", fieldType: "checkBox" },
+      { field: "save", header: "" },
       { field: "action", header: "" },
     ],
   },
@@ -264,6 +265,7 @@ export const getPlanColumnData = {
         fieldType: "autoComplete",
       },
       { field: "mandatory", header: "Mandatory", fieldType: "checkBox" },
+      { field: "save", header: "" },
       { field: "action", header: "" },
     ],
   },
@@ -276,6 +278,7 @@ export const getPlanColumnData = {
         fieldType: "autoComplete",
       },
       { field: "mandatory", header: "Mandatory", fieldType: "checkBox" },
+      { field: "save", header: "" },
       { field: "action", header: "" },
     ],
   },
@@ -284,6 +287,7 @@ export const getPlanColumnData = {
     tableHeader: [
       { field: "conditions", header: "Conditions", fieldType: "autoComplete" },
       { field: "mandatory", header: "Mandatory", fieldType: "checkBox" },
+      { field: "save", header: "" },
       { field: "action", header: "" },
     ],
   },

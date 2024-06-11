@@ -3,6 +3,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 a {
+  text-decoration: none !important;
   outline: none !important;
   box-shadow: none !important;
 }
@@ -88,6 +89,7 @@ td .w-3 input{
 /* Dropdown styles here */
 .p-dropdown {
   min-width: 75px;
+  width: 100%;
   height: fit-content !important;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 6px;
@@ -167,8 +169,8 @@ td .w-3 input{
 .p-component.p-button {
   padding: 0 12px;
   font-size: 16px;
-  padding: 9px 12px 12px;
-  /* height: 40px; */
+  padding: 4px 16px;
+  height: 40px;
   text-transform: capitalize;
 }
 .small-btn .p-component.p-button {
@@ -183,7 +185,7 @@ td .w-3 input{
 .p-button.p-component.p-disabled:hover,
 .p-button.p-component.p-disabled:active,
 .p-button.p-component.p-disabled:focus {
-  /* background-color: rgb(52, 52, 52) !important; */
+  background-color: rgb(211 211 211) !important;
   border: none;
   color: rgb(185, 185, 185) !important;
   cursor: not-allowed !important;
@@ -279,16 +281,16 @@ button.p-button.p-component.p-button-outlined:hover {
   justify-content: flex-start;
 }
 .p-component.p-steps .p-steps-item:first-child:before {
-  left: 50%;
-  width: 50%;
+  left: 30%;
+  width: calc(100% - 30%);
 }
 .p-component.p-steps .p-steps-item:last-child {
   justify-content: flex-end;
 }
 .p-component.p-steps .p-steps-item:last-child:before {
   left: unset;
-  right: 50%;
-  width: 50%;
+  right: 30%;
+  width: calc(100% - 30%);
 }
 .p-component.p-steps .p-steps-item.p-highlight.p-steps-current .p-steps-number {
   background: #4338CA;

@@ -7,7 +7,7 @@
 .transactionsContainer{
     display: flex;
     justify-content: space-between;
-    margin: 8px;
+    margin: 8px 0;
 }
 
 .transactionsHeading{
@@ -19,10 +19,14 @@
     font-weight: bold;
 }
 
-.transactions{
+.transactions {
     width: 100%;
+    max-width: 33.33%;
     height: calc(100% - 100px);
-    margin: 0px 80px 9px 0px;
+    /* margin: 0px 80px 9px 0px; */
+}
+.transactions + .transactions {
+    margin-left: 30px;
 }
 
 .textBox{
@@ -53,7 +57,9 @@
 }
 
 .teamsPerformanceLink{
-    margin-left: 50px;
+    padding: 12px 15px 15px;
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .tasksName{
@@ -61,20 +67,17 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 20px;
     font-weight:600;
-    margin-left: 13px;
 }
 
 .customTable{
-    width: 70%;
+    width: 100%;
     height: 150px;
-    margin-left: 8px;
     overflow: auto;
 }
 
 .customTable2{
-    width: 95%;
+    width: 100%;
     height: 150px;
-    margin-left: 8px;
     overflow: auto;
 }
 
@@ -134,7 +137,7 @@ tr[data-pc-section="headerrow"] {
 .imgBox{
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     padding-top: 12px;
 }
   
@@ -161,7 +164,7 @@ tr[data-pc-section="headerrow"] {
 
 .imgBox {
     display: flex;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
     align-items: center;
   }
   
@@ -170,12 +173,14 @@ tr[data-pc-section="headerrow"] {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 80px; 
-    height: 60px; 
-    border: 1px solid black;
+    width: calc(50% - 8px);
+    margin: 8px 0;
+    height: 60px;
     border-radius: 5px;
     padding: 10px;
-    box-shadow: 0 0 5px var(--border-color, #003B95);
+    border: 1px solid rgba(0, 59, 149, 1);
+    box-shadow: 0 0 4px var(--border-color, rgba(0, 59, 149, 0.5));
+    cursor: pointer;
     text-align: center;
   }
   
@@ -186,9 +191,9 @@ tr[data-pc-section="headerrow"] {
 
 .quickLink{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 24px;
-    padding-left: 150px;
-    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
     color: #003B95;
 }
 
@@ -197,8 +202,7 @@ tr[data-pc-section="headerrow"] {
 }
 
 .quickLinkContainer{
-    width: 30%;
-    margin-top: -30px;
+    width: calc(33.33% - 24px);
 }
 
 .critical {

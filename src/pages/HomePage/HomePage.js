@@ -26,7 +26,7 @@ function HomePage() {
   //       detail: userNameIs,
   //       life: 3000,
   //     });
-  //     setToastShown(true); 
+  //     setToastShown(true);
   //   }
   // }, [userNameIs]);
 
@@ -79,7 +79,7 @@ function HomePage() {
   const renderPopUpMessage = () => (
     <div>
       <div style={{ display: "flex", alignItems: "center" }}>
-      <i className="pi pi-clipboard" style={{ fontSize: '2rem' }}></i>
+        <i className="pi pi-clipboard" style={{ fontSize: "2rem" }}></i>
         <h1 className="dailogueBox">
           <a
             href={`#${selectedrow.transactionRef}`}
@@ -89,19 +89,25 @@ function HomePage() {
           </a>
         </h1>
       </div>
-      <p style={{paddingTop: '20px', color: "#003B95", fontSize: '18px'}}>Notes:</p>
-      <div style={{paddingTop: '10px', fontSize: '16px'}}>{selectedrow.notes}</div>
+      <p style={{ paddingTop: "20px", color: "#003B95", fontSize: "18px" }}>
+        Notes:
+      </p>
+      <div style={{ paddingTop: "10px", fontSize: "16px" }}>
+        {selectedrow.notes}
+      </div>
     </div>
   );
 
   return (
     <div>
-      <Toast ref={toast} position="top-left"/>
+      <Toast ref={toast} position="top-left" />
       <div className="transactionsContainer">
         {transactionData.map((item, index) => (
           <div key={index} className="transactions">
             <h1 className="transactionsHeading">{item.name}</h1>
-            <div className="transactionBox">{renderKeyValuePairs(item.data)}</div>
+            <div className="transactionBox">
+              {renderKeyValuePairs(item.data)}
+            </div>
             <div className="teamsPerformanceLink">
               <a href="/" className="teamsPerformance">
                 Team's Performance
@@ -111,15 +117,29 @@ function HomePage() {
         ))}
       </div>
       <div>
-        <h1 className="tasksName">Tasks</h1>
         <div className="imgContainer">
-          <div className="customTable">
-            <DataTable value={data} scrollable tableStyle={{ minWidth: "35rem" }}>
-              <Column field="transactionRef" header="Transaction Ref#" className="transactionRefTexts" />
-              <Column field="taskDetails" header="Task Details" />
-              <Column field="priority" header="Priority" body={priorityBodyTemplate} />
-              <Column field="status" header="Status" />
-            </DataTable>
+          <div className="flex-1" style={{marginRight: '30px'}}>
+            <h1 className="tasksName">Tasks</h1>
+            <div className="customTable">
+              <DataTable
+                value={data}
+                scrollable
+                tableStyle={{ minWidth: "35rem" }}
+              >
+                <Column
+                  field="transactionRef"
+                  header="Transaction Ref#"
+                  className="transactionRefTexts"
+                />
+                <Column field="taskDetails" header="Task Details" />
+                <Column
+                  field="priority"
+                  header="Priority"
+                  body={priorityBodyTemplate}
+                />
+                <Column field="status" header="Status" />
+              </DataTable>
+            </div>
           </div>
           <div className="quickLinkContainer">
             <h1 className="quickLink">Quick Links</h1>
@@ -132,13 +152,15 @@ function HomePage() {
                   </a>
                 </div>
                 <div className="telephoneButton">
-                  <img src={ContactImg} alt="ContactImg" className="telephone" />
+                  <img
+                    src={ContactImg}
+                    alt="ContactImg"
+                    className="telephone"
+                  />
                   <a href="/create-application" className="quickLinkText">
                     Create Quote
                   </a>
                 </div>
-              </div>
-              <div className="imgBox">
                 <div className="telephoneButton">
                   <img src={Telephone} alt="Telephone" className="telephone1" />
                   <a href="/create-application" className="quickLinkText">
@@ -146,7 +168,11 @@ function HomePage() {
                   </a>
                 </div>
                 <div className="telephoneButton">
-                  <img src={ContactImg} alt="ContactImg" className="telephone" />
+                  <img
+                    src={ContactImg}
+                    alt="ContactImg"
+                    className="telephone"
+                  />
                   <a href="/create-application" className="quickLinkText">
                     Renewal
                   </a>
@@ -159,9 +185,28 @@ function HomePage() {
 
       <h1 className="tasksName">Notes & Dairies</h1>
       <div className="customTable2">
-        <DataTable value={notesAndDairiesData} scrollable tableStyle={{ minWidth: "50rem" }}>
-          <Column field="transactionRef" header="Transaction Ref#" body={renderLinkColumn1} className="transactionRefText" style={{width: "200px"}}/>
-          <Column field="notes" header="Notes" style={{ maxWidth: "200px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }} />
+        <DataTable
+          value={notesAndDairiesData}
+          scrollable
+          tableStyle={{ minWidth: "50rem" }}
+        >
+          <Column
+            field="transactionRef"
+            header="Transaction Ref#"
+            body={renderLinkColumn1}
+            className="transactionRefText"
+            style={{ width: "200px" }}
+          />
+          <Column
+            field="notes"
+            header="Notes"
+            style={{
+              maxWidth: "200px",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+            }}
+          />
           <Column field="reminderDate" header="Reminder Date" />
         </DataTable>
       </div>

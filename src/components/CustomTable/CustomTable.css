@@ -38,12 +38,42 @@
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody tr:hover td {
     background-color: rgba(82, 82, 82, 0.12);
 }
-.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th.action,
-.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead td.action {
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th,
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td {
+    min-width: 200px;
+    width: 200px;
+    max-width: 200px;
+}
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th.number-cell,
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.number-cell {
+    min-width: 120px;
+    width: 120px;
+    max-width: 120px;
+}
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th.action-cell,
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.action-cell {
     min-width: 60px;
     width: 60px;
     max-width: 60px;
 }
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th.save-cell,
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.save-cell {
+    min-width: 100px;
+    width: 100px;
+    max-width: 100px;
+}
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th.checkbox-cell,
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.checkbox-cell {
+    min-width: 120px;
+    width: 120px;
+    max-width: 120px;
+}
+
+
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody tr:not(:last-child) td,
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th {
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);

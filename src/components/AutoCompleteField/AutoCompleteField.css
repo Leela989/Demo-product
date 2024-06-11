@@ -19,3 +19,28 @@
     outline: none !important;
     height: 36px;
 }
+
+.add-autocomplete {
+    border: 1.5px solid rgba(0, 0, 0, 0.12);
+    border-radius: 6px;
+}
+.add-autocomplete .p-inputtext {
+    border: none;
+    border-radius: none;
+}
+.add-autocomplete .icon {
+    padding: 6px 16px;
+    background-color: rgba(191, 217, 255, 0.5);
+}
+.add-autocomplete .p-autocomplete-dropdown {
+    background-color: transparent !important;
+}
+.add-autocomplete .icon i {
+    color: rgba(0, 60, 149, 1);
+}
+
+.add-autocomplete:hover, 
+.add-autocomplete:active,
+.add-autocomplete:focus {
+    border-color: rgba(0, 60, 149, 0.5);
+}
