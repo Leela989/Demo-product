@@ -6,6 +6,10 @@ import { Steps } from "primereact/steps";
 import { useEffect, useState } from "react";
 import Header from "./sub-components/header";
 import QuotesRisk from "./sub-components/quotes-risk";
+import DocumentUpload from "./sub-components/document-upload";
+import Approval from "./sub-components/approval";
+import PremiumSummary from "./sub-components/premium-summary";
+import OtherDetails from "./sub-components/other-details";
 
 const QuotesListing = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -14,7 +18,10 @@ const QuotesListing = () => {
       label: "Header",
     },
     {
-      label: "Risk & Othe Details",
+      label: "Risk ",
+    },
+    {
+      label: "Other Details",
     },
     {
       label: "Document Upload",
@@ -26,16 +33,24 @@ const QuotesListing = () => {
       label: "Approval",
     },
     {
-      label: "Document Download",
+      label: "Document Preview",
     },
   ];
-  
+
   const DisplayQuotesList = () => {
     switch (activeIndex) {
       case 0:
         return <Header />;
       case 1:
         return <QuotesRisk />;
+      case 2:
+        return <OtherDetails />;
+      case 3:
+        return <DocumentUpload />;
+      case 4:
+        return <PremiumSummary />;
+      case 5:
+        return <Approval />;
       default:
         return;
     }
@@ -43,6 +58,20 @@ const QuotesListing = () => {
   return (
     <>
       <div className="card mb-5">
+        <div className="statusList mb-5">
+          <div className="status">
+            <p>Status:</p>
+            <p>Pending</p>
+          </div>
+          <div className="createdBy">
+            <p>Created By:</p>
+            <p>User</p>
+          </div>
+          <div className="createdOn">
+            <p>Created On:</p>
+            <p>Date</p>
+          </div>
+        </div>
         <Steps
           model={items}
           activeIndex={activeIndex}

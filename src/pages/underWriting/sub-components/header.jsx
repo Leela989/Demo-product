@@ -5,17 +5,34 @@ import QuotesTabComponent from "./quotesTabComponent";
 import {
   getQuotesHeaderData,
   getQuotesHeaderFromRender,
+  searchDisplayData,
+  searchDisplayHeader,
 } from "../../../mock-data/underwriting/quotes";
 import { Dropdown } from "primereact/dropdown";
 import { InputText } from "primereact/inputtext";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { InputTextarea } from "primereact/inputtextarea";
+import { InputNumber } from "primereact/inputnumber";
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { OverlayPanel } from "primereact/overlaypanel";
 
 const Header = () => {
+  const overlayOpen = useRef(null);
   const partyInitialState = { partyRole: "", partyID: "", address: "" };
   const [partyDetails, setPartyDetails] = useState(
     getQuotesHeaderData.partyDetails ?? []
   );
+  const [quotesFormData, setQuotesFormData] = useState(getQuotesHeaderData.formData);
+  const [customSearch, setCustomSearch] = useState({
+    name: "",
+    email: "",
+    phoneno: "",
+  });
+  const [searchHeader, setSearchHeader] = useState(searchDisplayHeader);
+
+  const handleSeachInputChange = (e) =>
+    setCustomSearch({ ...customSearch, [e.target.name]: e.target.value });
   const renderField = (fieldData, value, onChange) => {
     const type = fieldData.fieldType;
 
@@ -27,11 +44,63 @@ const Header = () => {
             <Dropdown value={value} onChange={onChange} />
           </div>
         );
-      case "inputText":
+      case "overlay":
         return (
-          <div className="">
-            <p>{fieldData.label}</p>
-            <InputText value={value} onChange={onChange} />
+          <div>
+            <label htmlFor="checkbox" className="pr-2">
+              {fieldData.label} {fieldData.required && <span className="text-red-600 text-xl">*</span>}
+            </label>
+            <div className="flex items-center add-autocomplete">
+              <InputText
+                onChange={handlePartyChange}
+                value={quotesFormData[fieldData.name]}
+                name={fieldData.name}
+                required={fieldData.required}
+              />
+              <span
+                onClick={(e) => overlayOpen.current.toggle(e)}
+                className="icon cursor-pointer"
+              >
+                <i className="pi pi-search"></i>
+              </span>
+            </div>
+            <OverlayPanel className="quotes-add-overlay" ref={overlayOpen}>
+              <div className="flex items-end justify-between">
+                <div className="w-1/3 p-1">
+                  <label>Name</label>
+                  <InputText
+                    onChange={handleSeachInputChange}
+                    name="name"
+                    value={customSearch.name}
+                  />
+                </div>
+                <div className="w-1/3 p-1">
+                  <label>Email</label>
+                  <InputText
+                    onChange={handleSeachInputChange}
+                    name="email"
+                    value={customSearch.email}
+                  />
+                </div>
+                <div className="w-1/3 p-1">
+                  <label>Phone No.</label>
+                  <InputNumber
+                    onChange={handleSeachInputChange}
+                    name="phoneno"
+                    value={customSearch.email}
+                    useGrouping={false}
+                  />
+                </div>
+                <div className="p-1 flex justify-end small-btn">
+                  <Button label="Search" />
+                </div>
+              </div>
+              <DataTable value={searchDisplayData.data}>
+                {searchHeader.map((data) => {
+                  return <Column field={data.field} header={data.header} />;
+                })}
+              </DataTable>
+            </OverlayPanel>
           </div>
         );
       case "partyAddress":
@@ -70,13 +139,11 @@ const Header = () => {
         </Card>
         <Card className="header-card party-container">
           <div className="flex justify-between items-center party-header">
-            <p className="text-xl font-bold flex-1">Party Information</p>
+            <p className="text-xl font-bold flex-1">Party</p>
             <div className="small-btn">
-              <Button label="Add Party" onClick={handelPartyAdd} />
+              <Button rounded icon="pi pi-external-link" />
+              <Button rounded icon="pi pi-plus" onClick={handelPartyAdd} />
             </div>
-          </div>
-          <div className="party-details">
-            
           </div>
           {partyDetails?.map((party, index) => (
               <div className="party-details" key={index}>

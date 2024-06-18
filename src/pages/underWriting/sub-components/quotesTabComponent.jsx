@@ -5,6 +5,8 @@ import {
   quotesTabTableInitialData,
 } from "../../../mock-data/underwriting/quotes";
 import CustomTable from "../../../components/CustomTable/CustomTable";
+import CustomButton from "../../../components/Button/CustomButton";
+import { Card } from "primereact/card";
 
 const QuotesTabComponent = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -12,11 +14,7 @@ const QuotesTabComponent = () => {
     quotesTabTableInitialData
   );
   const {
-    discountLoading,
-    deductible,
     conditions,
-    chargeTax,
-    commission,
     applicableCurrency,
     hypothecation,
     prevInsurenceDetails,
@@ -25,29 +23,9 @@ const QuotesTabComponent = () => {
   } = getQuotesTableHeaderData;
   const quotesTabData = [
     {
-      header: "Discount / Loading",
-      tableInitialData: quotesTabTableData.discountLoading.value,
-      tableHeaderData: discountLoading.header,
-    },
-    {
-      header: "Deductibles",
-      tableInitialData: quotesTabTableData.deductible.value,
-      tableHeaderData: deductible.header,
-    },
-    {
       header: "Conditions",
       tableInitialData: quotesTabTableData.conditions.value,
       tableHeaderData: conditions.header,
-    },
-    {
-      header: "Charge & Tax",
-      tableInitialData: quotesTabTableData.chargeTax.value,
-      tableHeaderData: chargeTax.header,
-    },
-    {
-      header: "Commission",
-      tableInitialData: quotesTabTableData.commission.value,
-      tableHeaderData: commission.header,
     },
     {
       header: "Applicable Currencies",
@@ -85,7 +63,7 @@ const QuotesTabComponent = () => {
   };
 
   return (
-    <>
+    <Card className="plan-tab-container">
       <TabView activeIndex={activeIndex} onTabChange={onTabChange}>
         {quotesTabData.map((tabData) => {
           return (
@@ -98,7 +76,11 @@ const QuotesTabComponent = () => {
           );
         })}
       </TabView>
-    </>
+      <CustomButton
+        label={"Add"}
+        className={"top-button small-btn"}
+      />
+    </Card>
   );
 };
 

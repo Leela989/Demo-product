@@ -7,10 +7,11 @@ const CheckBox = ({
   name,
   labelName = "",
   checkBoxId,
+  boxChecked = false,
   varient,
   labelPosition = "left", 
 }) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(boxChecked);
 
   const handleInputChange = (event) => {
     setChecked(event.checked);
