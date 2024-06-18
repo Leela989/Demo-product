@@ -9,7 +9,8 @@ const CheckBox = ({
   checkBoxId,
   boxChecked = false,
   varient,
-  labelPosition = "left", 
+  disabled,
+  labelPosition = "left",
 }) => {
   const [checked, setChecked] = useState(boxChecked);
 
@@ -23,7 +24,7 @@ const CheckBox = ({
   return (
     <div className="checkbox-container">
       {labelName && labelPosition === "left" && (
-        <label className="left-label" htmlFor={checkBoxId}>
+        <label className="left-label label" htmlFor={checkBoxId}>
           {labelName}
         </label>
       )}
@@ -33,9 +34,10 @@ const CheckBox = ({
         onChange={handleInputChange}
         checked={checked}
         className="checkBox"
+        disabled={disabled}
       />
       {labelName && labelPosition === "right" && (
-        <label className="right-label" htmlFor={checkBoxId}>
+        <label className="right-label label" htmlFor={checkBoxId}>
           {labelName}
         </label>
       )}

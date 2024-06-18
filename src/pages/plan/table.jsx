@@ -57,7 +57,6 @@ const PlanTableData = () => {
     },
   ];
   const customBody = (rowData, data) => {
-
     // const menuList=['edit'];
 
     if (data.field === "action") {
@@ -94,7 +93,11 @@ const PlanTableData = () => {
       <div className="flex justify-end pb-3">
         <Link
           to={`/plan/new`}
-          style={{ textDecoration: "none", color: '#003B95', fontWeight: 'bold' }}
+          style={{
+            textDecoration: "none",
+            color: "#003B95",
+            fontWeight: "bold",
+          }}
         >
           Create New
         </Link>
@@ -104,8 +107,8 @@ const PlanTableData = () => {
           return (
             <Column
               key={index}
-              headerClassName={`${column.field === 'action' ? 'action' : null}`}
-              bodyClassName={`${column.field === 'action' ? 'action' : null}`}
+              headerClassName={`${column.field === "action" ? "action" : null}`}
+              bodyClassName={`${column.field === "action" ? "action" : null}`}
               field={column.field}
               header={column.header}
               body={customBody}

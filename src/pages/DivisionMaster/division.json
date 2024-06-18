@@ -1,0 +1,24 @@
+[
+  {
+    "company": "001-Xyz Insurance",
+    "department": "101-Chennai",
+    "status": "Pending",
+    "action": "Edit",
+    "incharge": "User 3"
+  },
+  {
+    "company": "001-Xyz Insurance",
+    "department": "201-Hyderabad",
+    "status": "Approved",
+    "action": "View",
+    "incharge": "User 3",
+    "approvedBy": "User 3"
+  },
+  {
+    "company": "001-Xyz Insurance",
+    "department": "301-Dubai",
+    "status": "Pending",
+    "action": "Edit",
+    "incharge": "User 3"
+  }
+]

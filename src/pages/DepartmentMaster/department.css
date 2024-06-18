@@ -1,0 +1,10 @@
+.parent-container .top-label span .p-button .p-inputtext {
+  height: 10px;
+}
+.heading {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: normal;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0px 0px 20px 3px;
+}

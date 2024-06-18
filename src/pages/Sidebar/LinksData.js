@@ -34,6 +34,7 @@ const linksData = [
         { label: 'Company Master', link: '/commonMaster/companyMaster' },
         { label: 'Branch Master', link: '/commonMaster/branchMaster' },
         { label: 'Department Master', link: '/commonMaster/departmentMaster' },
+        { label: 'Division Master', link: '/commonMaster/divisionMaster' },
         { label: 'Currency & Exchange Rate', link: '/commonMaster/currencyExchangeRateMaster' },
         { label: 'Installment Pay Setup Master', link: '/commonMaster/installmentPaySetupMaster' },
         { label: 'VAT/TAX Master', link: '/commonMaster/vatTaxMaster' },

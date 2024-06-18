@@ -1,0 +1,27 @@
+[
+   {
+    "company": "001-Xyz Insurance",
+    "department": "101-Motor",
+    "status": "Pending",
+    "action": "Edit",
+    "incharge": "User 2",
+    "hod": "User 3"
+  },
+  {
+    "company": "001-Xyz Insurance",
+    "department": "201-Fire",
+    "status": "Approved",
+    "action": "View",
+    "incharge": "User 3",
+    "approvedBy": "User 3",
+    "hod": "User 1"
+  },
+  {
+    "company": "001-Xyz Insurance",
+    "department": "301-Marine",
+    "status": "Pending",
+    "action": "Edit",
+    "incharge": "User 1",
+    "hod": "User 2"
+  }
+]

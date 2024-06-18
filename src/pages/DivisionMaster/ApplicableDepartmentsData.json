@@ -1,0 +1,13 @@
+[
+  {
+    "company": "001-Xyz Insurance",
+    "department": "101-Motor",
+    "status": "Pending",
+    "action": "Edit",
+    "incharge": "User 2",
+    "hod": "User 1",
+    "freeze": false,
+    "show": false,
+    "checked": false
+  }
+]

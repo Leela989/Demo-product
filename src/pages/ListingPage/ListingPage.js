@@ -32,12 +32,14 @@ export default function ListingPage() {
   }, []);
 
   const handleEdit = (index) => {
-    console.log('dataM', data);
-    console.log('edit clicked for row index:', index);
+    console.log("dataM", data);
+    console.log("edit clicked for row index:", index);
     let selectedRowIndexKey = data[selectedIndex].key;
-    navigate(`/productConfigurator/productSetup/editApplication/${selectedIndex}/${selectedRowIndexKey}`);
+    navigate(
+      `/productConfigurator/productSetup/editApplication/${selectedIndex}/${selectedRowIndexKey}`
+    );
     setEditRecord(true);
-  }
+  };
 
   const blockAttributeOptions = (rowData, rowIndex) => [
     { label: "View" },
@@ -52,10 +54,12 @@ export default function ListingPage() {
     setClonedRowDetails(rowData);
     setCloneRow(true);
     setDialogVisible(true);
-  }
+  };
 
   const handleCreateNewClick = () => {
-    navigate(`/productConfigurator/productSetup/createApplication/${data.length + 1}`);
+    navigate(
+      `/productConfigurator/productSetup/createApplication/${data.length + 1}`
+    );
   };
 
   const filteredCustomers = customers.filter((customer) => {
@@ -97,7 +101,7 @@ export default function ListingPage() {
           onClick={(event) => {
             setSelectedIndex(rowIndex);
             setClonedRowDetails(rowData);
-            console.log('rowIndex', rowIndex, rowData);
+            console.log("rowIndex", rowIndex, rowData);
             return menuLeft.current.toggle(event);
           }}
           aria-controls="popup_menu_left"
@@ -107,47 +111,45 @@ export default function ListingPage() {
     );
   };
 
-  const handleChange = () => {
-
-  }
+  const handleChange = () => {};
 
   const cloneModal = () => {
     if (clonedRowDetails) {
       return (
         <div>
-            <div>{`You are trying to clone ${data[selectedIndex].name}`}</div>
-            <div className="productDetailsPopup">
+          <div>{`You are trying to clone ${data[selectedIndex].name}`}</div>
+          <div className="productDetailsPopup">
             <h1>New product details</h1>
             <InputField
-            className="w-1/2 ml-2 mt-3"
-            name="productCode"
-            label="Product Code"
-            labelType="left"
-            // value={formData.Code}
-            // onChange={(e) => handleChange("Code", e.target.value)}
-          />
-                    <InputField
-            className="w-1/2 ml-2"
-            name="productDescription"
-            label="Produt Description"
-            labelType="left"
-            // value={formData.Code}
-            // onChange={(e) => handleChange("Code", e.target.value)}
-          />
-                    <InputField
-            className="w-1/2 ml-2"
-            name="productShortDesciption"
-            label="Product Short Description"
-            labelType="left"
-            // value={formData.Code}
-            // onChange={(e) => handleChange("Code", e.target.value)}
-          />
-            </div>
+              className="w-1/2 ml-2 mt-3"
+              name="productCode"
+              label="Product Code"
+              labelType="left"
+              // value={formData.Code}
+              // onChange={(e) => handleChange("Code", e.target.value)}
+            />
+            <InputField
+              className="w-1/2 ml-2"
+              name="productDescription"
+              label="Produt Description"
+              labelType="left"
+              // value={formData.Code}
+              // onChange={(e) => handleChange("Code", e.target.value)}
+            />
+            <InputField
+              className="w-1/2 ml-2"
+              name="productShortDesciption"
+              label="Product Short Description"
+              labelType="left"
+              // value={formData.Code}
+              // onChange={(e) => handleChange("Code", e.target.value)}
+            />
+          </div>
         </div>
-      )
+      );
     }
     return null;
-  }
+  };
 
   const centerContent = (
     <div className="p-inputgroup search-input">
@@ -227,8 +229,8 @@ export default function ListingPage() {
         data={cloneModal()}
         visible={dialogVisible}
         onClose={setDialogVisible}
-        yesButtonText = {"Save"}
-        noButtonText = { "Cancel"}
+        yesButtonText={"Save"}
+        noButtonText={"Cancel"}
       />
     </div>
   );
