@@ -26,9 +26,9 @@
     "data": [
       {
         "Branches": [
-          { "Code": "01", "Name": "Head Office", "include": "true" },
+          { "Code": "01", "Name": "Head Office", "include": true },
           { "Code": "02", "Name": "Mwanza Branch", "include": "true" },
-          { "Code": "03", "Name": "Mbeya Branch", "include": "true" }
+          { "Code": "03", "Name": "Mbeya Branch", "include": true }
         ],
         "Discount": [
           {
@@ -38,7 +38,7 @@
             "Short_description": "Special Discount",
             "Long_description": "Special Discount",
             "Mandatory": false,
-            "Default_renewal": "0",
+            "Default_renewal": true,
             "Rate_modify_yn": "1",
             "Default_yn": true,
             "NCB_disc_yn": "0",
@@ -46,7 +46,11 @@
             "Commission_apl": "1",
             "Sort_order": 1,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "SI*Rate/Rate Per",
+            "short_rate_id": "Set2",
+            "rate": 10,
+            "rate_per": 20
           },
           {
             "Type": "Discount",
@@ -55,7 +59,7 @@
             "Short_description": "General Discount",
             "Long_description": "General Discount",
             "Mandatory": true,
-            "Default_renewal": "0",
+            "Default_renewal": false,
             "Rate_modify_yn": "1",
             "Default_yn": false,
             "NCB_disc_yn": "0",
@@ -63,7 +67,11 @@
             "Commission_apl": "1",
             "Sort_order": 2,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set1",
+            "rate": 40,
+            "rate_per": 30
           },
           {
             "Type": "Loading",
@@ -89,7 +97,7 @@
             "Short_description": "Fronting FAC Fee",
             "Long_description": "Fronting FAC Fee",
             "Mandatory": "0",
-            "Default_renewal": "0",
+            "Default_renewal": true,
             "Rate_modify_yn": "0",
             "Default_yn": "0",
             "NCB_disc_yn": "0",
@@ -97,7 +105,11 @@
             "Commission_apl": "1",
             "Sort_order": 4,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "Custom1",
+            "short_rate_id": "Set4",
+            "rate": 10,
+            "rate_per": 20
           },
           {
             "Type": "Discount",
@@ -114,7 +126,11 @@
             "Commission_apl": "1",
             "Sort_order": 3,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "Custom1",
+            "short_rate_id": "Set2",
+            "rate": 60,
+            "rate_per": 10
           },
           {
             "Type": "Discount",
@@ -131,7 +147,11 @@
             "Commission_apl": "1",
             "Sort_order": 4,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set4",
+            "rate": 45,
+            "rate_per": 20
           },
           {
             "Type": "Discount",
@@ -140,7 +160,7 @@
             "Short_description": "Large Volume Discount",
             "Long_description": "Large Volume Discount",
             "Mandatory": "0",
-            "Default_renewal": "0",
+            "Default_renewal": true,
             "Rate_modify_yn": "1",
             "Default_yn": "0",
             "NCB_disc_yn": "0",
@@ -148,7 +168,11 @@
             "Commission_apl": "1",
             "Sort_order": 5,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "SI*Rate/Rate Per",
+            "short_rate_id": "Set1",
+            "rate": 25,
+            "rate_per": 5
           },
           {
             "Type": "Loading",
@@ -165,7 +189,11 @@
             "Commission_apl": "1",
             "Sort_order": 1,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "Custom1",
+            "short_rate_id": "Set4",
+            "rate": 15,
+            "rate_per": 2
           },
           {
             "Type": "Loading",
@@ -173,31 +201,35 @@
             "Description": "General Loading",
             "Short_description": "General Loading",
             "Long_description": null,
-            "Mandatory": "0",
-            "Default_renewal": "0",
+            "Mandatory": true,
+            "Default_renewal": true,
             "Rate_modify_yn": "1",
-            "Default_yn": "0",
+            "Default_yn": true,
             "NCB_disc_yn": "0",
             "Add_RI_yn": "0",
             "Commission_apl": "1",
             "Sort_order": 2,
             "Effective_from": null,
-            "Effective_to": null
+            "Effective_to": null,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set3",
+            "rate": 5,
+            "rate_per": 25
           }
         ],
         "Conditions": [
           {
-            "Type": "06",
+            "Type": "06-Applicable Conditions",
             "Code": "1060001",
             "Description": "The terms and conditions of a Comprehensive insurance policy for commercial vehicles shall be applied to Insurance Company.",
             "Short_description": "The terms and conditions of a Comprehensive insurance policy for commercial vehicles shall be applied to Insurance Company.",
             "Long_description": null,
-            "Default_yn": "1",
+            "Default_yn": true,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "06",
+            "Type": "06-Applicable Conditions",
             "Code": "1060005",
             "Description": "30 days cancellation notice for both parties.",
             "Short_description": "30 days cancellation notice for both parties.",
@@ -207,112 +239,112 @@
             "Effective_to": null
           },
           {
-            "Type": "06",
+            "Type": "06-Applicable Conditions",
             "Code": "1060006",
             "Description": "Cancellation of the vehicle subject to the following: - The Vehicle registration has been cancelled. - The Vehicle registration has been cancelled. - The Vehicle’s Ownership is transferred to another owner. - Another Insurance policy is issued from another Insurance Company in replacement of this policy. - Submit all original Insurance documents such as certificate of Insurance and card.",
             "Short_description": "Cancellation of the vehicle subject to the following: - The Vehicle registration has been cancelled. - The Vehicle registration has been cancelled. - The Vehicle’s Ownership is transferred to another owner. - Another Insurance policy is issued from another Insurance Company in replacement of this policy. - Submit all original Insurance documents such as certificate of Insurance and card.",
             "Long_description": null,
-            "Default_yn": "1",
+            "Default_yn": false,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "06",
+            "Type": "06-Applicable Conditions",
             "Code": "1060007",
             "Description": "Police report is essential for any clams to settle.",
             "Short_description": "Police report is essential for any clams to settle.",
             "Long_description": null,
-            "Default_yn": "1",
+            "Default_yn": true,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "06",
+            "Type": "06-Applicable Conditions",
             "Code": "1060008",
             "Description": "No refund for deletion of vehicle on which claim is paid or under possessing.",
             "Short_description": "No refund for deletion of vehicle on which claim is paid or under possessing.",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": true,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "06",
+            "Type": "06-Applicable Conditions",
             "Code": "1060010",
             "Description": "Vehicles should not be repaired until the Company's confirmation is received.",
             "Short_description": "Vehicles should not be repaired until the Company's confirmation is received.",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": false,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "04",
+            "Type": "04-Product Wording",
             "Code": "1010001",
             "Description": "Warranty",
             "Short_description": "Warranty",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": true,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "04",
+            "Type": "04-Product Wording",
             "Code": "1010009",
             "Description": "7 Fire Extinguisher Warranty",
             "Short_description": "7 Fire Extinguisher Warranty",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": true,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "04",
+            "Type": "04-Product Wording",
             "Code": "1010010",
             "Description": "8.ANTI THEFT DEVICES: (ATD)",
             "Short_description": "8.ANTI THEFT DEVICES: (ATD)",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": false,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "04",
+            "Type": "04-Product Wording",
             "Code": "1010011",
             "Description": "SECTION II - LIABILITY TO THIRD PARTIES",
             "Short_description": "SECTION II - LIABILITY TO THIRD PARTIES",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": false,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "04",
+            "Type": "04-Product Wording",
             "Code": "1010012",
             "Description": "SECTION III MEDICAL EXPENSES",
             "Short_description": "SECTION III MEDICAL EXPENSES",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": false,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "04",
+            "Type": "04-Product Wording",
             "Code": "1010013",
             "Description": "AVOIDANCE OF CERTAIN TERMS AND RIGHTS OR RECOVERY",
             "Short_description": "AVOIDANCE OF CERTAIN TERMS AND RIGHTS OR RECOVERY",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": true,
             "Effective_from": null,
             "Effective_to": null
           },
           {
-            "Type": "06",
+            "Type": "06-Applicable Conditions",
             "Code": "1060009",
             "Description": "Agency repair coverage restricted for the last five years of the model except in case of high value vehicle.",
             "Short_description": "Agency repair coverage restricted for the last five years of the model except in case of high value vehicle.",
             "Long_description": null,
-            "Default_yn": "0",
+            "Default_yn": true,
             "Effective_from": null,
             "Effective_to": null
           }
@@ -323,7 +355,7 @@
             "Description": "Voluntary excess - 1000 fixed value",
             "Short_description": "Voluntary excess - 1000 fixed value",
             "Default_yn": "1",
-            "Type": "8",
+            "Type": "8- % of subject to Maxmium value",
             "Value": 1000,
             "Perc": null,
             "Effective_from": "2000-01-01T00:00:00",
@@ -335,7 +367,7 @@
             "Description": "Compulory excess - % of claim subject to min 2000",
             "Short_description": "Compulory excess - 10 % of claim subject to min 2000",
             "Default_yn": "",
-            "Type": "8",
+            "Type": "8- % of subject to Maxmium value",
             "Value": 2000,
             "Perc": "10",
             "Effective_from": "2000-01-01T00:00:00",
@@ -347,7 +379,7 @@
             "Code": "1010",
             "Description": "Vat",
             "Default_yn": true,
-            "Type": "001",
+            "Type": "01- Taxes",
             "Rat_modify_yn": "1",
             "Refund_yn": "1",
             "Mandatory_yn": false,
@@ -360,7 +392,7 @@
             "Code": "1001",
             "Description": "Policy Fee",
             "Default_yn": false,
-            "Type": "003",
+            "Type": "03- Levies",
             "Rat_modify_yn": "0",
             "Refund_yn": "0",
             "Mandatory_yn": true,
@@ -373,7 +405,7 @@
             "Code": "1004",
             "Description": "Endorsement Fee",
             "Default_yn": false,
-            "Type": "003",
+            "Type": "03- Levies",
             "Rat_modify_yn": "0",
             "Refund_yn": "0",
             "Mandatory_yn": true,
@@ -382,12 +414,12 @@
             "Effective_from": "2000-01-01T00:00:00",
             "Effective_to": "2099-12-31T00:00:00"
           },
-  
+
           {
             "Code": "1003",
             "Description": "Surveyor Fee",
             "Default_yn": true,
-            "Type": "003",
+            "Type": "03- Levies",
             "Rat_modify_yn": "0",
             "Refund_yn": "0",
             "Mandatory_yn": false,
@@ -417,7 +449,7 @@
             "numberOfPrints": "15"
           },
           {
-            "srl": "02",
+            "srl": "03",
             "documentId": "225",
             "documentName": "Product Document",
             "printBeforeApproval": "true",
@@ -428,40 +460,107 @@
         ],
 
         "Covers": [
-          { "Type": "C", "Code": "3101", "Description": "Own Damage" },
           {
-            "Type": "C",
+            "Type": "Cover",
+            "Code": "3101",
+            "Description": "Own Damage",
+            "Sort_order": 4,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set1",
+            "rate": 15,
+            "rate_per" : 25
+          },
+          {
+            "Type": "Cover",
             "Code": "3106",
-            "Description": "PA Benefit to Driver"
+            "Description": "PA Benefit to Driver",
+            "Sort_order": 2,
+            "calculation_logic": "Custom1",
+            "short_rate_id": "Set2",
+            "rate": 5,
+            "rate_per" : 25
           },
           {
-            "Type": "C",
+            "Type": "Cover",
             "Code": "3176",
-            "Description": "Third party Bodily Injury / Death (AOA,AOY)"
+            "Description": "Third party Bodily Injury / Death (AOA,AOY)",
+            "Sort_order": 8,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set1",
+            "rate": 15,
+            "rate_per" : 25
           },
           {
-            "Type": "C",
+            "Type": "Cover",
             "Code": "3178",
-            "Description": "Third Party Property Damage (AOA,AOY)"
+            "Description": "Third Party Property Damage (AOA,AOY)",
+            "Sort_order": 8,
+            "calculation_logic": "SI*Rate/Rate Per",
+            "short_rate_id": "Set1",
+            "rate": 15,
+            "rate_per" : 25
           },
-          { "Type": "C", "Code": "3195", "Description": "Road Assistance" },
           {
-            "Type": "C",
+            "Type": "Cover",
+            "Code": "3195",
+            "Description": "Road Assistance",
+            "Sort_order": 20,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set3",
+            "rate": 35,
+            "rate_per" : 5
+          },
+          {
+            "Type": "Cover",
             "Code": "3105",
-            "Description": "Geographical Extension"
+            "Description": "Geographical Extension",
+            "Sort_order": 12,
+            "calculation_logic": "Custom1",
+            "short_rate_id": "Set4",
+            "rate": 55,
+            "rate_per" : 15
           },
           {
-            "Type": "C",
+            "Type": "Cover",
             "Code": "3102",
-            "Description": "Personal Accident to Passenger"
+            "Description": "Personal Accident to Passenger",
+            "Sort_order": 12,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set1",
+            "rate": 35,
+            "rate_per" : 10
           },
-          { "Type": "C", "Code": "3103", "Description": "Towing charges" },
+
           {
-            "Type": "C",
-            "Code": "3104",
-            "Description": "Legal liability to Driver"
+            "Type": "Cover",
+            "Code": "3103",
+            "Description": "Towing charges",
+            "Sort_order": 11,
+            "calculation_logic": "SI*Rate/Rate Per",
+            "short_rate_id": "Set3",
+            "rate": 75,
+            "rate_per" : 10
           },
-          { "Type": "C", "Code": "3103", "Description": "Agency Repair" }
+          {
+            "Type": "Cover",
+            "Code": "3104",
+            "Description": "Legal liability to Driver",
+            "Sort_order": 7,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set1",
+            "rate": 25,
+            "rate_per" : 30
+          },
+          {
+            "Type": "Cover",
+            "Code": "3103",
+            "Description": "Agency Repair",
+            "Sort_order": 5,
+            "calculation_logic": "Custom1",
+            "short_rate_id": "Set2",
+            "rate": 95,
+            "rate_per" : 13
+          }
         ]
       }
     ]

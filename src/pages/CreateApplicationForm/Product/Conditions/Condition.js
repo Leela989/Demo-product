@@ -21,17 +21,24 @@ const Conditions = ({ productData }) => {
   const [menuOpen, setMenuOpen] = useState(null);
   const [add, setAdd] = useState(false);
   const { id, key } = useParams();
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({
+    Type: "",
+    Code: "",
+    Description: "",
+    Short_description: "",
+    Long_description: null,
+    Default_yn: true,
+    Effective_from: null,
+    Effective_to: null,
+  });
   const productKey = parseInt(key, 10);
-  const matchingProduct = productData.find((product) => product.key === productKey);
+  const matchingProduct = productData.find(
+    (product) => product.key === productKey
+  );
 
   const options = [{ name: "Edit" }, { name: "Delete" }];
 
-  const items = [
-    { label: "View" },
-    { label: "Edit" },
-    { label: "Delete" }
-  ];
+  const items = [{ label: "View" }, { label: "Edit" }, { label: "Delete" }];
 
   useEffect(() => {
     if (matchingProduct && matchingProduct.data?.[0]?.Conditions) {
@@ -77,7 +84,7 @@ const Conditions = ({ productData }) => {
   };
 
   const cellCheckBox = (val) => {
-    return <input type="checkbox" checked={true} disabled />;
+    return <CheckBox type="checkbox" checked={val} disabled />;
   };
 
   const handleChange = (name, value) => {
@@ -111,13 +118,36 @@ const Conditions = ({ productData }) => {
   };
 
   const list = [
-    {name : "01"},
-    {name : "02"},
-    {name : "03"},
-    {name : "04"},
-    {name : "05"},
-    {name : "06"}
-  ]
+    { name: "01-Warrenty" },
+    { name: "02-Applicable Extentions" },
+    { name: "03-Exclusion Clauses" },
+    { name: "04-Product Wording" },
+    { name: "05-Applicable Clauses" },
+    { name: "06-Applicable Conditions" },
+    {name : "07-Limit of Liability"},
+    {name : "08-Third Party Liability"},
+    {name : "09-Limitation of Use"},
+    {name : "10-Optional Benefits"}
+  ];
+
+  const handleInputChange = (name, value) => {
+    const updatedValue = value && value.target ? value.target.value : value;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: updatedValue,
+    }));
+  };
+
+  const handleCheckboxChange = (name, isChecked) => {
+    // setCheckboxState((prevState) => ({
+    //   ...prevState,
+    //   [name]: isChecked,
+    // }));
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: isChecked,
+    }));
+  };
 
   const renderConditionModal = () => {
     return (
@@ -125,13 +155,13 @@ const Conditions = ({ productData }) => {
         <div className="topBox">
           <AutoCompleField
             className="w-1/2"
-            name="type"
+            name="Type"
             label="Type"
             labelType="left"
             dropdown
             options={list}
-            value={formData.type}
-            onChange={(e) => handleChange("Type", e.value)}
+            value={formData.Type}
+            onChange={handleInputChange}
           />
           <InputField
             className="w-1/2 ml-2"
@@ -139,7 +169,7 @@ const Conditions = ({ productData }) => {
             label="Code"
             labelType="left"
             value={formData.Code}
-            onChange={(e) => handleChange("Code", e.target.value)}
+            onChange={handleInputChange}
           />
         </div>
         <div className="topBox">
@@ -149,7 +179,7 @@ const Conditions = ({ productData }) => {
               langData={langData.data}
               labelName="Description"
               onLangUpdate={handleLangUpdate}
-              value={formData.longDescription}
+              value={formData.Description}
             />
           </div>
           <div className="w-1/2 ml-4">
@@ -158,7 +188,7 @@ const Conditions = ({ productData }) => {
               langData={langData.data}
               labelName="Short Description1"
               onLangUpdate={handleLangUpdate}
-              value={formData.longDescription}
+              value={formData.Short_description}
             />
           </div>
         </div>
@@ -184,7 +214,13 @@ const Conditions = ({ productData }) => {
         </div>
         <div className="topBox">
           <div className="checkboxes w-1/3">
-            <CheckBox labelName="Default" />
+          <CheckBox
+                labelName="Default"
+                name="Default_yn"
+                checked={formData.Default_yn}
+                onChange={(name,checked) => handleCheckboxChange(name,checked)}
+                disabled={false}
+              />
           </div>
           <DateField
             className="w-1/3 ml-2"
@@ -207,12 +243,24 @@ const Conditions = ({ productData }) => {
     );
   };
 
+  const render_condiitons_header = () => {
+    return (
+      <div className="flex justify-end">
+        <CustomButton
+          label="+Add"
+          onClick={() => setAdd(true)}
+          className="small-btn"
+        />
+      </div>
+    );
+  };
+
   return (
     <div>
       <div style={{ display: "flex" }}>
         <DataTable
-          value={id >= productData.length || !productData[id]?.data?.[0]?.Conditions ? [] : conditionsData}
-          header="Conditions data"
+          value={conditionsData}
+          header={render_condiitons_header}
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}
@@ -220,27 +268,28 @@ const Conditions = ({ productData }) => {
           <Column
             field="Type"
             header="Type"
-            style={{ width: "15%" }}
+            style={{ width: "25%" }}
             body={(rowData) => cellInput(rowData.Type, "text")}
           />
           <Column
             field="Conditions"
             header="Conditions"
-            body={(rowData) => cellInput(rowData.Code + '-' + rowData.Description, "text")}
+            body={(rowData) =>
+              cellInput(rowData.Code + "-" + rowData.Description, "text")
+            }
           />
           <Column
-            field="Default On Renewal"
+            field="Default_yn"
             header="Default"
             body={(rowData) => cellCheckBox(rowData.Default_yn)}
           />
           <Column
-            body={(rowData, options) => actionBodyTemplate(rowData, options.rowIndex)}
+            body={(rowData, options) =>
+              actionBodyTemplate(rowData, options.rowIndex)
+            }
             style={{ width: "5%" }}
           />
         </DataTable>
-        <div>
-          <CustomButton label="ADD" onClick={() => setAdd(true)} className="small-btn mt-4 -ml-16" />
-        </div>
       </div>
       {add && (
         <DialogueBox

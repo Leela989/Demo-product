@@ -38,6 +38,10 @@ function HomePage() {
     setSelectedrow(rowData);
   };
 
+  const openModal2 = (rowData) => {
+    
+  }
+
   const closeModal = () => {
     setSelectedTransaction(null);
   };
@@ -71,6 +75,14 @@ function HomePage() {
   const renderLinkColumn1 = (rowData) => {
     return (
       <a href="#" onClick={() => openModal1(rowData)}>
+        {rowData.transactionRef}
+      </a>
+    );
+  };
+
+  const renderLinkColumn2 = (rowData) => {
+    return (
+      <a href="#" onClick={() => openModal2(rowData)}>
         {rowData.transactionRef}
       </a>
     );
@@ -129,7 +141,8 @@ function HomePage() {
                 <Column
                   field="transactionRef"
                   header="Transaction Ref#"
-                  className="transactionRefTexts"
+                  className="transactionRefText"
+                  body={renderLinkColumn2}
                 />
                 <Column field="taskDetails" header="Task Details" />
                 <Column
@@ -215,6 +228,7 @@ function HomePage() {
         <DialogueBox
           data={renderPopUpMessage()}
           header="Transaction Details"
+          visible={selectedTransaction}
           onClose={closeModal}
         />
       )}
@@ -222,6 +236,7 @@ function HomePage() {
         <DialogueBox
           data={renderPopUpMessage()}
           showFooter={false}
+          visible={selectedrow}
           onClose={closeModal1}
         />
       )}

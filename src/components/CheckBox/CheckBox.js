@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Checkbox } from "primereact/checkbox";
 import "./CheckBox.css";
 
@@ -9,13 +9,11 @@ const CheckBox = ({
   checkBoxId,
   boxChecked = false,
   varient,
-  disabled,
   labelPosition = "left",
+  checked,
+  disabled
 }) => {
-  const [checked, setChecked] = useState(boxChecked);
-
   const handleInputChange = (event) => {
-    setChecked(event.checked);
     if (onChange) {
       onChange(name, event.checked);
     }
@@ -29,7 +27,7 @@ const CheckBox = ({
         </label>
       )}
       <Checkbox
-        id={checkBoxId} // Corrected the attribute for id
+        id={checkBoxId}
         name={name}
         onChange={handleInputChange}
         checked={checked}

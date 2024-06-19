@@ -38,7 +38,7 @@ function App() {
 
   return (
     <>
-      {!token ? (
+      {token ? (
         <div className="App">
           <Header setToken={setToken} />
           <div className="main">
@@ -70,6 +70,9 @@ function App() {
                 />
                 <Route path="/plan" element={<PlanTableData />} />
                 <Route path="/plan/:type/:id?" element={<Plan />} />
+                <Route path="/underWriting/proposal/:lob/:type/:id?" element={<QuotesListing />} />
+                <Route path="/underWriting/proposal/:lob" element={<Quotes />} />
+                <Route path="/commonMaster/companyMaster" element={<CompanyMasterSetup/>} />
                 <Route
                   path="/underWriting/proposal/:lob/:type/:id?"
                   element={<QuotesListing />}

@@ -143,11 +143,23 @@ function DocumentPrints({ productData }) {
     { name: "Claim settlement" },
   ];
 
+  const render_documentPrints_header = () => {
+    return (
+      <div className="flex justify-end">
+      <CustomButton
+        label="+ADD"
+        onClick={handleAdd}
+        className="small-btn mt-4 -ml-16"
+      />
+    </div>
+    )
+  }
+
   return (
     <div>
       <div style={{ display: "flex" }}>
         <DataTable
-          header={"Document prints"}
+          header={render_documentPrints_header}
           value={tableData}
           paginator
           rows={5}
@@ -203,7 +215,7 @@ function DocumentPrints({ productData }) {
             )}
           />
           <Column
-            style={{ width: "15%" }}
+            style={{width: '55%'}}
             field="transactionType"
             header="Transaction Type"
             body={(rowData, options) => (
@@ -288,13 +300,7 @@ function DocumentPrints({ productData }) {
           />
           <Column body={actionBodyTemplate} style={{ width: "10%" }} />
         </DataTable>
-        <div>
-          <CustomButton
-            label="ADD"
-            onClick={handleAdd}
-            className="small-btn mt-4 -ml-16"
-          />
-        </div>
+       
       </div>
     </div>
   );

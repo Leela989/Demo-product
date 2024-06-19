@@ -1,8 +1,210 @@
-[
-    {
-        "insurableProduct" : "",
-        "parameter": "Vehicle Age",
-        "type": "Slab(between)",
-        "source": ""
-    }
-]
+{
+    "data": [
+      {
+        "key": 2301,
+        "Tariff_parameters": [
+          {
+            "Id": 23160,
+            "Cover_Code": "3101",
+            "Logic": "013",
+            "Sort_order": 1,
+            "Short_rate_id": "M1",
+            "Parameters": [
+              {
+                "Field_Id": 1132104331,
+                "Field_Name": "Usage Type",
+                "Para_Type": "Equals",
+                "Source": "Risk"
+              },
+              {
+                "Field_Id": 1132104517,
+                "Field_Name": "Body Type*",
+                "Para_Type": "Equals",
+                "Source": "Risk"
+              },
+              {
+                "Field_Id": 1132104586,
+                "Field_Name": "Seating Capacity",
+                "Para_Type": "Slab",
+                "Source": "Risk"
+              },
+              {
+                "Field_Id": 1132104587,
+                "Field_Name": "Gross Vehicle Weight",
+                "Para_Type": "Equals",
+                "Source": "Risk"
+              }
+            ]
+          }
+        ],
+        "Tariff_data_table_details": [
+          {
+            "Id": 23160,
+            "Tariff_columns": [
+              {"Column": "Usage Type", "field_type":"usage_type", "field": "dropdown"},
+              {"Column": "Body Type", "field_type": "body_type", "field": "dropdown"},
+              {"Column": "Seating Capacity From", "field_type":"seating_capacity_from", "field": "inputfiled" },
+              {"Column": "Seating Capacity To", "field_type": "seating_capacity_to", "field": "inputfiled"},
+              {"Column": "Gross Vehicle Weight", "field_type": "gross_vehicle_weight", "field": "inputfiled"},
+              {"Column": "Rate", "field_type": "rate", "field": "inputfiled"},
+              {"Column": "Rateper", "field_type": "rate_per", "field": "inputfiled"}
+            ],
+            "Tariff_data": [
+              {
+                "usage_type": "01-Passenger carrying Vehicle ",
+                "body_type": "1-Taxies",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 4,
+                "gross_vehicle_weight": null,
+                "rate": "0.15",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle ",
+                "body_type": "1-Taxies",
+                "seating_capacity_from": 5,
+                "seating_capacity_to": 8,
+                "gross_vehicle_weight": null,
+                "rate": "0.23",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle ",
+                "body_type": "2-Autos",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 4,
+                "gross_vehicle_weight": null,
+                "rate": "1.15",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle ",
+                "body_type": "2-Autos",
+                "seating_capacity_from": 5,
+                "seating_capacity_to": 8,
+                "gross_vehicle_weight": null,
+                "rate": "1.23",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle ",
+                "body_type": "3-Vans",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 8,
+                "gross_vehicle_weight": null,
+                "rate": "2.23",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle",
+                "body_type": "3-Vans",
+                "seating_capacity_from": 9,
+                "seating_capacity_to": 16,
+                "gross_vehicle_weight": null,
+                "rate": "2.32",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle",
+                "body_type": "3-Vans",
+                "seating_capacity_from": 16,
+                "seating_capacity_to": 9999,
+                "gross_vehicle_weight": null,
+                "rate": "2.45",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle",
+                "body_type": "4-Buses",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 16,
+                "gross_vehicle_weight": null,
+                "rate": "3.22",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "01-Passenger carrying Vehicle",
+                "body_type": "4-Buses",
+                "seating_capacity_from": 16,
+                "seating_capacity_to": 9999,
+                "gross_vehicle_weight": null,
+                "rate": "3.42",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "02-Goods carrying Vehicle",
+                "body_type": "5-Mini Trucks",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 9999,
+                "gross_vehicle_weight": "01-Upto 7500 Kgs",
+                "rate": "4.2",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "02-Goods carrying Vehicle",
+                "body_type": "5-Mini Trucks",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 9999,
+                "gross_vehicle_weight": "02-7501-12000 Kgs",
+                "rate": "1.64",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "02-Goods carrying Vehicle",
+                "body_type": "5-Mini Trucks",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 9999,
+                "gross_vehicle_weight": "03-12001-20000 Kgs",
+                "rate": "1.681",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "02-Goods carrying Vehicle",
+                "body_type": "5-Mini Trucks",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 9999,
+                "gross_vehicle_weight": "04-20001-40000 Kgs",
+                "rate": "1.7222",
+                "rate_per": 100
+              },
+              {
+                "usage_type": "02-Goods carrying Vehicle",
+                "body_type": "5-Mini Trucks",
+                "seating_capacity_from": 0,
+                "seating_capacity_to": 9999,
+                "gross_vehicle_weight": "05-2More than 12000 Kgs",
+                "rate": "1.798",
+                "rate_per": 100
+              }
+            ],
+            "short_rate_setup": [
+              {
+                "id": "Set1",
+                "duration_ind": "Exceeding",
+                "duration": "20",
+                "duration_type": "Days",
+                "rate": "10",
+                "rate_per": "20"
+            },
+            {
+                "id": "Set2",
+                "duration_ind": "Non Exceeding",
+                "duration": "10",
+                "duration_type": "Weeks",
+                "rate": "10",
+                "rate_per": "20"
+            },
+            {
+                "id": "Set3",
+                "duration_ind": "Exceeding",
+                "duration": "2",
+                "duration_type": "Months",
+                "rate": "15",
+                "rate_per": "20"
+            }
+            ]
+          }
+        ]
+      }
+    ]
+  }

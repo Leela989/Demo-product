@@ -175,8 +175,8 @@ export default function ListingPage() {
         <CustomButton
           label="Create New"
           onClick={handleCreateNewClick}
-          width={"120px"}
-          height={"36px"}
+          // width={"120px"}
+          // height={"36px"}
         />
       </div>
       <div className="listingTable">

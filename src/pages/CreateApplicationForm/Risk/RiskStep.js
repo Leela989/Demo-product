@@ -104,9 +104,9 @@ function RiskStep() {
   };
 
   const blockAttributeOptions = [
-    {name : "View"},
-    {name : "Edit", command: () =>  onEdit(selectedIndex)},
-    {name : "Delete"}
+    {label : "View"},
+    {label : "Edit", command: () =>  onEdit(selectedIndex)},
+    {label : "Delete"}
   ]
 
 

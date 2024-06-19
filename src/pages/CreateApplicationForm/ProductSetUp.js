@@ -67,7 +67,7 @@ const ProductSetup = () => {
         {activeIndex === 0 && <ProductPage />}
         {activeIndex === 1 && <RiskStep />}
         {activeIndex === 2 && <RatingStep />}
-        {activeIndex === 3 && <RuleStep />}
+        {activeIndex === 3 && <RuleStep/>}
       </div>
       <div className="navigationButtons">
         <CustomButton

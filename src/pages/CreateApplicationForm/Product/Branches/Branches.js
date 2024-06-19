@@ -7,18 +7,22 @@ import AutoCompleteField from "../../../../components/AutoCompleteField/AutoComp
 import "./Branches.css";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 function Branches({ productData }) {
   const { id, key } = useParams();
   const productKey = parseInt(key, 10);
   const menuLeft = useRef(null);
-  const matchingProduct = productData.find(product => product.key === productKey);
+  const matchingProduct = productData.find(
+    (product) => product.key === productKey
+  );
 
   const [editingRowIndex, setEditingRowIndex] = useState(null);
   const [newRowData, setNewRowData] = useState(null);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
   const [branchData, setBranchData] = useState([]);
+  const [defaultAllBranches, setDefaultAllBranches] = useState(false);
+  const [previousBranchData, setPreviousBranchData] = useState([]);
 
   useEffect(() => {
     if (matchingProduct && matchingProduct.data?.[0]?.Branches) {
@@ -31,9 +35,12 @@ function Branches({ productData }) {
       <CheckBox
         checked={rowData.include}
         disabled={editingRowIndex !== options.rowIndex}
+        onChange={(name, checked) => handleInputChange(name, checked, options.rowIndex)}
+        name="include"
       />
     );
   };
+  
 
   const OptionsForBranches = [
     { code: "03", name: "Mbeya Branch" },
@@ -52,9 +59,18 @@ function Branches({ productData }) {
     { label: "Delete" },
   ];
 
-  const handleInputChange = (e, rowIndex) => {
-    // handle input change logic
+  const handleInputChange = (name, checked, rowIndex) => {
+    const updatedBranchData = branchData.map((branch, index) =>
+      index === rowIndex ? { ...branch, [name]: checked } : branch
+    );
+    setBranchData(updatedBranchData);
+
+    if (defaultAllBranches && !checked) {
+      setDefaultAllBranches(false);
+      setPreviousBranchData(branchData); 
+    }
   };
+  
 
   const branchAutoComplete = (rowData, options) => {
     return (
@@ -70,7 +86,7 @@ function Branches({ productData }) {
   };
 
   const onEdit = (rowIndex) => {
-    console.log('clickedEdit', rowIndex);
+    console.log("clickedEdit", rowIndex);
     setEditingRowIndex(rowIndex);
   };
 
@@ -87,47 +103,46 @@ function Branches({ productData }) {
   const renderEditSaveButton = (rowIndex) => {
     if (editingRowIndex === rowIndex) {
       return (
-        <i
-          className="pi pi-check"
-          style={{
-            fontSize: "1rem",
-            border: "none",
-            borderRadius: "50%",
-            padding: "5px",
-            backgroundColor: "rgb(30 211 30 / 79%)",
-            color: "white",
-          }}
-          onClick={onSave}
-        ></i>
+        <div className="flex ml-2">
+          <div>
+            <i
+              className="pi pi-check"
+              style={{
+                fontSize: "1rem",
+                border: "none",
+                borderRadius: "50%",
+                padding: "5px",
+                backgroundColor: "rgb(30 211 30 / 79%)",
+                color: "white",
+              }}
+              onClick={onSave}
+            ></i>
+          </div>
+          <div className="ml-5">
+            <i
+              className="pi pi-times"
+              style={{
+                fontSize: "1rem",
+                border: "none",
+                borderRadius: "50%",
+                padding: "5px",
+                backgroundColor: "red",
+                color: "white",
+              }}
+              onClick={onCancel}
+            ></i>
+          </div>
+        </div>
       );
     } else {
       return null;
     }
   };
 
-  const renderCancelButton = (rowIndex) => {
-    if (editingRowIndex === rowIndex) {
-      return (
-        <i
-          className="pi pi-times"
-          style={{
-            fontSize: "1rem",
-            border: "none",
-            borderRadius: "50%",
-            padding: "5px",
-            backgroundColor: "red",
-            color: "white",
-          }}
-          onClick={onCancel}
-        ></i>
-      );
-    } else {
-      return null;
-    }
-  };
+ 
 
   const addNewRow = () => {
-    const newBranch = { Name: "", include: false };
+    const newBranch = { Name: "", include: defaultAllBranches };
     setBranchData([...branchData, newBranch]);
     setEditingRowIndex(branchData.length);
   };
@@ -142,7 +157,6 @@ function Branches({ productData }) {
           className="action-menu"
           icon="pi pi-ellipsis-v"
           onClick={(event) => {
-            console.log('clicking', index.rowIndex);
             setSelectedRowIndex(index.rowIndex);
             menuLeft.current.toggle(event);
           }}
@@ -153,50 +167,64 @@ function Branches({ productData }) {
     );
   };
 
+  const render_Braches_Header = (header) => {
+    return (
+      <div>
+        <div className="flex justify-end">
+          <CustomButton
+            label="+Add"
+            onClick={addNewRow}
+            className="small-btn"
+          />
+        </div>
+      </div>
+    );
+  };
+
+  const handleDefaultAllBranchesChange = (name, checked) => {
+    setDefaultAllBranches(checked);
+  
+    if (checked) {
+      setPreviousBranchData(branchData);
+      const updatedBranchData = branchData.map(branch => ({
+        ...branch,
+        include: true
+      }));
+      setBranchData(updatedBranchData);
+    } else {
+      setBranchData(previousBranchData);
+    }
+  };
+  
+
   return (
     <div>
       <div className="defaultAllBranches">
-        <CheckBox labelName="Default all branches" />
+        <CheckBox
+          labelName="Default all branches"
+          checked={defaultAllBranches}
+          onChange={(name, checked) => handleDefaultAllBranchesChange(name, checked)}
+        />
       </div>
       <div style={{ display: "flex" }}>
         <DataTable
-          value={(id >= productData.length || !productData[id]?.data?.[0]?.Branches) ? [] : branchData}
+          value={branchData}
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}
           scrollable
           scrollHeight="300px"
-          header="Branches data"
+          header={render_Braches_Header}
         >
           <Column field="Name" header="Branches" body={branchAutoComplete} />
-          <Column
-            field="include"
-            header="Include"
-            body={cellCheckBox}
-            style={{ width: "10%" }}
-          />
+          <Column field="include" header="Include" body={cellCheckBox} />
           <Column
             field="action"
+            className="w-5"
             body={(rowData, options) => renderEditSaveButton(options.rowIndex)}
-            style={{ width: "5%" }}
           />
-          <Column
-            field="action"
-            body={(rowData, options) => renderCancelButton(options.rowIndex)}
-            style={{ width: "5%" }}
-          />
-          <Column
-            body={actionBodyTemplate}
-            style={{ width: "5%" }}
-          />
+          <Column body={actionBodyTemplate} />
         </DataTable>
-        <div>
-          <CustomButton
-            label="ADD"
-            onClick={addNewRow}
-            className="small-btn mt-4 -ml-16"
-          />
-        </div>
       </div>
     </div>
   );

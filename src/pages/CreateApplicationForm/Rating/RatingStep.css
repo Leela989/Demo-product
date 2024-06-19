@@ -12,10 +12,22 @@
     margin-top: 25px;
 }
 
+.ratingHeader{
+    max-width: 70%;
+}
+
 .p-datatable-header{
     color: #003B95; 
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     font-size: 16px;
     padding: 10px;
+}
+
+.table_tariff_Container{
+    padding: 10px;
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12)
 }

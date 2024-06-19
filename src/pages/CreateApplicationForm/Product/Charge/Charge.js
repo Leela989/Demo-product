@@ -4,8 +4,8 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import "../../Styles/DetailLoginPage.css";
 import InputField from "../../../../components/InputField/InputField";
-import ChargeModal from '../Charge/ChargeModal';
-import ChargeData from '../Charge/Charge.json';
+import ChargeModal from "../Charge/ChargeModal";
+import ChargeData from "../Charge/Charge.json";
 import CustomButton from "../../../../components/Button/CustomButton";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
@@ -16,7 +16,7 @@ import DialogueBox from "../../../../components/DialogueBox/DialogueBox";
 import LanguageDescription from "../../../../components/language-description/lang-desctiption";
 import { useParams } from "react-router-dom";
 
-const Charge = ( { productData } ) => {
+const Charge = ({ productData }) => {
   const menuLeft = useRef(null);
   const [chargeTableData, setChargeTableData] = useState([]);
   const [edit, setEdit] = useState(false);
@@ -27,22 +27,20 @@ const Charge = ( { productData } ) => {
   const [formData, setFormData] = useState({});
   const [add, setAdd] = useState(false);
   const [addDailogueBox, setAddDailogueBox] = useState(false);
-  const {id, key} = useParams();
+  const { id, key } = useParams();
   const productKey = parseInt(key, 10);
-  const matchingProduct = productData.find(product => product.key === productKey);
-
+  const matchingProduct = productData.find(
+    (product) => product.key === productKey
+  );
 
   useEffect(() => {
     if (matchingProduct && matchingProduct.data?.[0]?.Charge) {
       setChargeTableData(matchingProduct.data[0].Charge);
     }
   }, [matchingProduct]);
-  console.log('jjj', chargeTableData);
+  console.log("jjj", chargeTableData);
 
-
-  const addRow = (type) => {
-   
-  };
+  const addRow = (type) => {};
 
   const langData = {
     default: "en",
@@ -72,12 +70,22 @@ const Charge = ( { productData } ) => {
   };
 
   const handleSave = () => {
-    setChargeTableData((prev) => [...prev, formData])
-  }
+    setChargeTableData((prev) => [...prev, formData]);
+  };
 
   const closeModal = () => {
     setAddDailogueBox(false);
-  }
+  };
+
+  const charge_type_options = [
+    { name: "01-Taxes" },
+    { name: "02-Charges" },
+    { name: "03-Levies" },
+    { name: "04-Service Tax - Premium" },
+    { name: "04-Environmental Relief Fund" },
+    { name: "06-Laid up Fee" },
+    { name: "07-Service Tax - Commission" },
+  ];
 
   const renderChargeModal = () => {
     return (
@@ -88,6 +96,7 @@ const Charge = ( { productData } ) => {
             name="type"
             label="Type"
             labelType="left"
+            options={charge_type_options}
             dropdown
             value={formData.type}
             onChange={(e) => handleChange("type", e.value)}
@@ -101,13 +110,13 @@ const Charge = ( { productData } ) => {
             onChange={(e) => handleChange("Code", e.target.value)}
           />
           <LanguageDescription
-              langDefault={languageDescription1.default}
-              langData={langData.data}
-              labelName="Long Description"
-              onLangUpdate={handleLangUpdate}
-              value={formData.longDescription}
-              className="w-1/3 ml-4"
-            />
+            langDefault={languageDescription1.default}
+            langData={langData.data}
+            labelName="Long Description"
+            onLangUpdate={handleLangUpdate}
+            value={formData.longDescription}
+            className="w-1/3 ml-4"
+          />
         </div>
         <div className="topBox">
           <InputField
@@ -142,25 +151,23 @@ const Charge = ( { productData } ) => {
             value={formData.longDescription}
             onChange={(e) => handleChange("longDescription", e.target.value)}
           />
-           
-          
         </div>
 
         <div className="topBox">
-        <div className="checkboxes">
-            <CheckBox labelName="Mandatory"/>
+          <div className="checkboxes">
+            <CheckBox labelName="Mandatory" />
           </div>
           <div className="checkboxes">
-            <CheckBox labelName="Default"/>
+            <CheckBox labelName="Default" />
           </div>
           <div className="checkboxes">
-            <CheckBox labelName="Allow modification"/>
+            <CheckBox labelName="Allow modification" />
           </div>
           <div className="checkboxes">
-            <CheckBox labelName="Refund"/>
+            <CheckBox labelName="Refund" />
           </div>
         </div>
-      
+
         <div className="topBox">
           <DateField
             className="w-1/2"
@@ -183,15 +190,10 @@ const Charge = ( { productData } ) => {
     );
   };
 
-
-  const options = [
-    { label: "View"},
-    { label: "Edit" },
-    { label: "Delete" },
-  ];
+  const options = [{ label: "View" }, { label: "Edit" }, { label: "Delete" }];
 
   const handleOptionSelect = (option) => {
-    setMenuOpen(null); 
+    setMenuOpen(null);
   };
 
   const toggleMenu = (index) => {
@@ -216,54 +218,106 @@ const Charge = ( { productData } ) => {
   };
 
   const cellInput = (val, typeofField) => {
-    return (
-      <InputField type={typeofField} value={val} disabled />
-    );
+    return <InputField type={typeofField} value={val} disabled />;
   };
 
   const cellCheckBox = (val) => {
+    return <input type="checkbox" checked={val} disabled />;
+  };
+
+  const cellAutoComplete = () => {
     return (
-      <input type="checkbox" checked={val} disabled />
+      <AutoCompleteField
+        className="w-1/1"
+        name="type"
+        dropdown
+        value={formData.type}
+        onChange={(e) => handleChange("type", e.value)}
+        disabled
+      />
     );
   };
 
-  return (
-    <div >
-              <div style={{display: 'flex'}}>
-              <DataTable value={(id >= productData.length || !productData[id]?.data?.[0]?.Charge) ? [] : chargeTableData} 
-                 paginator
-                 rows={5}
-                 rowsPerPageOptions={[5, 10, 25, 50]}
-              header="Charge data">
-                <Column  header="Type" body={(rowData) => cellInput(rowData.Type, "text")} />
-                <Column  header="Charge" body={(rowData) => cellInput(rowData.Code + '-' + rowData.Description, "text")} />
-                <Column  header="Annual Rate" body={(rowData) => cellInput(rowData.Cust_share_perc, "text")} />
-                <Column  header="Short Rate" body={(rowData) => cellInput(rowData.Short_Rate, "text")} />
-                <Column  header="Mandatory" body={(rowData) => cellCheckBox(rowData.Mandatory_yn)} />
-                <Column  header="Default" body={(rowData) => cellCheckBox(rowData.Default_yn)} />
-                <Column
-                  body={(rowData, { rowIndex }) => actionBodyTemplate(rowData, rowIndex)} style={{ width: "5%" }}
-                />
-              </DataTable>
-              <div>
-          <CustomButton label="ADD" onClick={() => setAddDailogueBox(true)}  className="small-btn mt-4 -ml-16"/>
+  const render_charge_header = () => {
+    return (
+      <div className="flex justify-end">
+          <CustomButton
+            label="+ADD"
+            onClick={() => setAddDailogueBox(true)}
+            className="small-btn mt-4 -ml-16"
+          />
         </div>
-        </div>
+    )
+  }
 
-        {addDailogueBox  && (
+  return (
+    <div>
+      <div style={{ display: "flex" }}>
+        <DataTable
+          value={chargeTableData}
+          paginator
+          rows={5}
+          rowsPerPageOptions={[5, 10, 25, 50]}
+          header={render_charge_header}
+        >
+          <Column
+            header="Type"
+            style={{ width: "15%" }}
+            body={(rowData) => cellInput(rowData.Type, "text")}
+          />
+          <Column
+            header="Charge"
+            style={{ width: "25%" }}
+            body={(rowData) =>
+              cellInput(rowData.Code + "-" + rowData.Description, "text")
+            }
+          />
+          <Column
+            header="Annual Rate"
+            body={(rowData) => cellInput(rowData.Cust_share_perc, "text")}
+          />
+          <Column
+            header="Short Rate"
+            body={(rowData) => cellInput(rowData.Short_Rate, "text")}
+          />
+          <Column
+            header="Calculation logic"
+            body={(rowData) => cellAutoComplete(rowData.calculation_logic)}
+          />
+          <Column
+            header="Mandatory"
+            body={(rowData) => cellCheckBox(rowData.Mandatory_yn)}
+          />
+          <Column
+            header="Default"
+            body={(rowData) => cellCheckBox(rowData.Default_yn)}
+          />
+          <Column
+            body={(rowData, { rowIndex }) =>
+              actionBodyTemplate(rowData, rowIndex)
+            }
+            style={{ width: "5%" }}
+          />
+        </DataTable>
+        
+      </div>
+
+      {addDailogueBox && (
         <>
-          <DialogueBox data={renderChargeModal()}
-           header={"Charge"}
-           setAdd={setAdd}
-           yesButtonText="Save"
-           visible={addDailogueBox}
-           onSave={handleSave}
-           onClose={closeModal}
-           noButtonText="Cancel"/>
+          <DialogueBox
+            data={renderChargeModal()}
+            header={"Charge"}
+            setAdd={setAdd}
+            yesButtonText="Save"
+            visible={addDailogueBox}
+            onSave={handleSave}
+            onClose={closeModal}
+            noButtonText="Cancel"
+          />
         </>
       )}
     </div>
   );
-}
+};
 
 export default Charge;

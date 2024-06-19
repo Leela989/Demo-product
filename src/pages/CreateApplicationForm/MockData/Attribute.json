@@ -1,146 +1,178 @@
-[
-  { "label": "Installment applicable", "type": "checkbox" },
-  { "label": "Traiff applicable", "type": "checkbox" },
-  { "label": "IDV calculation required", "type": "checkbox" },
-  { "label": "Annual product", "type": "checkbox" },
-  { "label": "Retroactive date validation", "type": "checkbox" },
-  { "label": "Extn allowed for short period policy", "type": "checkbox" },
-  { "label": "Lapsation process applicable", "type": "checkbox" },
-  { "label": "Link policy applicable", "type": "checkbox" },
-  { "label": "Advice date applicable", "type": "checkbox" },
-  { "label": "First loss applicable", "type": "checkbox" },
-  { "label": "Premium collection required(CBC)", "type": "checkbox" },
-  { "label": "Maximum discount %", "type": "number" },
-  { "label": "Minimum premium", "type": "number" },
-  { 
-    "label": "Refund Type", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "Exclude effective from date" },
-      { "name": "Include effective from date" }
+{
+  "data": {
+    "uw": [
+      { "label": "Installment applicable", "type": "checkbox" },
+      { "label": "Traiff applicable", "type": "checkbox" },
+      { "label": "IDV calculation required", "type": "checkbox" },
+      { "label": "Annual product", "type": "checkbox" },
+      { "label": "Retroactive date validation", "type": "checkbox" },
+      { "label": "Extn allowed for short period policy", "type": "checkbox" },
+      { "label": "Lapsation process applicable", "type": "checkbox" },
+      { "label": "Link policy applicable", "type": "checkbox" },
+      { "label": "Advice date applicable", "type": "checkbox" },
+      { "label": "First loss applicable", "type": "checkbox" },
+      { "label": "Premium collection required(CBC)", "type": "checkbox" },
+      { "label": "Maximum discount %", "type": "number" },
+      { "label": "Minimum premium", "type": "number" },
+      {
+        "label": "Refund Type",
+        "type": "dropdown",
+        "options": [
+          { "name": "Exclude effective from date" },
+          { "name": "Include effective from date" }
+        ]
+      },
+      {
+        "label": "Duration type",
+        "type": "dropdown",
+        "options": [
+          { "name": "Afternoon" },
+          { "name": "Evening" },
+          { "name": "Firstday" },
+          { "name": "Midnight" },
+          { "name": "Midnightpreviousday" },
+          { "name": "Nextday" },
+          { "name": "Normal" }
+        ]
+      },
+      { "label": "Renewal identification days", "type": "number" },
+      { "label": "Maximum commission allowed", "type": "number" },
+      {
+        "label": "Surveyor A/c Type",
+        "type": "dropdown",
+        "options": [
+          { "name": "No Accounting" },
+          { "name": "Single accounting" },
+          { "name": "Batch accounting" }
+        ]
+      },
+      {
+        "label": "Agent A/c Type",
+        "type": "dropdown",
+        "options": [
+          { "name": "No Accounting" },
+          { "name": "Single accounting" },
+          { "name": "Batch accounting" }
+        ]
+      },
+      {
+        "label": "Premium A/c Type",
+        "type": "dropdown",
+        "options": [
+          { "name": "No Accounting" },
+          { "name": "Single accounting" },
+          { "name": "Batch accounting" }
+        ]
+      },
+      { "label": "Inward Commission reqd", "type": "checkbox" },
+      { "label": "Agent Commission required", "type": "checkbox" },
+      { "label": "Policy Premium modify Yes/No", "type": "checkbox" },
+      { "label": "Zero premium allowed Yes/No", "type": "checkbox" },
+      { "label": "Tolerance %", "type": "number" },
+      { "label": "Currency Tolerance", "type": "number" },
+      {
+        "label": "Premium round upto",
+        "type": "dropdown",
+        "options": [
+          { "name": "No round off" },
+          { "name": "1 decimal" },
+          { "name": "2 decimals" },
+          { "name": "3 decimals" }
+        ]
+      },
+      {
+        "label": "Commission round upto",
+        "type": "dropdown",
+        "options": [
+          { "name": "No round off" },
+          { "name": "1 decimal" },
+          { "name": "2 decimals" },
+          { "name": "3 decimals" }
+        ]
+      },
+      {
+        "label": "SI round upto",
+        "type": "dropdown",
+        "options": [
+          { "name": "No round off" },
+          { "name": "1 decimal" },
+          { "name": "2 decimals" },
+          { "name": "3 decimals" }
+        ]
+      },
+      {
+        "label": "Currency Rate Type",
+        "type": "dropdown",
+        "options": [{ "name": "Buying" }, { "name": "Selling" }]
+      },
+      {
+        "label": "Mode of Posting",
+        "type": "dropdown",
+        "options": [{ "name": "Online" }, { "name": "Batch" }]
+      },
+      {
+        "label": "Number generation type",
+        "type": "dropdown",
+        "options": [{ "name": "Automatic" }, { "name": "Manual" }]
+      },
+      { "label": "Risk SI limit", "type": "number" },
+      {
+        "label": "Policy period unit",
+        "type": "dropdown",
+        "options": [
+          { "name": "Hour" },
+          { "name": "Day" },
+          { "name": "Week" },
+          { "name": "Month" },
+          { "name": "Year" }
+        ]
+      },
+      { "label": "Policy inception days", "type": "number" },
+      { "label": "Auto approve Yes/No", "type": "checkbox" },
+      { "label": "Fleet Yes/No", "type": "checkbox" },
+      { "label": "Policy period modifiable Yes/No", "type": "checkbox" },
+      { "label": "RI Allocation required yes/no", "type": "checkbox" },
+      { "label": "Apply short rate yes/No", "type": "checkbox" },
+      { "label": "Renewal processing allowed yes/no", "type": "checkbox" },
+      { "label": "New policy during renewal yes/no", "type": "checkbox" },
+      { "label": "Generate policy on renewal Yes/No", "type": "checkbox" }
+    ],
+    "claims_data": [
+      { "label": "Estimate Accounting Required", "type": "checkbox" },
+      {
+        "label": "Accounting mode",
+        "type": "dropdown",
+        "options": [{ "name": "Immediate" }, { "name": "Batch" }]
+      },
+      {
+        "label": "Claim Number generation type",
+        "type": "dropdown",
+        "options": [{ "name": "Setup" }, { "name": "Manual" }]
+      },
+      {
+        "label": "Cover Effective date validation",
+        "type": "dropdown",
+        "options": [{ "name": "Loss Date" }, { "name": "Intimation Date" }]
+      },
+      {
+        "label": "Estimate applicable currency",
+        "type": "dropdown",
+        "options": [{ "name": "Risk Currency" }, { "name": "Any Currency" }]
+      },
+      {
+        "label": "Exchange Rate on",
+        "type": "dropdown",
+        "options": [{ "name": "Policy" }, { "name": "Loss date" }, { "name": "Current date" }, { "name": "Estimate date" }, {"name": "Intimation date"}]
+      },
+      { "label": "Loss date validation required", "type": "checkbox" },
+      { "label": "Single Risk per Claim Yes/No", "type": "checkbox" },
+      { "label": "Generate Claim a/c yes/No", "type": "checkbox" },
+      { "label": "Generate FAC a/c yes/no", "type": "checkbox" },
+      {
+        "label": "Currency Rate Type",
+        "type": "dropdown",
+        "options": [{ "name": "Buying" }, { "name": "Selling" }]
+      }
     ]
-  },
-  { 
-    "label": "Duration type", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "Afternoon" },
-      { "name": "Evening" },
-      { "name": "Firstday" },
-      { "name": "Midnight" },
-      { "name": "Midnightpreviousday" },
-      { "name": "Nextday" },
-      { "name": "Normal" }
-    ]
-  },
-  { "label": "Renewal identification days", "type": "number" },
-  { "label": "Maximum commission allowed", "type": "number" },
-  { 
-    "label": "Surveyor A/c Type", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "No Accounting" },
-      { "name": "Single accounting" },
-      { "name": "Batch accounting" }
-    ]
-  },
-  { 
-    "label": "Agent A/c Type", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "No Accounting" },
-      { "name": "Single accounting" },
-      { "name": "Batch accounting" }
-    ]
-  },
-  { 
-    "label": "Premium A/c Type", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "No Accounting" },
-      { "name": "Single accounting" },
-      { "name": "Batch accounting" }
-    ]
-  },
-  { "label": "Inward Commission reqd", "type": "checkbox" },
-  { "label": "Agent Commission required", "type": "checkbox" },
-  { "label": "Policy Premium modify Yes/No", "type": "checkbox" },
-  { "label": "Zero premium allowed Yes/No", "type": "checkbox" },
-  { "label": "Tolerance %", "type": "number" },
-  { "label": "Currency Tolerance", "type": "number" },
-  { 
-    "label": "Premium round upto", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "No round off" },
-      { "name": "1 decimal" },
-      { "name": "2 decimals" },
-      { "name": "3 decimals" }
-    ]
-  },
-  { 
-    "label": "Commission round upto", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "No round off" },
-      { "name": "1 decimal" },
-      { "name": "2 decimals" },
-      { "name": "3 decimals" }
-    ]
-  },
-  { 
-    "label": "SI round upto", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "No round off" },
-      { "name": "1 decimal" },
-      { "name": "2 decimals" },
-      { "name": "3 decimals" }
-    ]
-  },
-  { 
-    "label": "Currency Rate Type", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "Buying" },
-      { "name": "Selling" }
-    ]
-  },
-  { 
-    "label": "Mode of Posting", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "Online" },
-      { "name": "Batch" }
-    ]
-  },
-  { 
-    "label": "Number generation type", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "Automatic" },
-      { "name": "Manual" }
-    ]
-  },
-  { "label": "Risk SI limit", "type": "number" },
-  { 
-    "label": "Policy period unit", 
-    "type": "dropdown", 
-    "options": [
-      { "name": "Hour" },
-      { "name": "Day" },
-      { "name": "Week" },
-      { "name": "Month" },
-      { "name": "Year" }
-    ]
-  },
-  { "label": "Policy inception days", "type": "number" },
-  { "label": "Auto approve Yes/No", "type": "checkbox" },
-  { "label": "Fleet Yes/No", "type": "checkbox" },
-  { "label": "Policy period modifiable Yes/No", "type": "checkbox" },
-  { "label": "RI Allocation required yes/no", "type": "checkbox" },
-  { "label": "Apply short rate yes/No", "type": "checkbox" },
-  { "label": "Renewal processing allowed yes/no", "type": "checkbox" },
-  { "label": "New policy during renewal yes/no", "type": "checkbox" },
-  { "label": "Generate policy on renewal Yes/No", "type": "checkbox" }
-]
+  }
+}

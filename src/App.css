@@ -191,7 +191,7 @@ td .w-3 input{
 .p-button.p-component.p-disabled:focus {
   background-color: rgb(211 211 211) !important;
   border: none;
-  color: rgb(185, 185, 185) !important;
+  color: rgb(66, 64, 64) !important;
   cursor: not-allowed !important;
   pointer-events: all;
 }
@@ -342,4 +342,21 @@ button.p-button.p-component.p-button-outlined:hover {
 .p-overlaypanel {
   /* border: 1px solid rgba(127, 126, 126, 0.6) !important; */
   box-shadow: 0 0 10px 4px rgba(0, 0, 0, 0.12) !important;
+}
+
+.p-checkbox-disabled{
+  background-color: rgb(192, 189, 189) ;
+  border: none !important;
+}
+
+.p-checkbox-checked.p-checkbox-disabled{
+  /* background-color: rgb(122, 120, 120) !important; */
+}
+
+.cover_card{
+  margin-top: 8px;
+  width: 30%;
+  padding: 15px;
+  border-radius: 12px;
+  box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12)
 }

@@ -213,6 +213,26 @@ function RiskCover() {
     );
   };
 
+  const render_cover_header = () => {
+    return (
+      <div className="flex justify-end">
+          <CustomButton
+            label="+Add"
+            onClick={() => setAddDailogueBox(true)}
+            className="small-btn mt-4 -ml-16"
+          />
+        </div>
+    )
+  }
+
+  const handleSave = () => {
+    setAddDailogueBox(false);
+  }
+
+  const handleClose = () => {
+    setAddDailogueBox(false);
+  }
+
   return (
     <div>
       <div style={{ display: "flex" }}>
@@ -223,7 +243,7 @@ function RiskCover() {
           rowsPerPageOptions={[5, 10, 25, 50]}
           scrollable
           scrollHeight="200px"
-          header="Cover data"
+          header={render_cover_header}
         >
           <Column
             field="cover"
@@ -303,13 +323,6 @@ function RiskCover() {
             style={{ width: "5%" }}
           />
         </DataTable>
-        <div>
-          <CustomButton
-            label="ADD"
-            onClick={() => setAddDailogueBox(true)}
-            className="small-btn mt-4 -ml-16"
-          />
-        </div>
       </div>
       {addDailogueBox && (
         <>
@@ -317,6 +330,9 @@ function RiskCover() {
             data={renderCoverModal()}
             header={"Cover"}
             setAdd={setAdd}
+            visible={addDailogueBox}
+            onSave={handleSave}
+            onClose={handleClose}
             yesButtonText="Save"
             noButtonText="Cancel"
           />
