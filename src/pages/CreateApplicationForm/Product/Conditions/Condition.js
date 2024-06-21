@@ -14,6 +14,7 @@ import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import LanguageDescription from "../../../../components/language-description/lang-desctiption";
 import { useParams } from "react-router-dom";
+import { Tooltip } from "primereact/tooltip";
 
 const Conditions = ({ productData }) => {
   const menuLeft = useRef(null);
@@ -21,6 +22,8 @@ const Conditions = ({ productData }) => {
   const [menuOpen, setMenuOpen] = useState(null);
   const [add, setAdd] = useState(false);
   const { id, key } = useParams();
+  const [unique_key, set_unique_key] = useState(null);
+  const [forceUpdate, setForceUpdate] = useState(false); // State to force update
   const [formData, setFormData] = useState({
     Type: "",
     Code: "",
@@ -31,6 +34,7 @@ const Conditions = ({ productData }) => {
     Effective_from: null,
     Effective_to: null,
   });
+
   const productKey = parseInt(key, 10);
   const matchingProduct = productData.find(
     (product) => product.key === productKey
@@ -49,14 +53,14 @@ const Conditions = ({ productData }) => {
   const actionBodyTemplate = (rowData, rowIndex) => {
     return (
       <div className="kebab-menu-container">
-        <Menu model={items} popup ref={menuLeft} id="popup_menu_left" />
+        <Menu model={items} popup ref={menuLeft} id={`popup_menu_left_${rowIndex}`} />
         <Button
           text
           rounded
           className="action-menu"
           icon="pi pi-ellipsis-v"
           onClick={(event) => menuLeft.current.toggle(event)}
-          aria-controls="popup_menu_left"
+          aria-controls={`popup_menu_left_${rowIndex}`}
           aria-haspopup
         />
         {menuOpen === rowIndex && (
@@ -79,8 +83,13 @@ const Conditions = ({ productData }) => {
     );
   };
 
-  const cellInput = (val, typeofField) => {
-    return <InputField type={typeofField} value={val} disabled />;
+  const cellInput = (val, typeofField, tool_tip) => {
+    return (
+      <div data-pr-tooltip={tool_tip ? val : ""}>
+        <InputField type={typeofField} value={val} disabled key={unique_key} />
+        <Tooltip target={`[data-pr-tooltip="${val}"]`} />
+      </div>
+    );
   };
 
   const cellCheckBox = (val) => {
@@ -92,6 +101,7 @@ const Conditions = ({ productData }) => {
       ...prevState,
       [name]: value,
     }));
+    setForceUpdate((prev) => !prev); // Toggle force update to re-render
   };
 
   const langData = {
@@ -106,10 +116,7 @@ const Conditions = ({ productData }) => {
     setConditionsData((prevData) => [...prevData, formData]);
     setAdd(false);
     setFormData({});
-  };
-
-  const handleLangUpdate = (updatedLang) => {
-    console.log("Updated Language Data:", updatedLang);
+    setForceUpdate((prev) => !prev); // Toggle force update to re-render
   };
 
   const handleClose = () => {
@@ -124,10 +131,10 @@ const Conditions = ({ productData }) => {
     { name: "04-Product Wording" },
     { name: "05-Applicable Clauses" },
     { name: "06-Applicable Conditions" },
-    {name : "07-Limit of Liability"},
-    {name : "08-Third Party Liability"},
-    {name : "09-Limitation of Use"},
-    {name : "10-Optional Benefits"}
+    { name: "07-Limit of Liability" },
+    { name: "08-Third Party Liability" },
+    { name: "09-Limitation of Use" },
+    { name: "10-Optional Benefits" },
   ];
 
   const handleInputChange = (name, value) => {
@@ -136,17 +143,18 @@ const Conditions = ({ productData }) => {
       ...prevFormData,
       [name]: updatedValue,
     }));
+    setForceUpdate((prev) => !prev); 
   };
 
   const handleCheckboxChange = (name, isChecked) => {
-    // setCheckboxState((prevState) => ({
-    //   ...prevState,
-    //   [name]: isChecked,
-    // }));
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: isChecked,
     }));
+    setForceUpdate((prev) => !prev); 
+  };
+  const handleLangUpdate = (updatedLang) => {
+    console.log("Updated Language Data:", updatedLang);
   };
 
   const renderConditionModal = () => {
@@ -161,7 +169,7 @@ const Conditions = ({ productData }) => {
             dropdown
             options={list}
             value={formData.Type}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange("Type", e.value)}
           />
           <InputField
             className="w-1/2 ml-2"
@@ -169,7 +177,7 @@ const Conditions = ({ productData }) => {
             label="Code"
             labelType="left"
             value={formData.Code}
-            onChange={handleInputChange}
+            onChange={(e) => handleInputChange("Code", e.value)}
           />
         </div>
         <div className="topBox">
@@ -214,40 +222,40 @@ const Conditions = ({ productData }) => {
         </div>
         <div className="topBox">
           <div className="checkboxes w-1/3">
-          <CheckBox
-                labelName="Default"
-                name="Default_yn"
-                checked={formData.Default_yn}
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                disabled={false}
-              />
+            <CheckBox
+              labelName="Default"
+              name="Default_yn"
+              checked={formData.Default_yn}
+              onChange={(name, checked) => handleCheckboxChange(name, checked)}
+              disabled={false}
+            />
           </div>
           <DateField
             className="w-1/3 ml-2"
-            name="effectiveFrom"
+            name="Effective_from"
             label="Effective From"
             labelType="float"
-            value={formData.effectiveFrom}
-            onChange={(e) => handleChange("effectiveFrom", e.value)}
+            value={formData.Effective_from}
+            onChange={(e) => handleChange("Effective_from", e.value)}
           />
           <DateField
             className="w-1/3 ml-2"
-            name="effectiveTo"
+            name="Effective_to"
             label="Effective To"
             labelType="float"
-            value={formData.effectiveTo}
-            onChange={(e) => handleChange("effectiveTo", e.value)}
+            value={formData.Effective_to}
+            onChange={(e) => handleChange("Effective_to", e.value)}
           />
         </div>
       </div>
     );
   };
 
-  const render_condiitons_header = () => {
+  const renderConditionsHeader = () => {
     return (
       <div className="flex justify-end">
         <CustomButton
-          label="+Add"
+          label="+ Add"
           onClick={() => setAdd(true)}
           className="small-btn"
         />
@@ -260,7 +268,7 @@ const Conditions = ({ productData }) => {
       <div style={{ display: "flex" }}>
         <DataTable
           value={conditionsData}
-          header={render_condiitons_header}
+          header={renderConditionsHeader}
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}
@@ -269,14 +277,13 @@ const Conditions = ({ productData }) => {
             field="Type"
             header="Type"
             style={{ width: "25%" }}
-            body={(rowData) => cellInput(rowData.Type, "text")}
+            body={(rowData) => cellInput(rowData.Type, "text", true)}
           />
           <Column
             field="Conditions"
             header="Conditions"
-            body={(rowData) =>
-              cellInput(rowData.Code + "-" + rowData.Description, "text")
-            }
+            style={{ width: "55%" }}
+            body={(rowData) => cellInput(rowData.Code + "-" + rowData.Description, "text", true)}
           />
           <Column
             field="Default_yn"
@@ -284,9 +291,7 @@ const Conditions = ({ productData }) => {
             body={(rowData) => cellCheckBox(rowData.Default_yn)}
           />
           <Column
-            body={(rowData, options) =>
-              actionBodyTemplate(rowData, options.rowIndex)
-            }
+            body={actionBodyTemplate}
             style={{ width: "5%" }}
           />
         </DataTable>

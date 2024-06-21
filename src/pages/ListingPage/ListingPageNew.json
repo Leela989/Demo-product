@@ -20,7 +20,7 @@
       "Description": "Motor Commercial",
       "Short_description": "Motor Commercial",
       "Line_of_Business": "10",
-      "Effective_from": "2000-01-01T00:00:00",
+      "Effective_from": "2024-06-20T10:49:00",
       "Effective_to": null
     },
     "data": [
@@ -561,7 +561,27 @@
             "rate": 95,
             "rate_per" : 13
           }
-        ]
+        ],
+        "rules": [
+          {
+              "id": 1,
+              "rule_no":1,
+              "rule_description": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+              "event":"On Policy Approval",
+              "ruleLibrary":"01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+              "action":"Accept",
+              "source": ""
+          },
+          {
+              "id": 7,
+              "rule_no":7,
+              "rule_description": "07-Referral Vehicle Make / Model, Need higher authority to approve.",
+              "event":"On Quote Approval",
+              "ruleLibrary":"07-Referral Vehicle Make / Model, Need higher authority to approve.",
+              "action":"Accept",
+              "source": ""
+          }
+      ]
       }
     ]
   },

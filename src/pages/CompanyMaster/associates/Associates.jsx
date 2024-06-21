@@ -16,7 +16,7 @@ function Associates() {
     return (
       <div className="flex justify-end">
             <CustomButton
-              label="ADD"
+              label="+Add"
               onClick={handleAdd}
               className="small-btn mt-4 -ml-16"
             />

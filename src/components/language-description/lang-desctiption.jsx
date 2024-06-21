@@ -4,7 +4,7 @@ import { InputText } from "primereact/inputtext";
 import { OverlayPanel } from "primereact/overlaypanel";
 import "./lang-desctiption.css";
  
-const LanguageDescription = ({ langDefault, langData, className, onLangUpdate, labelName }) => {
+const LanguageDescription = ({ langDefault, langData, className, onLangUpdate, labelName, disabled }) => {
   const [selectLang, setSelectedLang] = useState();
   const overlayOpen = useRef(null);
   useEffect(() => {
@@ -72,6 +72,7 @@ const LanguageDescription = ({ langDefault, langData, className, onLangUpdate, l
             <InputText
               value={selectLang?.description}
               onChange={handleDescriptionChange}
+              disabled={disabled}
             />
             <i
               className="pi pi-globe p-inputgroup-addon"

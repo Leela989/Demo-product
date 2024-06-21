@@ -18,7 +18,8 @@ import { Code, Language } from "@mui/icons-material";
 
 export default function LoginContentPage({ data }) {
   const toast = useRef(null);
-  const { id } = useParams();
+  const { id , key } = useParams();
+  const productKey = parseInt(key, 10);
   const [activeIndex, setActiveIndex] = useState(1);
   const [showApprove, setShowApprove] = useState(true);
   const location = useLocation();
@@ -153,7 +154,7 @@ export default function LoginContentPage({ data }) {
         className="w-1/4 p-1"
         name="effectiveFrom"
         label="Effective From"
-        value={formData.effectiveFrom}
+        value={(productKey && new Date())}
         onChange={handleInputChange}
       />
       <DateField

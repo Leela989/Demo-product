@@ -54,7 +54,7 @@ function Management() {
         <p>{header}</p>
         <div style={{ display: "flex" }}>
             <CustomButton
-              label="ADD"
+              label="+Add"
               onClick={handleAdd}
               className="small-btn mt-4 -ml-16"
             />

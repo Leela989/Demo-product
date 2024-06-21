@@ -14,7 +14,7 @@ a {
   width: calc(100% - 250px);
   flex: 1;
   padding: 24px;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 
@@ -356,7 +356,13 @@ button.p-button.p-component.p-button-outlined:hover {
 .cover_card{
   margin-top: 8px;
   width: 30%;
+  height: fit-content;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12)
 }
+
+.p-inputtext{
+  text-overflow: ellipsis;
+}
+

@@ -7,6 +7,7 @@ import DiscountLoading from "../Product/DiscountLoading/DiscountLoading";
 import CustomButton from "../../../components/Button/CustomButton";
 import Branches from "./Branches/Branches";
 import DocumentPrints from "./DocumentPrints/DocumentPrints";
+import CheckList from "./CheckList/CheckList";
 
 const TabComponent = ({data}) => {
 
@@ -31,6 +32,9 @@ const TabComponent = ({data}) => {
         </TabPanel>
         <TabPanel header="Document Prints" className="tabs">
           <DocumentPrints productData={data}/>
+        </TabPanel>
+        <TabPanel header="CheckList" className="tabs">
+          <CheckList productData={data}/>
         </TabPanel>
       </TabView>
       {/* <CustomButton/> */}

@@ -110,6 +110,14 @@ function HomePage() {
     </div>
   );
 
+  const tasks_header = (header) => {
+    return (
+      <div>
+        <h1 className='header_color'>{header}</h1>
+      </div>
+    )
+  }
+
   return (
     <div>
       <Toast ref={toast} position="top-left" />
@@ -131,12 +139,13 @@ function HomePage() {
       <div>
         <div className="imgContainer">
           <div className="flex-1" style={{marginRight: '30px'}}>
-            <h1 className="tasksName">Tasks</h1>
-            <div className="customTable">
+            {/* <h1 className="tasksName">Tasks</h1> */}
+            <div className="customTable mt-3">
               <DataTable
                 value={data}
                 scrollable
                 tableStyle={{ minWidth: "35rem" }}
+                header={tasks_header('Tasks')}
               >
                 <Column
                   field="transactionRef"
@@ -196,12 +205,12 @@ function HomePage() {
         </div>
       </div>
 
-      <h1 className="tasksName">Notes & Dairies</h1>
-      <div className="customTable2">
+      <div className="customTable2 mt-4">
         <DataTable
           value={notesAndDairiesData}
           scrollable
           tableStyle={{ minWidth: "50rem" }}
+          header={tasks_header('Notes & Diaries')}
         >
           <Column
             field="transactionRef"
@@ -223,6 +232,7 @@ function HomePage() {
           <Column field="reminderDate" header="Reminder Date" />
         </DataTable>
       </div>
+      <div className='mt-45'>leela</div>
       {/* Modal */}
       {selectedTransaction && (
         <DialogueBox

@@ -1,0 +1,22 @@
+[
+    {
+        "transaction_type": "set1",
+        "id": "01",
+        "checklist_description": "Document Print",
+        "effective_from": "",
+        "effective_to": "",
+        "mandatory_yn": true,
+        "remark_required": true,
+        "document_required": true
+    },
+    {
+        "transaction_type": "set1",
+        "id": "01",
+        "checklist_description": "Document Print",
+        "effective_from": "",
+        "effective_to": "",
+        "mandatory_yn": true,
+        "remark_required": true,
+        "document_required": true
+    }
+]

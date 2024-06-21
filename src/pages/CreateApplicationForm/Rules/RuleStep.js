@@ -9,11 +9,14 @@ import { Menu } from "primereact/menu";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import rulesList from "./RulesList.json";
-import { Toast } from 'primereact/toast';
+import { Toast } from "primereact/toast";
+import { useParams } from "react-router-dom";
 
 function RuleStep() {
   const menuLeft = useRef(null);
   const toast = useRef(null);
+  const { id, key } = useParams();
+  const productKey = parseInt(key, 10);
   const [rules_data, set_rules_data] = useState(rulesList[0].rules);
   const [disable_mode, set_disable_mode] = useState(true);
   const [selectedIndex, set_selected_index] = useState(null);
@@ -25,31 +28,53 @@ function RuleStep() {
     purpose: "",
     action: "",
     source: "",
-    ruleLibrary: ""
+    ruleLibrary: "",
   });
 
   useEffect(() => {
-    if (rules_data.length > 0) {
+    if (productKey == 2301 && rules_data.length > 0) {
       const firstRecord = rules_data[0];
-      console.log('firstrcord', firstRecord);
+      console.log("firstrcord", firstRecord);
       setRuleData({
         ruleId: firstRecord.id,
         event: firstRecord.event || "",
         purpose: firstRecord.rule_description.split("-")[1],
         action: firstRecord.action || "",
         source: firstRecord.source || "",
-        ruleLibrary: firstRecord.ruleLibrary
+        ruleLibrary: firstRecord.ruleLibrary,
       });
       set_selected_index(0);
       set_selected_row_data(firstRecord);
       set_disable_mode(false);
-      set_unique_key(unique_key+1);
+      set_unique_key(unique_key + 1);
+    }
+    else{
+      set_rules_data([]);
     }
   }, []);
 
   const uniqueRuleLibraryOptions = [
-    ...new Set(rules_data.map(rule => rule.ruleLibrary))
-  ].map(option => ({ name: option }));
+    {
+      name: "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+    },
+    { name: "02-Minimum Policy premium should not be less than $1000." },
+    {
+      name: "03-EDG entitiled waiver excess up to $1000. Please check Excess Buy Down.",
+    },
+    {
+      name: "04-Minimum Policy Remaining excess $300. Need higher Authority to Approve",
+    },
+    {
+      name: "05-Business Handler does not belong to the Marketing Department entered!",
+    },
+    { name: "06-Policy has UnNamed Insured Person/Risk" },
+    {
+      name: "07-Referral Vehicle Make / Model, Need higher authority to approve.",
+    },
+    {
+      name: "08-Vehicle Age is Greater than 3 for ExcelDrive Prestige Risk(Non Mercedes Benz), Need higher authority to approve.",
+    },
+  ];
 
   const handleInputChange = (name, value) => {
     setRuleData({ ...ruleData, [name]: value });
@@ -77,7 +102,7 @@ function RuleStep() {
       purpose: "",
       action: "",
       source: "",
-      ruleLibrary: ""
+      ruleLibrary: "",
     });
     const curKey = unique_key + 1;
     set_unique_key(curKey);
@@ -91,11 +116,7 @@ function RuleStep() {
     { name: "On Renewal" },
   ];
 
-  const items = [
-    { name: "Accept" },
-    { name: "Decline" },
-    { name: "Referral" },
-  ];
+  const items = [{ name: "Accept" }, { name: "Decline" }, { name: "Referral" }];
 
   const handle_new_rule_add = () => {
     set_disable_mode(false);
@@ -105,7 +126,10 @@ function RuleStep() {
       purpose: "",
       action: "",
       source: "",
+      ruleLibrary: "",
     });
+    const curKey = unique_key + 1;
+    set_unique_key(curKey);
     set_selected_index(null);
   };
 
@@ -119,19 +143,27 @@ function RuleStep() {
       purpose: rowData.rule_description.split("-")[1],
       action: rowData.action || "",
       source: rowData.source || "",
-      ruleLibrary: rowData.ruleLibrary || ""
+      ruleLibrary: rowData.ruleLibrary || "",
     });
     set_unique_key(unique_key + 1);
   };
 
   const rule_action_options = [
     { label: "View" },
-    { label: "Edit", command: () => handleEdit(selected_row_data, selectedIndex) },
+    {
+      label: "Edit",
+      command: () => handleEdit(selected_row_data, selectedIndex),
+    },
     { label: "Delete" },
   ];
 
   const showSuccess = () => {
-    toast.current.show({ severity: 'success', summary: 'Success', detail: 'Submitted Successfully', life: 3000 });
+    toast.current.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Submitted Successfully",
+      life: 3000,
+    });
   };
 
   const actionBodyTemplate = (rowData, rowIndex) => (
@@ -170,7 +202,7 @@ function RuleStep() {
   return (
     <div>
       <div className="ruleCard">
-      <Toast ref={toast} />
+        <Toast ref={toast} />
         <DataTable
           value={rules_data}
           scrollable
@@ -249,7 +281,7 @@ function RuleStep() {
               onChange={(value) => handleInputChange("ruleLibrary", value)}
               options={uniqueRuleLibraryOptions}
               dropdown
-              disabled={disable_mode}
+              disabled={disable_mode || (productKey == 2301)}
             />
             <div className="rulesHeader ml-6">
               <AutoCompleField

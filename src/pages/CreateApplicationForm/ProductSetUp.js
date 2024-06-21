@@ -41,15 +41,15 @@ const ProductSetup = () => {
       <div className="statusList">
         <div className="status">
           <p>Status:</p>
-          <p>Pending</p>
+          <p> Approved</p>
         </div>
         <div className="createdBy">
           <p>Created By:</p>
-          <p>User</p>
+          <p> Azentio</p>
         </div>
         <div className="createdOn">
           <p>Created On:</p>
-          <p>Date</p>
+          <p> 01/06/2024</p>
         </div>
       </div>
 

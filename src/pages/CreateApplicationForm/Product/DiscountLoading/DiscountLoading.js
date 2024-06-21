@@ -14,6 +14,7 @@ import { Menu } from "primereact/menu";
 import CustomButton from "../../../../components/Button/CustomButton";
 import LanguageDescription from "../../../../components/language-description/lang-desctiption";
 import { useLocation } from "react-router-dom";
+import { ViewAgendaTwoTone } from "@mui/icons-material";
 
 const DiscountLoading = ({ productData }) => {
   const menuLeft = useRef(null);
@@ -22,15 +23,19 @@ const DiscountLoading = ({ productData }) => {
   const [add, setAdd] = useState(false);
   const [menuOpen, setMenuOpen] = useState(null);
   const [selectedRow, setSelectedRow] = useState(null);
+  const [selectedIndex, set_selected_index] = useState(null);
   const [deletePopup, setDeletePopup] = useState(false);
   const [checkboxState, setCheckboxState] = useState(false);
   const [tableData, setTableData] = useState([]);
   const productKey = parseInt(key, 10);
+  const [view, set_view] = useState(false);
+  const [unique_key, set_unique_key] = useState(0);
   const matchingProduct = productData.find(
     (product) => product.key === productKey
   );
 
   useEffect(() => {
+    console.log("roo", selectedRow, selectedIndex);
     if (matchingProduct && matchingProduct.data?.[0]?.Discount) {
       setTableData(matchingProduct.data[0].Discount);
     }
@@ -76,12 +81,25 @@ const DiscountLoading = ({ productData }) => {
       Sort_order: "",
     });
   };
-  
 
   const handleEdit = (rowData, rowIndex) => {
+    console.log("editing", rowData, rowIndex);
     setSelectedRow(rowIndex);
     setFormData({ ...rowData });
     setAdd(true);
+  };
+
+  const handleView = () => {
+    // setAdd(true);
+    set_view(true);
+  };
+
+  const handle_view_close = () => {
+    set_view(false);
+  };
+
+  const handle_view_save = () => {
+    set_view(false);
   };
 
   const handleClose = () => {
@@ -93,28 +111,22 @@ const DiscountLoading = ({ productData }) => {
     const newData = [...discounttableData];
     newData.splice(selectedRow, 1);
     setDiscountTableData(newData);
-    setDeletePopup(false); 
+    setDeletePopup(false);
   };
 
   const items = [
-    { label: "View" },
+    { label: "View", command: () => handleView() },
     {
       label: "Edit",
-      command: () => handleEdit(selectedRow),
+      command: () => handleEdit(selectedRow.rowIndex, selectedIndex),
     },
     {
       label: "Delete",
-      command: () => setDeletePopup(true), 
+      command: () => setDeletePopup(true),
     },
   ];
 
-  const list = [
-    { name: "Discount" },
-    { name: "Loading" }
-   
-  ];
-
- 
+  const list = [{ name: "Discount" }, { name: "Loading" }];
 
   const onChange = (name, value) => {
     const updatedValue = value && value.target ? value.target.value : value;
@@ -139,7 +151,11 @@ const DiscountLoading = ({ productData }) => {
   const langData = {
     default: "en",
     data: [
-      { code: "en", lang: "English", description: "" },
+      {
+        code: "en",
+        lang: "English",
+        description: selectedIndex?.Long_description || "",
+      },
       { code: "es", lang: "Spanish", description: "" },
     ],
   };
@@ -147,12 +163,20 @@ const DiscountLoading = ({ productData }) => {
   const languageDescription1 = {
     default: "en",
     data: [
-      { lang: "English", code: "en", description: "" },
+      {
+        lang: "English",
+        code: "en",
+        description: selectedIndex?.Long_description || "",
+      },
       { lang: "Spanish", code: "es", description: "" },
     ],
   };
 
-  
+  // useEffect(() => {
+  //   if(add){
+  //     set_selected_index(null);
+  //   }
+  // }, [add,view, selectedRow, formData, selectedIndex])
 
   const handleLangUpdate = (value) => {
     console.log("Updated Language Data:", value);
@@ -168,7 +192,7 @@ const DiscountLoading = ({ productData }) => {
 
   const discountPopUp = () => {
     return (
-      <div>
+      <div key={unique_key}>
         <div className="productStep">
           <div className="topBox">
             <AutoCompleField
@@ -179,7 +203,8 @@ const DiscountLoading = ({ productData }) => {
               options={list}
               dropdown
               onChange={handleInputChange}
-              value={formData.Type}
+              value={selectedIndex?.Type || ""}
+              disabled={view}
             />
             <InputField
               className="w-1/3 p-1"
@@ -187,7 +212,8 @@ const DiscountLoading = ({ productData }) => {
               label="Code"
               labelType="left"
               onChange={handleInputChange}
-              value={formData.Code}
+              value={selectedIndex?.Code || ""}
+              disabled={view}
             />
             <LanguageDescription
               langDefault={languageDescription1.default}
@@ -195,7 +221,8 @@ const DiscountLoading = ({ productData }) => {
               labelName="Description"
               className="w-1/2 p-1"
               onLangUpdate={handleLangUpdate}
-              value={formData.Description}
+              value={selectedIndex?.Description || ""}
+              disabled={view}
             />
           </div>
           <div className="topBox">
@@ -206,7 +233,8 @@ const DiscountLoading = ({ productData }) => {
                 labelName="Long Description"
                 className="w-2/2 p-1"
                 onLangUpdate={handleLangUpdate}
-                value={formData.longDescription}
+                value={selectedIndex?.Long_description || ""}
+                disabled={view}
               />
             </div>
             <div className="w-1/2 p-1">
@@ -216,7 +244,8 @@ const DiscountLoading = ({ productData }) => {
                 labelName="Short Description"
                 className="w-2/2 p-1"
                 onLangUpdate={handleLangUpdate}
-                value={formData.longDescription}
+                value={selectedIndex?.Short_description || ""}
+                disabled={view}
               />
             </div>
           </div>
@@ -225,33 +254,44 @@ const DiscountLoading = ({ productData }) => {
               <CheckBox
                 labelName="Mandatory"
                 name="Mandatory"
-                checked={formData.Mandatory}
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                disabled={false}
+                checked={selectedIndex?.Mandatory || ""}
+                onChange={(name, checked) =>
+                  handleCheckboxChange(name, checked)
+                }
+                disabled={view}
               />
             </div>
             <div className="checkboxes w-2/5">
               <CheckBox
                 labelName="Default On Renewal"
                 name="Default_renewal"
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                checked={formData.Default_renewal}
+                onChange={(name, checked) =>
+                  handleCheckboxChange(name, checked)
+                }
+                checked={selectedIndex?.Default_renewal || ""}
+                disabled={view}
               />
             </div>
             <div className="checkboxes w-1/5">
               <CheckBox
                 labelName="Rate Modify"
                 name="rateModify"
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                checked={formData.rateModify}
+                onChange={(name, checked) =>
+                  handleCheckboxChange(name, checked)
+                }
+                checked={selectedIndex?.Rate_modify_yn || ""}
+                disabled={view}
               />
             </div>
             <div className="checkboxes w-1/5">
               <CheckBox
                 labelName="Default"
                 name="Default_yn"
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                checked={formData.Default_yn}
+                onChange={(name, checked) =>
+                  handleCheckboxChange(name, checked)
+                }
+                checked={selectedIndex?.Default_yn || ""}
+                disabled={view}
               />
             </div>
           </div>
@@ -259,22 +299,31 @@ const DiscountLoading = ({ productData }) => {
             <div className="checkboxes w-1/4">
               <CheckBox
                 labelName="NCB "
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                checked={formData.NCB}
+                onChange={(name, checked) =>
+                  handleCheckboxChange(name, checked)
+                }
+                checked={selectedIndex?.NCB_disc_yn || ""}
+                disabled={view}
               />
             </div>
             <div className="checkboxes w-2/4">
               <CheckBox
                 labelName="Add RI SI"
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                checked={formData.addRI}
+                onChange={(name, checked) =>
+                  handleCheckboxChange(name, checked)
+                }
+                checked={selectedIndex?.Add_RI_yn || ""}
+                disabled={view}
               />
             </div>
             <div className="checkboxes w-1/4">
               <CheckBox
                 labelName="Commission apl"
-                onChange={(name,checked) => handleCheckboxChange(name,checked)}
-                checked={formData.commissionApl}
+                onChange={(name, checked) =>
+                  handleCheckboxChange(name, checked)
+                }
+                checked={selectedIndex?.Commission_apl || ""}
+                disabled={view}
               />
             </div>
           </div>
@@ -285,7 +334,8 @@ const DiscountLoading = ({ productData }) => {
               label="Sort Order"
               labelType="left"
               onChange={onChange}
-              value={formData.Sort_order}
+              value={selectedIndex?.Sort_order || ""}
+              disabled={view}
             />
             <DateField
               className="w-2/4 ml-1"
@@ -293,7 +343,8 @@ const DiscountLoading = ({ productData }) => {
               label="Effective From"
               labelType="left"
               onChange={(e) => handleInputChange("effectiveFrom", e)}
-              value={formData.effectiveFrom}
+              value={selectedIndex?.effectiveFrom || ""}
+              disabled={view}
             />
             <DateField
               className="w-2/4 ml-1"
@@ -301,7 +352,8 @@ const DiscountLoading = ({ productData }) => {
               label="Effective To"
               labelType="left"
               onChange={(e) => handleInputChange("effectiveTo", e)}
-              value={formData.effectiveTo}
+              value={selectedIndex?.effectiveTo || ""}
+              disabled={view}
             />
           </div>
         </div>
@@ -310,6 +362,7 @@ const DiscountLoading = ({ productData }) => {
   };
 
   const actionBodyTemplate = (rowData, rowIndex) => {
+    console.log("actionBodyTemplate", rowData, rowIndex);
     return (
       <div className="kebab-menu-container">
         <Menu model={items} popup ref={menuLeft} id="popup_menu_left" />
@@ -320,6 +373,7 @@ const DiscountLoading = ({ productData }) => {
           icon="pi pi-ellipsis-v"
           onClick={(event) => {
             menuLeft.current.toggle(event);
+            set_selected_index(rowData);
             setSelectedRow(rowIndex);
           }}
           aria-controls="popup_menu_left"
@@ -329,20 +383,21 @@ const DiscountLoading = ({ productData }) => {
     );
   };
 
+  const handle_add = () => {
+    setAdd(true);
+    setSelectedRow(null);
+    setFormData({});
+    set_selected_index(null);
+    set_unique_key(unique_key + 1);
+  };
+
   const discount_loading_header = () => {
     return (
       <div className="flex justify-end">
-          <CustomButton
-            label="+ADD"
-            onClick={() => {
-              console.log("Add button clicked");
-              setAdd(true);
-            }}
-            className="small-btn"
-          />
-        </div>
-    )
-  }
+        <CustomButton label="+ADD" onClick={handle_add} className="small-btn" />
+      </div>
+    );
+  };
 
   return (
     <div>
@@ -378,10 +433,7 @@ const DiscountLoading = ({ productData }) => {
             field="Mandatory"
             header="Mandatory"
             body={(rowData) => (
-              <CheckBox
-                checked={rowData.Mandatory || false}
-                disabled
-              />
+              <CheckBox checked={rowData.Mandatory || false} disabled />
             )}
           />
           <Column
@@ -419,13 +471,10 @@ const DiscountLoading = ({ productData }) => {
             )}
           />
           <Column
-            body={(rowData, { rowIndex }) =>
-              actionBodyTemplate(rowData, rowIndex)
-            }
+            body={(rowData, rowIndex) => actionBodyTemplate(rowData, rowIndex)}
             style={{ width: "5%" }}
           />
         </DataTable>
-        
       </div>
 
       {add && (
@@ -437,6 +486,18 @@ const DiscountLoading = ({ productData }) => {
           visible={add}
           onSave={handleSave}
           onClose={handleClose}
+        />
+      )}
+
+      {view && (
+        <DialogueBox
+          data={discountPopUp()}
+          header={"Discount & Loading"}
+          yesButtonText="Save"
+          noButtonText="Cancel"
+          visible={view}
+          onSave={handle_view_save}
+          onClose={handle_view_close}
         />
       )}
 
