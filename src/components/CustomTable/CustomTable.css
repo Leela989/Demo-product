@@ -45,15 +45,30 @@
 }
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th,
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td {
-    min-width: 20px;
+    min-width: 200px;
     width: 200px;
     max-width: 200px;
+    transition: all linear 0.3s;
 }
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th.number-cell,
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.number-cell {
     min-width: 120px;
     width: 120px;
     max-width: 120px;
+}
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.textarea-cell:hover {
+    transition: all linear 0.2s;
+    min-width: 300px;
+    width: 300px;
+    max-width: 300px;
+    height: 100px; 
+}
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.textarea-cell:hover .p-inputtextarea {
+    transition: all linear 0.2s;
+    min-width: 300px;
+    width: 300px;
+    max-width: 300px;
+    height: 100%;
 }
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th.action-cell,
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td.action-cell {

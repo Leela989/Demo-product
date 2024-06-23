@@ -30,7 +30,7 @@ import DivisionMaster from "./pages/DivisionMaster/DivisionMaster";
 import DivisionsList from "./pages/DivisionMaster/DivisionsList";
 
 function App() {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState(true);
 
   // const location = useLocation();
   // const currentPath = location.pathname;
@@ -70,9 +70,6 @@ function App() {
                 />
                 <Route path="/plan" element={<PlanTableData />} />
                 <Route path="/plan/:type/:id?" element={<Plan />} />
-                <Route path="/underWriting/proposal/:lob/:type/:id?" element={<QuotesListing />} />
-                <Route path="/underWriting/proposal/:lob" element={<Quotes />} />
-                <Route path="/commonMaster/companyMaster" element={<CompanyMasterSetup/>} />
                 <Route
                   path="/underWriting/proposal/:lob/:type/:id?"
                   element={<QuotesListing />}
@@ -80,6 +77,10 @@ function App() {
                 <Route
                   path="/underWriting/proposal/:lob"
                   element={<Quotes />}
+                />
+                <Route
+                  path="/commonMaster/companyMaster"
+                  element={<CompanyMasterSetup />}
                 />
                 <Route
                   path="/commonMaster/departmentMaster"

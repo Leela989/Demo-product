@@ -80,11 +80,11 @@ const linksData = [
         {
           label: "Proposal",
           subLinks: [
-            { label: "Motor", link: "/underwriting/proposal/motor" },
-            { label: "Fire", link: "/underwriting/proposal/fire" },
-            { label: "Marine", link: "/underwriting/proposal/marine" },
-            { label: "Engineering", link: "/underwriting/proposal/engineering" },
-            { label: "Miscellaneous", link: "/underwriting/proposal/miscellaneous" },
+            { label: "Motor", link: "/underwriting/proposal/motor", code: '10' },
+            { label: "Fire", link: "/underwriting/proposal/fire", code: '11' },
+            { label: "Marine", link: "/underwriting/proposal/marine", code: '12' },
+            { label: "Engineering", link: "/underwriting/proposal/engineering", code: '13' },
+            { label: "Miscellaneous", link: "/underwriting/proposal/miscellaneous", code: '14' },
             { label: "Liability", link: "/underwriting/proposal/liability" },
             { label: "Bonds", link: "/underwriting/proposal/bonds" },
             { label: "Aviation", link: "/underwriting/proposal/aviation" },

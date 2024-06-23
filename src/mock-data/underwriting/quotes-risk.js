@@ -54,7 +54,7 @@ export const riskTabTableHeader = {
   covers: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      { field: "description", header: "Description", fieldType: "inputTextarea" },
       { field: "siTC", header: "Si TC", fieldType: "inputNumber" },
       { field: "siLC", header: "Si LC", fieldType: "inputNumber" },
       { field: "rate", header: "Rate", fieldType: "inputNumber" },
@@ -80,7 +80,7 @@ export const riskTabTableHeader = {
   discountLoading: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      { field: "description", header: "Description", fieldType: "inputTextarea" },
       { field: "rate", header: "Rate", fieldType: "inputNumber" },
       { field: "ratePer", header: "Rate Per", fieldType: "inputNumber" },
       { field: "amountTc", header: "Amount TC", fieldType: "inputNumber" },
@@ -100,7 +100,7 @@ export const riskTabTableHeader = {
   deductible: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      { field: "description", header: "Description", fieldType: "inputTextarea" },
       {
         field: "deductible",
         header: "Deductible Type",
@@ -116,16 +116,16 @@ export const riskTabTableHeader = {
   conditions: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      { field: "description", header: "Description", fieldType: "inputTextarea" },
       {
         field: "longDescription1",
         header: "Long Description 1",
-        fieldType: "inputText",
+        fieldType: "inputTextarea",
       },
       {
         field: "longDescription2",
         header: "Long Description 2",
-        fieldType: "inputText",
+        fieldType: "inputTextarea",
       },
       {
         field: "conditionType",
@@ -139,7 +139,7 @@ export const riskTabTableHeader = {
   smi: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      { field: "description", header: "Description", fieldType: "inputTextarea" },
       { field: "siTc", header: "Sum Insured TC", fieldType: "inputText" },
       { field: "siLc", header: "Sum Insured LC", fieldType: "inputText" },
       { field: "rate", header: "Rate", fieldType: "inputNumber" },

@@ -6,6 +6,7 @@ import DateField from "../../../components/DateField/Datefield";
 import { Dropdown } from "primereact/dropdown";
 import { Toast } from "primereact/toast";
 import { useEffect, useRef, useState } from "react";
+import { Card } from "primereact/card";
 
 const Approval = () => {
   const toast = useRef(null);
@@ -18,7 +19,6 @@ const Approval = () => {
 
   const handelCheckboxUpdate = (name, value) => {
     setApproveQuotes({ ...approveQuotes, automate: value });
-    console.log(name, value, "Approve value");
   };
 
   useEffect(() => {
@@ -96,93 +96,121 @@ const Approval = () => {
           <p className="font-medium">10</p>
         </div>
       </div>
-      <div className="approve-btn flex items-center mt-5">
-        <Button text label="Business Rules" />
-        <Button label="Approve" onClick={handleQuotesApprove} />
-        <Button outlined label="Reject" />
-        {approveQuotes.approve && (
-          <div className="ml-3">
-            <Toast ref={toast} />
-            <Button
-              label="Convert to Policy"
-              onClick={(e) => {
-                setApproveQuotes({ ...approveQuotes, convert: true });
-              }}
-            />
-          </div>
-        )}
-      </div>
-      {approveQuotes.convert && (
-        <>
-          <div className="mt-5">
-            <CheckBox
-              name={"autoPolicyApprove"}
-              labelName="Do you want to approve the policy automatically ?"
-              checkBoxId={"autoPolicyApprove"}
-              onChange={handelCheckboxUpdate}
-            />
-            {approveQuotes.automate && (
-              <div className="flex items-center flex-wrap">
-                {approvalFieldData.map((element) => {
-                  return (
-                    <div className="w-1/4 p-2">
-                      {element.field_type !== "checkBox" && (
-                        <label>{element.label}</label>
-                      )}
-                      {renderFields(element)}
-                    </div>
-                  );
-                })}
+      <div className="flex items-start justify-between">
+        <div className="pr-3 flex-1">
+          <div className="approve-btn flex items-center justify-center mt-5">
+            <Button text label="Business Rules" />
+            <Button disabled={approveQuotes.approve} label="Approve" onClick={handleQuotesApprove} />
+            <Button disabled={approveQuotes.approve} outlined label="Reject" />
+            {approveQuotes.approve && (
+              <div className="ml-3">
+                <Toast ref={toast} />
+                <Button
+                  label="Convert to Policy"
+                  disabled={approveQuotes.confirm}
+                  onClick={(e) => {
+                    setApproveQuotes({ ...approveQuotes, convert: true });
+                  }}
+                />
               </div>
             )}
-            <div className="flex items-center my-5">
-              <Link
-                style={{
-                  fontWeight: "600",
-                  color: "#4338CA",
-                  textDecoration: "underline",
-                }}
-                className="mr-3"
-                to={"/#"}
-                target="black"
-              >
-                Business Rules
-              </Link>
-              <Button
-                label="Confirm"
-                onClick={(e) => {
-                  setApproveQuotes({ ...approveQuotes, confirm: true });
-                }}
-              />
-            </div>
-            {approveQuotes.confirm && (
-              <>
-                <div className="flex items-center justify-center">
-                  <p>
-                    Policy <span>P/10/1001/2024/00056 </span>created with status
-                    Approved Successfully !!!
-                  </p>
+          </div>
+          {approveQuotes.convert && (
+            <>
+              <div className="mt-5 pt-5">
+                <CheckBox
+                  name={"autoPolicyApprove"}
+                  labelName="Do you want to approve the policy automatically ?"
+                  checkBoxId={"autoPolicyApprove"}
+                  onChange={handelCheckboxUpdate}
+                />
+                {approveQuotes.automate && (
+                  <div className="flex items-center flex-wrap">
+                    {approvalFieldData.map((element) => {
+                      return (
+                        <div className="w-1/4 p-2">
+                          {element.field_type !== "checkBox" && (
+                            <label>{element.label}</label>
+                          )}
+                          {renderFields(element)}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+                <div className="flex items-center justify-center my-5">
                   <Link
                     style={{
                       fontWeight: "600",
                       color: "#4338CA",
                       textDecoration: "underline",
                     }}
-                    className="ml-4"
+                    className="mr-3"
                     to={"/#"}
                     target="black"
                   >
-                    View Ploicy
+                    Business Rules
                   </Link>
+                  <Button
+                    label="Confirm"
+                    onClick={(e) => {
+                      setApproveQuotes({ ...approveQuotes, confirm: true });
+                    }}
+                  />
                 </div>
-                <div className="mt-5 flex items-center justify-center">
-                  <Button label="Account Query" />
-                </div>
-              </>
-            )}
+                {approveQuotes.confirm && (
+                  <>
+                    <div className="flex items-center justify-center pt-5">
+                      <p className="blink-soft">
+                        Policy <span>P/10/1001/2024/00056 </span>created with status
+                        Approved Successfully !!!
+                      </p>
+                      <Link
+                        style={{
+                          fontWeight: "600",
+                          color: "#4338CA",
+                          textDecoration: "underline",
+                        }}
+                        className="ml-4"
+                        to={"/#"}
+                        target="black"
+                      >
+                        View Ploicy
+                      </Link>
+                    </div>
+                    <div className="mt-5 flex items-center justify-center">
+                      <Button label="Account Query" />
+                    </div>
+                  </>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+        <Card className="approve-card">
+          <p className="font-bold mb-3">Premium Summary</p>
+          <div className="py-2 flex items-center">
+            <label className="font-600 mr-3">Net Premium :</label>
+            <p>$2000</p>
           </div>
-        </>
-      )}
+          <div className="py-2 flex items-center">
+            <label className="font-600 mr-3">Output Tax :</label>
+            <p>$2000</p>
+          </div>
+          <div className="py-2 flex items-center">
+            <label className="font-600 mr-3">Premium Payable :</label>
+            <p>$2000</p>
+          </div>
+          <div className="py-2 flex items-center">
+            <label className="font-600 mr-3">Commission :</label>
+            <p>$2000</p>
+          </div>
+          <div className="flex items-center">
+            <label className="text-xl font-600 mr-3">Input Tax :</label>
+            <p>$2000</p>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 };

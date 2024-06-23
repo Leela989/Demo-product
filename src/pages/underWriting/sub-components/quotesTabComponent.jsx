@@ -43,7 +43,7 @@ const QuotesTabComponent = () => {
       tableHeaderData: prevInsurenceDetails.header,
     },
     {
-      header: "Survey Or Details",
+      header: "Survey Details",
       tableInitialData: quotesTabTableData.surveyorDetails.value,
       tableHeaderData: surveyorDetails.header,
     },

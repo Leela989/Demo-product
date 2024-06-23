@@ -12,8 +12,17 @@ import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { InputNumber } from "primereact/inputnumber";
 import DateField from "../DateField/Datefield";
+import { InputTextarea } from "primereact/inputtextarea";
 
-function CustomTable({ name, data, columns, onUpdate, className, options }) {
+function CustomTable({
+  name,
+  data,
+  columns,
+  onUpdate,
+  className,
+  options,
+  selectionMode,
+}) {
   const { type } = useParams();
   const menuOpen = useRef(null);
   const toast = useRef(null);
@@ -24,6 +33,7 @@ function CustomTable({ name, data, columns, onUpdate, className, options }) {
     selected: null,
     active: false,
   });
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     setReceivedTableData(data);
@@ -149,9 +159,9 @@ function CustomTable({ name, data, columns, onUpdate, className, options }) {
         );
       }
     } else if (findType === "inputText") {
-      return <InputText />;
+      return <InputText placeholder="Text" />;
     } else if (findType === "inputNumber") {
-      return <InputNumber useGrouping={false} />;
+      return <InputNumber placeholder="Number" useGrouping={false} />;
     } else if (findType === "dateField") {
       return <DateField />;
     } else if (findType === "dropDown") {
@@ -202,6 +212,8 @@ function CustomTable({ name, data, columns, onUpdate, className, options }) {
           />
         )
       );
+    } else if (findType === "inputTextarea") {
+      return <InputTextarea />;
     } else {
       return <p>{rowData.name}</p>;
     }
@@ -260,25 +272,40 @@ function CustomTable({ name, data, columns, onUpdate, className, options }) {
   //   }
   // }
 
+  const handleSelectionChange = (e) => {
+    setSelectedProduct(e.value)
+  }
+
   /* Render Below */
   return (
     <>
       <Toast ref={toast} />
-      <DataTable className={className} value={ReceivedTableData}>
-        {columns.map((column, index) => (
-          <Column
-            headerClassName={`${column.field}-cell ${
-              column.fieldType === "inputNumber" ? "number-cell" : ""
-            } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""}`}
-            bodyClassName={`${column.field}-cell ${
-              column.fieldType === "inputNumber" ? "number-cell" : ""
-            } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""}`}
-            key={index}
-            field={column.field}
-            header={column.header}
-            body={customBody}
-          ></Column>
-        ))}
+      <DataTable
+        className={className}
+        value={ReceivedTableData}
+        selectionMode={selectionMode}
+        selection={selectedProduct}
+        onSelectionChange={handleSelectionChange}
+      >
+          {selectionMode ? <Column style={{minWidth: '60px', width: '60px', maxWidth: '60px'}} selectionMode="single"></Column>: null}
+          {columns.map((column, index) => (
+            <Column
+              headerClassName={`${column.field}-cell ${
+                column.fieldType === "inputNumber" ? "number-cell" : ""
+              } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""} ${
+                column.fieldType === "inputTextarea" ? "textarea-cell" : ""
+              }`}
+              bodyClassName={`${column.field}-cell ${
+                column.fieldType === "inputNumber" ? "number-cell" : ""
+              } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""} ${
+                column.fieldType === "inputTextarea" ? "textarea-cell" : ""
+              }`}
+              key={index}
+              field={column.field}
+              header={column.header}
+              body={customBody}
+            ></Column>
+          ))}
       </DataTable>
     </>
   );

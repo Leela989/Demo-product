@@ -23,13 +23,10 @@ function Currency() {
       (currency) => currency.name === baseCurrency
     );
     if (selectedCurrency) {
-      console.log('selected', selectedCurrency.fullDefinition);
       setCurrencyDefinition(selectedCurrency.fullDefinition);
     } else {
-      console.log('try');
       setCurrencyDefinition("hellooo");
     }
-    console.log('currencyDefinition', currencyDefinition);
   }, [baseCurrency]);
 
   const handleBaseCurrencyChange = (name, val) => {

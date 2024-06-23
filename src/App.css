@@ -366,3 +366,11 @@ button.p-button.p-component.p-button-outlined:hover {
   text-overflow: ellipsis;
 }
 
+.blink-soft {
+  animation: blinker 1.5s linear infinite;
+}
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

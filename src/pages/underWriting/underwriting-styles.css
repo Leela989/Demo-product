@@ -76,7 +76,7 @@
 }
 
 .risk-assesment-section {
-    margin: 40px 0;
+    margin: 20px 0;
     /* height: calc(100vh - 400px); */
     overflow: auto;
 }
@@ -124,6 +124,8 @@
 .container-sub-menu .field-individual-container p {
     padding-left: 1.5rem;
     position: relative;
+    cursor: pointer;
+    width: fit-content;
 }
 .container-sub-menu .field-individual-container p::before {
     content: '';
@@ -137,6 +139,9 @@
     left: -5px;
     z-index: 1;
     background-color: rgb(67, 56, 202);
+}
+.container-sub-menu.last-sub-menu .field-individual-container::before {
+    content: none;
 }
 .container-sub-menu .form-container {
     padding-left: 16px;
@@ -166,6 +171,10 @@
     height: calc(100% - 12px);
     z-index: 1;
 }
+.sub-menu .last-sub-menu .field-individual-container p {
+    width: fit-content;
+    cursor: pointer;
+}
 .sub-menu .last-sub-menu .field-individual-container::before {
     content: none;
 }
@@ -189,4 +198,58 @@
     margin: auto;
     border-radius: unset;
     background-color: rgb(67, 56, 202);
+}
+.summary-field-container {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+}
+.summary-field-container label {
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 12px;
+    display: block;
+}
+.premium-summary .sub-menu {
+    padding-left: 1.25rem;
+}
+.sub-menu.summary-menu label {
+    display: none;
+}
+.summary-sub-content {
+    padding-left: 24px;
+}
+.approve-card label {
+    width: 150px;
+    font-weight: 600;
+    font-size: 16px;
+}
+.approve-card div + div {
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.icon-hover {
+    font-weight: 600;
+    padding: 6px;
+    color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+}
+.icon-hover:hover {
+    background-color: rgba(0, 0, 0, 0.12);
+}
+.icon-hover:hover, .icon-hover.active {
+    color: rgb(67, 56, 202);
+}
+/* .border-bottom {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+} */
+.body-text {
+    font-size: 16px;
+    font-weight: 600;
+}
+.sub-menu .body-text {
+    font-weight: 500;
+    color: rgba(67, 56, 202, 0.75);
+}
+/* accordion header tex styles here */
+.p-accordion-header-text {
+    width: 100%;
 }

@@ -7,9 +7,9 @@ import { TabPanel, TabView } from "primereact/tabview";
 import CustomTable from "../../../components/CustomTable/CustomTable";
 import { Card } from "primereact/card";
 import CustomButton from "../../../components/Button/CustomButton";
+import { Accordion, AccordionTab } from "primereact/accordion";
 
 const OtherDetails = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
   const [quotesTabTableData, setQuotesTabTableData] = useState(
     quotesTabTableInitialData
   );
@@ -20,7 +20,7 @@ const OtherDetails = () => {
   const quotesTabData = [
     {
       header: "Discount / Loading",
-      tableInitialData: quotesTabTableInitialData.discountLoading.value,
+      tableInitialData: quotesTabTableData.discountLoading.value,
       tableHeaderData: discountLoading.header,
     },
     {
@@ -45,26 +45,60 @@ const OtherDetails = () => {
     // },
   ];
 
-  const onTabChange = (e) => {
-    setActiveIndex(e.index);
+  const renderAccordionHeader = (tabData) => {
+    return (
+      <div className="flex items-center justify-between w-full">
+        <p>{tabData.header}</p>
+        <CustomButton
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+          label={"Add"}
+          className={"top-button small-btn flex justify-end"}
+        />
+      </div>
+    );
   };
 
   return (
-    <Card className="mt-5 plan-tab-container">
-      <TabView activeIndex={activeIndex} onTabChange={onTabChange}>
-        {quotesTabData.map((tabData) => {
-          return (
-            <TabPanel header={tabData.header}>
-              <CustomTable
-                data={tabData.tableInitialData}
-                columns={tabData.tableHeaderData}
-              />
-            </TabPanel>
-          );
-        })}
-      </TabView>
-      <CustomButton label={"Add"} className={"top-button small-btn"} />
-    </Card>
+    <>
+      <div className="mt-5 pt-3">
+        <div className="flex align-center">
+          <div className="w-1/3 p-2 flex items-center">
+            <label className="pr-3" style={{ color: "#414141" }}>
+              Quotes Number :
+            </label>
+            <p className="font-medium">Q/10/1001/2024/0545</p>
+          </div>
+          <div className="w-1/3 p-2 flex items-center">
+            <label className="pr-3" style={{ color: "#414141" }}>
+              Policy From Date :
+            </label>
+            <p className="font-medium">10/01/2024</p>
+          </div>
+          <div className="w-1/3 p-2 flex items-center">
+            <label className="pr-3" style={{ color: "#414141" }}>
+              Policy To Date :
+            </label>
+            <p className="font-medium">10/02/2024</p>
+          </div>
+        </div>
+      </div>
+      <Card className="mt-5">
+        <Accordion activeIndex={0}>
+          {quotesTabData.map((tabData) => {
+            return (
+              <AccordionTab header={renderAccordionHeader(tabData)}>
+                <CustomTable
+                  data={tabData.tableInitialData}
+                  columns={tabData.tableHeaderData}
+                />
+              </AccordionTab>
+            );
+          })}
+        </Accordion>
+      </Card>
+    </>
   );
 };
 

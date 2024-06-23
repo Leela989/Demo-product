@@ -53,7 +53,7 @@ export const getQuotesTableData = [
 export const headerFormOptionData = {
   product: [
     { name: "1-Product", code: 1 },
-    { name: "2-Product", code: 1 },
+    { name: "2-Product", code: 2 },
   ],
   branch: [
     { Code: "03", name: "Mbeya Branch" },
@@ -65,22 +65,29 @@ export const headerFormOptionData = {
     { Code: "07", name: "Digital-sure Branch" },
     { Code: "08", name: "Zanzibar Branch" },
   ],
-  businessType: ["Direct without coisurance", "Direct with Coinsurance"],
-  sourceType: ["Direct", "Agent", "Broker"],
+  businessType: [
+    { code: "01", name: "Direct without coisurance" },
+    { code: "02", name: "Direct with Coinsurance" },
+  ],
+  sourceType: [
+    { code: "01", name: "Direct" },
+    { code: "02", name: "Agent" },
+    { code: "03", name: "Broker" },
+  ],
   unit: ["Hour", "Day", "Week", "Month", "Year"],
   premiumType: ["Pro-Rate", "Short Period", "Normal/Annual", "Fixed Rate"],
   paymentMode: ["Bank Guarantee", "Credit Customer", "Others"],
   installment: ["Annual", "Half-Yearly", "Quarterly", "Monthly"],
   state: ["Tamil Nadu", "Karnataka", "Andra"],
-  City: ["chennai", "Coimbatore"],
+  city: ["chennai", "Coimbatore"],
   area: ["Tiruvanmiyur", "Adayar", "Perungudi"],
 };
 
 export const searchDisplayData = {
   data: [
     { id: 1, name: "Shankar", email: "shankar@gmail.com", phoneno: 9876543210 },
-    { id: 2, name: "Hari", email: "hari@gmail.com", phoneno: 1234567890 },
-    { id: 3, name: "Siva", email: "siva@gmail.com", phoneno: 9090909090 },
+    { id: 2, name: "Hari", email: "sari@gmail.com", phoneno: 1234567890 },
+    { id: 3, name: "Siva", email: "hiva@gmail.com", phoneno: 9090909090 },
   ],
 };
 
@@ -112,7 +119,7 @@ export const getQuotesHeaderFromRender = {
   ],
   formData: [
     { name: "plan", label: "plan", fieldType: "autoComplete", required: true },
-    { name: "branch", label: "Branch", fieldType: "inputText", required: true },
+    { name: "branch", label: "Branch", fieldType: "dropDown", required: true },
     {
       name: "department",
       label: "department",
@@ -133,15 +140,15 @@ export const getQuotesHeaderFromRender = {
       readonly: true,
     },
     { name: "recordDate", label: "quote record Date", fieldType: "dateType" },
-    {
-      name: "customer",
-      label: "customer",
-      fieldType: "overlay",
-      required: true,
-    },
-    { name: "insured", label: "insured", fieldType: "overlay", required: true },
+    // {
+    //   name: "customer",
+    //   label: "customer",
+    //   fieldType: "overlay",
+    //   required: true,
+    // },
+    // { name: "insured", label: "insured", fieldType: "overlay", required: true },
+    // { name: "sourceCode", label: "source Code", fieldType: "autoComplete" },
     { name: "sourceType", label: "source type", fieldType: "dropDown" },
-    { name: "sourceCode", label: "source Code", fieldType: "autoComplete" },
     { name: "unit", label: "unit", fieldType: "dropDown" },
     { name: "period", label: "period", fieldType: "inputNumber" },
     { name: "issueDate", label: "issue date", fieldType: "dateType" },
@@ -214,17 +221,20 @@ export const getQuotesHeaderFromRender = {
 };
 
 export const getQuotesHeaderData = {
-  partyDetails: [{ partyRole: "", partyID: "", address: "" }],
+  partyDetails: [
+    {partyRole: "Customer", partyID: "", address: "" },
+    {partyRole: "Insured", partyID: "", address: "" },
+  ],
   formData: {
-    branch: "10 - Head Office",
-    department: "11 - Motor UW department",
-    businessType: "Direct with Coinsurance",
-    quotaion: "Q/10/1001/2024/0545",
+    branch: "01-Head Office" ,
+    department: "11-Motor UW department",
+    businessType: "1-Direct with Coinsurance",
+    quotaion: "",
     recordDate: "07/06/2024 08:31",
-    customer: "",
-    insured: "",
+    // customer: "",
+    // insured: "",
+    // sourceCode: "",
     sourceType: "",
-    sourceCode: "",
     unit: "Day",
     period: "365",
     issueDate: "",
@@ -270,18 +280,22 @@ export const getQuotesTabData = {
 export const getQuotesTableHeaderData = {
   discountLoading: {
     header: [
-      { field: "code", header: "Code", fieldType: "inputText" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      { field: "code", header: "Code", fieldType: "dropDown" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       { field: "rate", header: "Rate", fieldType: "inputNumber" },
       { field: "rateper", header: "Rate Per", fieldType: "inputNumber" },
-      { field: "amounttc", header: "amount TC", fieldType: "inputNumber" },
-      { field: "amountlc", header: "amount LC", fieldType: "inputNumber" },
+      { field: "amounttc", header: "Amount TC", fieldType: "inputNumber" },
+      { field: "amountlc", header: "Amount LC", fieldType: "inputNumber" },
       {
         field: "canscadeOrder",
-        header: "CanscadeOrder",
+        header: "Cascade Order",
         fieldType: "inputNumber",
       },
-      { field: "applied", header: "Applied On", fieldType: "inputNumber" },
+      { field: "applied", header: "Applied On", fieldType: "dropDown" },
       {
         field: "brokercomm",
         header: "Broker Comm. Appl",
@@ -295,15 +309,19 @@ export const getQuotesTableHeaderData = {
   deductible: {
     header: [
       { field: "code", header: "Code", fieldType: "inputText" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       {
         field: "deductibleType",
         header: "Deductible Type",
         fieldType: "inputNumber",
       },
       { field: "percentage", header: "%", fieldType: "inputNumber" },
-      { field: "amounttc", header: "amount TC", fieldType: "inputNumber" },
-      { field: "amountlc", header: "amount LC", fieldType: "inputNumber" },
+      { field: "amounttc", header: "Amount TC", fieldType: "inputNumber" },
+      { field: "amountlc", header: "Amount LC", fieldType: "inputNumber" },
       { field: "save", header: "" },
       { field: "action", header: "" },
     ],
@@ -311,16 +329,20 @@ export const getQuotesTableHeaderData = {
   conditions: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputText" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       {
         field: "longDescription",
         header: "Long Description",
-        fieldType: "inputText",
+        fieldType: "inputTextarea",
       },
       {
         field: "longDescription2",
         header: "Long Description",
-        fieldType: "inputText",
+        fieldType: "inputTextarea",
       },
       {
         field: "conditionType",
@@ -351,9 +373,9 @@ export const getQuotesTableHeaderData = {
   },
   commission: {
     header: [
-      { field: "agent", header: "Agent", fieldType: "inputText" },
-      { field: "commission", header: "Commission", fieldType: "inputText" },
-      { field: "appliedOn", header: "Applied On", fieldType: "inputText" },
+      { field: "agent", header: "Agent", fieldType: "dropDown" },
+      { field: "commission", header: "Commission", fieldType: "dropDown" },
+      { field: "appliedOn", header: "Applied On", fieldType: "dropDown" },
       { field: "currency", header: "Currency", fieldType: "inputNumber" },
       {
         field: "commissiontc",
@@ -382,8 +404,8 @@ export const getQuotesTableHeaderData = {
   },
   hypothecation: {
     header: [
-      { field: "sri", header: "Sri", fieldType: "inputText" },
-      { field: "financier", header: "Financier", fieldType: "inputText" },
+      { field: "sri", header: "Serial No.", fieldType: "inputText" },
+      { field: "financier", header: "Financier", fieldType: "dropDown" },
       { field: "hypoType", header: "Hypo. Type", fieldType: "dropDown" },
       { field: "ref", header: "Reference", fieldType: "inputText" },
       { field: "webite", header: "Webite", fieldType: "inputText" },
@@ -394,7 +416,7 @@ export const getQuotesTableHeaderData = {
   },
   prevInsurenceDetails: {
     header: [
-      { field: "insurer", name: "Insurer", fieldType: "inputText" },
+      { field: "insurer", header: "Insurer", fieldType: "inputText" },
       { field: "fromDate", header: "From Date", fieldType: "dateField" },
       { field: "uwYear", header: "UW Year", fieldType: "inputText" },
       { field: "plicy", header: "Policy", fieldType: "inputText" },
@@ -408,14 +430,14 @@ export const getQuotesTableHeaderData = {
   },
   surveyorDetails: {
     header: [
-      { field: "surveyor", header: "Surveyor", fieldType: "inputText" },
-      { field: "feesType", header: "Fees Type", fieldType: "inputText" },
+      { field: "surveyor", header: "Surveyor", fieldType: "dropDown" },
+      { field: "feesType", header: "Fees Type", fieldType: "dropDown" },
       {
         field: "calculationType",
         header: "Calculation Type",
         fieldType: "dropDown",
       },
-      { field: "currency", header: "Currency", fieldType: "inputText" },
+      { field: "currency", header: "Currency", fieldType: "dropDown" },
       { field: "feesTc", header: "Fees TC", fieldType: "inputText" },
       { field: "feesLc", header: "Fees LC", fieldType: "inputText" },
       { field: "save", header: "" },
@@ -424,13 +446,13 @@ export const getQuotesTableHeaderData = {
   },
   riDetails: {
     header: [
-      { field: "riBasic", header: "RI Basic", fieldType: "inputText" },
-      { field: "cedingBasis", header: "Ceding Basis", fieldType: "inputText" },
-      { field: "riPremType", header: "RI Prem Type", fieldType: "inputText" },
+      { field: "riBasic", header: "RI Basic", fieldType: "dropDown" },
+      { field: "cedingBasis", header: "Ceding Basis", fieldType: "dropDown" },
+      { field: "riPremType", header: "RI Prem Type", fieldType: "dropDown" },
       {
         field: "deductRi",
         header: "Deduct RI Communication",
-        fieldType: "inputText",
+        fieldType: "dropDown",
       },
       {
         field: "endAllocation",
@@ -593,29 +615,6 @@ export const riskBlock = [
         Level: 2,
         Serial_no: 1,
         Object_Type: "2",
-        Submenu: [
-          {
-            Id: "R_03",
-            name: "geographicDetail",
-            Object_name: "geographicDetail",
-            Parent_Object_Id: "R_16",
-            Level: 3,
-            Serial_no: 1,
-            Object_Type: "2",
-            Submenu: [
-              {
-                Id: "R_05",
-                name: "driverDetails",
-                Object_name: "Driver Details",
-                Parent_Object_Id: "R_03",
-                Level: 4,
-                Serial_no: 1,
-                Object_Type: "2",
-                Submenu: [],
-              },
-            ],
-          },
-        ],
       },
     ],
   },
@@ -627,29 +626,7 @@ export const riskBlock = [
     Level: 1,
     Serial_no: 2,
     Object_Type: "2",
-    Submenu: [
-      {
-        Id: "R_03",
-        name: "geographicDetail",
-        Object_name: "geographicDetail",
-        Parent_Object_Id: "R_16",
-        Level: 3,
-        Serial_no: 1,
-        Object_Type: "2",
-        Submenu: [
-          {
-            Id: "R_05",
-            name: "driverDetails",
-            Object_name: "Driver Details",
-            Parent_Object_Id: "R_03",
-            Level: 4,
-            Serial_no: 1,
-            Object_Type: "2",
-            Submenu: [],
-          },
-        ],
-      },
-    ],
+    submenu: [],
   },
 ];
 

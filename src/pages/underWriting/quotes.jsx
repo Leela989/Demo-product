@@ -15,33 +15,54 @@ import QuotesHeader from "./sub-components/quotesHeader";
 import QuotesTabComponent from "./sub-components/quotesTabComponent";
 import "./underwriting-styles.css";
 import { Card } from "primereact/card";
+import { QuotesList, QuotesListHeader } from "../../mock-data/underwriting/editquotes-data";
 
 const Quotes = () => {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
   const { lob } = useParams();
   const menuOpen = useRef(null);
   const overlayOpen = useRef(null);
-  const quotesTable = getQuotesTableData;
   const options = getquotesOption.filter((data) => data.type === lob);
+
+
   const [selectedProduct, setSelectedProduct] = useState({
     type: "",
     name: "",
     code: "",
   });
+  const [quotesTable, setQuotesTable] = useState([]);
   const [selectedRow, setSelectedRow] = useState(null);
 
-  // console.log(pathname, "optionsoptions");
+  // let tableHeader = [];
 
-  let tableHeader = Object.keys(getQuotesInitialData[0]).map((data) => {
-    return {
-      field: data,
-      header: data
-        .split("_")
-        .map((data) => data.charAt(0).toUpperCase() + data.slice(1))
-        .join(" "),
-    };
-  });
-  tableHeader = [...tableHeader, { field: "action", header: "" }];
+  useEffect(() => {
+    let tableData = QuotesList.data.find(set => set.LOB_Code === state.code);
+    setQuotesTable(tableData.Quot_list);
+  }, [state])
+
+  // useEffect(() => {
+  //   tableHeader = Object.keys(quotesTable[0]).map(data => {
+  //     return(
+  //       {field: data, header: data
+  //         .split("_")
+  //         .map((data) => data.charAt(0).toUpperCase() + data.slice(1))
+  //         .join(" "),}
+  //     )
+  //   })
+  //   tableHeader = [...tableHeader, { field: "action", header: "" }];
+  // }, [quotesTable])
+  
+
+  // let tableHeader = Object.keys(getQuotesInitialData[0]).map((data) => {
+  //   return {
+  //     field: data,
+  //     header: data
+  //       .split("_")
+  //       .map((data) => data.charAt(0).toUpperCase() + data.slice(1))
+  //       .join(" "),
+  //   };
+  // });
+  // tableHeader = [...tableHeader, { field: "action", header: "" }];
 
   const handleMenuClick = (rowData) => {
     console.log(rowData, "handleEdit");
@@ -55,7 +76,7 @@ const Quotes = () => {
             return (
               <Link
                 className={options.className}
-                // to={`/plan/edit/${rowData.id}`}
+                to={`${pathname}/edit/${rowData.key}`}
                 onClick={handleMenuClick(rowData)}
                 style={{ textDecoration: "none" }}
               >
@@ -95,10 +116,6 @@ const Quotes = () => {
     }
   };
 
-  //   useEffect(() => {
-  //     console.log(selectedProduct, "selectedProduct");
-  //   }, [selectedProduct]);
-
   const handleProductDropdown = (event) => {
     setSelectedProduct(event.value);
   };
@@ -126,7 +143,7 @@ const Quotes = () => {
             <div className="flex items-center">
               <label className="pr-3">Line Of Business</label>
               <p style={{ color: "rgba(0, 60, 149, 0.85)", fontWeight: 700 }}>
-                {lob.code || 10} - {lob.charAt(0).toUpperCase() + lob.slice(1)}
+                {state.code} - {state.name}
               </p>
             </div>
             <div className="mt-4">
@@ -151,7 +168,7 @@ const Quotes = () => {
         </OverlayPanel>
       </div>
       <DataTable value={quotesTable}>
-        {tableHeader.map((quoteData, index) => {
+        {QuotesListHeader.map((quoteData, index) => {
           return (
             <Column
               key={index}

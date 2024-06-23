@@ -11,19 +11,19 @@ import { Dropdown } from "primereact/dropdown";
 import { AutoComplete } from "primereact/autocomplete";
 import { Checkbox } from "primereact/checkbox";
 import { OverlayPanel } from "primereact/overlaypanel";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "primereact/button";
 import { Calendar } from "primereact/calendar";
 import DateField from "../../../components/DateField/Datefield";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { InputTextarea } from "primereact/inputtextarea";
+import useRenderDropdown from "../../../components/DropDown/dropDown";
 
-const QuotesHeader = () => {
+const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
   const overlayOpen = useRef(null);
   const renderFormData = getQuotesHeaderFromRender.formData;
-
-  const [quotesFormData, setQuotesFormData] = useState(getQuotesHeaderData.formData);
+  const [formData, setFormData] = useState(quotesFormData);
   const [customSearch, setCustomSearch] = useState({
     name: "",
     email: "",
@@ -36,7 +36,7 @@ const QuotesHeader = () => {
     return (
       <AutoComplete
         onChange={handelFormValues}
-        value={quotesFormData[field.name]}
+        value={formData[field.name]}
         name={field.name}
         dropdown
         required={field.required}
@@ -44,11 +44,26 @@ const QuotesHeader = () => {
     );
   };
   const handelFormValues = (event) => {
-    console.log(event);
-    setQuotesFormData({
-      ...quotesFormData,
-      [event.target.name]: event.target.value,
-    });
+    console.log(event, "event");
+    if(typeof event.value === 'object') {
+      setFormData({
+        ...formData,
+        [event.target.name]: `${event.value.code}-${event.value.name}`,
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [event.target.name]: event.value,
+      });
+    }
+    if(event.target.name === 'sourceType') {
+      onUpdateParty({
+        ...formData,
+        [event.target.name]: event.target.value,
+      });
+    }
+    // if(event.target.name === 'sourceType' && event.value.name !== 'Direct') {
+    // }
   };
 
   useEffect(() => {
@@ -62,14 +77,13 @@ const QuotesHeader = () => {
   }, [customSearch]);
 
   const getDateField = (name, value) => {
-    setQuotesFormData({ ...quotesFormData, [name]: value });
+    setFormData({ ...formData, [name]: value });
+    onUpdateParty({ ...formData, [name]: value });
   };
   const handleSeachInputChange = (e) =>
     setCustomSearch({ ...customSearch, [e.target.name]: e.target.value });
 
-  const getOptionLabel = () => {
-    
-  }
+  const renderDropdown = useRenderDropdown(formData, opTionsDrop, handelFormValues);
 
   return (
     <>
@@ -77,10 +91,15 @@ const QuotesHeader = () => {
         if (field.fieldType === "inputText") {
           return (
             <div className="w-1/3 p-2">
-              <label>{field.label} {field.required && <span className="text-red-600 text-xl">*</span>}</label>
+              <label>
+                {field.label}{" "}
+                {field.required && (
+                  <span className="text-red-600 text-xl">*</span>
+                )}
+              </label>
               <InputText
                 onChange={handelFormValues}
-                value={quotesFormData[field.name]}
+                value={formData[field.name]}
                 name={field.name}
                 required={field.required}
               />
@@ -89,10 +108,15 @@ const QuotesHeader = () => {
         } else if (field.fieldType === "inputNumber") {
           return (
             <div className="w-1/3 p-2">
-              <label>{field.label} {field.required && <span className="text-red-600 text-xl">*</span>}</label>
+              <label>
+                {field.label}{" "}
+                {field.required && (
+                  <span className="text-red-600 text-xl">*</span>
+                )}
+              </label>
               <InputNumber
                 onValueChange={handelFormValues}
-                value={quotesFormData[field.name]}
+                value={formData[field.name]}
                 name={field.name}
                 useGrouping={false}
                 required={field.required}
@@ -102,11 +126,16 @@ const QuotesHeader = () => {
         } else if (field.fieldType === "dateType") {
           return (
             <div className="w-1/3 p-2">
-              <label>{field.label} {field.required && <span className="text-red-600 text-xl">*</span>}</label>
+              <label>
+                {field.label}{" "}
+                {field.required && (
+                  <span className="text-red-600 text-xl">*</span>
+                )}
+              </label>
               <DateField
                 name={field.name}
                 onChange={getDateField}
-                value={quotesFormData[field.name]}
+                value={formData[field.name]}
                 required={field.required}
               />
             </div>
@@ -114,26 +143,24 @@ const QuotesHeader = () => {
         } else if (field.fieldType === "dropDown") {
           return (
             <div className="w-1/3 p-2">
-              <label>{field.label} {field.required && <span className="text-red-600 text-xl">*</span>}</label>
-              <Dropdown
-                optionLabel={
-                  opTionsDrop[field.name] &&
-                  typeof opTionsDrop[field.name]?.[0] === "object"
-                    ? "name"
-                    : undefined
-                }
-                onChange={handelFormValues}
-                value={quotesFormData[field.name]}
-                name={field.name}
-                options={opTionsDrop[field.name]}
-                required={field.required}
-              />
+              <label>
+                {field.label}{" "}
+                {field.required && (
+                  <span className="text-red-600 text-xl">*</span>
+                )}
+              </label>
+              {renderDropdown(field)}
             </div>
           );
         } else if (field.fieldType === "autoComplete") {
           return (
             <div className="w-1/3 p-2">
-              <label>{field.label} {field.required && <span className="text-red-600 text-xl">*</span>}</label>
+              <label>
+                {field.label}{" "}
+                {field.required && (
+                  <span className="text-red-600 text-xl">*</span>
+                )}
+              </label>
               {autoCompleteFieldRender(field)}
             </div>
           );
@@ -145,7 +172,7 @@ const QuotesHeader = () => {
               </label>
               <Checkbox
                 onChange={handelFormValues}
-                value={quotesFormData[field.name]}
+                value={formData[field.name]}
                 name={field.name}
                 id="checkbox"
                 checked={true}
@@ -157,12 +184,15 @@ const QuotesHeader = () => {
           return (
             <div className="w-1/3 p-2">
               <label htmlFor="checkbox" className="pr-2">
-                {field.label} {field.required && <span className="text-red-600 text-xl">*</span>}
+                {field.label}{" "}
+                {field.required && (
+                  <span className="text-red-600 text-xl">*</span>
+                )}
               </label>
               <div className="flex items-center add-autocomplete">
                 <InputText
                   onChange={handelFormValues}
-                  value={quotesFormData[field.name]}
+                  value={formData[field.name]}
                   name={field.name}
                   required={field.required}
                 />
@@ -215,10 +245,10 @@ const QuotesHeader = () => {
         } else if (field.fieldType === "address") {
           return (
             <>
-            <div className="w-1/3 p-2">
-              <label>{field.label}</label>
-              <InputTextarea />
-            </div>
+              <div className="w-1/3 p-2">
+                <label>{field.label}</label>
+                <InputTextarea />
+              </div>
             </>
           );
         }
