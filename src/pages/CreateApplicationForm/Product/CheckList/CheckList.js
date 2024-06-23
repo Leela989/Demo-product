@@ -232,7 +232,7 @@ function CheckList({ productData }) {
           <Column
             field="effective_to"
             header="Effective To"
-            style={{ width: "55%" }}
+            style= {{width: '25%'}}
             body={(rowData, options) => (
               <DateField
                 className="w-4/4 p-1"

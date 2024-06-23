@@ -368,6 +368,7 @@ function RiskAttributes() {
                 <Column
                   field="dataType"
                   header="Data Type"
+                  style= {{width: '10%'}}
                   body={(rowData, options) => (
                     <AutoCompleField
                       className="w-4/4"
@@ -382,10 +383,11 @@ function RiskAttributes() {
                 <Column
                   field="FieldType"
                   header="Field Type"
+                  style= {{width: '10%'}}
                   body={(rowData, options) => (
                     <AutoCompleField
                       className="w-4/4"
-                      value={rowData.Field_Type}
+                      value={rowData.Field_type}
                       onChange={handleInputChange}
                       options={fieldTypes}
                       dropdown
