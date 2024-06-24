@@ -229,6 +229,11 @@ function HomePage() {
                     header="Status"
                     body={(rowData) => rowData.status}
                   />
+                  <Column
+                    field="remarks"
+                    header="Remarks"
+                    body={(rowData) => rowData.status}
+                  />
                 </DataTable>
               </div>
             </TabPanel>
@@ -310,6 +315,11 @@ function HomePage() {
                   <Column
                     field="status"
                     header="Status"
+                    body={(rowData) => rowData.status}
+                  />
+                   <Column
+                    field="remarks"
+                    header="Remarks"
                     body={(rowData) => rowData.status}
                   />
                    <Column
