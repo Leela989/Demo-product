@@ -174,7 +174,7 @@ function CheckList({ productData }) {
                 name="Transaction_type"
                 value={rowData.transaction_type}
                 onChange={() => {
-                  console.log("");
+                  // console.log("");
                 }}
                 options={fieldTypeOptions}
                 disabled={!editingRows[options.rowIndex]}

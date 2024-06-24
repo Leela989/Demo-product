@@ -33,14 +33,12 @@ const PlanTableData = () => {
   });
 
   const handleMenuClick = (rowData) => {
-    console.log(rowData, "handleEdit");
   };
   const menuList = (rowData) => [
     {
       items: [
         {
           template: (item, options) => {
-            console.log(rowData, "rowDatarowData");
             return (
               <Link
                 className={options.className}

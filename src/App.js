@@ -32,7 +32,7 @@ import CurrencyAndExchangeMaster from "./pages/currencyAndExchangeMaster/Currenc
 import CurrencyAndExchangeList from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeList";
 
 function App() {
-  const [token, setToken] = useState(true);
+  const [token, setToken] = useState(false);
 
   // const location = useLocation();
   // const currentPath = location.pathname;

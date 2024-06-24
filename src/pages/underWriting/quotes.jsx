@@ -65,7 +65,7 @@ const Quotes = () => {
   // tableHeader = [...tableHeader, { field: "action", header: "" }];
 
   const handleMenuClick = (rowData) => {
-    console.log(rowData, "handleEdit");
+    // console.log(rowData, "handleEdit");
   };
 
   const menuList = (rowData) => [

@@ -34,7 +34,6 @@ const PlanTabGroup = ({
   let {coversOptions, discountLoadingsOptions, deductiblesOptions, conditionsOptions} = getPlanMaster;
 
   const [activeIndex, setActiveIndex] = useState(0);
-console.log(newCoverField, "coversInit");
   const onTabChange = (e) => {
     setActiveIndex(e.index);
   };

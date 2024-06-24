@@ -35,7 +35,6 @@ const DiscountLoading = ({ productData }) => {
   );
 
   useEffect(() => {
-    console.log("roo", selectedRow, selectedIndex);
     if (matchingProduct && matchingProduct.data?.[0]?.Discount) {
       setTableData(matchingProduct.data[0].Discount);
     }
@@ -83,7 +82,6 @@ const DiscountLoading = ({ productData }) => {
   };
 
   const handleEdit = (rowData, rowIndex) => {
-    console.log("editing", rowData, rowIndex);
     setSelectedRow(rowIndex);
     setFormData({ ...rowData });
     setAdd(true);
@@ -179,7 +177,7 @@ const DiscountLoading = ({ productData }) => {
   // }, [add,view, selectedRow, formData, selectedIndex])
 
   const handleLangUpdate = (value) => {
-    console.log("Updated Language Data:", value);
+    // console.log("Updated Language Data:", value);
     // if (value) {
     //   setFormData((prevFormData) => ({
     //     ...prevFormData,
@@ -362,7 +360,6 @@ const DiscountLoading = ({ productData }) => {
   };
 
   const actionBodyTemplate = (rowData, rowIndex) => {
-    console.log("actionBodyTemplate", rowData, rowIndex);
     return (
       <div className="kebab-menu-container">
         <Menu model={items} popup ref={menuLeft} id="popup_menu_left" />

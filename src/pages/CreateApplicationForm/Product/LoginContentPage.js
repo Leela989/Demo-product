@@ -33,8 +33,8 @@ export default function LoginContentPage({ data }) {
     effectiveFrom: data[id]?.productHeaderDetails?.Effective_from || "",
     effectiveTo: data[id]?.productHeaderDetails?.Effective_to || "",
   });
-  console.log(data, id, "helloWorld" );
-  console.log("formData:", headerData[0]);
+  // console.log(data, id, "helloWorld" );
+  // console.log("formData:", headerData[0]);
 
   const [langData, setLangData] = useState({
     default: "en",
@@ -111,7 +111,7 @@ export default function LoginContentPage({ data }) {
 
 
   const handleLangUpdate = (updatedLang) => {
-    console.log("Updated Language Data:", updatedLang);
+    // console.log("Updated Language Data:", updatedLang);
   };
 
  

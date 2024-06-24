@@ -32,7 +32,7 @@ function LineOfBusinessCreateNew() {
 
 
   const handleLangUpdate = (updatedLang) => {
-    console.log("Updated Language Data:", updatedLang);
+    // console.log("Updated Language Data:", updatedLang);
   };
 
   const onClickingSave = () => {

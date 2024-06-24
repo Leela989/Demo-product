@@ -27,7 +27,7 @@ function RegisteredOffice() {
   };
 
   const handleLangUpdate = (updatedLang) => {
-    console.log("Updated Language Data:", updatedLang);
+    // console.log("Updated Language Data:", updatedLang);
   };
 
   const [shortLangData, setShortLangData] = useState({

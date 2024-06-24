@@ -11,6 +11,8 @@ import { Toast } from "primereact/toast";
 import { useTranslation, Trans } from 'react-i18next';
 import { Dropdown } from 'primereact/dropdown';
 import countryData from '../../components/LanguageSelection/LanguageList.json';
+import { Password } from 'primereact/password';
+
 
 function LoginForm({ setToken }) {
   const toast = useRef(null);
@@ -66,10 +68,9 @@ function LoginForm({ setToken }) {
   
 
   const handleLogin = () => {
-    console.log(loginDetails);
     if (
-      loginDetails.userName === "Azentio" &&
-      loginDetails.password === "azentio@123"
+      loginDetails.userName === "AzentioNextGen" &&
+      loginDetails.password === "Azen50Of353hKFeftio"
     ) {
       setIsLoggedIn(true);
       setToken(true);
@@ -193,13 +194,14 @@ function LoginForm({ setToken }) {
                         />
                       </div>
                       <div className="inputPassword mt-4">
-                        <InputText
-                          type="password"
+                        <Password
+                          // type="password"
                           placeholder={t("password")}
-                          className="inpuFieldClass ml-2"
+                          className="inpuFieldClass w-full"
                           name="password"
                           value={loginDetails.password}
                           onChange={handleInputChange}
+                          toggleMask
                         />
                       </div>
                       <div className="remembermeContainer mb-2 mt-4">

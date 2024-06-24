@@ -50,7 +50,6 @@ function RatingStep() {
   const [unique_key, setKey] = useState(0);
   const handleParameterSelection = (e) => {
     setSelectedParameter(e.value);
-    console.log("sel", e.value);
     if (e.value && e.value.Para_Type === "Slab") {
       setTariffDataColumns([
         {
@@ -81,7 +80,6 @@ function RatingStep() {
 
   useEffect(() => {
     const filteredProduct = productData.find((product) => product.key === 2301);
-    console.log("filteredData_product", filteredProduct);
 
     if (filteredProduct) {
       const coversData = filteredProduct.data[0].Covers.map((item) => ({
@@ -115,7 +113,6 @@ function RatingStep() {
         rate_per: firstRecord.rate_per,
       });
       setKey(unique_key + 1);
-      console.log("firstRecord", firstRecord);
 
       set_cover_data([...coversData, ...discountData]);
     }
@@ -141,7 +138,6 @@ function RatingStep() {
   };
 
   const handleShortRateSetUp = () => {
-    console.log("short_rate_setup_data", short_rate_setup_data);
     setShortratePopup(true);
   };
 

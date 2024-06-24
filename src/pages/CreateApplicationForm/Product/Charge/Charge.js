@@ -38,7 +38,6 @@ const Charge = ({ productData }) => {
       setChargeTableData(matchingProduct.data[0].Charge);
     }
   }, [matchingProduct]);
-  console.log("jjj", chargeTableData);
 
   const addRow = (type) => {};
 
@@ -59,7 +58,7 @@ const Charge = ({ productData }) => {
   };
 
   const handleLangUpdate = (updatedLang) => {
-    console.log("Updated Language Data:", updatedLang);
+    // console.log("Updated Language Data:", updatedLang);
   };
 
   const handleChange = (name, value) => {

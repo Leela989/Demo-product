@@ -11,7 +11,7 @@ import CheckList from "./CheckList/CheckList";
 
 const TabComponent = ({data}) => {
 
-  console.log('tabComponent', data);
+  // console.log('tabComponent', data);
   return (
     <div className="tab-content-section">
       <TabView className="w-full">

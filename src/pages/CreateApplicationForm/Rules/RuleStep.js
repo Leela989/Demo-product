@@ -34,7 +34,6 @@ function RuleStep() {
   useEffect(() => {
     if (productKey == 2301 && rules_data.length > 0) {
       const firstRecord = rules_data[0];
-      console.log("firstrcord", firstRecord);
       setRuleData({
         ruleId: firstRecord.id,
         event: firstRecord.event || "",

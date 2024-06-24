@@ -48,14 +48,12 @@ const Header = () => {
   };
 
   const handleSeachInputChange = (e, field = "") => {
-    console.log(e, field, "event");
     let targetName = field === "" ? e.target.name : field;
     let targetvalue = field === "" ? e.target.value : e.value;
     setCustomSearch({ ...customSearch, [targetName]: targetvalue });
   };
 
   const handleShowResult = () => {
-    console.log(customSearch, "customSearch");
     if (!customSearch.name && !customSearch.email && !customSearch.phoneno) {
       setRolesearchResult({ ...rolesearchResult, data: [] });
     } else {
@@ -71,7 +69,7 @@ const Header = () => {
   };
 
   const handlePartyUpdate = (event) => {
-    console.log(event, "eventsample");
+    // console.log(event, "eventsample");
     // setPartyDetails([]);
   };
 
@@ -183,7 +181,6 @@ const Header = () => {
 
   const onUpdateParty = (data) => {
     setQuotesFormData(data);
-    console.log(data, "list");
     if (data.sourceType.name !== "Direct" && partyDetails.length <= 3) {
       let DataList = partyDetails;
       partyDetails.length >= 3 && DataList.pop();

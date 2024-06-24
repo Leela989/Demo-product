@@ -52,7 +52,6 @@ export default function ApplicableDepartments({ data, id }) {
   const handleDepartmentChange = (e, rowData, rowIndex) => {
     let deptName = rowData.department;
     setdept(deptName);
-    console.log("pp ", e);
 
     const detail = Data.find((d) => {
       return d.department === deptName || {};

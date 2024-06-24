@@ -86,7 +86,6 @@ function Branches({ productData }) {
   };
 
   const onEdit = (rowIndex) => {
-    console.log("clickedEdit", rowIndex);
     setEditingRowIndex(rowIndex);
   };
 

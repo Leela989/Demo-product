@@ -32,8 +32,6 @@ export default function ListingPage() {
   }, []);
 
   const handleEdit = (index) => {
-    console.log("dataM", data);
-    console.log("edit clicked for row index:", index);
     let selectedRowIndexKey = data[selectedIndex].key;
     navigate(
       `/productConfigurator/productSetup/editApplication/${selectedIndex}/${selectedRowIndexKey}`

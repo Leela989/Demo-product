@@ -44,7 +44,6 @@ const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
     );
   };
   const handelFormValues = (event) => {
-    console.log(event, "event");
     if(typeof event.value === 'object') {
       setFormData({
         ...formData,

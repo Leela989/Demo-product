@@ -28,7 +28,6 @@ function RiskAttributes() {
   ];
 
   const onEdit = (rowIndex) => {
-    console.log("clickedEdit", rowIndex);
     setEditingRowIndex(rowIndex);
   };
 
@@ -71,7 +70,6 @@ function RiskAttributes() {
 
   const handleRowSelect = (e) => {
     const selectedRowData = e.value;
-    console.log("selectedValue", selectedRowData.attributes);
     setSelectedRow(selectedRowData);
     if (selectedRowData && selectedRowData.attributes) {
       setSelectedAttributes(selectedRowData.attributes);
