@@ -1,5 +1,5 @@
 import { Button } from "primereact/button";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import AutoCompleteField from "../../components/AutoCompleteField/AutoCompleteField";
 import CheckBox from "../../components/CheckBox/CheckBox";
@@ -8,22 +8,31 @@ import InputField from "../../components/InputField/InputField";
 import "./division.css";
 import TabComponents from "./TabComponent";
 import Division from "./division.json";
+import { Toast } from "primereact/toast";
 
 export default function Department() {
   const list = [{ name: "User 1" }, { name: "User 2" }, { name: "User 3" }];
   const [checked, setChecked] = useState(false);
+
+  const [isApproveButtonDisabled, setIsApproveButtonDisabled] = useState(true);
+  const [isAmendButtonDisabled, setIsAmendButtonDisabled] = useState(true);
+  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
 
   const [formData, setFormData] = useState({});
 
   const [key, setKey] = useState(0);
 
   const { id } = useParams();
+  const toast = useRef(null);
 
   const [isApprove, setIsApproved] = useState(false);
   const [isFreeze, setIsFreeze] = useState(false);
   const [isPermanantFreeze, setIsPermanantFreeze] = useState(false);
+  const [showApprove, setShowApprove] = useState(true);
 
-  const handleInputChange = () => {};
+  const handleInputChange = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
 
   useEffect(() => {
     if (id) {
@@ -49,6 +58,8 @@ export default function Department() {
   const setApproval = () => {
     formData.approvedBy = "User 1";
     setIsApproved(true);
+    setIsApproveButtonDisabled(true);
+    setIsAmendButtonDisabled(false);
     setKey(key + 1);
   };
 
@@ -79,11 +90,45 @@ export default function Department() {
     { name: "005-Noida" },
   ];
 
+  const showSuccess = () => {
+    toast.current.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Saved Successfully",
+      life: 3000,
+    });
+  };
+
+  const validateForm = () => {
+    const { departmentCode, departmentName, shortName } = formData;
+    return departmentCode && departmentName && shortName;
+  };
+
+  const onClickingSave = () => {
+    if (validateForm()) {
+      setShowApprove(false);
+      setIsApproveButtonDisabled(false);
+      showSuccess();
+    } else {
+      showMandatoryFill();
+    }
+  };
+
+  const showMandatoryFill = () => {
+    toast.current.show({
+      severity: "error",
+      summary: "Error",
+      detail: "Please fill all the required details",
+      life: 3000,
+    });
+  };
+
   return (
     <div className="bg-scroll" key={key}>
+      <Toast ref={toast} />
       <div className="flex justify-between mb-3">
         <div className="heading">
-          <h1>Division Details</h1>
+          <h1>Branch Details</h1>
         </div>
         <div>
           <Button
@@ -91,6 +136,7 @@ export default function Department() {
             label="Approve"
             onClick={() => setApproval()}
             aria-controls="popup_menu_left"
+            disabled={isApproveButtonDisabled}
             aria-haspopup
           />
           <Button
@@ -98,13 +144,15 @@ export default function Department() {
             label="Amend"
             //   onClick={(event) => menuLeft.current.toggle(event)}
             aria-controls="popup_menu_left"
+            disabled={isAmendButtonDisabled}
             aria-haspopup
           />
           <Button
             rounded={false}
             label="Save"
-            //   onClick={(event) => menuLeft.current.toggle(event)}
+            onClick={onClickingSave}
             aria-controls="popup_menu_left"
+            disabled={isSaveButtonDisabled}
             aria-haspopup
           />
         </div>
@@ -231,6 +279,7 @@ export default function Department() {
           label="Date of Freeze"
           labelType="left"
           disabled
+          showIcon={false}
           value={(isFreeze || isPermanantFreeze) && new Date()}
           onChange={handleInputChange}
         />
@@ -248,6 +297,7 @@ export default function Department() {
           label="Date of Approve"
           labelType="left"
           disabled
+          showIcon={false}
           value={isApprove && new Date()}
           onChange={handleInputChange}
         />

@@ -11,6 +11,7 @@ const DateField = ({
   className,
   labelType,
   onChange,
+  showIcon=true,
 }) => {
   let styleClass =
     labelType === "left" ? "left-label w-full label" : "top-label w-full label";
@@ -28,7 +29,7 @@ const DateField = ({
   const fields = () => {
     return (
       <Calendar
-        showIcon
+        showIcon={showIcon}
         className="w-full"
         disabled={disabled}
         invalid={invalid}

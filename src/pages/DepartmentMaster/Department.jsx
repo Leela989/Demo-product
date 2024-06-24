@@ -1,20 +1,30 @@
 import { Button } from "primereact/button";
-import React, { useEffect, useState } from "react";
+import { Toast } from "primereact/toast";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import AutoCompleteField from "../../components/AutoCompleteField/AutoCompleteField";
 import CheckBox from "../../components/CheckBox/CheckBox";
 import DateField from "../../components/DateField/Datefield";
 import InputField from "../../components/InputField/InputField";
 import Departments from "./departments.json";
+import { Calendar } from "primereact/calendar";
 
 export default function Department() {
   const list = [{ name: "User 1" }, { name: "User 2" }, { name: "User 3" }];
   const [checked, setChecked] = useState(false);
   const [formData, setFormData] = useState({});
 
+  const [isApproveButtonDisabled,setIsApproveButtonDisabled] = useState(true);
+  const [isAmendButtonDisabled,setIsAmendButtonDisabled] = useState(true);
+  const [isSaveButtonDisabled,setIsSaveButtonDisabled] = useState(false);
+
   const [key, setKey] = useState(0);
 
+  const toast = useRef(null);
+
   const { id } = useParams();
+
+  const [showApprove, setShowApprove] = useState(true);
 
   const [isApprove, setIsApproved] = useState(false);
   const [isFreeze, setIsFreeze] = useState(false);
@@ -43,6 +53,8 @@ export default function Department() {
 
   const setApproval = () => {
     formData.approvedBy = "User 1";
+    setIsAmendButtonDisabled(false);
+    setIsApproveButtonDisabled(true)
     setIsApproved(true);
     setKey(key + 1);
   };
@@ -59,10 +71,47 @@ export default function Department() {
     setKey(key + 1);
   };
 
-  const handleChange = (e) => {};
+  const handleChange = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const showSuccess = () => {
+    toast.current.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Saved Successfully",
+      life: 3000,
+    });
+  };
+
+  const validateForm = () => {
+    const { code, name, shortName } = formData;
+    return code && name && shortName;
+  };
+
+  const onClickingSave = () => {
+    if (validateForm()) {
+      setShowApprove(false);
+      setIsApproveButtonDisabled(false)
+      showSuccess();
+    } else {
+      showMandatoryFill();
+    }
+  };
+
+  const showMandatoryFill = () => {
+    toast.current.show({
+      severity: "error",
+      summary: "Error",
+      detail: "Please fill all the required details",
+      life: 3000,
+    });
+  };
 
   return (
     <div key={key}>
+      <Toast ref={toast} />
+
       <div className="heading">
         <h1>Department Details</h1>
       </div>
@@ -143,12 +192,15 @@ export default function Department() {
           options={list}
           dropdown
         />
+        
+        
         <DateField
           className="w-1/4 ml-2 mt-2"
           name="dateOfFreeze"
           label="Date of Freeze"
           labelType="left"
           disabled
+          showIcon={false}
           value={(isFreeze || isPermanantFreeze) && new Date()}
           onChange={handleChange}
         />
@@ -166,9 +218,11 @@ export default function Department() {
           label="Date of Approve"
           labelType="left"
           disabled
+          showIcon={false}
           value={isApprove && new Date()}
           onChange={handleChange}
         />
+        
       </div>
       <div className="flex mt-2">
         <AutoCompleteField
@@ -188,6 +242,7 @@ export default function Department() {
           //   onClick={(event) => menuLeft.current.toggle(event)}
           aria-controls="popup_menu_left"
           onClick={() => setApproval()}
+          disabled={isApproveButtonDisabled}
           aria-haspopup
         />
         <Button
@@ -195,13 +250,15 @@ export default function Department() {
           label="Amend"
           //   onClick={(event) => menuLeft.current.toggle(event)}
           aria-controls="popup_menu_left"
+          disabled={isAmendButtonDisabled}
           aria-haspopup
         />
         <Button
           rounded={false}
           label="Save"
-          //   onClick={(event) => menuLeft.current.toggle(event)}
+          onClick={onClickingSave}
           aria-controls="popup_menu_left"
+          disabled={isSaveButtonDisabled}
           aria-haspopup
         />
       </div>

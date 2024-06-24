@@ -28,6 +28,8 @@ import Department from "./pages/DepartmentMaster/Department";
 import DepartmentList from "./pages/DepartmentMaster/DepartmentList";
 import DivisionMaster from "./pages/DivisionMaster/DivisionMaster";
 import DivisionsList from "./pages/DivisionMaster/DivisionsList";
+import CurrencyAndExchangeMaster from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeMaster";
+import CurrencyAndExchangeList from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeList";
 
 function App() {
   const [token, setToken] = useState(true);
@@ -105,6 +107,18 @@ function App() {
                 <Route
                   path="/commonMaster/divisionMaster/edit/:id"
                   element={<DivisionMaster />}
+                />
+                <Route
+                  path="/commonMaster/currencyExchangeRateMaster"
+                  element={<CurrencyAndExchangeList />}
+                />
+                <Route
+                  path="/commonMaster/currencyExchangeRateMaster/create"
+                  element={<CurrencyAndExchangeMaster />}
+                />
+                <Route
+                  path="/commonMaster/currencyExchangeRateMaster/edit/:id"
+                  element={<CurrencyAndExchangeMaster />}
                 />
                 <Route path="/productSetup" element={<ListingPage />} />
               </Routes>
