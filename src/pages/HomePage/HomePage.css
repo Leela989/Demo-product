@@ -66,8 +66,8 @@
 
 .customTable{
     width: 100%;
-    height: 150px;
-    /* overflow: auto; */
+    height: 170px;
+    overflow-x: auto;
 }
 
 .header_color{
@@ -204,7 +204,11 @@ tr[data-pc-section="headerrow"] {
 }
 
 .quickLinkContainer{
-    width: calc(33.33% - 24px);
+    width: 25%;
+}
+
+.customtables_container{
+    width: 75%;
 }
 
 .critical {
@@ -224,10 +228,35 @@ tr[data-pc-section="headerrow"] {
     overflow: auto;
 }
 
+
+
 .dailogueBox{
     font-size: 20px;
     font-weight: bold;
 }
+
+.taskdetails{
+    width: 450px;
+}
+
+/* .customTable .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th,
+.p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td {
+    min-width: 160px;
+    width: 200px;
+    max-width: 500px;
+} */
+/* .customTable th{
+    min-width: fit-content !important;
+    max-width: 700px !important;
+}
+
+.customTable td{
+    min-width:fit-content !important;
+    width: fit-content !important;
+    max-width: 700px !important;
+    word-break: normal !important;
+} */
+
 
 
   

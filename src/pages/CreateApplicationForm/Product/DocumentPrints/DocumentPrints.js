@@ -116,7 +116,8 @@ function DocumentPrints({ productData }) {
   const renderEditSaveButton = (rowIndex) => {
     if (editingRowIndex === rowIndex) {
       return (
-        <i
+        <div>
+                    <i
           className="pi pi-check"
           style={{
             fontSize: "1rem",
@@ -128,6 +129,20 @@ function DocumentPrints({ productData }) {
           }}
           onClick={() => onSave(rowIndex)}
         ></i>
+        <i
+        className="pi pi-times ml-5"
+        style={{
+          fontSize: "1rem",
+          border: "none",
+          borderRadius: "50%",
+          padding: "5px",
+          backgroundColor: "red",
+          color: "white",
+        }}
+        onClick={onCancel}
+      ></i>
+        </div>
+
       );
     } else {
       return null;
@@ -291,11 +306,6 @@ function DocumentPrints({ productData }) {
           <Column
             field="action"
             body={(rowData, options) => renderEditSaveButton(options.rowIndex)}
-            style={{ width: "5%" }}
-          />
-          <Column
-            field="action"
-            body={(rowData, options) => renderCancelButton(options.rowIndex)}
             style={{ width: "5%" }}
           />
           <Column body={actionBodyTemplate} style={{ width: "10%" }} />

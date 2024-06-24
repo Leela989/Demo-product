@@ -68,9 +68,10 @@ function LoginForm({ setToken }) {
   
 
   const handleLogin = () => {
+    console.log(loginDetails);
     if (
-      loginDetails.userName === "AzentioNextGen" &&
-      loginDetails.password === "Azen50Of353hKFeftio"
+      loginDetails.userName === "Azentio" &&
+      loginDetails.password === "azentio@123"
     ) {
       setIsLoggedIn(true);
       setToken(true);

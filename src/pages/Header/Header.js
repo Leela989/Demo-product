@@ -3,15 +3,17 @@ import { Menu } from "primereact/menu";
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
-import { useTranslation } from 'react-i18next';
-import countryData from '../../components/LanguageSelection/LanguageList.json';
+import { useTranslation } from "react-i18next";
+import countryData from "../../components/LanguageSelection/LanguageList.json";
 import "./Header.css";
-import { Tooltip } from 'primereact/tooltip';
+import { Tooltip } from "primereact/tooltip";
+import notificationDummyData from "./NotificationList.json";
 
 const Header = ({ setToken }) => {
   const menuLeft = useRef(null);
   const menuHelp = useRef(null);
   const menuGlobe = useRef(null);
+  const menuNotification = useRef(null);
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(null);
@@ -46,13 +48,13 @@ const Header = ({ setToken }) => {
 
   const dropdownOptions = countryData.countries.map((country) => ({
     label: (
-      <div className="countryOption" style={{ display: 'flex' }}>
+      <div className="countryOption" style={{ display: "flex" }}>
         <div className="countryLanguage">
           <span className="country-code ml-4">{country.language}</span>
         </div>
       </div>
     ),
-    value: country.language
+    value: country.language,
   }));
 
   const onLanguageChange = (e) => {
@@ -67,10 +69,22 @@ const Header = ({ setToken }) => {
     }
   };
 
-  const countryItems = dropdownOptions.map(option => ({
+  const countryItems = dropdownOptions.map((option) => ({
     label: option.label,
     command: onLanguageChange,
-    value: option.value
+    value: option.value,
+  }));
+
+  const notification_items = notificationDummyData.map((notification) => ({
+    label: (
+      <div className="Notification_card">
+    <div className="p-3">{notification.description}</div>
+    <div className="notification_date flex pl-3">
+    <i className="pi pi-calendar" style={{ fontSize: '1rem' }}></i>
+    <div className="pl-1">{notification.date}</div>
+    </div>
+    </div>
+    ),
   }));
 
   return (
@@ -85,14 +99,26 @@ const Header = ({ setToken }) => {
       <div className="header-panel">
         <Menu model={items} popup ref={menuLeft} id="popup_menu_left" />
         <Menu model={helpItems} popup ref={menuHelp} id="popup_menu_help" />
-        <Menu model={countryItems} popup ref={menuGlobe} id="popup_menu_globe" />
+        <Menu
+          model={countryItems}
+          popup
+          ref={menuGlobe}
+          id="popup_menu_globe"
+        />
+        <Menu
+          model={notification_items}
+          popup
+          ref={menuNotification}
+          id="popup_menu_notification"
+        />
         <Button
           text
           icon="pi pi-user"
           rounded
           aria-label="User"
           className="header-buttons"
-          tooltip="Profile" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="Profile"
+          tooltipOptions={{ position: "bottom" }}
           onClick={(event) => menuLeft.current.toggle(event)}
         />
         <Button
@@ -101,24 +127,33 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="User"
           className="header-buttons"
-          tooltip="Notes" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="Notes"
+          tooltipOptions={{ position: "bottom" }}
           onClick={(event) => menuLeft.current.toggle(event)}
         />
+        <div className="notification_container">
+          <div>
         <Button
           text
           icon="pi pi-bell"
           rounded
           aria-label="Notification"
           className="header-buttons"
-          tooltip="Notifications" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="Notifications"
+          tooltipOptions={{ position: "bottom" }}
+          onClick={(event) => menuNotification.current.toggle(event)}
         />
+        </div>
+        <div className='notification_count'>10</div>
+        </div>
         <Button
           text
           icon="pi pi-envelope"
           rounded
           aria-label="Mail"
           className="header-buttons"
-          tooltip="Mail" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="Mail"
+          tooltipOptions={{ position: "bottom" }}
         />
         <Button
           text
@@ -126,7 +161,8 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Locale"
           className="header-buttons"
-          tooltip="Select Language" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="Select Language"
+          tooltipOptions={{ position: "bottom" }}
           onClick={(event) => menuGlobe.current.toggle(event)}
         />
         <Button
@@ -135,7 +171,8 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Comment"
           className="header-buttons"
-          tooltip="Comments" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="Comments"
+          tooltipOptions={{ position: "bottom" }}
         />
         <Button
           text
@@ -143,7 +180,8 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Ethereum"
           className="header-buttons"
-          tooltip="360 degree Customer View" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="360 degree Customer View"
+          tooltipOptions={{ position: "bottom" }}
         />
         <Button
           text
@@ -151,7 +189,8 @@ const Header = ({ setToken }) => {
           rounded
           aria-label="Help"
           className="header-buttons"
-          tooltip="Help" tooltipOptions={{ position: 'bottom' }} 
+          tooltip="Help"
+          tooltipOptions={{ position: "bottom" }}
           onClick={(event) => menuHelp.current.toggle(event)}
         />
       </div>

@@ -117,18 +117,32 @@ function CheckList({ productData }) {
   const renderEditSaveButton = (rowIndex) => {
     if (editingRowIndex === rowIndex) {
       return (
-        <i
-          className="pi pi-check"
-          style={{
-            fontSize: "1rem",
-            border: "none",
-            borderRadius: "50%",
-            padding: "5px",
-            backgroundColor: "rgb(30 211 30 / 79%)",
-            color: "white",
-          }}
-          onClick={() => onSave(rowIndex)}
-        ></i>
+        <div>
+          <i
+            className="pi pi-check"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "rgb(30 211 30 / 79%)",
+              color: "white",
+            }}
+            onClick={() => onSave(rowIndex)}
+          ></i>
+          <i
+            className="pi pi-times ml-5"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "red",
+              color: "white",
+            }}
+            onClick={onCancel}
+          ></i>
+        </div>
       );
     } else {
       return null;
@@ -185,7 +199,6 @@ function CheckList({ productData }) {
           <Column
             field="id"
             header="Transaction ID"
-            style={{ width: "55%" }}
             body={(rowData, options) => (
               <InputField
                 type="text"
@@ -200,7 +213,6 @@ function CheckList({ productData }) {
             )}
           />
           <Column
-            style={{ width: "35%" }}
             field="checklist_description"
             header="Checklist Description"
             body={(rowData, options) => (
@@ -218,7 +230,6 @@ function CheckList({ productData }) {
           <Column
             field="effective_from"
             header="Effective From"
-            style={{ width: "55%" }}
             body={(rowData, options) => (
               <DateField
                 className="w-700px p-1"
@@ -232,10 +243,9 @@ function CheckList({ productData }) {
           <Column
             field="effective_to"
             header="Effective To"
-            style= {{width: '25%'}}
             body={(rowData, options) => (
               <DateField
-                className="w-4/4 p-1"
+                // className="w-4/4 p-1"
                 name="effective_to"
                 value={rowData.effective_to}
                 onChange={handleInputChange}
@@ -244,7 +254,6 @@ function CheckList({ productData }) {
             )}
           />
           <Column
-            style={{ width: "5%" }}
             field="mandatory_yn"
             header="Mandatory Y/N"
             body={(rowData, options) => (
@@ -266,7 +275,6 @@ function CheckList({ productData }) {
           />
 
           <Column
-            style={{ width: "5%" }}
             field="document_required"
             header="Document Required"
             body={(rowData, options) => (
@@ -287,11 +295,11 @@ function CheckList({ productData }) {
             body={(rowData, options) => renderEditSaveButton(options.rowIndex)}
             style={{ width: "5%" }}
           />
-          <Column
+          {/* <Column
             field="action"
             body={(rowData, options) => renderCancelButton(options.rowIndex)}
             style={{ width: "5%" }}
-          />
+          /> */}
           <Column body={actionBodyTemplate} style={{ width: "10%" }} />
         </DataTable>
       </div>

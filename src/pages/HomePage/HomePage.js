@@ -10,6 +10,9 @@ import data from "./MockHomePage.json";
 import "./HomePage.css";
 import "./Modal.css";
 import DialogueBox from "../../components/DialogueBox/DialogueBox";
+import DateField from "../../components/DateField/Datefield";
+import { TabPanel, TabView } from "primereact/tabview";
+import CustomButton from "../../components/Button/CustomButton";
 
 function HomePage() {
   const [selectedTransaction, setSelectedTransaction] = useState(null);
@@ -38,9 +41,7 @@ function HomePage() {
     setSelectedrow(rowData);
   };
 
-  const openModal2 = (rowData) => {
-    
-  }
+  const openModal2 = (rowData) => {};
 
   const closeModal = () => {
     setSelectedTransaction(null);
@@ -110,13 +111,22 @@ function HomePage() {
     </div>
   );
 
+  const handleAdd = () => {};
+
   const tasks_header = (header) => {
     return (
-      <div>
-        <h1 className='header_color'>{header}</h1>
+      <div className="flex justify-start">
+        {/* <CustomButton
+          label="+Add"
+          onClick={handleAdd}
+          className="small-btn mt-4 -ml-16"
+        /> */}
+        <h1>{header}</h1>
       </div>
-    )
-  }
+    );
+  };
+
+  const handleInputChange = () => {};
 
   return (
     <div>
@@ -136,81 +146,221 @@ function HomePage() {
           </div>
         ))}
       </div>
-      <div>
-        <div className="imgContainer">
-          <div className="flex-1" style={{marginRight: '30px'}}>
-            {/* <h1 className="tasksName">Tasks</h1> */}
-            <div className="customTable mt-3">
+      <div className="flex mt-5">
+        <div className="customtables_container">
+          <TabView className="w-full">
+            <TabPanel header="My tasks" className="tabs">
+              <div className="customTable mt-3">
+                <DataTable
+                  value={data}
+                  scrollable
+                  // scrollHeight="200px"
+                  // tableStyle={{ minWidth: "35rem" }}
+                  // header={tasks_header("Tasks")}
+                >
+                  <Column
+                    field="transactionRef"
+                    header="Transaction Ref#"
+                    className="transactionRefText"
+                    style={{ width: "400px" }}
+                    body={renderLinkColumn2}
+                  />
+                  <Column
+                    field="task_id"
+                    header="Task Id"
+                    body={(rowData) => rowData.task_id}
+                  />
+                  <Column
+                    field="task_desc"
+                    header="Task Desc"
+                    body={(rowData) => rowData.task_desc}
+                  />
+                  <Column
+                    field="task_status"
+                    header="Task Status"
+                    body={(rowData) => rowData.task_status}
+                  />
+
+                  <Column
+                    field="initiated_date"
+                    header="Initiated Date"
+                    body={(rowData, options) => (
+                      <DateField
+                        className="w-4/4 p-1"
+                        name="effectiveFrom"
+                        value={new Date()}
+                        onChange={handleInputChange}
+                      />
+                    )}
+                  />
+
+                  <Column
+                    style={{ width: "45%" }}
+                    field="due_date"
+                    header="Due Date"
+                    body={(rowData, options) => (
+                      <DateField
+                        className="w-4/4 p-1"
+                        name="effectiveFrom"
+                        value={rowData.due_date}
+                        onChange={handleInputChange}
+                      />
+                    )}
+                  />
+
+                  <Column
+                    field="taskDetails"
+                    header="Initiated By"
+                    body={(rowData) => rowData.initiated_by}
+                  />
+
+                  <Column
+                    field="task_details"
+                    header="Task Details"
+                    body={(rowData) => rowData.task_details}
+                  />
+                  <Column
+                    field="priority"
+                    header="Priority"
+                    body={priorityBodyTemplate}
+                  />
+                  <Column
+                    field="status"
+                    header="Status"
+                    body={(rowData) => rowData.status}
+                  />
+                </DataTable>
+              </div>
+            </TabPanel>
+            <TabPanel header="Teams task" className="tabs">
+              <div className="customTable mt-3">
               <DataTable
-                value={data}
-                scrollable
-                tableStyle={{ minWidth: "35rem" }}
-                header={tasks_header('Tasks')}
-              >
-                <Column
-                  field="transactionRef"
-                  header="Transaction Ref#"
-                  className="transactionRefText"
-                  body={renderLinkColumn2}
-                />
-                <Column field="taskDetails" header="Task Details" />
-                <Column
-                  field="priority"
-                  header="Priority"
-                  body={priorityBodyTemplate}
-                />
-                <Column field="status" header="Status" />
-              </DataTable>
-            </div>
-          </div>
-          <div className="quickLinkContainer">
-            <h1 className="quickLink">Quick Links</h1>
-            <div>
-              <div className="imgBox">
-                <div className="telephoneButton">
-                  <img src={Telephone} alt="Telephone" className="telephone1" />
-                  <a href="/create-application" className="quickLinkText">
-                    Create Application
-                  </a>
-                </div>
-                <div className="telephoneButton">
-                  <img
-                    src={ContactImg}
-                    alt="ContactImg"
-                    className="telephone"
+                  value={data}
+                  scrollable
+                  // scrollHeight="200px"
+                  // tableStyle={{ minWidth: "35rem" }}
+                  // header={tasks_header("Tasks")}
+                >
+                  <Column
+                    field="transactionRef"
+                    header="Transaction Ref#"
+                    className="transactionRefText"
+                    style={{ width: "400px" }}
+                    body={renderLinkColumn2}
                   />
-                  <a href="/create-application" className="quickLinkText">
-                    Create Quote
-                  </a>
-                </div>
-                <div className="telephoneButton">
-                  <img src={Telephone} alt="Telephone" className="telephone1" />
-                  <a href="/create-application" className="quickLinkText">
-                    Policy Serving
-                  </a>
-                </div>
-                <div className="telephoneButton">
-                  <img
-                    src={ContactImg}
-                    alt="ContactImg"
-                    className="telephone"
+                  <Column
+                    field="task_id"
+                    header="Task Id"
+                    body={(rowData) => rowData.task_id}
                   />
-                  <a href="/create-application" className="quickLinkText">
-                    Renewal
-                  </a>
-                </div>
+                  <Column
+                    field="task_desc"
+                    header="Task Desc"
+                    body={(rowData) => rowData.task_desc}
+                  />
+                  <Column
+                    field="task_status"
+                    header="Task Status"
+                    body={(rowData) => rowData.task_status}
+                  />
+
+                  <Column
+                    field="initiated_date"
+                    header="Initiated Date"
+                    body={(rowData, options) => (
+                      <DateField
+                        className="w-4/4 p-1"
+                        name="effectiveFrom"
+                        value={new Date()}
+                        onChange={handleInputChange}
+                      />
+                    )}
+                  />
+
+                  <Column
+                    style={{ width: "45%" }}
+                    field="due_date"
+                    header="Due Date"
+                    body={(rowData, options) => (
+                      <DateField
+                        className="w-4/4 p-1"
+                        name="effectiveFrom"
+                        value={rowData.due_date}
+                        onChange={handleInputChange}
+                      />
+                    )}
+                  />
+
+                  <Column
+                    field="taskDetails"
+                    header="Initiated By"
+                    body={(rowData) => rowData.initiated_by}
+                  />
+
+                  <Column
+                    field="task_details"
+                    header="Task Details"
+                    body={(rowData) => rowData.task_details}
+                  />
+                  <Column
+                    field="priority"
+                    header="Priority"
+                    body={priorityBodyTemplate}
+                  />
+                  <Column
+                    field="status"
+                    header="Status"
+                    body={(rowData) => rowData.status}
+                  />
+                   <Column
+                    field="allocated_to"
+                    header="Allocated to"
+                    body={(rowData) => rowData.allocated_to}
+                  />
+                </DataTable>
+              </div>
+            </TabPanel>
+          </TabView>
+        </div>
+        <div className="quickLinkContainer">
+          <h1 className="quickLink">Quick Links</h1>
+          <div>
+            <div className="imgBox">
+              <div className="telephoneButton">
+                <img src={Telephone} alt="Telephone" className="telephone1" />
+                <a href="/create-application" className="quickLinkText">
+                  Create Application
+                </a>
+              </div>
+              <div className="telephoneButton">
+                <img src={ContactImg} alt="ContactImg" className="telephone" />
+                <a href="/create-application" className="quickLinkText">
+                  Create Quote
+                </a>
+              </div>
+              <div className="telephoneButton">
+                <img src={Telephone} alt="Telephone" className="telephone1" />
+                <a href="/create-application" className="quickLinkText">
+                  Policy Serving
+                </a>
+              </div>
+              <div className="telephoneButton">
+                <img src={ContactImg} alt="ContactImg" className="telephone" />
+                <a href="/create-application" className="quickLinkText">
+                  Renewal
+                </a>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="customTable2 mt-4">
+      <div className="customTable2 mt-6">
         <DataTable
           value={notesAndDairiesData}
           scrollable
           tableStyle={{ minWidth: "50rem" }}
-          header={tasks_header('Notes & Diaries')}
+          header={tasks_header("Notes & Diaries")}
         >
           <Column
             field="transactionRef"
@@ -232,8 +382,7 @@ function HomePage() {
           <Column field="reminderDate" header="Reminder Date" />
         </DataTable>
       </div>
-      <div className='mt-45'>leela</div>
-      {/* Modal */}
+
       {selectedTransaction && (
         <DialogueBox
           data={renderPopUpMessage()}

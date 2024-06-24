@@ -116,10 +116,8 @@ function Branches({ productData }) {
               }}
               onClick={onSave}
             ></i>
-          </div>
-          <div className="ml-5">
-            <i
-              className="pi pi-times"
+             <i
+              className="pi pi-times ml-4"
               style={{
                 fontSize: "1rem",
                 border: "none",
@@ -215,7 +213,7 @@ function Branches({ productData }) {
           scrollHeight="300px"
           header={render_Braches_Header}
         >
-          <Column field="Name" header="Branches" body={branchAutoComplete} />
+          <Column field="Name" header="Branches" body={branchAutoComplete}/>
           <Column field="include" header="Include" body={cellCheckBox} />
           <Column
             field="action"
