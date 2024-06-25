@@ -1,0 +1,80 @@
+{
+    "data": {
+      "uw": [
+        { "label": "Maximum Policy SI Value", "type": "number" },
+        { "label": "Maximum Policy level discount%", "type": "number" },
+        { "label": "Maximum Policy level discount value", "type": "number" },
+        { "label": "Maximum Risk level discount%", "type": "number" },
+        { "label": "Maximum Risk level discount value", "type": "number" },
+        { "label": "Extn allowed for short period policy Yes/No", "type": "checkbox" },
+        { "label": "Override Broker Commission% Yes/No", "type": "checkbox" },
+        { "label": "Maximum Broker Commission%", "type": "number" },
+        {
+          "label": "Broker Modifiable Type", "type": "dropdown",
+          "options": [
+            { "name": "Modify Entire block" },
+            { "name": "Modify all except broker commission" },
+            { "name": "Modify only broker commission code" },
+            { "name": "None of the fields are modifiable" }
+          ]
+        },
+        { "label": "Modify Co-insurance business type Yes/No", "type": "checkbox" },
+        { "label": "Modify Default A/c Segment Yes/No", "type": "checkbox" },
+        { "label": "Modify Exchange Rate Yes/No", "type": "checkbox" },
+        { "label": "Modify Deductible Yes/No", "type": "checkbox" },
+        { "label": "Override Discount Loading Yes/No", "type": "checkbox" },
+        { "label": "Approve policy Yes/No", "type": "checkbox" },
+        { "label": "Approve long term policy Yes/No", "type": "checkbox" },
+        { "label": "Back dating policy policy from date Yes/No", "type": "checkbox" },
+        { "label": "Back dating policy issue date Yes/No", "type": "checkbox" },
+        { "label": "Convert Quotation to policy Yes/No", "type": "checkbox" },
+        { "label": "Modify A/c Generation type Yes/No", "type": "checkbox" },
+        { "label": "Modify issue date Yes/No", "type": "checkbox" },
+        { "label": "Renew policy Yes/No", "type": "checkbox" },
+        { "label": "Up to No. of claims", "type": "number" },
+        { "label": "Approve endorsement during claim Yes/No", "type": "checkbox" },
+        { "label": "Pol/Endt approval Policy to date Yes/No", "type": "checkbox" }
+      ],
+      "claims_data": [
+        { "label": "Approve Broker License Expired Claims Yes/No", "type": "checkbox" },
+        { "label": "Claim Close Reopen Yes/No", "type": "checkbox" },
+        { "label": "Claim estimate creation allow Yes/No", "type": "checkbox" },
+        { "label": "Approve required intimation date outside the period Yes/No", "type": "checkbox" },
+        { "label": "Claim approval or Modify Yes/No", "type": "checkbox" },
+        { "label": "Allow duplicate claim on same loss date Yes/No", "type": "checkbox" },
+        { "label": "Claim settled allow Yes/No", "type": "checkbox" },
+        { "label": "Estimate close allow Yes/No", "type": "checkbox" },
+        { "label": "Maintenance Period Claim Yes/No", "type": "checkbox" },
+        { "label": "Claim beyond the notification period Yes/No", "type": "checkbox" },
+        { "label": "Allow claim when risk is in silent period Yes/No", "type": "checkbox" },
+        { "label": "Maximum LC claim (Approval)", "type": "number" },
+        { "label": "Maximum LC claim (Estimate)", "type": "number" }
+      ],
+      "RI_Data": [
+        { "label": "Approve FAC RI Yes/No", "type": "checkbox" },
+        { "label": "Modify Treaty Allocation Yes/No", "type": "checkbox" },
+        { "label": "ReInsurance allocation allow Yes/No", "type": "checkbox" },
+        { "label": "Modify CQS% Yes/No", "type": "checkbox" },
+        { "label": "Modify inward CQS% Yes/No", "type": "checkbox" }
+      ],
+      "Applicable_Endorsement": [
+        {
+          "label": "Endorsement Type", "type": "dropdown",
+          "options": [
+            { "name": "Nill Endorsement" },
+            { "name": "Addition or Deletion of Risk/Cover" },
+            { "name": "Change in Policy Period" },
+            { "name": "Change in Coverages" },
+            { "name": "Change in Broker/Agent" }
+          ]
+        },
+        { "label": "Endorsement Description", "type": "text" },
+        { "label": "Endorsement Type Allow Yes/No", "type": "checkbox" }
+      ],
+      "Common": [
+        { "label": "Modify Entity Yes/No", "type": "checkbox" },
+        { "label": "Modify Tax Yes/No", "type": "checkbox" }
+      ]
+    }
+  }
+  

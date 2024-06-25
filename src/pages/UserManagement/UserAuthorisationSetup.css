@@ -1,0 +1,42 @@
+.user-authorisation-setup {
+    padding: 20px;
+  }
+  
+  .flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .flex-item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .radio-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+  }
+  
+  .align-items-center {
+    align-items: center;
+    gap: 10px;
+  }
+
+  .radio_button_heading{
+      font-weight: bold;
+  }
+
+  .attributes-tab-containers{
+    flex: 0 0 30%;
+    width: 35%;
+    padding: 10px;
+    border-radius: 12px;
+    margin-left: 10px;
+    box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
+    margin-top: 15px;
+  }
+  
