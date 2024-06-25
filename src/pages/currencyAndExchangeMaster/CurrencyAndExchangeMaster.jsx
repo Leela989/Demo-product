@@ -2,11 +2,11 @@ import { Button } from "primereact/button";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { Toast } from "primereact/toast";
-import React, { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import AutoCompleteField from "../../components/AutoCompleteField/AutoCompleteField";
 import InputField from "../../components/InputField/InputField";
-import Departments from "../../pages/CompanyMaster/exchangeRate.json";
+import Departments from "./currency.json";
 import DateField from "../../components/DateField/Datefield";
 import "./currency.css";
 import { Menu } from "primereact/menu";
@@ -19,6 +19,8 @@ function CurrencyAndExchangeMaster() {
     { label: "Edit", command: () => onEdit(selectedRowIndex) },
     { label: "Delete" },
   ];
+
+  const { id } = useParams();
 
   const [showApprove, setShowApprove] = useState(true);
 
@@ -52,6 +54,121 @@ function CurrencyAndExchangeMaster() {
     ],
   });
 
+  const [currencyData, setCurrencyData] = useState({});
+
+  const parseDate = (dateString) => {
+    const [day, month, year] = dateString.split("-");
+    return new Date(`${month}-${day}-${year}`);
+  };
+
+  useEffect(() => {
+    console.log("id ", id);
+    if (id == 0) {
+      const departmentData = Departments[id];
+
+      if (departmentData) {
+        setCurrencyData({ ...departmentData });
+
+        const list = [];
+
+        const obj1 = {
+          rate_type: "Buying",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "US DOLLAR",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".27",
+        };
+
+        const obj2 = {
+          rate_type: "Selling",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "US DOLLAR",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".27",
+        };
+
+        const obj3 = {
+          rate_type: "Buying",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "SINGAPORE DOLLARS",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".36",
+        };
+
+        const obj4 = {
+          rate_type: "Selling",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "SINGAPORE DOLLARS",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".36",
+        };
+
+        const obj5 = {
+          rate_type: "Buying",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "QATAR RIYALS",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".97",
+        };
+
+        const obj6 = {
+          rate_type: "Selling",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "QATAR RIYALS",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".97",
+        };
+
+        const obj7 = {
+          rate_type: "Buying",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "EURO",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".25",
+        };
+
+        const obj8 = {
+          rate_type: "Selling",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "EURO",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: ".25",
+        };
+
+        const obj9 = {
+          rate_type: "Buying",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "INDIAN RUPEE",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: "22.25",
+        };
+
+        const obj10 = {
+          rate_type: "Selling",
+          from_currency: "SAUDI RIYAL",
+          to_currency: "INDIAN RUPEE",
+          effective_from: parseDate("02-05-2024"),
+          effective_to: parseDate("31-12-2024"),
+          rate: "22.25",
+        };
+
+        list.push(obj1, obj2, obj3, obj4, obj5, obj6, obj7, obj8, obj9, obj10);
+
+        setFormData(list);
+      }
+      setKey(key + 1);
+    }
+  }, [id]);
+
   const languageDescription1 = {
     default: "en",
     data: [
@@ -72,9 +189,7 @@ function CurrencyAndExchangeMaster() {
     // setFormData({ ...formData, [name]: value });
   };
 
-  const handleLangUpdate = (updatedLang) => {
-    console.log("Updated Language Data:", updatedLang);
-  };
+  const handleLangUpdate = (updatedLang) => {};
 
   const currency_options = [
     { code: "UGX", name: "UGANDA  SHILLINGS" },
@@ -113,11 +228,27 @@ function CurrencyAndExchangeMaster() {
       <div className="kebab-menu-container">
         <AutoCompleteField
           className="w-4/4"
-          name="currency"
-          value={rowData.currency}
+          name="to_currency"
+          value={rowData.to_currency}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           options={currency_options}
           dropdown
+        />
+      </div>
+    );
+  };
+
+  const fromCurrencyTemplate = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="w-4/4"
+          name="from_currency"
+          value={rowData.from_currency}
+          onChange={(e) => handleInputChange(e, options.rowIndex)}
+          options={currency_options}
+          dropdown
+          disabled={id == 0}
         />
       </div>
     );
@@ -301,7 +432,7 @@ function CurrencyAndExchangeMaster() {
               className="w-1/4"
               name="code"
               label="Code"
-              value={formData.code}
+              value={currencyData.code}
               onChange={handleInputChange}
               mandatory={true}
             />
@@ -309,23 +440,23 @@ function CurrencyAndExchangeMaster() {
               className="w-1/4 pl-2"
               name="iso_code"
               label="ISO Code"
-              value={formData.code}
+              value={currencyData.iso_code}
               onChange={handleInputChange}
               mandatory={true}
             />
             <InputField
               className="w-1/4 pl-2 pt-1"
-              name="code"
+              name="description"
               label="Description"
-              value={formData.code}
+              value={currencyData.description}
               onChange={handleInputChange}
               // mandatory={true}
             />
             <InputField
               className="w-1/4 pl-2 pt-1"
-              name="code"
+              name="short_description"
               label="Short Description"
-              value={formData.code}
+              value={currencyData.short_description}
               onChange={handleInputChange}
               // mandatory={true}
             />
@@ -333,26 +464,26 @@ function CurrencyAndExchangeMaster() {
           <div className="flex mt-5">
             <InputField
               className="w-1/4"
-              name="code"
+              name="unit"
               label="Unit"
-              value={formData.code}
+              value={currencyData.unit}
               onChange={handleInputChange}
               // mandatory={true}
             />
             <InputField
               className="w-1/4 pl-2"
-              name="code"
+              name="unit_short_description"
               label="Unit Short Description"
-              value={formData.code}
+              value={currencyData.unit_short_description}
               onChange={handleInputChange}
               // mandatory={true}
             />
             <div className="w-1/4 pl-2">
               <InputField
                 className="w-4/4"
-                name="code"
+                name="format_mask"
                 label="Format Mask"
-                value={formData.code}
+                value={currencyData.format_mask}
                 onChange={handleInputChange}
                 // mandatory={true}
               />
@@ -360,9 +491,9 @@ function CurrencyAndExchangeMaster() {
             </div>
             <InputField
               className="w-1/4 pl-2"
-              name="code"
+              name="number_of_decimals"
               label="Number of Decimals"
-              value={formData.code}
+              value={currencyData.number_of_decimals}
               onChange={handleInputChange}
               // mandatory={true}
             />
@@ -393,7 +524,15 @@ function CurrencyAndExchangeMaster() {
               style={{ width: "15%" }}
             />
             <Column
-              field="currency"
+              field="from_currency"
+              header="From Currency"
+              headerClassName="action"
+              bodyClassName="action"
+              body={fromCurrencyTemplate}
+              style={{ width: "15%" }}
+            />
+            <Column
+              field="to_currency"
               header="To Currency"
               headerClassName="action"
               bodyClassName="action"

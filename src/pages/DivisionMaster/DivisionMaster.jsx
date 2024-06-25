@@ -63,6 +63,14 @@ export default function Department() {
     setKey(key + 1);
   };
 
+  const setAmend = () => {
+    setIsApproveButtonDisabled(false);
+    setIsAmendButtonDisabled(true);
+    setIsApproved(false);
+    showSuccess();
+    setKey(key + 1);
+  };
+
   const setFreeze = () => {
     setIsFreeze(!isFreeze);
     formData.freezeBy = "User 1";
@@ -142,7 +150,7 @@ export default function Department() {
           <Button
             rounded={false}
             label="Amend"
-            //   onClick={(event) => menuLeft.current.toggle(event)}
+            onClick={() => setAmend()}
             aria-controls="popup_menu_left"
             disabled={isAmendButtonDisabled}
             aria-haspopup

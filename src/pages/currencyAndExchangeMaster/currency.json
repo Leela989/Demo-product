@@ -1,17 +1,56 @@
 [
   {
-    "code": "Az-001",
-    "iso_code": "001",
-    "description": "---"
+    "code": "001",
+    "currency_name": "SAUDI RIYAL",
+    "iso_code": "SAR",
+    "description": ""
   },
   {
-    "code": "Az-002",
-    "iso_code": "002",
-    "description": "---"
+    "code": "002",
+    "currency_name": "UGANDA SHILLINGS",
+    "iso_code": "UGX",
+    "description": ""
   },
   {
-    "code": "Az-003",
-    "iso_code": "003",
-    "description": "---"
+    "code": "003",
+    "currency_name": "US DOLLAR",
+    "iso_code": "USD",
+    "description": ""
+  },
+  {
+    "code": "004",
+    "currency_name": "ZAMBIA KWACHA",
+    "iso_code": "ZMW",
+    "description": ""
+  },
+  {
+    "code": "005",
+    "currency_name": "SOUTH AFRICAN RAND",
+    "iso_code": "ZAR",
+    "description": ""
+  },
+  {
+    "code": "006",
+    "currency_name": "TANZANIAN SHILLINGS",
+    "iso_code": "TZS",
+    "description": ""
+  },
+  {
+    "code": "007",
+    "currency_name": "EURO",
+    "iso_code": "EUR",
+    "description": ""
+  },
+  {
+    "code": "008",
+    "currency_name": "SINGAPORE DOLLARS",
+    "iso_code": "SGD",
+    "description": ""
+  },
+  {
+    "code": "009",
+    "currency_name": "QATAR RIYALS",
+    "iso_code": "QAR",
+    "description": ""
   }
 ]

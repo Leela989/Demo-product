@@ -14,9 +14,9 @@ export default function Department() {
   const [checked, setChecked] = useState(false);
   const [formData, setFormData] = useState({});
 
-  const [isApproveButtonDisabled,setIsApproveButtonDisabled] = useState(true);
-  const [isAmendButtonDisabled,setIsAmendButtonDisabled] = useState(true);
-  const [isSaveButtonDisabled,setIsSaveButtonDisabled] = useState(false);
+  const [isApproveButtonDisabled, setIsApproveButtonDisabled] = useState(true);
+  const [isAmendButtonDisabled, setIsAmendButtonDisabled] = useState(true);
+  const [isSaveButtonDisabled, setIsSaveButtonDisabled] = useState(false);
 
   const [key, setKey] = useState(0);
 
@@ -54,8 +54,18 @@ export default function Department() {
   const setApproval = () => {
     formData.approvedBy = "User 1";
     setIsAmendButtonDisabled(false);
-    setIsApproveButtonDisabled(true)
+    setIsApproveButtonDisabled(true);
     setIsApproved(true);
+    setKey(key + 1);
+    showSuccess()
+
+  };
+
+  const setAmend = () => {
+    setIsApproveButtonDisabled(false);
+    setIsAmendButtonDisabled(true);
+    setIsApproved(false);
+    showSuccess()
     setKey(key + 1);
   };
 
@@ -92,7 +102,7 @@ export default function Department() {
   const onClickingSave = () => {
     if (validateForm()) {
       setShowApprove(false);
-      setIsApproveButtonDisabled(false)
+      setIsApproveButtonDisabled(false);
       showSuccess();
     } else {
       showMandatoryFill();
@@ -192,8 +202,7 @@ export default function Department() {
           options={list}
           dropdown
         />
-        
-        
+
         <DateField
           className="w-1/4 ml-2 mt-2"
           name="dateOfFreeze"
@@ -222,7 +231,6 @@ export default function Department() {
           value={isApprove && new Date()}
           onChange={handleChange}
         />
-        
       </div>
       <div className="flex mt-2">
         <AutoCompleteField
@@ -248,7 +256,7 @@ export default function Department() {
         <Button
           rounded={false}
           label="Amend"
-          //   onClick={(event) => menuLeft.current.toggle(event)}
+          onClick={() => setAmend()}
           aria-controls="popup_menu_left"
           disabled={isAmendButtonDisabled}
           aria-haspopup

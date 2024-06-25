@@ -91,9 +91,10 @@ export default function DepartmentList() {
       </div>
       <div>
         <DataTable value={Departments} paginator rows={5} scrollable>
-          <Column field="code" header="Code"></Column>
+          <Column field="code" header="Currency Code"></Column>
+          <Column field="currency_name" header="Currency Name"></Column>
           <Column field="iso_code" header="ISO Code"></Column>
-          <Column field="description" header="Description"></Column>
+          {/* <Column field="description" header="Description"></Column> */}
           <Column
             header="Action"
             headerClassName="action"
