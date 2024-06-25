@@ -1,9 +1,6 @@
 .loginContainer {
   height: calc(100vh);
 }
-.loginImage {
-  flex: 0 0 60%;
-}
 .loginForm {
   height: calc(100vh - 62px);
   display: flex;

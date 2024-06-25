@@ -9,7 +9,7 @@ import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
 import "primereact/resources/primereact.min.css"; //core css
 import "primeicons/primeicons.css"; //icons
 import LoginForm from "../src/pages/LoginPage/LoginPage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HomePage from "./pages/HomePage/HomePage";
 import ListingPage from "./pages/ListingPage/ListingPage";
 import { useLocation } from "react-router-dom";
@@ -32,11 +32,19 @@ import CurrencyAndExchangeMaster from "./pages/currencyAndExchangeMaster/Currenc
 import CurrencyAndExchangeList from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeList";
 
 function App() {
-  const [token, setToken] = useState(false);
+  const [token, setToken] = useState(localStorage.getItem('token'));
 
   // const location = useLocation();
   // const currentPath = location.pathname;
   // console.log("currentPath", currentPath);
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
+    }
+  }, [token]);
 
   return (
     <>
@@ -126,7 +134,9 @@ function App() {
           </div>
         </div>
       ) : (
-        <LoginForm setToken={setToken} />
+        <Routes>
+        <Route path="/login" element={<LoginForm setToken={setToken} />} />
+      </Routes>
       )}
     </>
   );

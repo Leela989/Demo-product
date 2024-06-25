@@ -8,11 +8,10 @@ import { InputText } from "primereact/inputtext";
 import { Checkbox } from "primereact/checkbox";
 import { Button } from "primereact/button";
 import { Toast } from "primereact/toast";
-import { useTranslation, Trans } from 'react-i18next';
-import { Dropdown } from 'primereact/dropdown';
-import countryData from '../../components/LanguageSelection/LanguageList.json';
-import { Password } from 'primereact/password';
-
+import { useTranslation, Trans } from "react-i18next";
+import { Dropdown } from "primereact/dropdown";
+import countryData from "../../components/LanguageSelection/LanguageList.json";
+import { Password } from "primereact/password";
 
 function LoginForm({ setToken }) {
   const toast = useRef(null);
@@ -62,10 +61,9 @@ function LoginForm({ setToken }) {
     if (selectedCountry) {
       const languageCode = selectedCountry.code.toLowerCase();
       setSelectedLanguage(selectedCountry.language);
-      i18n.changeLanguage(languageCode); 
+      i18n.changeLanguage(languageCode);
     }
   };
-  
 
   const handleLogin = () => {
     console.log(loginDetails);
@@ -98,13 +96,13 @@ function LoginForm({ setToken }) {
 
   const dropdownOptions = countryData.countries.map((country) => ({
     label: (
-      <div className="countryOption" style={{ display: 'flex' }}>
+      <div className="countryOption" style={{ display: "flex" }}>
         <div className="countryLanguage">
           <span className="country-code ml-4">{country.language}</span>
         </div>
       </div>
     ),
-    value: country.language
+    value: country.language,
   }));
 
   function ForgotPage() {
@@ -159,7 +157,7 @@ function LoginForm({ setToken }) {
             <div className="loginForm">
               <div className="login-form-content">
                 <div className="welcomeText">
-                  <p className="welcome"> {t('welcome')} </p>
+                  <p className="welcome"> {t("welcome")} </p>
                 </div>
                 <div className="details mt-5 mb-4">
                   <p
@@ -203,6 +201,7 @@ function LoginForm({ setToken }) {
                           value={loginDetails.password}
                           onChange={handleInputChange}
                           toggleMask
+                          feedback={false}
                         />
                       </div>
                       <div className="remembermeContainer mb-2 mt-4">
@@ -213,7 +212,10 @@ function LoginForm({ setToken }) {
                           checked={loginDetails.rememberMe}
                           onChange={handleInputChange}
                         />
-                        <label htmlFor="checkBox" className="rememberMeText mt-4 ml-2">
+                        <label
+                          htmlFor="checkBox"
+                          className="rememberMeText mt-4 ml-2"
+                        >
                           {t("rememberMe")}
                         </label>
                       </div>

@@ -21,15 +21,16 @@ const Header = ({ setToken }) => {
   let userNameIs = localStorage.getItem("username");
 
   const handleLogout = () => {
+    localStorage.removeItem('token');
     setToken(false);
-    navigate("/");
+    navigate("/login");
   };
 
   const items = [
     {
       label: userNameIs,
       items: [
-        { label: "Profile", icon: "pi pi-user" },
+        { label: "Profile", icon: "pi pi-user"},
         { label: "Settings", icon: "pi pi-cog" },
         { label: "Logout", icon: "pi pi-sign-out", command: handleLogout },
       ],
@@ -87,6 +88,10 @@ const Header = ({ setToken }) => {
     ),
   }));
 
+  const handelProfile = (event) => {
+    menuLeft.current.toggle(event)
+  }
+
   return (
     <div className="header">
       <img className="az-logo" src="/icons/AZ_logo.png" alt="azentio logo" />
@@ -119,7 +124,7 @@ const Header = ({ setToken }) => {
           className="header-buttons"
           tooltip="Profile"
           tooltipOptions={{ position: "bottom" }}
-          onClick={(event) => menuLeft.current.toggle(event)}
+          onClick={(event) => handelProfile(event)}
         />
         <Button
           text
