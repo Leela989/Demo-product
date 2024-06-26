@@ -162,7 +162,6 @@ function HomePage() {
                     field="transactionRef"
                     header="Transaction Ref#"
                     className="transactionRefText"
-                    style={{ width: "400px" }}
                     body={renderLinkColumn2}
                   />
                   <Column
@@ -184,28 +183,14 @@ function HomePage() {
                   <Column
                     field="initiated_date"
                     header="Initiated Date"
-                    body={(rowData, options) => (
-                      <DateField
-                        className="w-4/4 p-1"
-                        name="effectiveFrom"
-                        value={new Date()}
-                        onChange={handleInputChange}
-                      />
-                    )}
+                    body={(rowData, options) => rowData.initiated_date}
                   />
 
                   <Column
                     style={{ width: "45%" }}
                     field="due_date"
                     header="Due Date"
-                    body={(rowData, options) => (
-                      <DateField
-                        className="w-4/4 p-1"
-                        name="effectiveFrom"
-                        value={rowData.due_date}
-                        onChange={handleInputChange}
-                      />
-                    )}
+                    body={(rowData, options) => rowData.due_date}
                   />
 
                   <Column
@@ -269,31 +254,17 @@ function HomePage() {
                     body={(rowData) => rowData.task_status}
                   />
 
-                  <Column
+<Column
                     field="initiated_date"
                     header="Initiated Date"
-                    body={(rowData, options) => (
-                      <DateField
-                        className="w-4/4 p-1"
-                        name="effectiveFrom"
-                        value={new Date()}
-                        onChange={handleInputChange}
-                      />
-                    )}
+                    body={(rowData, options) => rowData.initiated_date}
                   />
 
                   <Column
                     style={{ width: "45%" }}
                     field="due_date"
                     header="Due Date"
-                    body={(rowData, options) => (
-                      <DateField
-                        className="w-4/4 p-1"
-                        name="effectiveFrom"
-                        value={rowData.due_date}
-                        onChange={handleInputChange}
-                      />
-                    )}
+                    body={(rowData, options) => rowData.due_date}
                   />
 
                   <Column

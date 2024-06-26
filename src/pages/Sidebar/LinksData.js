@@ -12,6 +12,14 @@ const linksData = [
       ]
     },
     { 
+      label: 'Workflow Management', 
+      subLinks: [
+        { label: 'Workflow Master', link: '/workFlowManagement/userMaster' },
+        { label: 'Workflow Group Mapping', link: '/workFlowManagement/userGroupMapping' },
+        { label: 'Workflow Authorisation setup', link: '/workFlowManagement/userAuthorisationSetup' }
+      ]
+    },
+    { 
       label: 'Menu Management', 
       subLinks: [
         { label: 'Menu Creation', link: '/menuManagement/menuCreation' },
@@ -79,11 +87,18 @@ const linksData = [
         {
           label: "Proposal",
           subLinks: [
-            { label: "Motor", link: "/underwriting/proposal/motor", code: '10' },
-            { label: "Fire", link: "/underwriting/proposal/fire", code: '11' },
-            { label: "Marine", link: "/underwriting/proposal/marine", code: '12' },
-            { label: "Engineering", link: "/underwriting/proposal/engineering", code: '13' },
-            { label: "Miscellaneous", link: "/underwriting/proposal/miscellaneous", code: '14' },
+            { label: "Motor", link: "/underwriting/proposal/motor"},
+            { label: "Fire", link: "/underwriting/proposal/fire"},
+            { label: "Marine", subLinks: [
+              {label: "Direct", link: "/underwriting/proposal/marine/direct"},
+              {label: "Open Cover", link: "/underwriting/proposal/marine/overCover"},
+              {label: "Certificate", link: "/underwriting/proposal/marine/direct"},
+              {label: "Open Policy", link: "/underwriting/proposal/marine/openPolicy"},
+              {label: "Declaration", link: "/underwriting/proposal/marine/declaration"},
+
+            ]},
+            { label: "Engineering", link: "/underwriting/proposal/engineering"},
+            { label: "Miscellaneous", link: "/underwriting/proposal/miscellaneous"},
             { label: "Liability", link: "/underwriting/proposal/liability" },
             { label: "Bonds", link: "/underwriting/proposal/bonds" },
             { label: "Aviation", link: "/underwriting/proposal/aviation" },
@@ -96,7 +111,14 @@ const linksData = [
           subLinks: [
             { label: "Motor", link: "/underwriting/quotation/motor" },
             { label: "Fire", link: "/underwriting/quotation/fire" },
-            { label: "Marine", link: "/underwriting/quotation/marine" },
+            { label: "Marine", subLinks: [
+              {label: "Direct", link: "/underwriting/quotation/marine/direct"},
+              {label: "Open Cover", link: "/underwriting/quotation/marine/overCover"},
+              {label: "Certificate", link: "/underwriting/quotation/marine/direct"},
+              {label: "Open Policy", link: "/underwriting/quotation/marine/openPolicy"},
+              {label: "Declaration", link: "/underwriting/quotation/marine/declaration"},
+
+            ]},
             { label: "Engineering", link: "/underwriting/quotation/engineering" },
             { label: "Miscellaneous", link: "/underwriting/quotation/miscellaneous" },
             { label: "Liability", link: "/underwriting/quotation/liability" },
@@ -112,7 +134,14 @@ const linksData = [
             { label: "Motor", link: "/underwriting/policy/motor" },
             { label: "Fire", link: "/underwriting/policy/fire" },
             { label: "Fire Declaration", link: "/underwriting/policy/fireDeclaration" },
-            { label: "Marine", link: "/underwriting/policy/marine" },
+            { label: "Marine",  subLinks: [
+              {label: "Direct", link: "/underwriting/policy/marine/direct"},
+              {label: "Open Cover", link: "/underwriting/policy/marine/overCover"},
+              {label: "Certificate", link: "/underwriting/policy/marine/direct"},
+              {label: "Open Policy", link: "/underwriting/policy/marine/openPolicy"},
+              {label: "Declaration", link: "/underwriting/policy/marine/declaration"},
+
+            ]},
             { label: "Engineering", link: "/underwriting/policy/engineering" },
             { label: "Miscellaneous", link: "/underwriting/policy/miscellaneous" },
             { label: "Liability", link: "/underwriting/policy/liability" },

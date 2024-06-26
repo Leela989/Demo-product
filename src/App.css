@@ -305,6 +305,19 @@ button.p-button.p-component.p-button-outlined:hover {
   color: #4338CA;
 }
 
+span.p-steps-number.completed{
+  background: green !important;
+  color: #EEF2FF !important;
+  border: none !important;
+}
+
+.p-steps .p-steps-item .p-menuitem-link .p-steps-number{
+  border: 1px solid #4338CA !important;
+}
+
+.p-steps-item.completed::before{
+  border-top:1px solid #003B95 !important;
+}
 
 /* Card styling */
 
@@ -356,7 +369,7 @@ button.p-button.p-component.p-button-outlined:hover {
 .cover_card{
   margin-top: 8px;
   width: 30%;
-  height: fit-content;
+  height: 580px !important;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12)
@@ -375,6 +388,10 @@ button.p-button.p-component.p-button-outlined:hover {
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+
+.p-datatable .p-datatable-header{
+  padding: 0px;
 }
 
 .blink-soft {

@@ -23,6 +23,7 @@ function RiskStep() {
   const menuLeft = useRef(null);
   const { id, key } = useParams();
   const productKey = parseInt(key, 10);
+  const [selectedRow, setSelectedRow] = useState(RiskHeaderData[0]);
 
   const riskTypeOptions = [
     { name: "MC", code: "MC" },
@@ -47,7 +48,7 @@ function RiskStep() {
     if (productKey == 2301) {
       setRiskData(RiskHeaderData);
     }
-  }, [productKey]);
+  }, [productKey, selectedRow]);
 
   const handleInputChange = (e, rowIndex, field) => {
     const newData = [...riskData];
@@ -113,18 +114,32 @@ function RiskStep() {
   const renderEditSaveButton = (rowIndex) => {
     if (editingRowIndex === rowIndex) {
       return (
-        <i
-          className="pi pi-check"
-          style={{
-            fontSize: "1rem",
-            border: "none",
-            borderRadius: "50%",
-            padding: "5px",
-            backgroundColor: "rgb(30 211 30 / 79%)",
-            color: "white",
-          }}
-          onClick={onSave}
-        ></i>
+        <div>
+          <i
+            className="pi pi-check"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "rgb(30 211 30 / 79%)",
+              color: "white",
+            }}
+            onClick={onSave}
+          ></i>
+          <i
+            className="pi pi-times pl-4"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "red",
+              color: "white",
+            }}
+            onClick={onCancel}
+          ></i>
+        </div>
       );
     } else {
       return null;
@@ -207,10 +222,13 @@ function RiskStep() {
     return validationErrors.some((error) => error.field === fieldName);
   };
 
-  const getFieldError = (fieldName) => {
-    const error = validationErrors.find((error) => error.field === fieldName);
-    return error ? error.message : null;
+
+  const handleRowSelect = (e) => {
+    const selectedRowData = e.value;
+    setSelectedRow(selectedRowData);
   };
+
+  
 
   return (
     <div className="riskContainer">
@@ -221,7 +239,11 @@ function RiskStep() {
           scrollable
           scrollHeight="200px"
           header={render_header_riskdata}
+          selectionMode="single"
+          onSelectionChange={handleRowSelect}
+          selection={selectedRow}
         >
+          <Column selectionMode="single" style={{ width: "5px" }}></Column>
           <Column
             field="riskType"
             header="Risk Type"
@@ -265,11 +287,11 @@ function RiskStep() {
             body={(rowData, options) => renderEditSaveButton(options.rowIndex)}
             style={{ width: "5%" }}
           />
-          <Column
+          {/* <Column
             field="action"
             body={(rowData, options) => renderCancelButton(options.rowIndex)}
             style={{ width: "5%" }}
-          />
+          /> */}
           <Column
             header="Action"
             body={(rowData, { rowIndex }) =>

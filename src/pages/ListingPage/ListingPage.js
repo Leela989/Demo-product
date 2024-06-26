@@ -31,6 +31,8 @@ export default function ListingPage() {
     );
   }, []);
 
+ 
+
   const handleEdit = (index) => {
     let selectedRowIndexKey = data[selectedIndex].key;
     navigate(
@@ -109,7 +111,6 @@ export default function ListingPage() {
     );
   };
 
-  const handleChange = () => {};
 
   const cloneModal = () => {
     if (clonedRowDetails) {

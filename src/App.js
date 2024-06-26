@@ -30,6 +30,7 @@ import DivisionMaster from "./pages/DivisionMaster/DivisionMaster";
 import DivisionsList from "./pages/DivisionMaster/DivisionsList";
 import CurrencyAndExchangeMaster from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeMaster";
 import CurrencyAndExchangeList from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeList";
+import UserAuthorisation_setup from "./pages/UserManagement/UserAuthorisation_setup";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
@@ -56,6 +57,7 @@ function App() {
             <Sidebar linksData={linkData} />
             <div className="content">
               <Routes>
+                <Route path="/userManagement/userAuthorisationSetup" element={<UserAuthorisation_setup/>} />
                 <Route path="/docs" element={<Documentation />} />
                 <Route path="/tasks" element={<HomePage />} />
                 <Route

@@ -192,6 +192,7 @@ const Header = ({ setToken }) => {
           tooltip="Mail"
           onClick={() => handleMail()}
           tooltipOptions={{ position: "bottom" }}
+          onClick={() => <a href="mailto:myemail@site.com?Subject=Some%20subject"><img src="myImage.jpg"/></a>}
         />
         <Button
           text

@@ -278,14 +278,9 @@ function CheckList({ productData }) {
             field="document_required"
             header="Document Required"
             body={(rowData, options) => (
-              <InputField
-                type="number"
-                name="numberOfPrints"
-                value={rowData.document_required}
+              <CheckBox
+                checked={rowData.document_required || false}
                 disabled={!editingRows[options.rowIndex]}
-                onChange={(name, value) =>
-                  handleInputChange(name, value, options.rowIndex)
-                }
               />
             )}
           />

@@ -188,7 +188,6 @@ span.p-paginator-pages {
   border-radius: 12px;
   margin-left: 10px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12);
-  max-height:500px;
   /* overflow: auto; */
 }
 
@@ -237,7 +236,15 @@ input {
   gap: 50px;
   margin-top: -16px;
   font-size: 14px;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+.product_status{
+  display: flex;
+  margin-left: 8px;
+}
+
+.product_details{
+  display: flex;
 }
 
 .topContainer {
@@ -571,14 +578,6 @@ input:focus {
   width: 100px;
 }
 
-.kebab-menu-item {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-.kebab-menu-item:hover {
-  background-color: #f0f0f0;
-}
 
 .attributes-container {
   height: calc(100vh - 250px);
@@ -626,6 +625,12 @@ input:focus {
 
 
 /* css */
+
+.tab_container{
+  display: flex;
+  margin-top: 10px;
+  max-height: 600px;
+}
 
 
 

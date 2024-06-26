@@ -2,9 +2,5 @@
     {
         "riskType": "MC",
         "insurableProduct": "Vehicle"
-    },
-    {
-        "riskType": "HC",
-        "insurableProduct": "Vehicle"
     }
 ]

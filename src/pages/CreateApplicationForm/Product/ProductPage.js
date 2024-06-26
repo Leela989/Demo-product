@@ -46,7 +46,7 @@ function ProductPage() {
       <div>
         <LoginContentPage data={ListingPageNewData}/>
       </div>
-      <div className="flex pt-8">
+      <div className="tab_container">
       <div className="tab-component-container">
         <TabComponent data={ListingPageNewData}/>
       </div>

@@ -19,7 +19,8 @@ function RiskAttributes() {
   const [editingRowIndex, setEditingRowIndex] = useState(null);
   const [blockTable_data, set_blockTable_data] = useState(null);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
-  const [editing_index_blockAttributes, set_editing_index_blockAttributes] = useState(null);
+  const [editing_index_blockAttributes, set_editing_index_blockAttributes] =
+    useState(null);
 
   const blockAttributeOptions = [
     { label: "View" },
@@ -30,8 +31,6 @@ function RiskAttributes() {
   const onEdit = (rowIndex) => {
     setEditingRowIndex(rowIndex);
   };
-
- 
 
   const blockNameList = [
     { name: "Vehicle details" },
@@ -56,7 +55,8 @@ function RiskAttributes() {
           icon="pi pi-ellipsis-v"
           onClick={(event) => {
             setSelectedRowIndex(rowIndex);
-            menuLeft.current.toggle(event)}}
+            menuLeft.current.toggle(event);
+          }}
           aria-controls="popup_menu_left"
           aria-haspopup
         />
@@ -66,7 +66,7 @@ function RiskAttributes() {
 
   useEffect(() => {
     set_blockTable_data(riskAttributeData.data);
-  }, [])
+  }, []);
 
   const handleRowSelect = (e) => {
     const selectedRowData = e.value;
@@ -93,7 +93,8 @@ function RiskAttributes() {
     { name: "Slider" },
   ];
 
-  const handleAddRow = () => {
+  const handleAddRow = (event) => {
+    event.stopPropagation();
     const newRow = {
       FieldID: "",
       FieldName: "",
@@ -111,16 +112,17 @@ function RiskAttributes() {
     setEditingRowIndex(selectedAttributes.length);
   };
 
-  const handle_blockAttributes_AddRow = () => {
+  const handle_blockAttributes_AddRow = (event) => {
+    event.stopPropagation();
     const newRow = {
       blockName: "",
       parentBlockName: "",
       srlNo: "",
-      levelNo: ""
-    }
+      levelNo: "",
+    };
     set_blockTable_data([...blockTable_data, newRow]);
     set_editing_index_blockAttributes(blockTable_data.length);
-  }
+  };
 
   const renderEditSaveButton_blockAttributes = (rowIndex) => {
     if (editing_index_blockAttributes === rowIndex) {
@@ -159,7 +161,7 @@ function RiskAttributes() {
     } else {
       return null;
     }
-  }
+  };
 
   const renderEditSaveButton = (rowIndex) => {
     if (editingRowIndex === rowIndex) {
@@ -206,36 +208,42 @@ function RiskAttributes() {
 
   const onSave_blockattributes = () => {
     set_editing_index_blockAttributes(null);
-  }
+  };
 
   const onCancel_blockattributes = () => {
     set_editing_index_blockAttributes(null);
-  }
+  };
 
   const onCancel = () => {
     setEditingRowIndex(null);
   };
 
-  const render_fieldAttributes_header = () => {
+  const render_fieldAttributes_header = (header) => {
     return (
-      <div className="flex justify-end">
-        <CustomButton
-          label="+ADD"
-          onClick={handleAddRow}
-          className="small-btn mt-4 -ml-16"
-        />
+      <div className="flex justify-between items-center">
+        <p>{header}</p>
+        <div className="flex">
+          <CustomButton
+            label="+ADD"
+            onClick={(event) => handleAddRow(event)}
+            className="small-btn mt-4 -ml-16"
+          />
+        </div>
       </div>
     );
   };
 
-  const render_blockAttributes_header = () => {
+  const render_blockAttributes_header = (header) => {
     return (
-      <div className="flex justify-end">
-        <CustomButton
-          label="+ADD"
-          onClick={handle_blockAttributes_AddRow}
-          className="small-btn mt-4 -ml-16"
-        />
+      <div className="flex justify-between items-center">
+        <p>{header}</p>
+        <div className="flex">
+          <CustomButton
+            label="+ADD"
+            onClick={(event) => handle_blockAttributes_AddRow(event)}
+            className="small-btn mt-4 -ml-16"
+          />
+        </div>
       </div>
     );
   };
@@ -243,8 +251,10 @@ function RiskAttributes() {
   return (
     <div>
       <div className="card">
-        <Accordion multiple activeIndex={[0, 1]}>
-          <AccordionTab header="Block Attributes">
+        <Accordion multiple activeIndex={[0]}>
+          <AccordionTab
+            header={render_blockAttributes_header("Block Attributes")}
+          >
             <div style={{ display: "flex" }}>
               <DataTable
                 value={key == 2301 ? blockTable_data : []}
@@ -254,7 +264,7 @@ function RiskAttributes() {
                 dataKey="blockName"
                 scrollable
                 scrollHeight="200px"
-                header={render_blockAttributes_header}
+                // header={render_blockAttributes_header}
               >
                 <Column
                   selectionMode="single"
@@ -266,10 +276,12 @@ function RiskAttributes() {
                   header="Block Name"
                   body={(rowData, options) => (
                     <InputField
-                      className="w-3/4 p-1"
+                      className="w-3/4"
                       type="text"
                       value={rowData.blockName}
-                      disabled = {editing_index_blockAttributes !== options.rowIndex}
+                      disabled={
+                        editing_index_blockAttributes !== options.rowIndex
+                      }
                     />
                   )}
                 />
@@ -278,12 +290,14 @@ function RiskAttributes() {
                   header="Parent Block Name"
                   body={(rowData, options) => (
                     <AutoCompleField
-                      className="w-4/4 p-1"
+                      className="w-4/4"
                       value={rowData.parentBlockName}
                       onChange={handleInputChange}
                       options={blockNameList}
                       dropdown
-                      disabled = {editing_index_blockAttributes !== options.rowIndex}
+                      disabled={
+                        editing_index_blockAttributes !== options.rowIndex
+                      }
                     />
                   )}
                 />
@@ -292,10 +306,12 @@ function RiskAttributes() {
                   header="Serial No."
                   body={(rowData, options) => (
                     <InputField
-                      className="w-2/4 p-1"
+                      className="w-2/4"
                       type="text"
                       value={rowData.srlNo}
-                      disabled = {editing_index_blockAttributes !== options.rowIndex}
+                      disabled={
+                        editing_index_blockAttributes !== options.rowIndex
+                      }
                     />
                   )}
                 />
@@ -304,10 +320,12 @@ function RiskAttributes() {
                   header="Level No"
                   body={(rowData, options) => (
                     <InputField
-                      className="w-2/4 p-1"
+                      className="w-2/4"
                       type="text"
                       value={rowData.levelNo}
-                      disabled = {editing_index_blockAttributes !== options.rowIndex}
+                      disabled={
+                        editing_index_blockAttributes !== options.rowIndex
+                      }
                     />
                   )}
                 />
@@ -328,7 +346,9 @@ function RiskAttributes() {
               </DataTable>
             </div>
           </AccordionTab>
-          <AccordionTab header="Field Attributes">
+          <AccordionTab
+            header={render_fieldAttributes_header("Field Attributes")}
+          >
             <div style={{ display: "flex" }}>
               <DataTable
                 key={selectedRow ? selectedRow.blockName : "default"}
@@ -339,7 +359,7 @@ function RiskAttributes() {
                 paginator
                 rows={5}
                 rowsPerPageOptions={[5, 10, 25, 50]}
-                header={render_fieldAttributes_header}
+                // header={render_fieldAttributes_header}
               >
                 <Column
                   field="FieldID"
@@ -366,7 +386,7 @@ function RiskAttributes() {
                 <Column
                   field="dataType"
                   header="Data Type"
-                  style= {{width: '10%'}}
+                  style={{ width: "10%" }}
                   body={(rowData, options) => (
                     <AutoCompleField
                       className="w-4/4"
@@ -381,7 +401,7 @@ function RiskAttributes() {
                 <Column
                   field="FieldType"
                   header="Field Type"
-                  style= {{width: '10%'}}
+                  style={{ width: "10%" }}
                   body={(rowData, options) => (
                     <AutoCompleField
                       className="w-4/4"

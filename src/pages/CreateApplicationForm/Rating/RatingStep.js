@@ -751,18 +751,15 @@ function RatingStep() {
           <DataTable
             value={cover_data}
             scrollable
-            scrollHeight="200px"
-            paginator
-            rows={5}
-            rowsPerPageOptions={[5, 10, 25, 50]}
           >
             <Column
               field="type"
               header="Type"
-              style={{ width: "35%" }}
+              style={{ width: "30%" }}
               body={(rowData) => (
                 <InputField
                   type="text"
+                  // className="w-2/4"
                   value={rowData.type}
                   onChange={(value) => handleInputChange("id", value)}
                   disabled
