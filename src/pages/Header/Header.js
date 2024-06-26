@@ -1,13 +1,14 @@
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import { useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
 import { useTranslation } from "react-i18next";
 import countryData from "../../components/LanguageSelection/LanguageList.json";
 import "./Header.css";
 import { Tooltip } from "primereact/tooltip";
 import notificationDummyData from "./NotificationList.json";
+import Notes from "./Notes.jsx";
 
 const Header = ({ setToken }) => {
   const menuLeft = useRef(null);
@@ -17,11 +18,16 @@ const Header = ({ setToken }) => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
   const [selectedLanguage, setSelectedLanguage] = useState(null);
+  const [isNotesDialogVisible, setIsNotesDialogVisible] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
+  const [showNotes, setShowNotes] = useState(false);
+
+  const { showNote } = useParams();
 
   let userNameIs = localStorage.getItem("username");
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem("token");
     setToken(false);
     navigate("/login");
   };
@@ -30,7 +36,7 @@ const Header = ({ setToken }) => {
     {
       label: userNameIs,
       items: [
-        { label: "Profile", icon: "pi pi-user"},
+        { label: "Profile", icon: "pi pi-user" },
         { label: "Settings", icon: "pi pi-cog" },
         { label: "Logout", icon: "pi pi-sign-out", command: handleLogout },
       ],
@@ -39,13 +45,20 @@ const Header = ({ setToken }) => {
 
   const helpItems = [
     {
-      label: "Help",
       items: [
-        { label: "Self-Service", icon: "pi pi-server" },
-        { label: "Customer 360 degree view", icon: "pi pi-ethereum" },
+        { label: "Help", icon: "pi pi-question-circle" },
+        {
+          label: "Self-Service",
+          icon: "pi pi-server",
+          command: () => handleSelfService(),
+        },
       ],
     },
   ];
+
+  const handleSelfService = () => {
+    window.open("", "_blank");
+  };
 
   const dropdownOptions = countryData.countries.map((country) => ({
     label: (
@@ -79,18 +92,34 @@ const Header = ({ setToken }) => {
   const notification_items = notificationDummyData.map((notification) => ({
     label: (
       <div className="Notification_card">
-    <div className="p-3">{notification.description}</div>
-    <div className="notification_date flex pl-3">
-    <i className="pi pi-calendar" style={{ fontSize: '1rem' }}></i>
-    <div className="pl-1">{notification.date}</div>
-    </div>
-    </div>
+        <div className="p-3">{notification.description}</div>
+        <div className="notification_date flex pl-3">
+          <i className="pi pi-calendar" style={{ fontSize: "1rem" }}></i>
+          <div className="pl-1">{notification.date}</div>
+        </div>
+      </div>
     ),
   }));
 
   const handelProfile = (event) => {
-    menuLeft.current.toggle(event)
-  }
+    menuLeft.current.toggle(event);
+  };
+
+  const handleMail = () => {
+    window.open("mailto:someone@example.com", "_blank");
+  };
+
+  const handleNotes = () => {
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.append("referenceId", "12345"); // Example reference ID
+    currentUrl.searchParams.append("description", "Sample description");
+    currentUrl.searchParams.append("reminderDate", "2024-06-30");
+
+    setCurrentUrl(currentUrl.href); // Update state with the new URL
+    setIsNotesDialogVisible(true); // Show the Notes dialog
+
+    setShowNotes(!showNotes);
+  };
 
   return (
     <div className="header">
@@ -134,22 +163,25 @@ const Header = ({ setToken }) => {
           className="header-buttons"
           tooltip="Notes"
           tooltipOptions={{ position: "bottom" }}
-          onClick={(event) => menuLeft.current.toggle(event)}
+          // onClick={(event) => menuLeft.current.toggle(event)}
+          onClick={() => {
+            handleNotes();
+          }}
         />
         <div className="notification_container">
           <div>
-        <Button
-          text
-          icon="pi pi-bell"
-          rounded
-          aria-label="Notification"
-          className="header-buttons"
-          tooltip="Notifications"
-          tooltipOptions={{ position: "bottom" }}
-          onClick={(event) => menuNotification.current.toggle(event)}
-        />
-        </div>
-        <div className='notification_count'>10</div>
+            <Button
+              text
+              icon="pi pi-bell"
+              rounded
+              aria-label="Notification"
+              className="header-buttons"
+              tooltip="Notifications"
+              tooltipOptions={{ position: "bottom" }}
+              onClick={(event) => menuNotification.current.toggle(event)}
+            />
+          </div>
+          <div className="notification_count">10</div>
         </div>
         <Button
           text
@@ -158,6 +190,7 @@ const Header = ({ setToken }) => {
           aria-label="Mail"
           className="header-buttons"
           tooltip="Mail"
+          onClick={() => handleMail()}
           tooltipOptions={{ position: "bottom" }}
         />
         <Button
@@ -174,9 +207,9 @@ const Header = ({ setToken }) => {
           text
           icon="pi pi-comment"
           rounded
-          aria-label="Comment"
+          aria-label="Chat"
           className="header-buttons"
-          tooltip="Comments"
+          tooltip="Chat"
           tooltipOptions={{ position: "bottom" }}
         />
         <Button
@@ -198,6 +231,9 @@ const Header = ({ setToken }) => {
           tooltipOptions={{ position: "bottom" }}
           onClick={(event) => menuHelp.current.toggle(event)}
         />
+      </div>
+      <div>
+        {showNotes && <Notes visible={showNotes} setVisible={setShowNotes} />}
       </div>
     </div>
   );

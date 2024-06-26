@@ -11,7 +11,7 @@ const DateField = ({
   className,
   labelType,
   onChange,
-  showIcon=true,
+  showIcon = true,
 }) => {
   let styleClass =
     labelType === "left" ? "left-label w-full label" : "top-label w-full label";

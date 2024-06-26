@@ -20,6 +20,12 @@ function CurrencyAndExchangeMaster() {
     { label: "Delete" },
   ];
 
+  const exchange_rate_options = [
+    { label: "View" },
+    { label: "Edit", command: () => editExchangeRate(selectedRowIndex) },
+    { label: "Delete" },
+  ];
+
   const { id } = useParams();
 
   const [showApprove, setShowApprove] = useState(true);
@@ -42,6 +48,7 @@ function CurrencyAndExchangeMaster() {
 
   const onEdit = (rowIndex) => {
     navigate(`/commonMaster/departmentMaster/edit/${rowIndex}`);
+    formData[rowIndex].showSave = true;
     setEditingRowIndex(rowIndex);
   };
 
@@ -62,7 +69,6 @@ function CurrencyAndExchangeMaster() {
   };
 
   useEffect(() => {
-    console.log("id ", id);
     if (id == 0) {
       const departmentData = Departments[id];
 
@@ -169,6 +175,12 @@ function CurrencyAndExchangeMaster() {
     }
   }, [id]);
 
+  const editExchangeRate = (rowIndex) => {
+    formData[rowIndex].showSave = true;
+    formData[rowIndex].showRow = true;
+    setKey(key + 1);
+  };
+
   const languageDescription1 = {
     default: "en",
     data: [
@@ -186,7 +198,7 @@ function CurrencyAndExchangeMaster() {
   });
 
   const handleInputChange = (name, value) => {
-    // setFormData({ ...formData, [name]: value });
+    // setFormData({ ...currencyData, [name]: value });
   };
 
   const handleLangUpdate = (updatedLang) => {};
@@ -218,6 +230,7 @@ function CurrencyAndExchangeMaster() {
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           options={rate_type_options}
           dropdown
+          disabled={id && !rowData.showSave}
         />
       </div>
     );
@@ -233,6 +246,7 @@ function CurrencyAndExchangeMaster() {
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           options={currency_options}
           dropdown
+          disabled={id && !rowData.showSave}
         />
       </div>
     );
@@ -248,7 +262,7 @@ function CurrencyAndExchangeMaster() {
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           options={currency_options}
           dropdown
-          disabled={id == 0}
+          disabled={id}
         />
       </div>
     );
@@ -262,6 +276,7 @@ function CurrencyAndExchangeMaster() {
           name="effective_from"
           value={rowData.effective_from}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
+          disabled={id && !rowData.showSave}
         />
       </div>
     );
@@ -275,6 +290,7 @@ function CurrencyAndExchangeMaster() {
           name="effective_to"
           value={rowData.effective_to}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
+          disabled={id && !rowData.showSave}
         />
       </div>
     );
@@ -288,6 +304,7 @@ function CurrencyAndExchangeMaster() {
           name="rate"
           value={rowData.rate}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
+          disabled={id && !rowData.showSave}
         />
       </div>
     );
@@ -311,7 +328,8 @@ function CurrencyAndExchangeMaster() {
   };
 
   const validateForm = () => {
-    const { code, iso_code } = formData;
+    console.log("currency data -> ", currencyData);
+    const { code, iso_code } = currencyData;
     return code && iso_code;
   };
 
@@ -334,27 +352,42 @@ function CurrencyAndExchangeMaster() {
   };
 
   const renderEditSaveButton = (rowIndex) => {
-    if (formData[rowIndex].show) {
+    if (formData[rowIndex].showSave) {
       return (
-        <i
-          className="pi pi-check"
-          style={{
-            fontSize: "1rem",
-            border: "none",
-            borderRadius: "50%",
-            padding: "5px",
-            backgroundColor: "rgb(30 211 30 / 79%)",
-            color: "white",
-            cursor: "pointer",
-          }}
-          onClick={() => onSave(rowIndex)}
-        ></i>
+        <div>
+          <i
+            className="pi pi-check"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "rgb(30 211 30 / 79%)",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSave(rowIndex)}
+          ></i>
+          <i
+            className="pi pi-times ml-5"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "red",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSave(rowIndex)}
+          ></i>
+        </div>
       );
     }
   };
 
   const renderCancelButton = (rowIndex) => {
-    if (formData[rowIndex].show) {
+    if (formData[rowIndex].showSave) {
       return (
         <i
           className="pi pi-times"
@@ -367,16 +400,16 @@ function CurrencyAndExchangeMaster() {
             color: "white",
             cursor: "pointer",
           }}
-          onClick={() => onCancel(rowIndex)}
+          onClick={() => onSave(rowIndex)}
         ></i>
       );
     }
   };
 
   const onSave = (index) => {
-    // formData[index].show = false;
-    // setEditingRowIndex(null);
-    // setKey(key + 1);
+    formData[index].showSave = false;
+    setEditingRowIndex(null);
+    setKey(key + 1);
   };
 
   const onCancel = (index) => {
@@ -392,7 +425,12 @@ function CurrencyAndExchangeMaster() {
   const actionBodyTemplate = (rowData, index) => {
     return (
       <div className="kebab-menu-container">
-        <Menu model={options} popup ref={menuLeft} id="popup_menu_left" />
+        <Menu
+          model={exchange_rate_options}
+          popup
+          ref={menuLeft}
+          id="popup_menu_left"
+        />
         <Button
           text
           rounded
@@ -429,6 +467,7 @@ function CurrencyAndExchangeMaster() {
           </div>
           <div className="flex">
             <InputField
+              field="code"
               className="w-1/4"
               name="code"
               label="Code"
@@ -437,6 +476,7 @@ function CurrencyAndExchangeMaster() {
               mandatory={true}
             />
             <InputField
+              field="iso_code"
               className="w-1/4 pl-2"
               name="iso_code"
               label="ISO Code"
@@ -523,20 +563,22 @@ function CurrencyAndExchangeMaster() {
               }
               style={{ width: "15%" }}
             />
-            <Column
+            {/* <Column
               field="from_currency"
               header="From Currency"
               headerClassName="action"
               bodyClassName="action"
               body={fromCurrencyTemplate}
               style={{ width: "15%" }}
-            />
+            /> */}
             <Column
               field="to_currency"
               header="To Currency"
               headerClassName="action"
               bodyClassName="action"
-              body={toCurrencyTemplate}
+              body={(rowData, { rowIndex }) =>
+                toCurrencyTemplate(rowData, rowIndex)
+              }
               style={{ width: "15%" }}
             />
             <Column
@@ -575,11 +617,11 @@ function CurrencyAndExchangeMaster() {
               }
               style={{ width: "2%" }}
             />
-            <Column
+            {/* <Column
               field="action"
               body={(rowData, options) => renderCancelButton(options.rowIndex)}
               style={{ width: "2%" }}
-            />
+            /> */}
 
             <Column
               header="Action"

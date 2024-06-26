@@ -169,7 +169,7 @@ export default function Department() {
         <InputField
           className="w-1/4 p-1"
           name="departmentCode"
-          label="Division Code"
+          label="Branch Code"
           value={formData.code}
           onChange={handleInputChange}
           mandatory={true}
@@ -177,7 +177,7 @@ export default function Department() {
         <InputField
           className="w-1/4 p-1"
           name="departmentName"
-          label="Division Name"
+          label="Branch Name"
           value={formData.name}
           onChange={handleInputChange}
           mandatory={true}
@@ -232,7 +232,7 @@ export default function Department() {
         <AutoCompleteField
           className="w-1/4 pl-1"
           name="hod"
-          label="Head of the Division"
+          label="Head of the Branch"
           value={formData.hod}
           onChange={handleInputChange}
           options={list}

@@ -1,0 +1,21 @@
+.input-area {
+  width: 100%;
+  height: 200px;
+}
+
+.child-card {
+  padding: 8px 8px 0px 8px;
+  border-radius: 8px;
+  height: 480px;
+  border-top: 3px solid rgba(0, 0, 0, 0.05);
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}
+
+.list-container {
+  overflow-y: scroll;
+}
+
+.sub-content-div {
+  border: 1px solid rgba(0, 0, 0, 0, 5);
+}

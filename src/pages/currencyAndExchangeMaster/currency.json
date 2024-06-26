@@ -3,7 +3,11 @@
     "code": "001",
     "currency_name": "SAUDI RIYAL",
     "iso_code": "SAR",
-    "description": ""
+    "description": "SAUDI RIYAL",
+    "short_description": "SAUDI RIYAL",
+    "unit": "",
+    "format_mask": "99,99,999.99",
+    "number_of_decimals": "2"
   },
   {
     "code": "002",

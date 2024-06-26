@@ -57,15 +57,14 @@ export default function Department() {
     setIsApproveButtonDisabled(true);
     setIsApproved(true);
     setKey(key + 1);
-    showSuccess()
-
+    showSuccess();
   };
 
   const setAmend = () => {
     setIsApproveButtonDisabled(false);
     setIsAmendButtonDisabled(true);
     setIsApproved(false);
-    showSuccess()
+    showSuccess();
     setKey(key + 1);
   };
 
@@ -163,6 +162,7 @@ export default function Department() {
       <div className="flex mt-2">
         <div className="w-1/4 pt-5">
           <CheckBox
+            name="isFreeze"
             labelName="Freeze"
             boxChecked={isFreeze || false}
             onChange={() => setFreeze()}
