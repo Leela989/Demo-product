@@ -81,6 +81,19 @@ export default function Notes({ visible, setVisible }) {
     setIsView(false);
   };
 
+  const formatDateTime = (date) => {
+    const options = {
+      hour: "2-digit",
+      minute: "2-digit",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    };
+    return new Intl.DateTimeFormat("en-GB", options).format(date);
+  };
+
+  const formattedDateTime = formatDateTime(new Date());
+
   return (
     <div>
       <Dialog
@@ -220,8 +233,19 @@ export default function Notes({ visible, setVisible }) {
                           />
                         </div>
                       </div>
+                      <div className="flex mt-2">
+                        <div className="w-14">Created Time</div>
+                        <div className="w-64 ml-20">
+                          <InputText
+                            name="reference_id"
+                            className="w-3/5"
+                            value={formattedDateTime}
+                            disabled
+                          />
+                        </div>
+                      </div>
 
-                      <div className="flex justify-end mt-5">
+                      <div className="flex justify-end">
                         <Button
                           rounded={false}
                           label="View"

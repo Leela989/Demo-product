@@ -7,6 +7,7 @@ import { Dropdown } from "primereact/dropdown";
 import { Toast } from "primereact/toast";
 import { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
+import BusinessRules from "./BusinessRules";
 
 const Approval = () => {
   const toast = useRef(null);
@@ -16,6 +17,8 @@ const Approval = () => {
     convert: false,
     confirm: false,
   });
+
+  const [showBusinessRules, setShowBusinessRules] = useState(false);
 
   const handelCheckboxUpdate = (name, value) => {
     setApproveQuotes({ ...approveQuotes, automate: value });
@@ -62,6 +65,10 @@ const Approval = () => {
     setApproveQuotes({ ...setApproveQuotes, approve: true });
   };
 
+  const handleBusinessRules = () => {
+    setShowBusinessRules(true);
+  };
+
   return (
     <div className="approval-section">
       <div className="flex align-center pt-5 flex-wrap">
@@ -99,8 +106,12 @@ const Approval = () => {
       <div className="flex items-start justify-between">
         <div className="pr-3 flex-1">
           <div className="approve-btn flex items-center justify-center mt-5">
-            <Button text label="Business Rules" />
-            <Button disabled={approveQuotes.approve} label="Approve" onClick={handleQuotesApprove} />
+            <Button text label="Business Rules" onClick={handleBusinessRules} />
+            <Button
+              disabled={approveQuotes.approve}
+              label="Approve"
+              onClick={handleQuotesApprove}
+            />
             <Button disabled={approveQuotes.approve} outlined label="Reject" />
             {approveQuotes.approve && (
               <div className="ml-3">
@@ -162,8 +173,8 @@ const Approval = () => {
                   <>
                     <div className="flex items-center justify-center pt-5">
                       <p className="blink-soft">
-                        Policy <span>P/10/1001/2024/00056 </span>created with status
-                        Approved Successfully !!!
+                        Policy <span>P/10/1001/2024/00056 </span>created with
+                        status Approved Successfully !!!
                       </p>
                       <Link
                         style={{
@@ -210,6 +221,14 @@ const Approval = () => {
             <p>$2000</p>
           </div>
         </Card>
+      </div>
+      <div>
+        {showBusinessRules && (
+          <BusinessRules
+            show={showBusinessRules}
+            setShow={setShowBusinessRules}
+          />
+        )}
       </div>
     </div>
   );

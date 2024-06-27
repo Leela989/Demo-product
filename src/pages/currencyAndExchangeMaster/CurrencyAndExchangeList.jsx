@@ -22,7 +22,9 @@ export default function DepartmentList() {
   ];
 
   const onEdit = (rowIndex) => {
-    navigate(`/commonMaster/currencyExchangeRateMaster/edit/${rowIndex}/true`);
+    navigate(
+      `/commonMaster/currencyExchangeRateMaster/edit/${rowIndex}/${true}`
+    );
     setEditingRowIndex(rowIndex);
   };
 
@@ -38,7 +40,7 @@ export default function DepartmentList() {
   };
 
   const changeRouteToCreateDepartment = () => {
-    navigate("/commonMaster/currencyExchangeRateMaster/create/true");
+    navigate(`/commonMaster/currencyExchangeRateMaster/create/${true}`);
   };
 
   const [selectedIndex, setSelectedIndex] = useState(null);

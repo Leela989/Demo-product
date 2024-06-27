@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./pages/Header/Header";
 // import ProductSetup from "./pages/ProductSetup/ProductSetup";
 import Sidebar from "./pages/Sidebar/Sidebar";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useParams } from "react-router-dom";
 import Tasks from "./pages/Tasks/Tasks";
 import linkData from "./pages/Sidebar/LinksData";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
@@ -34,6 +34,9 @@ import UserAuthorisation_setup from "./pages/UserManagement/UserAuthorisation_se
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem('token'));
+  const { showNote } = useParams();
+
+  console.log(showNote, "<<<<<")
 
   // const location = useLocation();
   // const currentPath = location.pathname;
@@ -123,11 +126,11 @@ function App() {
                   element={<CurrencyAndExchangeList />}
                 />
                 <Route
-                  path="/commonMaster/currencyExchangeRateMaster/create"
+                  path="/commonMaster/currencyExchangeRateMaster/create/:showNote"
                   element={<CurrencyAndExchangeMaster />}
                 />
                 <Route
-                  path="/commonMaster/currencyExchangeRateMaster/edit/:id"
+                  path="/commonMaster/currencyExchangeRateMaster/edit/:id/:showNote"
                   element={<CurrencyAndExchangeMaster />}
                 />
                 <Route path="/productSetup" element={<ListingPage />} />

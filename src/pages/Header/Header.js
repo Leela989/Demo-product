@@ -1,6 +1,6 @@
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
 import { useTranslation } from "react-i18next";
@@ -22,8 +22,6 @@ const Header = ({ setToken }) => {
   const [currentUrl, setCurrentUrl] = useState("");
   const [showNotes, setShowNotes] = useState(false);
 
-  const { showNote } = useParams();
-
   let userNameIs = localStorage.getItem("username");
 
   const handleLogout = () => {
@@ -31,6 +29,10 @@ const Header = ({ setToken }) => {
     setToken(false);
     navigate("/");
   };
+
+  // useEffect(() => {
+  //   handleNotes();
+  // }, [showNote]);
 
   const items = [
     {
@@ -110,15 +112,10 @@ const Header = ({ setToken }) => {
   };
 
   const handleNotes = () => {
-    const currentUrl = new URL(window.location.href);
-    currentUrl.searchParams.append("referenceId", "12345"); // Example reference ID
-    currentUrl.searchParams.append("description", "Sample description");
-    currentUrl.searchParams.append("reminderDate", "2024-06-30");
-
-    setCurrentUrl(currentUrl.href); // Update state with the new URL
-    setIsNotesDialogVisible(true); // Show the Notes dialog
-
+    // console.log("params", showNote);
+    // if (showNote) {
     setShowNotes(!showNotes);
+    // }
   };
 
   return (
