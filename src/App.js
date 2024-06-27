@@ -83,11 +83,11 @@ function App() {
                 <Route path="/plan" element={<PlanTableData />} />
                 <Route path="/plan/:type/:id?" element={<Plan />} />
                 <Route
-                  path="/underWriting/proposal/:lob/:type/:id?"
+                  path="/underWriting/:risk/:lob/:type/:id?"
                   element={<QuotesListing />}
                 />
                 <Route
-                  path="/underWriting/proposal/:lob"
+                  path="/underWriting/:risk/:lob"
                   element={<Quotes />}
                 />
                 <Route
@@ -137,7 +137,7 @@ function App() {
         </div>
       ) : (
         <Routes>
-        <Route path="/login" element={<LoginForm setToken={setToken} />} />
+        <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
       </Routes>
       )}
     </>

@@ -74,7 +74,7 @@ export const headerFormOptionData = {
     { code: "02", name: "Agent" },
     { code: "03", name: "Broker" },
   ],
-  unit: ["Hour", "Day", "Week", "Month", "Year"],
+  unit: [{code:'1', name:"Hour"}, {code:'2', name:"Day"}, {code:'3', name:"Week"}, {code:'4', name:"Month"}, {code:'5', name:"Year"}],
   premiumType: ["Pro-Rate", "Short Period", "Normal/Annual", "Fixed Rate"],
   paymentMode: ["Bank Guarantee", "Credit Customer", "Others"],
   installment: ["Annual", "Half-Yearly", "Quarterly", "Monthly"],
@@ -85,9 +85,9 @@ export const headerFormOptionData = {
 
 export const searchDisplayData = {
   data: [
-    { id: 1, name: "Shankar", email: "shankar@gmail.com", phoneno: 9876543210 },
-    { id: 2, name: "Hari", email: "sari@gmail.com", phoneno: 1234567890 },
-    { id: 3, name: "Siva", email: "hiva@gmail.com", phoneno: 9090909090 },
+    { id: 'DC0001001', name: "Shankar", email: "shankar@gmail.com", phoneno: 9876543210 },
+    { id: 'BL1011470', name: "Hari", email: "sari@gmail.com", phoneno: 1234567890 },
+    { id: 'sa1011580', name: "Siva", email: "hiva@gmail.com", phoneno: 9090909090 },
   ],
 };
 

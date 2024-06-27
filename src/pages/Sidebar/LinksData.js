@@ -87,9 +87,9 @@ const linksData = [
         {
           label: "Proposal",
           subLinks: [
-            { label: "Motor", link: "/underwriting/proposal/motor"},
-            { label: "Fire", link: "/underwriting/proposal/fire"},
-            { label: "Marine", subLinks: [
+            { code: '10', label: "Motor", link: "/underwriting/proposal/motor"},
+            { code: '11', label: "Fire", link: "/underwriting/proposal/fire"},
+            { code: '12', label: "Marine", subLinks: [
               {label: "Direct", link: "/underwriting/proposal/marine/direct"},
               {label: "Open Cover", link: "/underwriting/proposal/marine/overCover"},
               {label: "Certificate", link: "/underwriting/proposal/marine/direct"},
@@ -109,9 +109,9 @@ const linksData = [
         {
           label: "Quotation",
           subLinks: [
-            { label: "Motor", link: "/underwriting/quotation/motor" },
-            { label: "Fire", link: "/underwriting/quotation/fire" },
-            { label: "Marine", subLinks: [
+            { code: '10', label: "Motor", link: "/underwriting/quotation/motor" },
+            { code: '11', label: "Fire", link: "/underwriting/quotation/fire" },
+            { code: '12', label: "Marine", subLinks: [
               {label: "Direct", link: "/underwriting/quotation/marine/direct"},
               {label: "Open Cover", link: "/underwriting/quotation/marine/overCover"},
               {label: "Certificate", link: "/underwriting/quotation/marine/direct"},

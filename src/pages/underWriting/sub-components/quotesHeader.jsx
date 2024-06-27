@@ -23,7 +23,7 @@ import useRenderDropdown from "../../../components/DropDown/dropDown";
 const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
   const overlayOpen = useRef(null);
   const renderFormData = getQuotesHeaderFromRender.formData;
-  const [formData, setFormData] = useState(quotesFormData);
+  const [formData, setFormData] = useState();
   const [customSearch, setCustomSearch] = useState({
     name: "",
     email: "",
@@ -31,6 +31,37 @@ const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
   });
   const [searchHeader, setSearchHeader] = useState(searchDisplayHeader);
   const [opTionsDrop, setOptionsDrop] = useState(headerFormOptionData);
+
+  // useEffect(() => {
+  //   setFormData(quotesFormData);
+  // }, [quotesFormData])
+
+  const convertStringToDate = (dateString) => {
+    const [datePart, timePart] = dateString.split(" ");
+    const [day, month, year] = datePart.split("/").map(Number);
+    const [hours, minutes, seconds] = timePart.split(":").map(Number);
+    return new Date(year, month - 1, day, hours, minutes, seconds);
+  };
+
+  useEffect(() => {
+    let tempformData = quotesFormData;
+    let dateFields = renderFormData.filter(
+      (data) => data.fieldType === "dateType"
+    );
+    // console.log(dateFields, 'dateFields');dataValues !== '' && convertStringToDate(formData[dataValues.name])
+    dateFields.map((dataValues) => {
+      if (
+        typeof quotesFormData[dataValues.name] === "string" &&
+        quotesFormData[dataValues.name] !== ""
+      ) {
+        tempformData = {
+          ...tempformData,
+          [dataValues.name]: convertStringToDate(quotesFormData[dataValues.name]),
+        };
+      }
+    });
+    setFormData(tempformData);
+  }, []);
 
   const autoCompleteFieldRender = (field) => {
     return (
@@ -44,7 +75,7 @@ const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
     );
   };
   const handelFormValues = (event) => {
-    if(typeof event.value === 'object') {
+    if (typeof event.value === "object") {
       setFormData({
         ...formData,
         [event.target.name]: `${event.value.code}-${event.value.name}`,
@@ -55,7 +86,7 @@ const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
         [event.target.name]: event.value,
       });
     }
-    if(event.target.name === 'sourceType') {
+    if (event.target.name === "sourceType") {
       onUpdateParty({
         ...formData,
         [event.target.name]: event.target.value,
@@ -76,183 +107,190 @@ const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
   }, [customSearch]);
 
   const getDateField = (name, value) => {
+    console.log(name, value, "????");
     setFormData({ ...formData, [name]: value });
     onUpdateParty({ ...formData, [name]: value });
   };
   const handleSeachInputChange = (e) =>
     setCustomSearch({ ...customSearch, [e.target.name]: e.target.value });
 
-  const renderDropdown = useRenderDropdown(formData, opTionsDrop, handelFormValues);
+  const renderDropdown = useRenderDropdown(
+    formData,
+    opTionsDrop,
+    handelFormValues
+  );
 
   return (
-    <>
-      {renderFormData.map((field) => {
-        if (field.fieldType === "inputText") {
-          return (
-            <div className="w-1/3 p-2">
-              <label>
-                {field.label}{" "}
-                {field.required && (
-                  <span className="text-red-600 text-xl">*</span>
-                )}
-              </label>
-              <InputText
-                onChange={handelFormValues}
-                value={formData[field.name]}
-                name={field.name}
-                required={field.required}
-              />
-            </div>
-          );
-        } else if (field.fieldType === "inputNumber") {
-          return (
-            <div className="w-1/3 p-2">
-              <label>
-                {field.label}{" "}
-                {field.required && (
-                  <span className="text-red-600 text-xl">*</span>
-                )}
-              </label>
-              <InputNumber
-                onValueChange={handelFormValues}
-                value={formData[field.name]}
-                name={field.name}
-                useGrouping={false}
-                required={field.required}
-              />
-            </div>
-          );
-        } else if (field.fieldType === "dateType") {
-          return (
-            <div className="w-1/3 p-2">
-              <label>
-                {field.label}{" "}
-                {field.required && (
-                  <span className="text-red-600 text-xl">*</span>
-                )}
-              </label>
-              <DateField
-                name={field.name}
-                onChange={getDateField}
-                value={formData[field.name]}
-                required={field.required}
-              />
-            </div>
-          );
-        } else if (field.fieldType === "dropDown") {
-          return (
-            <div className="w-1/3 p-2">
-              <label>
-                {field.label}{" "}
-                {field.required && (
-                  <span className="text-red-600 text-xl">*</span>
-                )}
-              </label>
-              {renderDropdown(field)}
-            </div>
-          );
-        } else if (field.fieldType === "autoComplete") {
-          return (
-            <div className="w-1/3 p-2">
-              <label>
-                {field.label}{" "}
-                {field.required && (
-                  <span className="text-red-600 text-xl">*</span>
-                )}
-              </label>
-              {autoCompleteFieldRender(field)}
-            </div>
-          );
-        } else if (field.fieldType === "checkBox") {
-          return (
-            <div className="w-1/3 p-2 flex items-center">
-              <label htmlFor="checkbox" className="pr-2">
-                {field.label}
-              </label>
-              <Checkbox
-                onChange={handelFormValues}
-                value={formData[field.name]}
-                name={field.name}
-                id="checkbox"
-                checked={true}
-                required={field.required}
-              />
-            </div>
-          );
-        } else if (field.fieldType === "overlay") {
-          return (
-            <div className="w-1/3 p-2">
-              <label htmlFor="checkbox" className="pr-2">
-                {field.label}{" "}
-                {field.required && (
-                  <span className="text-red-600 text-xl">*</span>
-                )}
-              </label>
-              <div className="flex items-center add-autocomplete">
+    formData && (
+      <>
+        {renderFormData.map((field) => {
+          if (field.fieldType === "inputText") {
+            return (
+              <div className="w-1/3 p-2">
+                <label>
+                  {field.label}{" "}
+                  {field.required && (
+                    <span className="text-red-600 text-xl">*</span>
+                  )}
+                </label>
                 <InputText
                   onChange={handelFormValues}
                   value={formData[field.name]}
                   name={field.name}
                   required={field.required}
                 />
-                <span
-                  onClick={(e) => overlayOpen.current.toggle(e)}
-                  className="icon cursor-pointer"
-                >
-                  <i className="pi pi-search"></i>
-                </span>
               </div>
-              <OverlayPanel className="quotes-add-overlay" ref={overlayOpen}>
-                <div className="flex items-end justify-between">
-                  <div className="w-1/3 p-1">
-                    <label>Name</label>
-                    <InputText
-                      onChange={handleSeachInputChange}
-                      name="name"
-                      value={customSearch.name}
-                    />
-                  </div>
-                  <div className="w-1/3 p-1">
-                    <label>Email</label>
-                    <InputText
-                      onChange={handleSeachInputChange}
-                      name="email"
-                      value={customSearch.email}
-                    />
-                  </div>
-                  <div className="w-1/3 p-1">
-                    <label>Phone No.</label>
-                    <InputNumber
-                      onChange={handleSeachInputChange}
-                      name="phoneno"
-                      value={customSearch.email}
-                      useGrouping={false}
-                    />
-                  </div>
-                  <div className="p-1 flex justify-end small-btn">
-                    <Button label="Search" />
-                  </div>
-                </div>
-                <DataTable value={searchDisplayData.data}>
-                  {searchHeader.map((data) => {
-                    return <Column field={data.field} header={data.header} />;
-                  })}
-                </DataTable>
-              </OverlayPanel>
-            </div>
-          );
-        } else if (field.fieldType === "address") {
-          return (
-            <>
+            );
+          } else if (field.fieldType === "inputNumber") {
+            return (
               <div className="w-1/3 p-2">
-                <label>{field.label}</label>
-                <InputTextarea />
+                <label>
+                  {field.label}{" "}
+                  {field.required && (
+                    <span className="text-red-600 text-xl">*</span>
+                  )}
+                </label>
+                <InputNumber
+                  onValueChange={handelFormValues}
+                  value={formData[field.name]}
+                  name={field.name}
+                  useGrouping={false}
+                  required={field.required}
+                />
               </div>
-            </>
-          );
-        }
-      })}
-    </>
+            );
+          } else if (field.fieldType === "dateType") {
+            return (
+              <div className="w-1/3 p-2">
+                <label>
+                  {field.label}{" "}
+                  {field.required && (
+                    <span className="text-red-600 text-xl">*</span>
+                  )}
+                </label>
+                <DateField
+                  name={field.name}
+                  onChange={getDateField}
+                  value={formData[field.name]}
+                  required={field.required}
+                />
+              </div>
+            );
+          } else if (field.fieldType === "dropDown") {
+            return (
+              <div className="w-1/3 p-2">
+                <label>
+                  {field.label}{" "}
+                  {field.required && (
+                    <span className="text-red-600 text-xl">*</span>
+                  )}
+                </label>
+                {renderDropdown(field)}
+              </div>
+            );
+          } else if (field.fieldType === "autoComplete") {
+            return (
+              <div className="w-1/3 p-2">
+                <label>
+                  {field.label}{" "}
+                  {field.required && (
+                    <span className="text-red-600 text-xl">*</span>
+                  )}
+                </label>
+                {autoCompleteFieldRender(field)}
+              </div>
+            );
+          } else if (field.fieldType === "checkBox") {
+            return (
+              <div className="w-1/3 p-2 flex items-center">
+                <label htmlFor="checkbox" className="pr-2">
+                  {field.label}
+                </label>
+                <Checkbox
+                  onChange={handelFormValues}
+                  value={formData[field.name]}
+                  name={field.name}
+                  id="checkbox"
+                  checked={true}
+                  required={field.required}
+                />
+              </div>
+            );
+          } else if (field.fieldType === "overlay") {
+            return (
+              <div className="w-1/3 p-2">
+                <label htmlFor="checkbox" className="pr-2">
+                  {field.label}{" "}
+                  {field.required && (
+                    <span className="text-red-600 text-xl">*</span>
+                  )}
+                </label>
+                <div className="flex items-center add-autocomplete">
+                  <InputText
+                    onChange={handelFormValues}
+                    value={formData[field.name]}
+                    name={field.name}
+                    required={field.required}
+                  />
+                  <span
+                    onClick={(e) => overlayOpen.current.toggle(e)}
+                    className="icon cursor-pointer"
+                  >
+                    <i className="pi pi-search"></i>
+                  </span>
+                </div>
+                <OverlayPanel className="quotes-add-overlay" ref={overlayOpen}>
+                  <div className="flex items-end justify-between">
+                    <div className="w-1/3 p-1">
+                      <label>Name</label>
+                      <InputText
+                        onChange={handleSeachInputChange}
+                        name="name"
+                        value={customSearch.name}
+                      />
+                    </div>
+                    <div className="w-1/3 p-1">
+                      <label>Email</label>
+                      <InputText
+                        onChange={handleSeachInputChange}
+                        name="email"
+                        value={customSearch.email}
+                      />
+                    </div>
+                    <div className="w-1/3 p-1">
+                      <label>Phone No.</label>
+                      <InputNumber
+                        onChange={handleSeachInputChange}
+                        name="phoneno"
+                        value={customSearch.email}
+                        useGrouping={false}
+                      />
+                    </div>
+                    <div className="p-1 flex justify-end small-btn">
+                      <Button label="Search" />
+                    </div>
+                  </div>
+                  <DataTable value={searchDisplayData.data}>
+                    {searchHeader.map((data) => {
+                      return <Column field={data.field} header={data.header} />;
+                    })}
+                  </DataTable>
+                </OverlayPanel>
+              </div>
+            );
+          } else if (field.fieldType === "address") {
+            return (
+              <>
+                <div className="w-1/3 p-2">
+                  <label>{field.label}</label>
+                  <InputTextarea />
+                </div>
+              </>
+            );
+          }
+        })}
+      </>
+    )
   );
 };
 

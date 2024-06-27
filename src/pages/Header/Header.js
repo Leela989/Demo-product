@@ -29,7 +29,7 @@ const Header = ({ setToken }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setToken(false);
-    navigate("/login");
+    navigate("/");
   };
 
   const items = [

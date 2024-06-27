@@ -1,3 +1,6 @@
+import { Button } from "primereact/button";
+import { Card } from "primereact/card";
+
 const DocumentPreview = () => {
   return (
     <>
@@ -28,6 +31,12 @@ const DocumentPreview = () => {
             <p className="font-medium">10/02/2024</p>
           </div>
         </div>
+        <Card>
+          <div className="flex flex-col items-center justify-center">
+            <p className="mb-4">Selected Documents are Generated Successfully !!!</p>
+            <Button label="Generate Documents" />
+          </div>
+        </Card>
       </div>
     </>
   );

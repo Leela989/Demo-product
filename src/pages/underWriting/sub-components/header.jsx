@@ -17,16 +17,15 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { OverlayPanel } from "primereact/overlaypanel";
 import useRenderDropdown from "../../../components/DropDown/dropDown";
+import { useParams } from "react-router-dom";
+import { headerData } from "../../../mock-data/underwriting/editquotes-data";
 
 const Header = () => {
+  const { type, id } = useParams();
   const overlayOpen = useRef(null);
   const partyInitialState = { partyRole: "", partyID: "", address: "" };
-  const [partyDetails, setPartyDetails] = useState(
-    getQuotesHeaderData.partyDetails ?? []
-  );
-  const [quotesFormData, setQuotesFormData] = useState(
-    getQuotesHeaderData.formData
-  );
+  const [partyDetails, setPartyDetails] = useState([]);
+  const [quotesFormData, setQuotesFormData] = useState();
   const [customSearch, setCustomSearch] = useState({
     name: "",
     email: "",
@@ -37,6 +36,20 @@ const Header = () => {
     list: true,
   });
   const [searchHeader, setSearchHeader] = useState(searchDisplayHeader);
+
+  useEffect(() => {
+    if (type === "edit") {
+      let headerEditData = headerData.data.find(
+        (data) => data.key === Number(id)
+      );
+      console.log(headerEditData, "headerEditData.partyDetails>");
+      setQuotesFormData(headerEditData);
+      setPartyDetails(headerEditData.partyDetails);
+    } else if (type === "new") {
+      setQuotesFormData(getQuotesHeaderData.formData);
+      setPartyDetails(getQuotesHeaderData.partyDetails);
+    }
+  }, [id, type]);
 
   const dropdownOptions = {
     partyRole: [
@@ -93,9 +106,10 @@ const Header = () => {
           </div>
         );
       case "overlay":
+        console.log(quotesFormData, value, "???????");
         return (
           <div>
-            <label htmlFor="checkbox" className="pr-2">
+            <label className="pr-2">
               {fieldData.label}{" "}
               {fieldData.required && (
                 <span className="text-red-600 text-xl">*</span>
@@ -104,7 +118,7 @@ const Header = () => {
             <div className="flex items-center add-autocomplete">
               <InputText
                 onChange={handlePartyChange}
-                value={quotesFormData[fieldData.name]}
+                value={value}
                 name={fieldData.name}
                 required={fieldData.required}
               />
@@ -197,45 +211,48 @@ const Header = () => {
     }
   };
 
+  console.log(quotesFormData, "<><>");  
   return (
-    <>
-      <div className="flex">
-        <Card className="header-card flex-1">
-          <div className="quotes-form-container flex align-start flex-wrap">
-            <QuotesHeader
-              quotesFormData={quotesFormData}
-              onUpdateParty={onUpdateParty}
-            />
-            <div className="flex items-end justify-end w-full p-2">
-              <Button label="Save" />
+    quotesFormData && (
+      <>
+        <div className="flex">
+          <Card className="header-card flex-1">
+            <div className="quotes-form-container flex align-start flex-wrap">
+              <QuotesHeader
+                quotesFormData={quotesFormData}
+                onUpdateParty={onUpdateParty}
+              />
+              <div className="flex items-end justify-end w-full p-2">
+                <Button label="Save" />
+              </div>
             </div>
-          </div>
+          </Card>
+          <Card className="header-card party-container">
+            <div className="flex justify-between items-center party-header">
+              <p className="text-xl font-bold flex-1">Party</p>
+              <div className="small-btn">
+                <Button rounded icon="pi pi-external-link" />
+                <Button rounded icon="pi pi-plus" onClick={handelPartyAdd} />
+              </div>
+            </div>
+            {partyDetails?.map((party, index) => (
+              <div className="party-details" key={index}>
+                {getQuotesHeaderFromRender.partyDetails.map((fieldData) => (
+                  <div className="pb-3" key={fieldData.name}>
+                    {renderField(fieldData, party, (e) =>
+                      handlePartyChange(index, fieldData.name, e.target.value)
+                    )}
+                  </div>
+                ))}
+              </div>
+            ))}
+          </Card>
+        </div>
+        <Card className="quotes-tab-container mt-4">
+          <QuotesTabComponent />
         </Card>
-        <Card className="header-card party-container">
-          <div className="flex justify-between items-center party-header">
-            <p className="text-xl font-bold flex-1">Party</p>
-            <div className="small-btn">
-              <Button rounded icon="pi pi-external-link" />
-              <Button rounded icon="pi pi-plus" onClick={handelPartyAdd} />
-            </div>
-          </div>
-          {partyDetails?.map((party, index) => (
-            <div className="party-details" key={index}>
-              {getQuotesHeaderFromRender.partyDetails.map((fieldData) => (
-                <div className="pb-3" key={fieldData.name}>
-                  {renderField(fieldData, party, (e) =>
-                    handlePartyChange(index, fieldData.name, e.target.value)
-                  )}
-                </div>
-              ))}
-            </div>
-          ))}
-        </Card>
-      </div>
-      <Card className="quotes-tab-container mt-4">
-        <QuotesTabComponent />
-      </Card>
-    </>
+      </>
+    )
   );
 };
 

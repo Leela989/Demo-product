@@ -16,6 +16,11 @@
     height: calc(100vh - 260px);
     overflow: auto;
 }
+.bread-crumbs {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
 
 .create-overlay {
     width: 100%;

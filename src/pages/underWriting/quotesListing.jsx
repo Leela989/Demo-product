@@ -11,8 +11,12 @@ import Approval from "./sub-components/approval";
 import PremiumSummary from "./sub-components/premium-summary";
 import OtherDetails from "./sub-components/other-details";
 import DocumentPreview from "./sub-components/document-preview";
+import { useLocation, useParams } from "react-router-dom";
 
 const QuotesListing = () => {
+  const {risk, lob, type, id} = useParams();
+  const {state} = useLocation();
+  console.log(risk, lob, type, id, state, 'mainsample');
   const [activeIndex, setActiveIndex] = useState(0);
   const items = [
     {
@@ -61,18 +65,21 @@ const QuotesListing = () => {
   return (
     <>
       <div className="card mb-5">
-        <div className="statusList mb-5">
-          <div className="status">
-            <p>Status:</p>
-            <p>Pending</p>
-          </div>
-          <div className="createdBy">
-            <p>Created By:</p>
-            <p>User</p>
-          </div>
-          <div className="createdOn">
-            <p>Created On:</p>
-            <p>Date</p>
+        <div className="flex items-center justify-between mb-5">
+          <p className="bread-crumbs flex-1">{risk} - {lob}</p>
+          <div className="statusList">
+            <div className="status">
+              <p>Status:</p>
+              <p>Pending</p>
+            </div>
+            <div className="createdBy">
+              <p>Created By:</p>
+              <p>User</p>
+            </div>
+            <div className="createdOn">
+              <p>Created On :{" "}</p>
+              <p>{new Date().toDateString()}</p>
+            </div>
           </div>
         </div>
         <Steps

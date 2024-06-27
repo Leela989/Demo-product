@@ -9,7 +9,7 @@ import './i18n/i18n';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename='/azinsui'>
       <App />
     </BrowserRouter>
   </React.StrictMode>

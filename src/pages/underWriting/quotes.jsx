@@ -18,11 +18,14 @@ import { Card } from "primereact/card";
 import { QuotesList, QuotesListHeader } from "../../mock-data/underwriting/editquotes-data";
 
 const Quotes = () => {
-  const { pathname, state } = useLocation();
-  const { lob } = useParams();
+  const { pathname } = useLocation();
+  const { lob, type } = useParams();
   const menuOpen = useRef(null);
   const overlayOpen = useRef(null);
   const options = getquotesOption.filter((data) => data.type === lob);
+
+  console.log(lob, "location");
+  let [urlname, urlCode] = lob.split('-');
 
 
   const [selectedProduct, setSelectedProduct] = useState({
@@ -36,9 +39,10 @@ const Quotes = () => {
   // let tableHeader = [];
 
   useEffect(() => {
-    let tableData = QuotesList.data.find(set => set.LOB_Code === state.code);
+    let tableData = QuotesList.data.find(set => set.LOB_Code === urlCode);
+    console.log(tableData, "samplesample");
     setQuotesTable(tableData.Quot_list);
-  }, [state])
+  }, [urlCode])
 
   // useEffect(() => {
   //   tableHeader = Object.keys(quotesTable[0]).map(data => {
@@ -143,7 +147,7 @@ const Quotes = () => {
             <div className="flex items-center">
               <label className="pr-3">Line Of Business</label>
               <p style={{ color: "rgba(0, 60, 149, 0.85)", fontWeight: 700 }}>
-                {state.code} - {state.name}
+              {urlCode} - {urlname}
               </p>
             </div>
             <div className="mt-4">

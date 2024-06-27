@@ -59,14 +59,13 @@ const Sidebar = ({ linksData }) => {
               </>
             ) : (
               <li key={link.label}>
+                {console.log(link, "sidebarsample")}
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? "active nav-link" : "inactive nav-link"
                   }
-                  state={{ code: link.code, name: link.label }}
-                  to={{
-                    pathname: link.link,
-                  }}
+                  // state={{ code: link.code, name: link.label }}
+                  to={link.code ? `${link.link}-${link.code}` : link.link}
                 >
                   <span className="flex items-center">{link.label}</span>
                 </NavLink>
