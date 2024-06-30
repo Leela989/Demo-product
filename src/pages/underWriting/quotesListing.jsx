@@ -11,12 +11,17 @@ import Approval from "./sub-components/approval";
 import PremiumSummary from "./sub-components/premium-summary";
 import OtherDetails from "./sub-components/other-details";
 import DocumentPreview from "./sub-components/document-preview";
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 const QuotesListing = () => {
   const {risk, lob, type, id} = useParams();
   const {state} = useLocation();
-  console.log(risk, lob, type, id, state, 'mainsample');
+  const navigate = useNavigate();
+
+  const handleGoBack = (event) => {
+    event.preventDefault(); // Prevent the default anchor click behavior
+    navigate(-1); // Navigate back
+  };
   const [activeIndex, setActiveIndex] = useState(0);
   const items = [
     {
@@ -66,7 +71,7 @@ const QuotesListing = () => {
     <>
       <div className="card mb-5">
         <div className="flex items-center justify-between mb-5">
-          <p className="bread-crumbs flex-1">{risk} - {lob}</p>
+          <p className="bread-crumbs flex-1"><span className="go-back" onClick={handleGoBack}>{risk}</span> / <span>{lob.split('-').reverse().join('-')}</span></p>
           <div className="statusList">
             <div className="status">
               <p>Status:</p>

@@ -9,11 +9,11 @@
 .p-inputgroup label {
     font-size: 14px;
     font-weight: 600;
-    color: rgba(0, 0, 0, 0.8);
+    color: rgba(0, 0, 0, 1);
 }
 .p-inputgroup label span {
     font-weight: 400;
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(0, 0, 0, 1);
 }
 .p-inputgroup .p-inputgroup-addon {
     padding: 8px;

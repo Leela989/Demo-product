@@ -172,19 +172,19 @@ const PremiumSummary = () => {
           <p className="text-xl font-bold mb-2">Total</p>
           <div className="flex items-center">
             <div className="w-1/4">
-              <label style={{ color: "rgba(0, 0, 0, 0.6)" }} className="pb-2">
+              <label style={{ color: "rgba(0, 0, 0, 1)" }} className="pb-2">
                 Total Percentage
               </label>
               <p style={{ color: "#4338CA", fontWeight: "600" }}>30%</p>
             </div>
             <div className="w-1/4">
-              <label style={{ color: "rgba(0, 0, 0, 0.6)" }} className="pb-2">
+              <label style={{ color: "rgba(0, 0, 0, 1)" }} className="pb-2">
                 Total Net Amount TC
               </label>
               <p style={{ color: "#4338CA", fontWeight: "600" }}>32000</p>
             </div>
             <div className="w-1/4">
-              <label style={{ color: "rgba(0, 0, 0, 0.6)" }} className="pb-2">
+              <label style={{ color: "rgba(0, 0, 0, 1)" }} className="pb-2">
                 Total Net Amount LC
               </label>
               <p style={{ color: "#4338CA", fontWeight: "600" }}>123124214</p>

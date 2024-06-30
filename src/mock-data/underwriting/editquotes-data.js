@@ -145,8 +145,13 @@ export const headerData = {
       State: null,
       City: null,
       partyDetails: [
-        {partyRole: "Customer", partyID: "DC0001001", address: "" },
-        {partyRole: "Insured", partyID: "BL1011470", address: "ADDRESS2" },
+        { partyRole: "Customer", partyID: "DC0001001", address: "" },
+        {
+          partyRole: "Insured",
+          partyID: "BL1011470",
+          address:
+            "3rd Floor, PRINCE INFO CITY-II, Perungudi, Chennai, Tamil Nadu 600096",
+        },
       ],
     },
   ],
@@ -473,3 +478,146 @@ export const data = [
     ],
   },
 ];
+
+export const riskEditData = {
+  data: [
+    {
+      key: 76402,
+      Objects: [
+        {
+          RiskId: "R_01",
+          Object_name: "Vehicle Details",
+          Fields: [
+            {
+              field_Id: 1,
+              field_Name: "Vehicle ID",
+              Value: 1,
+            },
+            {
+              field_Id: 2,
+              field_Name: "Vehicle Entry Date",
+              Value: "01-01-2024",
+            },
+            {
+              field_Id: 3,
+              field_Name: "Vehicle Exit Date",
+              Value: "31-12-2024",
+            },
+            {
+              field_Id: 4,
+              field_Name: "Coverage Type",
+              Value: "01-Comprehensive",
+            },
+            {
+              field_Id: 5,
+              field_Name: "Usage Type",
+              Value: "001-Private Car",
+            },
+            {
+              field_Id: 6,
+              field_Name: "Body Type ",
+              Value: "10101A-SUV",
+            },
+            {
+              field_Id: 7,
+              field_Name: "Make",
+              Value: "101-AUDI",
+            },
+            {
+              field_Id: 8,
+              field_Name: "Model",
+              Value: "10101-AUDI 80",
+            },
+            {
+              field_Id: 9,
+              field_Name: "Year of Manufacturing",
+              Value: 2015,
+            },
+            {
+              field_Id: 10,
+              field_Name: "Vehicle Age",
+              Value: 9,
+            },
+            {
+              field_Id: 11,
+              field_Name: "Engine No.",
+              Value: "E10011001",
+            },
+            {
+              field_Id: 12,
+              field_Name: "Chassis No.",
+              Value: "CH2001001",
+            },
+            {
+              field_Id: 13,
+              field_Name: "Registration Number",
+              Value: "RE30011001",
+            },
+            {
+              field_Id: 14,
+              field_Name: "CC",
+              Value: 1600,
+            },
+            {
+              field_Id: 15,
+              field_Name: "Fuel Type",
+              Value: "Petrol",
+            },
+            {
+              field_Id: 16,
+              field_Name: "Vehicle Value",
+              Value: 2000000,
+            },
+            {
+              field_Id: 17,
+              field_Name: "Seating",
+              Value: 5,
+            },
+            {
+              field_Id: 18,
+              field_Name: "GVW",
+              Value: 2000,
+            },
+            {
+              field_Id: 19,
+              field_Name: "Number of Claims",
+              Value: 0,
+            },
+            {
+              field_Id: 20,
+              field_Name: "Number of Claim Free Years",
+              Value: 0,
+            },
+            {
+              field_Id: 21,
+              field_Name: "Sum Insured Currency",
+              Value: "AED",
+            },
+            {
+              field_Id: 22,
+              field_Name: "Premium Currency",
+              Value: "AED",
+            },
+          ],
+        },
+      ],
+    },
+  ],
+};
+
+export const sam = {
+  data: [
+    {
+      key: 76402,
+      Currency: [
+        {
+          Code: "005",
+          Description: "UGANDA  SHILLINGS",
+          Rate_1: 1,
+          Rate_2: 1,
+          Rate_3: 1,
+        },
+      ],
+    },
+  ],
+};

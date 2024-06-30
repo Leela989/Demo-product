@@ -35,7 +35,7 @@
 .login-switch {
   font-size: 16px;
   font-weight: 600;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 1);
   width: 50%;
   display: flex;
   align-items: center;

@@ -7,20 +7,37 @@ import {
   riskTableHeaderData,
   riskValueData,
 } from "../../../mock-data/underwriting/quotes-risk";
-import {
-  riskAssesmentFactor,
-  riskBlock,
-} from "../../../mock-data/underwriting/quotes";
+import { riskBlock, riskFactor } from "../../../mock-data/underwriting/quotes";
 import { InputNumber } from "primereact/inputnumber";
 
 import { Calendar } from "primereact/calendar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "primereact/button";
 import { Card } from "primereact/card";
 import CustomButton from "../../../components/Button/CustomButton";
+import { Dropdown } from "primereact/dropdown";
+import { useParams } from "react-router-dom";
+import { riskEditData } from "../../../mock-data/underwriting/editquotes-data";
 
 const QuotesRisk = () => {
   const [activeFields, setActiveFields] = useState(null);
+
+  const { id } = useParams();
+
+  const [riskAssesmentFactor, setRiskAssesmentFactor] = useState(riskFactor);
+  const [riskTabelData, setRiskTableData] = useState();
+  const [riskTabelHeaderData, setRiskTableHeaderData] = useState();
+
+  useEffect(() => {
+    // console.log(riskEditData,"samplesample");
+    // let formTableData = riskEditData.data.map(field => {
+    //   console.log(field, "samplesample");
+    //   if(field.key === Number(id)) {
+    //     field.Objects
+    //   }
+    // })
+    setRiskTableData(riskValueData);
+  }, []);
 
   const riskQuotesTab = [
     {
@@ -55,6 +72,9 @@ const QuotesRisk = () => {
   };
 
   const renderFields = (element) => {
+    // if(element.key !== riskAssesmentFactor[element.name].key) {
+    //   console.log(riskAssesmentFactor[element.name].Objects[0].Fields, ">>>>>>");
+    // }
     const listValue = riskAssesmentFactor[element.name].Objects[0].Fields;
     const subFields = element.Submenu;
     return (
@@ -79,21 +99,28 @@ const QuotesRisk = () => {
             <div className="field-container flex align-start">
               <div className="flex flex-wrap form-container active-field items-end flex-1">
                 {listValue.map((field, index) => {
-                  if (field.Data_Type === "Text") {
+                  if (field.Field_type === "inputText") {
                     return (
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
                         <InputText />
                       </div>
                     );
-                  } else if (field.Data_Type === "Number") {
+                  } else if (field.Field_type === "Number") {
                     return (
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
                         <InputNumber />
                       </div>
                     );
-                  } else if (field.Data_Type === "Date") {
+                  } else if (field.Field_type === "dropDown") {
+                    return (
+                      <div key={index} className="w-1/4 p-2">
+                        <label>{field.Field_Name}</label>
+                        <Dropdown />
+                      </div>
+                    );
+                  } else if (field.Field_type === "Date") {
                     return (
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
@@ -133,9 +160,10 @@ const QuotesRisk = () => {
         </div>
         {subFields && subFields.length > 0 && (
           <div className="sub-menu">
-            {subFields.map((data, index) => (
-              <div key={index}>{renderFields(data)}</div>
-            ))}
+            {subFields.map((data, index) => {
+              // console.log(data, ">>>>>>");
+              return <div key={index}>{renderFields(data)}</div>;
+            })}
           </div>
         )}
       </div>
@@ -164,7 +192,9 @@ const QuotesRisk = () => {
 
   const renderRiskField = () => {
     return riskBlock.map((element, index) => {
-      return <div key={index}>{renderFields(element)}</div>;
+      if (element.key === Number(id)) {
+        return <div key={index}>{renderFields(element)}</div>;
+      }
     });
   };
 
@@ -195,11 +225,13 @@ const QuotesRisk = () => {
       <Card className="risk-assesment-section">
         <h2 className="header-text mb-3">Risk Assesment</h2>
         <div className="pt-3 pb-5">
-          <CustomTable
-            selectionMode="radiobutton"
-            data={riskValueData.riskMainData.value}
-            columns={riskTableHeaderData.riskMainData.header}
-          />
+          {riskTabelData && (
+            <CustomTable
+              selectionMode="radiobutton"
+              data={riskTabelData.riskMainData.value}
+              columns={riskTableHeaderData.riskMainData.header}
+            />
+          )}
         </div>
         <div className="flex items-start">
           <div className="flex-1 mx-2">{renderRiskField()}</div>

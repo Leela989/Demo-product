@@ -61,14 +61,14 @@ td .w-3 input{
 .p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li a {
   padding: 10px 12px;
   margin: 0;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 1);
   border: none;
   border-radius: 10px 10px 0 0;
   background-color: rgba(191, 217, 255, 0.5);
 }
 .p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li a:hover {
   background-color: rgba(191, 217, 255, 1) !important;
-  color: rgba(0, 0, 0, 0.7) !important;
+  color: rgba(0, 0, 0, 1) !important;
 }
 .p-tabview .p-tabview-nav-container .p-tabview-nav-content .p-tabview-nav li.p-tabview-selected.p-highlight a {
   background-color: rgba(0, 60, 149, 0.85) !important;

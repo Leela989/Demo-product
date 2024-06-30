@@ -174,7 +174,7 @@ const Header = () => {
         return (
           <div className="">
             <p>{fieldData.label}</p>
-            <InputTextarea rows={3} value={value} onChange={onChange} />
+            <InputTextarea rows={5} cols={30} value={value} onChange={onChange} />
           </div>
         );
       default:

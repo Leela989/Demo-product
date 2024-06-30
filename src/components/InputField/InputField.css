@@ -21,6 +21,12 @@ button:focus{
 .p-inputnumber {
     width: 100%;
 }
+.p-datatable .p-inputtext.p-inputtextarea {
+    height: 36px;
+}
+.p-inputtext.p-inputtextarea {
+    height: 100px;
+}
 
 .p-inputtext:enabled:hover,
 .p-inputtext:enabled:active,

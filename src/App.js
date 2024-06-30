@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./pages/Header/Header";
 // import ProductSetup from "./pages/ProductSetup/ProductSetup";
 import Sidebar from "./pages/Sidebar/Sidebar";
-import { Routes, Route, useParams } from "react-router-dom";
+import { Routes, Route, useParams, Navigate } from "react-router-dom";
 import Tasks from "./pages/Tasks/Tasks";
 import linkData from "./pages/Sidebar/LinksData";
 import "primereact/resources/themes/lara-light-indigo/theme.css"; //theme
@@ -60,6 +60,7 @@ function App() {
             <Sidebar linksData={linkData} />
             <div className="content">
               <Routes>
+                <Route path="/" element={<Navigate to="/tasks" />} />
                 <Route path="/userManagement/userAuthorisationSetup" element={<UserAuthorisation_setup/>} />
                 <Route path="/docs" element={<Documentation />} />
                 <Route path="/tasks" element={<HomePage />} />
@@ -140,6 +141,7 @@ function App() {
         </div>
       ) : (
         <Routes>
+        <Route path="/" element={<Navigate to="/azinsui" />} />
         <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
       </Routes>
       )}
