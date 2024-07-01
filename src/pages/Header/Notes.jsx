@@ -100,7 +100,7 @@ export default function Notes({ visible, setVisible }) {
         className="card-container"
         header="Notes"
         visible={visible}
-        style={{ width: "80vw" }}
+        style={{ width: "90vw" }}
         onHide={() => {
           if (!visible) return;
           setVisible(false);
@@ -129,7 +129,7 @@ export default function Notes({ visible, setVisible }) {
                   </div>
                 </div>
 
-                <div className="flex mt-5">
+                <div className="flex mt-2">
                   <div className="w-1/5">Notes</div>
                   <div className="w-4/5">
                     <InputTextarea
@@ -145,7 +145,7 @@ export default function Notes({ visible, setVisible }) {
                   </div>
                 </div>
 
-                <div className="flex mt-5">
+                <div className="flex mt-2">
                   <div className="w-1/5">Set Reminder</div>
                   <div className="w-4/5">
                     <Checkbox
@@ -158,7 +158,7 @@ export default function Notes({ visible, setVisible }) {
                   </div>
                 </div>
 
-                <div className="flex mt-5">
+                <div className="flex mt-2">
                   <div className="w-1/5">Follow Up Date</div>
                   <div className="w-4/5">
                     <DateField

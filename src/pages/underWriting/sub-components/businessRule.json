@@ -1,9 +1,93 @@
 [
   {
+    "rule_id": 1,
+    "rule_no": 1,
+    "rule_description": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+    "event": "On Policy Approval",
+    "ruleLibrary": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+    "action": "Accept",
+    "status": "Success",
+    "is_allow": "Yes",
+    "source": "",
     "showSave": false
   },
-  {},
-  {},
-  {},
-  {}
+  {
+    "rule_id": 2,
+    "rule_no": 2,
+    "event": "On Policy Approval",
+    "action": "Accept",
+    "status": "Failure",
+    "source": "",
+    "is_allow": "No",
+    "showSave": true,
+    "rule_description": "02-Minimum Policy premium should not be less than $1000."
+  },
+  {
+    "rule_id": 3,
+    "rule_no": 3,
+    "event": "On Policy Approval",
+    "action": "Accept",
+    "status": "Success",
+    "source": "",
+    "is_allow": "Yes",
+    "showSave": false,
+    "rule_description": "03-EDG entitiled waiver excess up to $1000. Please check Excess Buy Down."
+  },
+  {
+    "rule_id": 4,
+    "rule_no": 4,
+    "event": "On Policy Approval",
+    "action": "Accept",
+    "status": "Failure",
+    "source": "",
+    "is_allow": "Yes",
+    "showSave": true,
+    "rule_description": "04-Minimum Policy Remaining excess $300. Need higher Authority to Approve"
+  },
+  {
+    "rule_id": 5,
+    "rule_no": 5,
+    "event": "On Policy Approval",
+    "action": "Accept",
+    "status": "Success",
+    "source": "",
+    "is_allow": "Yes",
+    "showSave": false,
+    "rule_description": "05-Business Handler does not belong to the Marketing Department entered!"
+  },
+
+  {
+    "rule_id": 6,
+    "rule_no": 6,
+    "rule_description": "06-Policy has UnNamed Insured Person/Risk",
+    "event": "On Policy Approval",
+    "ruleLibrary": "06-Policy has UnNamed Insured Person/Risk",
+    "action": "Accept",
+    "status": "Success",
+    "source": "",
+    "is_allow": "Yes",
+    "showSave": false
+  },
+  {
+    "rule_id": 7,
+    "rule_no": 7,
+    "event": "On Policy Approval",
+    "action": "Accept",
+    "status": "Success",
+    "source": "",
+    "is_allow": "Yes",
+    "showSave": false,
+    "rule_description": "07-Referral Vehicle Make / Model, Need higher authority to approve."
+  },
+  {
+    "rule_id": 8,
+    "rule_no": 8,
+    "event": "On Policy Approval",
+    "action": "Accept",
+    "status": "Success",
+    "source": "",
+    "is_allow": "Yes",
+    "showSave": false,
+    "rule_description": "08-Vehicle Age is Greater than 3 for ExcelDrive Prestige Risk(Non Mercedes Benz), Need higher authority to approve."
+  }
 ]

@@ -5,4 +5,9 @@
   border-top: 3px solid rgba(0, 0, 0, 0.05);
   border-top-left-radius: 10px !important;
   border-top-right-radius: 10px !important;
+  overflow-y: s;
+}
+
+.text-area-container {
+  height: 60px !important;
 }

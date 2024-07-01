@@ -1,0 +1,134 @@
+[
+  {
+    "id": 101,
+    "master_name": "Master Data 1",
+    "is_selected": true,
+    "show": false,
+    "subData": [
+      {
+        "showSave": false,
+        "code": 101,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "01-01-2023",
+        "effective_to": "31-12-2023"
+      },
+      {
+        "showSave": false,
+        "code": 102,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      }
+    ]
+  },
+  {
+    "id": 102,
+    "master_name": "Master Data 2",
+    "is_selected": false,
+    "show": false,
+    "subData": [
+      {
+        "showSave": false,
+        "code": 201,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "01-01-2023",
+        "effective_to": "31-12-2023"
+      },
+      {
+        "showSave": false,
+        "code": 202,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 203,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "01-01-2023",
+        "effective_to": "31-12-2023"
+      },
+      {
+        "showSave": false,
+        "code": 204,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      }
+    ]
+  },
+  {
+    "id": 103,
+    "master_name": "Master Data 3",
+    "is_selected": false,
+    "show": false,
+    "subData": [
+      {
+        "showSave": false,
+        "code": 301,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "01-01-2023",
+        "effective_to": "31-12-2023"
+      },
+      {
+        "showSave": false,
+        "code": 302,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      }
+    ]
+  },
+  {
+    "id": 104,
+    "master_name": "Master Data 4",
+    "is_selected": false,
+    "show": false,
+    "subData": [
+      {
+        "showSave": false,
+        "code": 401,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "01-01-2023",
+        "effective_to": "31-12-2023"
+      },
+      {
+        "showSave": false,
+        "code": 402,
+        "description": {
+          "en": "Description in English",
+          "es": "Descripción en Español"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      }
+    ]
+  }
+]

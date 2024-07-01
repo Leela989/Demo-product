@@ -1,0 +1,58 @@
+[
+  {
+    "tax_code": 101,
+    "tax_description": "description ",
+    "short_description": "short description",
+    "refundable": "Yes",
+    "effective_from": "01-01-2023",
+    "effective_to": "31-12-2023",
+    "status": "Approved",
+    "show": false,
+    "subData": [{ "showSave": true }]
+  },
+  {
+    "tax_code": 101,
+    "tax_description": "description ",
+    "short_description": "short description",
+    "refundable": "No",
+    "effective_from": "01-01-2023",
+    "effective_to": "31-12-2023",
+    "status": "Pending",
+    "show": false,
+    "subData": [{ "showSave": true }]
+  },
+  {
+    "tax_code": 101,
+    "tax_description": "description ",
+    "short_description": "short description",
+    "refundable": "No",
+    "effective_from": "01-01-2023",
+    "effective_to": "31-12-2023",
+    "status": "Rejected",
+    "show": false,
+    "subData": [{ "showSave": true }]
+  },
+
+  {
+    "tax_code": 101,
+    "tax_description": "description ",
+    "short_description": "short description",
+    "refundable": "Yes",
+    "effective_from": "01-01-2023",
+    "effective_to": "31-12-2023",
+    "status": "Approved",
+    "show": false,
+    "subData": [{ "showSave": true }]
+  },
+  {
+    "tax_code": 101,
+    "tax_description": "description ",
+    "short_description": "short description",
+    "refundable": "No",
+    "effective_from": "01-01-2023",
+    "effective_to": "31-12-2023",
+    "status": "Pending",
+    "show": false,
+    "subData": [{ "showSave": true }]
+  }
+]

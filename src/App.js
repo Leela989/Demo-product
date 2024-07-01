@@ -31,12 +31,15 @@ import DivisionsList from "./pages/DivisionMaster/DivisionsList";
 import CurrencyAndExchangeMaster from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeMaster";
 import CurrencyAndExchangeList from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeList";
 import UserAuthorisation_setup from "./pages/UserManagement/UserAuthorisation_setup";
+import CodeMasterList from "./pages/codeMasters/List";
+import VatTaxMasterList from "./pages/vat-tax-master/List";
+import VatTaxMaster from "./pages/vat-tax-master/TaxMaster";
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'));
+  const [token, setToken] = useState(localStorage.getItem("token"));
   const { showNote } = useParams();
 
-  console.log(showNote, "<<<<<")
+  console.log(showNote, "<<<<<");
 
   // const location = useLocation();
   // const currentPath = location.pathname;
@@ -44,9 +47,9 @@ function App() {
 
   useEffect(() => {
     if (token) {
-      localStorage.setItem('token', token);
+      localStorage.setItem("token", token);
     } else {
-      localStorage.removeItem('token');
+      localStorage.removeItem("token");
     }
   }, [token]);
 
@@ -61,7 +64,10 @@ function App() {
             <div className="content">
               <Routes>
                 <Route path="/" element={<Navigate to="/tasks" />} />
-                <Route path="/userManagement/userAuthorisationSetup" element={<UserAuthorisation_setup/>} />
+                <Route
+                  path="/userManagement/userAuthorisationSetup"
+                  element={<UserAuthorisation_setup />}
+                />
                 <Route path="/docs" element={<Documentation />} />
                 <Route path="/tasks" element={<HomePage />} />
                 <Route
@@ -90,10 +96,7 @@ function App() {
                   path="/underWriting/:risk/:lob/:type/:id?"
                   element={<QuotesListing />}
                 />
-                <Route
-                  path="/underWriting/:risk/:lob"
-                  element={<Quotes />}
-                />
+                <Route path="/underWriting/:risk/:lob" element={<Quotes />} />
                 <Route
                   path="/commonMaster/companyMaster"
                   element={<CompanyMasterSetup />}
@@ -123,6 +126,22 @@ function App() {
                   element={<DivisionMaster />}
                 />
                 <Route
+                  path="/commonMaster/codeMaster"
+                  element={<CodeMasterList />}
+                />
+                <Route
+                  path="/commonMaster/vatTaxMaster"
+                  element={<VatTaxMasterList />}
+                />
+                <Route
+                  path="/commonMaster/vatTaxMaster/create"
+                  element={<VatTaxMaster />}
+                />
+                <Route
+                  path="/commonMaster/vatTaxMaster/edit/:id"
+                  element={<VatTaxMaster />}
+                />
+                <Route
                   path="/commonMaster/currencyExchangeRateMaster"
                   element={<CurrencyAndExchangeList />}
                 />
@@ -141,9 +160,9 @@ function App() {
         </div>
       ) : (
         <Routes>
-        <Route path="/" element={<Navigate to="/azinsui" />} />
-        <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
-      </Routes>
+          <Route path="/" element={<Navigate to="/azinsui" />} />
+          <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
+        </Routes>
       )}
     </>
   );

@@ -354,7 +354,7 @@ function CurrencyAndExchangeMaster() {
   const renderEditSaveButton = (rowIndex) => {
     if (formData[rowIndex].showSave) {
       return (
-        <div>
+        <div className="flex">
           <i
             className="pi pi-check"
             style={{

@@ -1,242 +1,241 @@
-.transactions{
-    border: 1px solid black;
-    border-radius: 5px;
-    box-shadow: 0 0 5px var(--border-color, #003B95);
+.transactions {
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 0 0 5px var(--border-color, #003b95);
 }
 
-.transactionsContainer{
-    display: flex;
-    justify-content: space-between;
-    margin: 8px 0;
+.transactionsContainer {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0;
 }
 
-.transactionsHeading{
-    background-color: #003B95;
-    color: white;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 14px;
-    text-align: center;
-    font-weight: bold;
+.transactionsHeading {
+  background-color: #003b95;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .transactions {
-    width: 100%;
-    max-width: 33.33%;
-    height: calc(100% - 100px);
-    /* margin: 0px 80px 9px 0px; */
+  width: 100%;
+  max-width: 33.33%;
+  height: calc(100% - 100px);
+  /* margin: 0px 80px 9px 0px; */
 }
 .transactions + .transactions {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
-.textBox{
-    margin-left: 15px;
-    font-size: 14px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.textBox {
+  margin-left: 15px;
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.transactionRefText{
-    color: #003B95;
+.transactionRefText {
+  color: #003b95;
 }
 
-.textBoxNumb{
-    margin-right: 15px;
+.textBoxNumb {
+  margin-right: 15px;
 }
 
-.teamsPerformance{
-    color: #003B95;
-    text-decoration: underline;
-    /* align-items: center; */
-    /* justify-content: center; */
+.teamsPerformance {
+  color: #003b95;
+  text-decoration: underline;
+  /* align-items: center; */
+  /* justify-content: center; */
 }
 
-.transactionText{
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
+.transactionText {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
 }
 
-.teamsPerformanceLink{
-    padding: 12px 15px 15px;
-    font-size: 13px;
-    font-weight: 500;
+.teamsPerformanceLink {
+  padding: 12px 15px 15px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-
-
-.customTable{
-    width: 100%;
-    height: 170px;
-    overflow-x: auto;
+.customTable {
+  width: 100%;
+  height: 170px;
+  overflow-x: auto;
 }
 
-.header_color{
-    color: #003B95;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    font-weight:600;
+.header_color {
+  color: #003b95;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
 }
 
-.customTable2{
-    width: 100%;
-    height: 150px;
-    /* overflow: auto; */
+.customTable2 {
+  width: 100%;
+  height: 150px;
+  /* overflow: auto; */
 }
 
-tbody{
-    overflow: auto;
+tbody {
+  overflow: auto;
 }
 
-
-.p-column-header-content{
-    margin-left: 0px;
+.p-column-header-content {
+  margin-left: 0px;
 }
 
-.p-datatable-tbody{
-    font-size: 14px;
+.p-column-filter-menu-button,
+.p-column-filter-clear-button {
+  color: #ffff;
+}
+
+.p-datatable-tbody {
+  font-size: 14px;
 }
 
 .p-datatable .p-datatable-tbody > tr > td {
-    padding: 2px;
+  padding: 2px;
 }
 
 tr[data-pc-section="headerrow"] {
-    font-weight: bold; 
-    border-bottom: 1px solid black;
+  font-weight: bold;
+  border-bottom: 1px solid black;
 }
 
-.transactionTable{
-    width: 250px;
+.transactionTable {
+  width: 250px;
 }
 
-.bottomLoginPage{
-    display: flex;
-    justify-content: space-between;
+.bottomLoginPage {
+  display: flex;
+  justify-content: space-between;
 }
 
-.bottomText{
-    border: 1px solid black;
-    height: fit-content;
-    margin-left: 40px;
-    margin-top: 60px;
+.bottomText {
+  border: 1px solid black;
+  height: fit-content;
+  margin-left: 40px;
+  margin-top: 60px;
 }
 
-.bottomText p{
-    font-size: 14px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+.bottomText p {
+  font-size: 14px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.imgContainer{
-    display: flex;
-    justify-content: space-between;
+.imgContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
-.homePageImg{
-    width: 250px;
-    height: 160px;
-}
-
-.imgBox{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 12px;
-}
-  
-  .customTable th,
-  .customTable td {
-    padding: 4px; 
-  }
-
-  .customTable2 th,
-  .customTable2 td {
-    padding: 4px; 
-  }
-  
-
-.telephone{
-    width: 25px;
-    height: 25px;
-}
-
-.telephone1{
-    width: 25px;
-    height: 25px;
+.homePageImg {
+  width: 250px;
+  height: 160px;
 }
 
 .imgBox {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  
-  .telephoneButton {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: calc(50% - 8px);
-    margin: 8px 0;
-    height: 60px;
-    border-radius: 5px;
-    padding: 10px;
-    border: 1px solid rgba(0, 59, 149, 1);
-    box-shadow: 0 0 4px var(--border-color, rgba(0, 59, 149, 0.5));
-    cursor: pointer;
-    text-align: center;
-  }
-  
-  .telephoneButton img {
-    width: 20px; 
-    height: 20px; 
-  }
-
-.quickLink{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    text-align: center;
-    font-weight: 600;
-    color: #003B95;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
 }
 
-.transactionRefText a{
-    color: #003B95;
+.customTable th,
+.customTable td {
+  padding: 4px;
 }
 
-.quickLinkContainer{
-    width: 25%;
+.customTable2 th,
+.customTable2 td {
+  padding: 4px;
 }
 
-.customtables_container{
-    width: 75%;
+.telephone {
+  width: 25px;
+  height: 25px;
+}
+
+.telephone1 {
+  width: 25px;
+  height: 25px;
+}
+
+.imgBox {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.telephoneButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: calc(50% - 8px);
+  margin: 8px 0;
+  height: 60px;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid rgba(0, 59, 149, 1);
+  box-shadow: 0 0 4px var(--border-color, rgba(0, 59, 149, 0.5));
+  cursor: pointer;
+  text-align: center;
+}
+
+.telephoneButton img {
+  width: 20px;
+  height: 20px;
+}
+
+.quickLink {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  font-weight: 600;
+  color: #003b95;
+}
+
+.transactionRefText a {
+  color: #003b95;
+}
+
+.quickLinkContainer {
+  width: 25%;
+}
+
+.customtables_container {
+  width: 75%;
 }
 
 .critical {
-    color: red;
-  }
-
-.quickLinkText{
-    color: #003B95;
-    font-size: 12px;
-    text-decoration: underline;
-    /* margin: 3px; */
+  color: red;
 }
 
-.transactionBox{
-    width: 100%;
-    height: 80px;
-    overflow: auto;
+.quickLinkText {
+  color: #003b95;
+  font-size: 12px;
+  text-decoration: underline;
+  /* margin: 3px; */
 }
 
-
-
-.dailogueBox{
-    font-size: 20px;
-    font-weight: bold;
+.transactionBox {
+  width: 100%;
+  height: 80px;
+  overflow: auto;
 }
 
-.taskdetails{
-    width: 450px;
+.dailogueBox {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.taskdetails {
+  width: 450px;
 }
 
 /* .customTable .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th,
@@ -256,9 +255,3 @@ tr[data-pc-section="headerrow"] {
     max-width: 700px !important;
     word-break: normal !important;
 } */
-
-
-
-  
-
-

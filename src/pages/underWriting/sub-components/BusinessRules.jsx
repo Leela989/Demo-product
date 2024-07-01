@@ -9,6 +9,7 @@ import { Menu } from "primereact/menu";
 import InputField from "../../../components/InputField/InputField";
 import AutoCompleteField from "../../../components/AutoCompleteField/AutoCompleteField";
 import data from "./businessRule.json";
+import { InputTextarea } from "primereact/inputtextarea";
 
 export default function BusinessRules({ show, setShow }) {
   const [formData, setFormData] = useState([]);
@@ -38,7 +39,7 @@ export default function BusinessRules({ show, setShow }) {
   const renderEditSaveButton = (rowIndex) => {
     if (formData[rowIndex].showSave) {
       return (
-        <div>
+        <div className="flex">
           <i
             className="pi pi-check"
             style={{
@@ -71,14 +72,19 @@ export default function BusinessRules({ show, setShow }) {
   };
 
   const onSave = (index) => {
-    formData[index].showSave = false;
-    setEditingRowIndex(null);
-    setKey(key + 1);
+    // formData[index].showSave = false;
+    // setEditingRowIndex(null);
+    // setKey(key + 1);
   };
 
   const options_for_allow = [
     { code: "Y", name: "Yes" },
     { code: "N", name: "No" },
+  ];
+
+  const status_options = [
+    { code: "S", name: "Success" },
+    { code: "F", name: "Failure" },
   ];
 
   const onEdit = (rowIndex) => {
@@ -111,8 +117,8 @@ export default function BusinessRules({ show, setShow }) {
       <div className="kebab-menu-container">
         <InputField
           className="w-4/4"
-          name="rate"
-          value={rowData.rate}
+          name="rule_id"
+          value={rowData.rule_id}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           disabled
         />
@@ -123,12 +129,14 @@ export default function BusinessRules({ show, setShow }) {
   const ruleDescriptionTemplate = (rowData, index) => {
     return (
       <div className="kebab-menu-container">
-        <InputField
-          className="w-4/4"
-          name="rate"
-          value={rowData.rate}
+        <InputTextarea
+          className="w-4/4 text-area-container"
+          name="rule_description"
+          value={rowData.rule_description}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           disabled
+          rows={5}
+          cols={30}
         />
       </div>
     );
@@ -139,12 +147,28 @@ export default function BusinessRules({ show, setShow }) {
       <div className="kebab-menu-container">
         <AutoCompleteField
           className="w-4/4"
-          name="to_currency"
-          value={rowData.to_currency}
+          name="is_allow"
+          value={rowData.is_allow}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           options={options_for_allow}
           dropdown
           disabled={!rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const statusTemplate = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="w-4/4"
+          name="to_currency"
+          value={rowData.status}
+          onChange={(e) => handleInputChange(e, options.rowIndex)}
+          options={status_options}
+          dropdown
+          disabled
         />
       </div>
     );
@@ -163,7 +187,7 @@ export default function BusinessRules({ show, setShow }) {
         }}
       >
         <Card className="business-rule-card">
-          <DataTable value={formData} paginator rows={5} scrollable>
+          <DataTable value={formData} paginator rows={3} scrollable>
             <Column
               field="rule_id"
               header="Rule ID"
@@ -186,6 +210,16 @@ export default function BusinessRules({ show, setShow }) {
               style={{ width: "15%" }}
             />
             <Column
+              field="status"
+              header="Status"
+              headerClassName="action"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                statusTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            />
+            <Column
               field="is_allow"
               header="Allow ?"
               headerClassName="action"
@@ -193,6 +227,7 @@ export default function BusinessRules({ show, setShow }) {
               body={(rowData, { rowIndex }) => allowTemplate(rowData, rowIndex)}
               style={{ width: "15%" }}
             />
+
             <Column
               field="action"
               body={(rowData, options) =>
@@ -200,7 +235,7 @@ export default function BusinessRules({ show, setShow }) {
               }
               style={{ width: "2%" }}
             />
-            <Column
+            {/* <Column
               header="Action"
               headerClassName="action"
               bodyClassName="action"
@@ -208,7 +243,7 @@ export default function BusinessRules({ show, setShow }) {
                 actionBodyTemplate(rowData, rowIndex)
               }
               style={{ width: "10%" }}
-            />
+            /> */}
           </DataTable>
         </Card>
       </Dialog>

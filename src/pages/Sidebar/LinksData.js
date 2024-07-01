@@ -46,7 +46,7 @@ const linksData = [
         { label: 'Installment Pay Setup Master', link: '/commonMaster/installmentPaySetupMaster' },
         { label: 'VAT/TAX Master', link: '/commonMaster/vatTaxMaster' },
         { label: 'Checklist Master', link: '/commonMaster/checklistMaster' },
-        { label: 'Codes Master', link: '/commonMaster/codesMaster' }
+        { label: 'Codes Master', link: '/commonMaster/codeMaster' }
       ]
     },
     { 
