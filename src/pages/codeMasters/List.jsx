@@ -19,6 +19,7 @@ export default function List() {
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
   const [selectedSubRowIndex, setSelectedSubRowIndex] = useState(null);
   const [editingRowIndex, setEditingRowIndex] = useState(null);
+  const [editingSubRowIndex, setEditingSubRowIndex] = useState(null);
   const [formData, setFormData] = useState([]);
   const [subData, setSubData] = useState([]);
   const [key, setKey] = useState(0);
@@ -39,7 +40,9 @@ export default function List() {
   const parseDate = (dateString) => {
     if (dateString != "") {
       const [day, month, year] = dateString.split("-");
-      return new Date(`${month}-${day}-${year}`);
+      const date = new Date(`${month}-${day}-${year}`);
+      date.setHours(12, 0, 0, 0); // Set the temporary time to 12:00 AM (midnight)
+      return date;
     }
   };
 
@@ -50,7 +53,7 @@ export default function List() {
 
   const onSubSave = (index) => {
     subData[index].showSave = false;
-    setEditingRowIndex(null);
+    setEditingSubRowIndex(null);
   };
 
   const renderEditSaveButton = (rowIndex) => {
@@ -120,7 +123,7 @@ export default function List() {
     formData[rowIndex].show = true;
 
     setEditingRowIndex(rowIndex);
-    setKey(key + 1);
+    // setKey(key + 1);
   };
 
   const onSubEdit = (rowIndex) => {
@@ -128,7 +131,7 @@ export default function List() {
 
     subData[rowIndex].showSave = true;
 
-    setEditingRowIndex(rowIndex);
+    setEditingSubRowIndex(rowIndex);
     setSubKey(subKey + 1);
   };
 
@@ -171,7 +174,7 @@ export default function List() {
     setFormData(updatedFormData);
     setSelectedRowIndex(index);
     setSubData(updatedFormData[index].subData);
-    setKey(key + 1);
+    setSubKey(subKey + 1);
   };
 
   const actionBodyTemplate = (rowData, index) => {
@@ -188,6 +191,31 @@ export default function List() {
             menuLeft.current.toggle(event);
           }}
           aria-controls="popup_menu_left"
+          aria-haspopup
+        />
+      </div>
+    );
+  };
+
+  const subActionBodyTemplate = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <Menu
+          model={sub_options}
+          popup
+          ref={menuLeft_sub}
+          id="popup_menu_left_1"
+        />
+        <Button
+          text
+          rounded
+          className="action-menu"
+          icon="pi pi-ellipsis-v"
+          onClick={(event) => {
+            setSelectedSubRowIndex(index);
+            menuLeft_sub.current.toggle(event);
+          }}
+          aria-controls="popup_menu_left_1"
           aria-haspopup
         />
       </div>
@@ -294,26 +322,6 @@ export default function List() {
     );
   };
 
-  const subActionBodyTemplate = (rowData, index) => {
-    return (
-      <div className="kebab-menu-container">
-        <Menu model={sub_options} popup ref={menuLeft_sub} id="popup_menu_left" />
-        <Button
-          text
-          rounded
-          className="action-menu"
-          icon="pi pi-ellipsis-v"
-          onClick={(event) => {
-            setSelectedSubRowIndex(index);
-            menuLeft_sub.current.toggle(event);
-          }}
-          aria-controls="popup_menu_left"
-          aria-haspopup
-        />
-      </div>
-    );
-  };
-
   const subRenderEditSaveButton = (rowIndex) => {
     if (subData[rowIndex].showSave) {
       return (
@@ -376,8 +384,8 @@ export default function List() {
 
   return (
     <div>
-      <div key={key}>
-        <div className="flex mb-1 flex justify-between">
+      <div>
+        <div className="flex flex justify-between">
           <div className="heading">
             <h1>Code Master</h1>
           </div>
@@ -392,8 +400,8 @@ export default function List() {
             />
           </div>
         </div>
-        <div>
-          <DataTable value={formData} paginator rows={5} scrollable>
+        <div key={key}>
+          <DataTable value={formData} paginator rows={3} scrollable>
             <Column
               headerClassName="action"
               bodyClassName="action"
@@ -435,7 +443,7 @@ export default function List() {
           </DataTable>
         </div>
       </div>
-      <div className="mt-5" key={subKey}>
+      <div className="mt-3" key={subKey}>
         <div className="heading flex justify-between">
           <div>
             <h1>List</h1>
@@ -445,7 +453,7 @@ export default function List() {
               rounded={false}
               label="Add"
               icon="pi pi-plus"
-              aria-controls="popup_menu_left"
+              aria-controls="popup_menu_left_1"
               onClick={() => addSubData()}
               aria-haspopup
             />

@@ -1,26 +1,26 @@
 [
   {
     "id": 101,
-    "master_name": "Master Data 1",
+    "master_name": "Coverage Type",
     "is_selected": true,
     "show": false,
     "subData": [
       {
         "showSave": false,
-        "code": 101,
+        "code": 1,
         "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
+          "en": "Comprehensive",
+          "es": "Integral"
         },
         "effective_from": "01-01-2023",
         "effective_to": "31-12-2023"
       },
       {
         "showSave": false,
-        "code": 102,
+        "code": 2,
         "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
+          "en": "Third Party",
+          "es": "Terceros"
         },
         "effective_from": "02-03-2024",
         "effective_to": "02-01-2024"
@@ -29,74 +29,134 @@
   },
   {
     "id": 102,
-    "master_name": "Master Data 2",
+    "master_name": "Usage Type",
     "is_selected": false,
     "show": false,
     "subData": [
       {
         "showSave": false,
-        "code": 201,
+        "code": 1,
         "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
+          "en": "Passenger carrying Vehicle",
+          "es": "Vehículo de transporte de pasajeros"
         },
         "effective_from": "01-01-2023",
         "effective_to": "31-12-2023"
       },
       {
         "showSave": false,
-        "code": 202,
+        "code": 2,
         "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
+          "en": "Goods carrying Vehicle",
+          "es": "Vehículo de transporte de mercancías"
         },
         "effective_from": "02-03-2024",
         "effective_to": "02-01-2024"
       },
       {
         "showSave": false,
-        "code": 203,
+        "code": 3,
         "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
+          "en": "Special Types",
+          "es": "Tipos especiales"
         },
         "effective_from": "01-01-2023",
         "effective_to": "31-12-2023"
-      },
-      {
-        "showSave": false,
-        "code": 204,
-        "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
-        },
-        "effective_from": "02-03-2024",
-        "effective_to": "02-01-2024"
       }
     ]
   },
   {
     "id": 103,
-    "master_name": "Master Data 3",
+    "master_name": "Body type",
     "is_selected": false,
     "show": false,
     "subData": [
       {
         "showSave": false,
-        "code": 301,
+        "code": 1,
         "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
+          "en": "Taxies",
+          "es": "Taxis"
         },
         "effective_from": "01-01-2023",
         "effective_to": "31-12-2023"
       },
       {
         "showSave": false,
-        "code": 302,
+        "code": 2,
         "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
+          "en": "Autos",
+          "es": "Autos"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 3,
+        "description": {
+          "en": "Vans",
+          "es": "Furgonetas"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 4,
+        "description": {
+          "en": "Buses",
+          "es": "Autobuses"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 5,
+        "description": {
+          "en": "Mini Trucks",
+          "es": "Mini camiones"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 6,
+        "description": {
+          "en": "Truck",
+          "es": "Camión"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 7,
+        "description": {
+          "en": "Trailer",
+          "es": "Remolque"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 8,
+        "description": {
+          "en": "Trackers",
+          "es": "Rastreadores"
+        },
+        "effective_from": "02-03-2024",
+        "effective_to": "02-01-2024"
+      },
+      {
+        "showSave": false,
+        "code": 9,
+        "description": {
+          "en": "Forklift",
+          "es": "Montacargas"
         },
         "effective_from": "02-03-2024",
         "effective_to": "02-01-2024"
@@ -105,30 +165,23 @@
   },
   {
     "id": 104,
-    "master_name": "Master Data 4",
+    "master_name": "Make",
     "is_selected": false,
     "show": false,
-    "subData": [
-      {
-        "showSave": false,
-        "code": 401,
-        "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
-        },
-        "effective_from": "01-01-2023",
-        "effective_to": "31-12-2023"
-      },
-      {
-        "showSave": false,
-        "code": 402,
-        "description": {
-          "en": "Description in English",
-          "es": "Descripción en Español"
-        },
-        "effective_from": "02-03-2024",
-        "effective_to": "02-01-2024"
-      }
-    ]
+    "subData": []
+  },
+  {
+    "id": 105,
+    "master_name": "Model",
+    "is_selected": false,
+    "show": false,
+    "subData": []
+  },
+  {
+    "id": 106,
+    "master_name": "Gross vehicle weight",
+    "is_selected": false,
+    "show": false,
+    "subData": []
   }
 ]
