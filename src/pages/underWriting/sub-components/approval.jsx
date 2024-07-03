@@ -8,6 +8,7 @@ import { Toast } from "primereact/toast";
 import { useEffect, useRef, useState } from "react";
 import { Card } from "primereact/card";
 import BusinessRules from "./BusinessRules";
+import AccountQuery from "./AccountQuery";
 
 const Approval = () => {
   const toast = useRef(null);
@@ -19,6 +20,7 @@ const Approval = () => {
   });
 
   const [showBusinessRules, setShowBusinessRules] = useState(false);
+  const [showAccountQuery, setShowAccountQuery] = useState(false);
 
   const handelCheckboxUpdate = (name, value) => {
     setApproveQuotes({ ...approveQuotes, automate: value });
@@ -67,6 +69,10 @@ const Approval = () => {
 
   const handleBusinessRules = () => {
     setShowBusinessRules(true);
+  };
+
+  const handleAccountQuery = () => {
+    setShowAccountQuery(true);
   };
 
   return (
@@ -190,7 +196,10 @@ const Approval = () => {
                       </Link>
                     </div>
                     <div className="mt-5 flex items-center justify-center">
-                      <Button label="Account Query" />
+                      <Button
+                        label="Account Query"
+                        onClick={() => handleAccountQuery()}
+                      />
                     </div>
                   </>
                 )}
@@ -228,6 +237,11 @@ const Approval = () => {
             show={showBusinessRules}
             setShow={setShowBusinessRules}
           />
+        )}
+      </div>
+      <div>
+        {showAccountQuery && (
+          <AccountQuery show={showAccountQuery} setShow={setShowAccountQuery} />
         )}
       </div>
     </div>
