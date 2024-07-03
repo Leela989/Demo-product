@@ -48,6 +48,11 @@
     margin-left: 10px;
 }
 
+.purposeContainer .p-inputtextarea {
+    height: 36px !important;
+}
+
+
 .topRuleContainer{
     display: flex;
 }
