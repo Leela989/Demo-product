@@ -11,11 +11,17 @@ function UserAuthorisation_setup() {
   };
 
   const userGroup_options = [
-    { name: "User group1" },
-    { name: "User group2" },
-    { name: "User group3" },
-    { name: "User group4" },
-    { name: "User group5" },
+    { name: "UWMA - UW Manager" },
+    { name: "UWSO- UW Senior Officer" },
+    { name: "UWJO- UW Junior officer" },
+    { name: "ITUSER - IT user" },
+    { name: "ADMIN - Admin" },
+    { name: "CLMA" },
+    { name: "CLSO" },
+    { name: "CLJO" },
+    { name: "RIMA" },
+    { name: "RISO" },
+    { name: "RIJO" },
   ];
 
   const [selectedCategory, setSelectedCategory] = useState({
@@ -35,11 +41,12 @@ function UserAuthorisation_setup() {
 
   return (
     <div className="user-authorisation-setup">
-      <div className="flex flex-wrap">
-        <div className="w-1/4 p-2">
+      <div className="attributesHeader">
+        <div className="w-4/4 p-2">
           <label className="radio_button_heading">User Group</label>
           <AutoCompleteField
             name="userGroup"
+            className="mt-2"
             value={""}
             onChange={handleUserGroupChange}
             options={userGroup_options}
@@ -47,13 +54,13 @@ function UserAuthorisation_setup() {
           />
         </div>
 
-        <div className="w-1/4 p-2">
-          <label className="radio_button_heading">User</label>
-          <div className="radio-group">
-            <div className="align-items-center">
-              <div className="flex">
+        <div className="flex mt-6">
+          <div className="w-4/4 p-2 align-items-center">
+            <div className="radio_button_heading">User</div>
+            <div className="radio-group">
+              <div className="top_row">
                 <RadioButton
-                  name="userCategory"
+                  name="userCategoryUser"
                   value="All"
                   onChange={(e) => handleCategoryChange("user", e.value)}
                   checked={selectedCategory.user === "All"}
@@ -61,9 +68,9 @@ function UserAuthorisation_setup() {
                 <label className="ml-2">All</label>
               </div>
 
-              <div className="flex mt-4">
+              <div className="bottom_row">
                 <RadioButton
-                  name="userCategory"
+                  name="userCategoryUser"
                   value="Dropdown"
                   onChange={(e) => handleCategoryChange("user", e.value)}
                   checked={selectedCategory.user === "Dropdown"}
@@ -81,15 +88,13 @@ function UserAuthorisation_setup() {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-1/4 p-2">
-          <label className="radio_button_heading">Company</label>
-          <div className="radio-group">
-            <div className="align-items-center">
-              <div className="flex">
+          <div className="w-4/4 p-2 align-items-center">
+            <div className="radio_button_heading">Company</div>
+            <div className="radio-group">
+              <div className="top_row">
                 <RadioButton
-                  name="companyCategory"
+                  name="userCategoryCompany"
                   value="All"
                   onChange={(e) => handleCategoryChange("company", e.value)}
                   checked={selectedCategory.company === "All"}
@@ -97,9 +102,9 @@ function UserAuthorisation_setup() {
                 <label className="ml-2">All</label>
               </div>
 
-              <div className="flex mt-4">
+              <div className="bottom_row">
                 <RadioButton
-                  name="companyCategory"
+                  name="userCategoryCompany"
                   value="Dropdown"
                   onChange={(e) => handleCategoryChange("company", e.value)}
                   checked={selectedCategory.company === "Dropdown"}
@@ -119,28 +124,29 @@ function UserAuthorisation_setup() {
           </div>
         </div>
 
-        <div className="w-1/4 p-2">
-          <label className="radio_button_heading">Branch</label>
-          <div className="radio-group">
-            <div className="align-items-center">
-              <div className="flex">
+        <div className="flex mt-6">
+          <div className="w-4/4 p-2 align-items-center">
+            <div className="radio_button_heading">Branch</div>
+            <div className="radio-group">
+              <div className="top_row">
                 <RadioButton
-                  name="branchCategory"
+                  name="userCategoryBranch"
                   value="All"
                   onChange={(e) => handleCategoryChange("branch", e.value)}
                   checked={selectedCategory.branch === "All"}
                 />
                 <label className="ml-2">All</label>
               </div>
-              <div className="flex mt-4">
+
+              <div className="bottom_row">
                 <RadioButton
-                  name="branchCategory"
+                  name="userCategoryBranch"
                   value="Dropdown"
                   onChange={(e) => handleCategoryChange("branch", e.value)}
                   checked={selectedCategory.branch === "Dropdown"}
                 />
                 <AutoCompleteField
-                  className="w-full p-1"
+                  className="w-full ml-2"
                   name="branch"
                   value={""}
                   label=""
@@ -152,30 +158,29 @@ function UserAuthorisation_setup() {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-1/4 p-2">
-          <label className="radio_button_heading">Department</label>
-          <div className="radio-group">
-            <div className="align-items-center">
-              <div className="flex">
+          <div className="w-4/4 p-2 align-items-center">
+            <div className="radio_button_heading">Department</div>
+            <div className="radio-group">
+              <div className="top_row">
                 <RadioButton
-                  name="departmentCategory"
+                  name="userCategoryDepartment"
                   value="All"
                   onChange={(e) => handleCategoryChange("department", e.value)}
                   checked={selectedCategory.department === "All"}
                 />
                 <label className="ml-2">All</label>
               </div>
-              <div className="flex mt-4">
+
+              <div className="bottom_row">
                 <RadioButton
-                  name="departmentCategory"
+                  name="userCategoryDepartment"
                   value="Dropdown"
                   onChange={(e) => handleCategoryChange("department", e.value)}
                   checked={selectedCategory.department === "Dropdown"}
                 />
                 <AutoCompleteField
-                  className="w-full p-1"
+                  className="w-full ml-2"
                   name="department"
                   value={""}
                   label=""
@@ -189,13 +194,13 @@ function UserAuthorisation_setup() {
           </div>
         </div>
 
-        <div className="w-1/4 p-2">
-          <label className="radio_button_heading">LOB</label>
-          <div className="radio-group">
-            <div className="align-items-center">
-              <div className="flex">
+        <div className="flex mt-6">
+          <div className="w-4/4 p-2 align-items-center">
+            <div className="radio_button_heading">LOB</div>
+            <div className="radio-group">
+              <div className="top_row">
                 <RadioButton
-                  name="lobCategory"
+                  name="userCategoryLob"
                   value="All"
                   onChange={(e) => handleCategoryChange("lob", e.value)}
                   checked={selectedCategory.lob === "All"}
@@ -203,9 +208,9 @@ function UserAuthorisation_setup() {
                 <label className="ml-2">All</label>
               </div>
 
-              <div className="flex mt-4">
+              <div className="bottom_row">
                 <RadioButton
-                  name="lobCategory"
+                  name="userCategoryLob"
                   value="Dropdown"
                   onChange={(e) => handleCategoryChange("lob", e.value)}
                   checked={selectedCategory.lob === "Dropdown"}
@@ -223,24 +228,23 @@ function UserAuthorisation_setup() {
               </div>
             </div>
           </div>
-        </div>
 
-        <div className="w-1/4 p-2">
-          <label className="radio_button_heading">Product</label>
-          <div className="radio-group">
-            <div className="align-items-center">
-              <div className="flex">
+          <div className="w-4/4 p-2 align-items-center">
+            <div className="radio_button_heading">Product</div>
+            <div className="radio-group">
+              <div className="top_row">
                 <RadioButton
-                  name="productCategory"
+                  name="userCategoryProduct"
                   value="All"
                   onChange={(e) => handleCategoryChange("product", e.value)}
                   checked={selectedCategory.product === "All"}
                 />
                 <label className="ml-2">All</label>
               </div>
-              <div className="flex mt-4">
+
+              <div className="bottom_row">
                 <RadioButton
-                  name="productCategory"
+                  name="userCategoryProduct"
                   value="Dropdown"
                   onChange={(e) => handleCategoryChange("product", e.value)}
                   checked={selectedCategory.product === "Dropdown"}
@@ -259,12 +263,13 @@ function UserAuthorisation_setup() {
             </div>
           </div>
         </div>
-        <div className="mt-21 ml-12" style={{marginTop: '70px'}}>
-        <CustomButton label="Save" onClick={saveChanges} />
+
+        <div className="w-4/4 mt-7 flex justify-center">
+          <CustomButton label="Save" className="w-1/4" onClick={saveChanges} />
+        </div>
       </div>
-      </div>
-    
-      <div className="mt-4">
+
+      <div className="attributesBox">
         <User_Authorisation_Attributes />
       </div>
     </div>

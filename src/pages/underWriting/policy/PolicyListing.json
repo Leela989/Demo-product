@@ -1,0 +1,79 @@
+[
+  {
+    "policy": "P/10/1001/2024/0530",
+    "product": "Marine Open Cover",
+    "start_date": "10/01/2024 10:00",
+    "end_date": "10/01/2025 16:00",
+    "status": "Pending"
+  },
+  {
+    "policy": "P/10/1002/2024/0531",
+    "product": "Marine Certificate",
+    "start_date": "15/01/2024 09:00",
+    "end_date": "15/01/2025 17:00",
+    "status": "Approved"
+  },
+  {
+    "policy": "P/10/1003/2024/0532",
+    "product": "Fire & Allied Perils",
+    "start_date": "20/01/2024 11:00",
+    "end_date": "20/01/2025 18:00",
+    "status": "Pending"
+  },
+  {
+    "policy": "P/10/1004/2024/0533",
+    "product": "Motor Private",
+    "start_date": "25/01/2024 08:30",
+    "end_date": "25/01/2025 15:30",
+    "status": "Approved"
+  },
+  {
+    "policy": "P/10/1005/2024/0534",
+    "product": "Marine Open Cover",
+    "start_date": "30/01/2024 10:00",
+    "end_date": "30/01/2025 16:00",
+    "status": "Pending"
+  },
+  {
+    "policy": "P/10/1006/2024/0535",
+    "product": "Marine Certificate",
+    "start_date": "05/02/2024 09:00",
+    "end_date": "05/02/2025 17:00",
+    "status": "Approved"
+  },
+  {
+    "policy": "P/10/1007/2024/0536",
+    "product": "Fire & Allied Perils",
+    "start_date": "10/02/2024 11:00",
+    "end_date": "10/02/2025 18:00",
+    "status": "Pending"
+  },
+  {
+    "policy": "P/10/1008/2024/0537",
+    "product": "Motor Private",
+    "start_date": "15/02/2024 08:30",
+    "end_date": "15/02/2025 15:30",
+    "status": "Approved"
+  },
+  {
+    "policy": "P/10/1009/2024/0538",
+    "product": "Marine Open Cover",
+    "start_date": "20/02/2024 10:00",
+    "end_date": "20/02/2025 16:00",
+    "status": "Pending"
+  },
+  {
+    "policy": "P/10/1010/2024/0539",
+    "product": "Marine Certificate",
+    "start_date": "25/02/2024 09:00",
+    "end_date": "25/02/2025 17:00",
+    "status": "Approved"
+  },
+  {
+    "policy": "P/10/1011/2024/0540",
+    "product": "Fire & Allied Perils",
+    "start_date": "01/03/2024 11:00",
+    "end_date": "01/03/2025 18:00",
+    "status": "Pending"
+  }
+]

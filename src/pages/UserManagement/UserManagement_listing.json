@@ -1,0 +1,81 @@
+[
+    {
+        "user_group": "User Group1",
+        "user": "Sinchan",
+        "company": "Azentio",
+        "branch": "Marine",
+        "department": "11-Main Branch",
+        "lob": "1002-Motor commercial",
+        "product": "product"
+    },
+    {
+        "user_group": "User Group2",
+        "user": "Rajesh",
+        "company": "Azentio",
+        "branch": "Marine",
+        "department": "10-Head Office",
+        "lob": "2001-Marine Open Cover",
+        "status": "Pending",
+        "product": "product1"
+    },
+    {
+        "user_group": "User Group3",
+        "user": "Priya",
+        "company": "Azentio",
+        "branch": "Marine",
+        "department": "12-Branch 1",
+        "lob": "2002-Marine Certificate",
+        "status": "Approved",
+        "product": "product2"
+    },
+    {
+        "user_group": "User Group4",
+        "user": "John",
+        "company": "Azentio",
+        "branch": "Fire",
+        "department": "11-Main Branch",
+        "lob": "3001-Fire & Allied Perils",
+        "status": "Pending",
+        "product": "product3"
+    },
+    {
+        "user_group": "User Group5",
+        "user": "Alex",
+        "company": "Azentio",
+        "branch": "Motor",
+        "department": "12-Branch 1",
+        "lob": "1001-Motor Private",
+        "status": "Pending",
+        "product": "product4"
+    },
+    {
+        "user_group": "User Group6",
+        "user": "Sara",
+        "company": "Azentio",
+        "branch": "Motor",
+        "department": "11-Branch 1",
+        "lob": "1002-Motor Private",
+        "status": "Pending",
+        "product": "product5"
+    },
+    {
+        "user_group": "User Group7",
+        "user": "Michael",
+        "company": "Azentio",
+        "branch": "Motor",
+        "department": "12-Head 1",
+        "lob": "1003-Motor Private",
+        "status": "Pending",
+        "product": "product6"
+    },
+    {
+        "user_group": "User Group8",
+        "user": "Emily",
+        "company": "Azentio",
+        "branch": "Motor",
+        "department": "12-Office 1",
+        "lob": "1004-Motor Private",
+        "status": "Pending",
+        "product": "product7"
+    }
+]

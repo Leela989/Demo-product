@@ -31,25 +31,30 @@ import DivisionsList from "./pages/DivisionMaster/DivisionsList";
 import CurrencyAndExchangeMaster from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeMaster";
 import CurrencyAndExchangeList from "./pages/currencyAndExchangeMaster/CurrencyAndExchangeList";
 import UserAuthorisation_setup from "./pages/UserManagement/UserAuthorisation_setup";
-import CodeMasterList from "./pages/codeMasters/List";
-import VatTaxMasterList from "./pages/vat-tax-master/List";
-import VatTaxMaster from "./pages/vat-tax-master/TaxMaster";
+import juniorOfficer_menu from "../src/pages/Sidebar/JuniorOfficerMenu";
+import UserManagementListingPage from "../src/pages/UserManagement/UserManagementListingPage";
+import PolicyListing from "../src/pages/underWriting/policy/PolicyListing";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
-  const { showNote } = useParams();
 
-  console.log(showNote, "<<<<<");
-
-  // const location = useLocation();
-  // const currentPath = location.pathname;
-  // console.log("currentPath", currentPath);
+  const [sideBarMenu, set_sidebar_menu] = useState(linkData);
+  const current_user = JSON.parse(localStorage.getItem("junior_officer"));
 
   useEffect(() => {
     if (token) {
       localStorage.setItem("token", token);
     } else {
       localStorage.removeItem("token");
+    }
+  }, [token]);
+
+  useEffect(() => {
+    console.log("current", current_user, typeof current_user);
+    if (current_user) {
+      set_sidebar_menu(juniorOfficer_menu);
+    } else {
+      set_sidebar_menu(linkData);
     }
   }, [token]);
 
@@ -60,12 +65,19 @@ function App() {
           <Header setToken={setToken} />
           <div className="main">
             {/* <SideBarHide/> */}
-            <Sidebar linksData={linkData} />
+            <Sidebar linksData={sideBarMenu} />
             <div className="content">
               <Routes>
-                <Route path="/" element={<Navigate to="/tasks" />} />
                 <Route
-                  path="/userManagement/userAuthorisationSetup"
+                  path="/userManagement/userAuthorisationSetup/listing"
+                  element={<UserManagementListingPage />}
+                />
+                <Route
+                  path="/userManagement/userAuthorisationSetup/createNew/:id"
+                  element={<UserAuthorisation_setup />}
+                />
+                <Route
+                  path="/userManagement/userAuthorisationSetup/editApplicaion/:id"
                   element={<UserAuthorisation_setup />}
                 />
                 <Route path="/docs" element={<Documentation />} />
@@ -77,6 +89,10 @@ function App() {
                 <Route
                   path="/productConfigurator/lineofbusiness"
                   element={<LineOfBusinessListing />}
+                />
+                <Route
+                  path="/underwriting/policy/motor"
+                  element={<PolicyListing />}
                 />
                 <Route
                   path="/productConfigurator/LOB/createApplication"
@@ -160,8 +176,8 @@ function App() {
         </div>
       ) : (
         <Routes>
-          <Route path="/" element={<Navigate to="/azinsui" />} />
-          <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
+           <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
+          <Route path="/" element={<LoginForm setToken={setToken} />} />
         </Routes>
       )}
     </>

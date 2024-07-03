@@ -237,7 +237,7 @@ function RiskCover() {
     <div>
       <div style={{ display: "flex" }}>
         <DataTable
-          value={key==2301 && CoverAttributesData}
+          value={CoverAttributesData}
           paginator
           rows={5}
           rowsPerPageOptions={[5, 10, 25, 50]}

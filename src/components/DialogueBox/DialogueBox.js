@@ -12,7 +12,8 @@ export default function DialogueBox({
     onSave,
     showFooter = true,
     showCloseIcon = true,
-    visible
+    visible,
+    width='50vw'
 }) {
     const hideDialogueBox = () => {
         if (onClose) {
@@ -39,10 +40,11 @@ export default function DialogueBox({
             <Dialog
                 header={header}
                 visible={visible}
-                style={{ width: '50vw'}}
+                style={{ width: width}}
                 onHide={hideDialogueBox}
                 footer={footerContent}
                 closable={showCloseIcon}
+                maximizable
             >
                 {data}
             </Dialog>

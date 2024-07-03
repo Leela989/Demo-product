@@ -16,6 +16,7 @@ function RiskAttributes() {
   const [selectedAttributes, setSelectedAttributes] = useState([]);
   const menuLeft = useRef(null);
   const { id, key } = useParams();
+  const productKey = parseInt(key,10);
   const [editingRowIndex, setEditingRowIndex] = useState(null);
   const [blockTable_data, set_blockTable_data] = useState(null);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
@@ -65,8 +66,18 @@ function RiskAttributes() {
   };
 
   useEffect(() => {
-    set_blockTable_data(riskAttributeData.data);
-  }, []);
+    console.log('riskAttributeData', riskAttributeData);
+    console.log('productKey', productKey);
+  
+    const matchedData = riskAttributeData.find(item => item.key === productKey);
+    console.log('matchedData', matchedData);
+  
+    if (matchedData) {
+      set_blockTable_data(matchedData.data);
+    } else {
+      console.warn('No matching key found for productKey:', productKey);
+    }
+  }, [riskAttributeData, productKey, blockTable_data]);
 
   const handleRowSelect = (e) => {
     const selectedRowData = e.value;
@@ -233,6 +244,7 @@ function RiskAttributes() {
     );
   };
 
+
   const render_blockAttributes_header = (header) => {
     return (
       <div className="flex justify-between items-center">
@@ -257,7 +269,7 @@ function RiskAttributes() {
           >
             <div style={{ display: "flex" }}>
               <DataTable
-                value={key == 2301 ? blockTable_data : []}
+                value={blockTable_data}
                 selectionMode="single"
                 selection={selectedRow}
                 onSelectionChange={handleRowSelect}
@@ -308,7 +320,7 @@ function RiskAttributes() {
                     <InputField
                       className="w-2/4"
                       type="text"
-                      value={rowData.srlNo}
+                      value={rowData.Serial_no}
                       disabled={
                         editing_index_blockAttributes !== options.rowIndex
                       }
@@ -322,7 +334,7 @@ function RiskAttributes() {
                     <InputField
                       className="w-2/4"
                       type="text"
-                      value={rowData.levelNo}
+                      value={rowData.Level}
                       disabled={
                         editing_index_blockAttributes !== options.rowIndex
                       }
@@ -375,6 +387,7 @@ function RiskAttributes() {
                 <Column
                   field="FieldName"
                   header="Field Name"
+                  style={{ width: "15%" }}
                   body={(rowData, options) => (
                     <InputField
                       type="text"
@@ -401,7 +414,7 @@ function RiskAttributes() {
                 <Column
                   field="FieldType"
                   header="Field Type"
-                  style={{ width: "10%" }}
+                  style={{ width: "13%" }}
                   body={(rowData, options) => (
                     <AutoCompleField
                       className="w-4/4"
@@ -450,37 +463,33 @@ function RiskAttributes() {
                   field="Mandatory_yn"
                   header="Mandatory"
                   body={(rowData, options) => (
-                    <input
-                      type="checkbox"
-                      checked={rowData.Mandatory_yn || false}
+                    <CheckBox
+                      checked={(rowData.Mandatory_yn === "1" ? true : false )}
                       disabled={editingRowIndex !== options.rowIndex}
                     />
                   )}
-                  style={{ width: "10%" }}
                 ></Column>
                 <Column
                   field="Hide Y/N"
                   header="Hide Y/N"
                   body={(rowData, options) => (
-                    <input
+                    <CheckBox
                       type="checkbox"
-                      checked={rowData.Hide_yn || false}
+                      checked={(rowData.Mandatory_yn === "1" ? true : false )}
                       disabled={editingRowIndex !== options.rowIndex}
                     />
                   )}
-                  style={{ width: "10%" }}
                 ></Column>
                 <Column
                   field="claimlookupYN"
                   header="Claim Lookup YN"
                   body={(rowData, options) => (
-                    <input
+                    <CheckBox
                       type="checkbox"
-                      checked={rowData.Claimlookup_yn || false}
+                      checked={(rowData.Mandatory_yn === "1" ? true : false )}
                       disabled={editingRowIndex !== options.rowIndex}
                     />
                   )}
-                  style={{ width: "10%" }}
                 ></Column>
                 <Column
                   field="action"

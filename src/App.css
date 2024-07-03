@@ -276,7 +276,10 @@ button.p-button.p-component.p-button-outlined:hover {
 .p-component.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
   border: 1px solid rgb(0, 59, 149);
 }
- 
+ /* .p-steps .p-steps-item .p-menuitem-link .p-steps-title{
+  margin-top: 0.5rem;
+  color:red !important;
+ } */
 /* stepper styles here */
 .p-component.p-steps .p-menuitem-link {
   min-width: 80px;
@@ -301,13 +304,21 @@ button.p-button.p-component.p-button-outlined:hover {
   color: #EEF2FF;
 }
 .p-component.p-steps .p-menuitem-link:hover .p-steps-number {
-  background: #EEF2FF;
-  color: #4338CA;
+  background: #a49df5 !important;
+  /* color: #4338CA; */
+}
+.p-steps-title{
+  color: rgb(7, 7, 7) !important;
 }
 
 span.p-steps-number.completed{
   background: green !important;
   color: #EEF2FF !important;
+  border: none !important;
+}
+span.p-steps-number{
+  background:#4338CA !important;
+  color:white !important;
   border: none !important;
 }
 
@@ -369,7 +380,7 @@ span.p-steps-number.completed{
 .cover_card{
   margin-top: 8px;
   width: 30%;
-  height: 580px !important;
+  max-height: 580px;
   padding: 15px;
   border-radius: 12px;
   box-shadow: 0 0 12px 4px rgba(0, 0, 0, 0.12)

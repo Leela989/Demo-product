@@ -17,7 +17,6 @@ function LoginForm({ setToken }) {
   const toast = useRef(null);
   const [flag, setFlag] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [formData, setFormData] = useState({});
   const [loginDetails, setLoginDetails] = useState({
     userName: "",
     password: "",
@@ -67,14 +66,36 @@ function LoginForm({ setToken }) {
 
   const handleLogin = () => {
     console.log(loginDetails);
+    let role="";
+    // localStorage.setItem('username', loginDetails.userName);
+    // localStorage.setItem('password', loginDetails.password);
+    let users=[
+      {username:"Azentio_admin",password:"azentio@123",role:"admin"},
+      {username:"Azentio_junior_officer",password:"azentio@123",role:"officer"}
+  ]
     if (
-      loginDetails.userName === "Azentio" &&
+      loginDetails.userName === "Azentio_admin" &&
       loginDetails.password === "azentio@123"
     ) {
       setIsLoggedIn(true);
       setToken(true);
+      localStorage.setItem('junior_officer', false);
+      localStorage.setItem('username', loginDetails.userName);
+      localStorage.setItem('password', loginDetails.password);
       navigate("/tasks");
-    } else {
+    } 
+    else if( loginDetails.userName === "Azentio_junior_officer" &&
+    loginDetails.password === "azentio@123") {
+      {
+        setIsLoggedIn(true);
+        setToken(true);
+        localStorage.setItem('junior_officer', true);
+        localStorage.setItem('username', loginDetails.userName);
+        localStorage.setItem('password', loginDetails.password);
+        navigate("/tasks");
+      } 
+    }
+    else {
       setIsLoggedIn(false);
       setToken(false);
       showMandatoryFill();

@@ -1,50 +1,98 @@
-[
-    {
-        "code": "1001",
-        "description": "risk SMI",
-        "maximumaplvalue": "200",
-        "default": "true",
-        "addSi": "false",
-        "declaration": "false"
-    },
-    {
-        "code": "2002",
-        "description": "SMI",
-        "maximumaplvalue": "400",
-        "default": "true",
-        "addSi": "false",
-        "declaration": "false"
-    },
-    {
-        "code": "2003",
-        "description": "Risk type",
-        "maximumaplvalue": "500",
-        "default": "true",
-        "addSi": "false",
-        "declaration": "false"
-    },
-    {
-        "code": "1003",
-        "description": "Risk value",
-        "maximumaplvalue": "600",
-        "default": "true",
-        "addSi": "false",
-        "declaration": "false"
-    },
-    {
-        "code": "3003",
-        "description": "",
-        "maximumaplvalue": "100",
-        "default": "true",
-        "addSi": "false",
-        "declaration": "false"
-    },
-    {
-        "code": "2004",
-        "description": "Risk attributes",
-        "maximumaplvalue": "",
-        "default": "true",
-        "addSi": "false",
-        "declaration": "false"
-    }
-]
+{
+    "data": [
+        {
+            "key": "2301",
+            "values": [
+                {
+                    "code": "1001",
+                    "description": "risk SMI",
+                    "maximumaplvalue": "200",
+                    "default": true,
+                    "addSi": false,
+                    "declaration": false
+                },
+                {
+                    "code": "2002",
+                    "description": "SMI",
+                    "maximumaplvalue": "400",
+                    "default": true,
+                    "addSi": false,
+                    "declaration": false
+                },
+                {
+                    "code": "2003",
+                    "description": "Risk type",
+                    "maximumaplvalue": "500",
+                    "default": true,
+                    "addSi": false,
+                    "declaration": false
+                },
+                {
+                    "code": "1003",
+                    "description": "Risk value",
+                    "maximumaplvalue": "600",
+                    "default": true,
+                    "addSi": false,
+                    "declaration": false
+                },
+                {
+                    "code": "3003",
+                    "description": "",
+                    "maximumaplvalue": "100",
+                    "default": true,
+                    "addSi": false,
+                    "declaration": false
+                },
+                {
+                    "code": "2004",
+                    "description": "Risk attributes",
+                    "maximumaplvalue": "",
+                    "default": true,
+                    "addSi": false,
+                    "declaration": false
+                }
+            ]
+        },
+        {
+            "key": "2304",
+            "values": [
+                {
+                    "Type": "S",
+                    "code": "2110",
+                    "description": "Building",
+                    "maximumaplvalue": "100",
+                    "addSi": true,
+                    "default": false,
+                    "declaration": false
+                  },
+                  {
+                    "Type": "S",
+                    "code": "2111",
+                    "description": "Contents",
+                    "maximumaplvalue": "70",
+                    "addSi": false,
+                    "default": false,
+                    "declaration": true
+                  },
+                  {
+                    "Type": "S",
+                    "code": "2112",
+                    "description": "Gross profit",
+                    "maximumaplvalue": "0",
+                    "addSi": false,
+                    "default": true,
+                    "declaration": true
+                  },
+                  {
+                    "Type": "S",
+                    "code": "2113",
+                    "description": "Loss of Rent",
+                    "maximumaplvalue": "0",
+                    "addSi": false,
+                    "default": false,
+                    "declaration": true
+                  }
+            ]
+        }
+    ]
+}

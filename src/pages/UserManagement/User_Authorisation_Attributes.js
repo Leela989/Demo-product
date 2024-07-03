@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { TabView, TabPanel } from "primereact/tabview";
 import CustomButton from "../../components/Button/CustomButton";
 import { Checkbox } from "primereact/checkbox";
@@ -7,16 +7,26 @@ import DialogueBox from "../../components/DialogueBox/DialogueBox";
 import AutoCompleteField from "../../components/AutoCompleteField/AutoCompleteField";
 import InputField from "../../components/InputField/InputField";
 import './UserAuthorisationSetup.css';
+import { DataTable } from "primereact/datatable";
+import { Column } from "primereact/column";
+import { Button } from "primereact/button";
+import { Menu } from "primereact/menu";
+import CheckBox from "../../components/CheckBox/CheckBox";
+import Applicable_endorsement from './Applicable_endorsement.json';
 
 export default function User_Authorisation_Attributes() {
+  const menuLeft = useRef(null);
   const [formData, setFormData] = useState({ attributeName: "", fieldType: "" });
   const [addDialogVisible, setAddDialogVisible] = useState(false);
   const [activeTab, setActiveTab] = useState("UW");
+const [editingRows, setEditingRows] = useState({});
+
 
   const [uwData, setUwData] = useState(jsonData.data.uw);
   const [claimsData, setClaimsData] = useState(jsonData.data.claims_data);
   const [riData, setRiData] = useState(jsonData.data.RI_Data);
   const [common, setCommon] = useState(jsonData.data.Common);
+  const [ApplicableEndorsement, set_Applicable_Endorsement] = useState(jsonData.data.Applicable_Endorsement);
 
   const handleAttributeNameChange = (value) => {
     setFormData((prevData) => ({
@@ -139,6 +149,37 @@ export default function User_Authorisation_Attributes() {
     );
   };
 
+  const options = [
+    {name: "View"},
+    {name: "Edit"},
+    {name: "Delete"}
+  ]
+
+  const actionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <Menu model={options} popup ref={menuLeft} id="popup_menu_left" />
+        <Button
+          text
+          rounded
+          className="action-menu"
+          icon="pi pi-ellipsis-v"
+          onClick={(event) => menuLeft.current.toggle(event)}
+          aria-controls="popup_menu_left"
+          aria-haspopup
+        />
+      </div>
+    );
+  };
+
+  const endorsement_type_options = [
+    { "name": "Nill Endorsement" },
+    { "name": "Addition or Deletion of Risk/Cover" },
+    { "name": "Change in Policy Period" },
+    { "name": "Change in Coverages" },
+    { "name": "Change in Broker/Agent" }
+  ]
+
   return (
     <div className="attributes-tab-containers">
       <div className="flex justify-end">
@@ -148,25 +189,84 @@ export default function User_Authorisation_Attributes() {
           onClick={handleAddClick}
         />
       </div>
-      <TabView activeIndex={["UW", "Claims", "RI", "Common"].indexOf(activeTab)} onTabChange={(e) => setActiveTab(["UW", "Claims", "RI", "Common"][e.index])}>
+      <TabView activeIndex={["UW", "Claims", "RI", "Common", "Applicable_Endorsement"].indexOf(activeTab)} onTabChange={(e) => setActiveTab(["UW", "Claims", "RI", "Common", "Applicable_Endorsement"][e.index])}>
         <TabPanel header="Underwriting">
-          <div className="attributeListing">
+          <div className="attribute_Listing">
             {uwData.map((item) => renderAttributeBox(item))}
           </div>
         </TabPanel>
         <TabPanel header="Claims">
-          <div className="attributeListing">
+          <div className="attribute_Listing">
             {claimsData.map((item) => renderAttributeBox(item))}
           </div>
         </TabPanel>
         <TabPanel header="Reinsurance">
-          <div className="attributeListing">
+          <div className="attribute_Listing">
             {riData.map((item) => renderAttributeBox(item))}
           </div>
         </TabPanel>
         <TabPanel header="Common">
-          <div className="attributeListing">
+          <div className="attribute_Listing">
             {common.map((item) => renderAttributeBox(item))}
+          </div>
+        </TabPanel>
+        <TabPanel header="Applicable Endorsement">
+          <div className="attribute_Listing">
+          <DataTable
+          value={Applicable_endorsement}
+          paginator
+          rows={5}
+          rowsPerPageOptions={[5, 10, 25, 50]}
+          isDataSelectable={false}
+        >
+          <Column
+            field="endorsement_type"
+            header="Endorsement Type"
+            body={(rowData, options) => (
+              <AutoCompleteField
+              className="w-1/1 p-1"
+              name={'endorsement_type'}
+              value={rowData.endorsement_type}
+              onChange={(e) => handleInputChange('endorsement_type', e.value)}
+              options={endorsement_type_options}
+              disabled={!editingRows[options.rowIndex]}
+              dropdown
+            />
+            )}
+          />
+          <Column
+            field="endorsement_description"
+            header="Endorsement Description"
+            body={(rowData, options) => (
+              <InputField
+                type="text"
+                name="srl"
+                value={rowData.endorsement_description}
+                disabled={!editingRows[options.rowIndex]}
+                onChange={(name, value) =>
+                  handleInputChange(name, value, options.rowIndex)
+                }
+              />
+            )}
+          />
+                    <Column
+            field="endorsement_type_yn"
+            header="Endorsement Type Allow Y/N"
+            body={(rowData, options) => (
+              <CheckBox
+                checked={rowData.endorsement_type_yn || false}
+                disabled={!editingRows[options.rowIndex]}
+              />
+            )}
+          />
+
+          <Column
+            body={(rowData, options) =>
+              actionBodyTemplate(rowData, options.rowIndex)
+            }
+            style={{ width: "5%" }}
+          />
+        </DataTable>
           </div>
         </TabPanel>
       </TabView>

@@ -1,0 +1,27 @@
+.searchStyle{
+    width: 100% !important;
+}
+
+.policyHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.radio {
+    display: flex;
+    align-items: center;
+}
+
+.createBtn{
+    margin-top: 24px;
+    margin-left: 35px;
+}
+
+.radio_button_head{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: normal;
+    color: rgba(0, 0, 0, 0.60);
+}

@@ -1,78 +1,8 @@
 const linksData = [
     { 
-      label: 'My Tasks', 
-      link: '/tasks',
-    },
-    { 
-      label: 'User Management', 
-      subLinks: [
-        { label: 'User Master', link: '/userManagement/userMaster' },
-        { label: 'User Group Mapping', link: '/userManagement/userGroupMapping' },
-        { label: 'User Authorisation setup', link: '/userManagement/userAuthorisationSetup/listing' }
-      ]
-    },
-    { 
-      label: 'Workflow Management', 
-      subLinks: [
-        { label: 'Workflow Master', link: '/workFlowManagement/userMaster' },
-        { label: 'Workflow Group Mapping', link: '/workFlowManagement/userGroupMapping' },
-        { label: 'Workflow Authorisation setup', link: '/workFlowManagement/userAuthorisationSetup' }
-      ]
-    },
-    { 
-      label: 'Menu Management', 
-      subLinks: [
-        { label: 'Menu Creation', link: '/menuManagement/menuCreation' },
-        { label: 'Menu Parameter Mapping', link: '/menuManagement/menuParameterMapping' },
-        { label: 'Menu User Privilege Setup', link: '/menuManagement/menuUserPrivilegeSetup' }
-      ]
-    },
-    { 
-      label: 'Party Management', 
-      subLinks: [
-        { label: 'Party Role Master', link: '/partyManagement/partyRoleMaster' },
-        { label: 'Party Master', link: '/partyManagement/partyMaster' },
-        { label: 'Heirarchy Master', link: '/partyManagement/heirarchyMaster' },
-        { label: 'Agency Commission Setup', link: '/partyManagement/agencyCommissionSetup' }
-      ]
-    },
-    { 
-      label: 'Common Master', 
-      subLinks: [
-        { label: 'Company Master', link: '/commonMaster/companyMaster' },
-        { label: 'Branch Master', link: '/commonMaster/divisionMaster' },
-        { label: 'Department Master', link: '/commonMaster/departmentMaster' },
-        { label: 'Currency & Exchange Rate', link: '/commonMaster/currencyExchangeRateMaster' },
-        { label: 'Installment Pay Setup Master', link: '/commonMaster/installmentPaySetupMaster' },
-        { label: 'VAT/TAX Master', link: '/commonMaster/vatTaxMaster' },
-        { label: 'Checklist Master', link: '/commonMaster/checklistMaster' },
-        { label: 'Codes Master', link: '/commonMaster/codeMaster' }
-      ]
-    },
-    { 
-      label: 'Product Configurator', 
-      subLinks: [
-        { label: "Line Of Business", link: "/productConfigurator/lineofbusiness" },
-        { 
-          label: "Product Master", 
-          subLinks: [
-            { label: 'Cover Master', link: '/productConfigurator/productMaster/coverMaster' },
-            { label: 'Cover Group', link: '/productConfigurator/productMaster/coverGroup' },
-            { label: 'Discount Master', link: '/productConfigurator/productMaster/discountMaster' },
-            { label: 'Loading Master', link: '/productConfigurator/productMaster/loadingMaster' },
-            { label: 'Vehicle Matrix', link: '/productConfigurator/productMaster/vehicleMatrix' },
-            { label: 'Installment Pay Setup Master', link: '/productConfigurator/productMaster/installmentPaySetupMaster' },
-            { label: 'SMI Group Master', link: '/productConfigurator/productMaster/smiGroupMaster' },
-            { label: 'Vehicle Query Mapping', link: '/productConfigurator/productMaster/vehicleQueryMapping' },
-            { label: 'SMI Master (Codes master)', link: '/productConfigurator/productMaster/smiMaster' },
-            { label: 'Condition Master (Codes master)', link: '/productConfigurator/productMaster/conditionMaster' },
-            { label: 'Deductible Master (Codes master)', link: '/productConfigurator/productMaster/deductibleMaster' }
-          ]
-        },
-        { label: "Product Setup", link: "/productSetup" },
-        { label: "Plan/Scheme Master", link: "/plan" }
-      ] 
-    },
+        label: 'My Tasks', 
+        link: '/tasks',
+      },
     { 
       label: 'Underwriting', 
       subLinks: [
@@ -87,9 +17,9 @@ const linksData = [
         {
           label: "Proposal",
           subLinks: [
-            { code: '10', label: "Motor", link: "/underwriting/proposal/motor"},
-            { code: '11', label: "Fire", link: "/underwriting/proposal/fire"},
-            { code: '12', label: "Marine", subLinks: [
+            { label: "Motor", link: "/underwriting/proposal/motor"},
+            { label: "Fire", link: "/underwriting/proposal/fire"},
+            { label: "Marine", subLinks: [
               {label: "Direct", link: "/underwriting/proposal/marine/direct"},
               {label: "Open Cover", link: "/underwriting/proposal/marine/overCover"},
               {label: "Certificate", link: "/underwriting/proposal/marine/direct"},
@@ -109,9 +39,9 @@ const linksData = [
         {
           label: "Quotation",
           subLinks: [
-            { code: '10', label: "Motor", link: "/underwriting/quotation/motor" },
-            { code: '11', label: "Fire", link: "/underwriting/quotation/fire" },
-            { code: '12', label: "Marine", subLinks: [
+            { label: "Motor", link: "/underwriting/quotation/motor" },
+            { label: "Fire", link: "/underwriting/quotation/fire" },
+            { label: "Marine", subLinks: [
               {label: "Direct", link: "/underwriting/quotation/marine/direct"},
               {label: "Open Cover", link: "/underwriting/quotation/marine/overCover"},
               {label: "Certificate", link: "/underwriting/quotation/marine/direct"},
@@ -172,13 +102,6 @@ const linksData = [
             { label: "Bulk Agency Commission Accounting Process", link: "/underwriting/process/bulkAgencyCommissionAccountingProcess" }
           ]
         }
-      ]
-    },
-    { 
-      label: 'Policy Servicing', 
-      subLinks: [
-        { label: "Endorsement", link: "/policyServicing/endorsement" },
-        { label: "Endorsement Query", link: "/policyServicing/endorsementQuery" }
       ]
     }
   ];

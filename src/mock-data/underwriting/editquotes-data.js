@@ -144,15 +144,10 @@ export const headerData = {
       Area: null,
       State: null,
       City: null,
-      partyDetails: [
-        { partyRole: "Customer", partyID: "DC0001001", address: "" },
-        {
-          partyRole: "Insured",
-          partyID: "BL1011470",
-          address:
-            "3rd Floor, PRINCE INFO CITY-II, Perungudi, Chennai, Tamil Nadu 600096",
-        },
-      ],
+      partyDetails: {
+        Customer: "DC0001001-Test Customer",
+        Insured: { id: "BL1011470-Test Insured", Insured_address: "ADDRESS2" },
+      },
     },
   ],
 };

@@ -71,7 +71,7 @@ function RatingStep() {
     type: "",
     codeDescription: "",
     cover: "",
-    sort_order: "",
+    Sort_order: "",
     calculation_logic: "",
     short_rate_id: "",
     rate: "",
@@ -79,59 +79,29 @@ function RatingStep() {
   });
 
   useEffect(() => {
-    const filteredProduct = productData.find((product) => product.key === 2301);
-
-    if (filteredProduct) {
-      const coversData = filteredProduct.data[0].Covers.map((item) => ({
-        type: item.Type,
-        codeDescription: `${item.Code} - ${item.Description}`,
-        sort_order: item.Sort_order,
-        calculation_logic: item.calculation_logic,
-        short_rate_id: item.short_rate_id,
-        rate: item.rate,
-        rate_per: item.rate_per,
-      }));
-
-      const discountData = filteredProduct.data[0].Discount.map((item) => ({
-        type: item.Type,
-        codeDescription: `${item.Code} - ${item.Description}`,
-        sort_order: item.Sort_order,
-        calculation_logic: item.calculation_logic,
-        short_rate_id: item.short_rate_id,
-        rate: item.rate,
-        rate_per: item.rate_per,
-      }));
-
-      const firstRecord = [...coversData, ...discountData][0];
-      setFormData({
-        type: firstRecord.type,
-        codeDescription: firstRecord.codeDescription,
-        sort_order: firstRecord.sort_order,
-        calculation_logic: firstRecord.calculation_logic || "",
-        short_rate_id: firstRecord.short_rate_id || "",
-        rate: firstRecord.rate,
-        rate_per: firstRecord.rate_per,
-      });
-      setKey(unique_key + 1);
-
-      set_cover_data([...coversData, ...discountData]);
-    }
+    const filteredProduct = productData.find((product) => product.key === productKey);
+    // console.log('filteredProduct.data[0].Covers', filteredProduct.data[0].Covers);
+    set_cover_data(filteredProduct?.data?.[0]?.Covers ?? []);
   }, []);
 
   useEffect(() => {
-    if (selectedRow) {
+    const filteredProduct = productData.find((product) => product.key === productKey);
+    const coverRender = filteredProduct.data[0].Covers[0];
+  
+      console.log('selectedRow', coverRender);
       setFormData({
         ...formData,
-        type: selectedRow.type,
-        codeDescription: selectedRow.codeDescription,
-        sort_order: selectedRow.sort_order,
-        calculation_logic: selectedRow.calculation_logic,
-        short_rate_id: selectedRow.short_rate_id,
-        rate: selectedRow.rate,
-        rate_per: selectedRow.rate_per,
+        type: coverRender.Type,
+        codeDescription: coverRender.Code + '-' + coverRender.Description,
+        Sort_order: coverRender.Sort_order,
+        calculation_logic: coverRender.calculation_logic,
+        short_rate_id: coverRender.short_rate_id,
+        rate: coverRender.rate,
+        rate_per: coverRender.rate_per,
       });
-    }
-  }, [selectedRow, formData]);
+      setKey(unique_key+1);
+  
+  }, []);
 
   const handleInputChange = (fieldName, value) => {
     setData({ ...data, [fieldName]: value });
@@ -369,9 +339,9 @@ function RatingStep() {
     if (selectedRowData) {
       setFormData({
         ...formData,
-        type: selectedRowData.type,
-        codeDescription: selectedRowData.codeDescription,
-        sort_order: selectedRowData.sort_order,
+        type: selectedRowData.Type,
+        codeDescription: selectedRowData.Code + '-' + selectedRowData.Description,
+        Sort_order: selectedRowData.Sort_order,
         calculation_logic: selectedRowData.calculation_logic,
         short_rate_id: selectedRowData.short_rate_id,
         rate: selectedRowData.rate,
@@ -636,7 +606,6 @@ function RatingStep() {
               options={calculationLogicData}
               dropdown
             />
-
             <AutoCompleField
               className="w-1/3 p-1"
               name="shortRateId"
@@ -653,7 +622,7 @@ function RatingStep() {
               <InputField
                 name="order"
                 label="Order"
-                value={formData.sort_order}
+                value={formData.Sort_order}
               />
             </div>
             <div className="w-1/3 p-1">
@@ -760,7 +729,7 @@ function RatingStep() {
                 <InputField
                   type="text"
                   // className="w-2/4"
-                  value={rowData.type}
+                  value={rowData.Type}
                   onChange={(value) => handleInputChange("id", value)}
                   disabled
                 />
@@ -776,7 +745,7 @@ function RatingStep() {
                   name="codeDescription"
                   options={durationIndValues}
                   dropdown
-                  value={rowData.codeDescription}
+                  value={rowData.Code + '-' + rowData.Description}
                   onChange={(e) => handleInputChange("durationInd", e.value)}
                   disabled
                 />

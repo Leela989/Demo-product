@@ -1,0 +1,53 @@
+[
+    {
+      "endorsement_type": "Nill Endorsement",
+      "endorsement_description": "Endorsement Description 1",
+      "endorsement_type_yn": true
+    },
+    {
+      "endorsement_type": "Addition or Deletion of Risk/Cover",
+      "endorsement_description": "Endorsement Description 2",
+      "endorsement_type_yn": false
+    },
+    {
+      "endorsement_type": "Change in Policy Period",
+      "endorsement_description": "Endorsement Description 3",
+      "endorsement_type_yn": true
+    },
+    {
+      "endorsement_type": "Change in Coverages",
+      "endorsement_description": "Endorsement Description 4",
+      "endorsement_type_yn": false
+    },
+    {
+      "endorsement_type": "Change in Broker/Agent",
+      "endorsement_description": "Endorsement Description 5",
+      "endorsement_type_yn": true
+    },
+    {
+      "endorsement_type": "Nill Endorsement",
+      "endorsement_description": "Endorsement Description 6",
+      "endorsement_type_yn": false
+    },
+    {
+      "endorsement_type": "Addition or Deletion of Risk/Cover",
+      "endorsement_description": "Endorsement Description 7",
+      "endorsement_type_yn": true
+    },
+    {
+      "endorsement_type": "Change in Policy Period",
+      "endorsement_description": "Endorsement Description 8",
+      "endorsement_type_yn": false
+    },
+    {
+      "endorsement_type": "Change in Coverages",
+      "endorsement_description": "Endorsement Description 9",
+      "endorsement_type_yn": true
+    },
+    {
+      "endorsement_type": "Change in Broker/Agent",
+      "endorsement_description": "Endorsement Description 10",
+      "endorsement_type_yn": false
+    }
+  ]
+  

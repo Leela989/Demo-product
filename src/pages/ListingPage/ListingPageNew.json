@@ -468,7 +468,7 @@
             "calculation_logic": "Fixed",
             "short_rate_id": "Set1",
             "rate": 15,
-            "rate_per" : 25
+            "rate_per": 25
           },
           {
             "Type": "Cover",
@@ -478,7 +478,7 @@
             "calculation_logic": "Custom1",
             "short_rate_id": "Set2",
             "rate": 5,
-            "rate_per" : 25
+            "rate_per": 25
           },
           {
             "Type": "Cover",
@@ -488,7 +488,7 @@
             "calculation_logic": "Fixed",
             "short_rate_id": "Set1",
             "rate": 15,
-            "rate_per" : 25
+            "rate_per": 25
           },
           {
             "Type": "Cover",
@@ -498,7 +498,7 @@
             "calculation_logic": "SI*Rate/Rate Per",
             "short_rate_id": "Set1",
             "rate": 15,
-            "rate_per" : 25
+            "rate_per": 25
           },
           {
             "Type": "Cover",
@@ -508,7 +508,7 @@
             "calculation_logic": "Fixed",
             "short_rate_id": "Set3",
             "rate": 35,
-            "rate_per" : 5
+            "rate_per": 5
           },
           {
             "Type": "Cover",
@@ -518,7 +518,7 @@
             "calculation_logic": "Custom1",
             "short_rate_id": "Set4",
             "rate": 55,
-            "rate_per" : 15
+            "rate_per": 15
           },
           {
             "Type": "Cover",
@@ -528,7 +528,7 @@
             "calculation_logic": "Fixed",
             "short_rate_id": "Set1",
             "rate": 35,
-            "rate_per" : 10
+            "rate_per": 10
           },
 
           {
@@ -539,7 +539,7 @@
             "calculation_logic": "SI*Rate/Rate Per",
             "short_rate_id": "Set3",
             "rate": 75,
-            "rate_per" : 10
+            "rate_per": 10
           },
           {
             "Type": "Cover",
@@ -549,7 +549,7 @@
             "calculation_logic": "Fixed",
             "short_rate_id": "Set1",
             "rate": 25,
-            "rate_per" : 30
+            "rate_per": 30
           },
           {
             "Type": "Cover",
@@ -559,29 +559,29 @@
             "calculation_logic": "Custom1",
             "short_rate_id": "Set2",
             "rate": 95,
-            "rate_per" : 13
+            "rate_per": 13
           }
         ],
         "rules": [
           {
-              "id": 1,
-              "rule_no":1,
-              "rule_description": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
-              "event":"On Policy Approval",
-              "ruleLibrary":"01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
-              "action":"Accept",
-              "source": ""
+            "id": 1,
+            "rule_no": 1,
+            "rule_description": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+            "event": "On Policy Approval",
+            "ruleLibrary": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+            "action": "Accept",
+            "source": ""
           },
           {
-              "id": 7,
-              "rule_no":7,
-              "rule_description": "07-Referral Vehicle Make / Model, Need higher authority to approve.",
-              "event":"On Quote Approval",
-              "ruleLibrary":"07-Referral Vehicle Make / Model, Need higher authority to approve.",
-              "action":"Accept",
-              "source": ""
+            "id": 7,
+            "rule_no": 7,
+            "rule_description": "07-Referral Vehicle Make / Model, Need higher authority to approve.",
+            "event": "On Quote Approval",
+            "ruleLibrary": "07-Referral Vehicle Make / Model, Need higher authority to approve.",
+            "action": "Accept",
+            "source": ""
           }
-      ]
+        ]
       }
     ]
   },
@@ -607,7 +607,401 @@
     "effectiveFrom": "10/01/2024 11:10",
     "effectiveTo": "20/01/2024 17:55",
     "status": "Pending",
-    "action": "view"
+    "action": "view",
+    "productHeaderDetails": {
+      "key": 2304,
+      "Code": "3001",
+      "Description": "Fire & Allied Perils",
+      "Short_description": "Fire & Allied Perils",
+      "Line_of_Business": "10",
+      "Effective_from": "2024-06-20T10:49:00",
+      "Effective_to": null
+    },
+    "data": [
+      {
+        "Branches": [
+          { "Code": "01", "Name": "Head Office", "include": true },
+          { "Code": "02", "Name": "Mwanza Branch", "include": "true" },
+          { "Code": "03", "Name": "Mbeya Branch", "include": true }
+        ],
+        "Discount": [
+          {
+            "Type": "Discount",
+            "Code": "4105",
+            "Description": "Long Term Discount",
+            "Short_description": "Long Term Discount",
+            "Long_description": "Long Term Discount",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 1,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "Discount",
+            "Code": "4106",
+            "Description": "Sprinkler Discount",
+            "Short_description": "Sprinkler Discount",
+            "Long_description": "Sprinkler Discount",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 2,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "Loading",
+            "Code": "5001",
+            "Description": "Claims Experience Loading",
+            "Short_description": "Claims Experience Loading ",
+            "Long_description": "Claims Experience Loading",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 3,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "Loading",
+            "Code": "5002",
+            "Description": "Policy Loading",
+            "Short_description": "Policy Loading",
+            "Long_description": "Policy Loading",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 3,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "Loading",
+            "Code": "5003",
+            "Description": "High raise building Loading",
+            "Short_description": "High raise building Loading",
+            "Long_description": "High raise building Loading",
+            "Mandatory": "0",
+            "Default_renewal": "0",
+            "Rate_modify_yn": "1",
+            "Default_yn": "0",
+            "NCB_disc_yn": "0",
+            "Add_RI_yn": "0",
+            "Commission_apl": "1",
+            "Sort_order": 3,
+            "Effective_from": null,
+            "Effective_to": null
+          }
+        ],
+        "Conditions": [
+          {
+            "Type": "01 - Warrenty",
+            "Code": "2001001",
+            "Description": "Portable Fire Extinguishers appliances which are modern appropriate and maintained, installed to a minimum of One (1) unit every 250 M2  which should be equally distributed.",
+            "Short_description": "Portable Fire Extinguishers appliances which are modern appropriate and maintained, installed to a minimum of One (1) unit every 250 M2  which should be equally distributed.",
+            "Long_description": null,
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "01 - Warrenty",
+            "Code": "2001002",
+            "Description": "No Smoking warranty – “Smoking is strictly prohibited except in selected places with clear signboards for the same.",
+            "Short_description": "No Smoking warranty – “Smoking is strictly prohibited except in selected places with clear signboards for the same.",
+            "Long_description": null,
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "01 - Warrenty",
+            "Code": "2001003",
+            "Description": "Excluding Loss, damage or liability directly or indirectly caused by or resulting from Water damage occasioned by or through the leaking of any roof(s), (unless such roof(s) is damaged by the perils of Storm, Tempest Hail, Snow, Wind, Hurricane, Cyclone, Tornado or Typhoon), or as a result of doors, windows or roof lights being left open.",
+            "Short_description": "Excluding Loss, damage or liability directly or indirectly caused by or resulting from Water damage occasioned by or through the leaking of any roof(s), (unless such roof(s) is damaged by the perils of Storm, Tempest Hail, Snow, Wind, Hurricane, Cyclone, Tornado or Typhoon), or as a result of doors, windows or roof lights being left open.",
+            "Long_description": null,
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "01 - Warrenty",
+            "Code": "2001004",
+            "Description": "Excluding business Interruption/ contingent Business Interruption unless specifically agreed and mentioned in the Policy schedule.",
+            "Short_description": "Excluding business Interruption/ contingent Business Interruption unless specifically agreed and mentioned in the Policy schedule.",
+            "Long_description": null,
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "01 - Warrenty",
+            "Code": "2001005",
+            "Description": "72 Hours Clause - Earthquake, Storm Tempest or Flood or other like convulsion nature clause.",
+            "Short_description": "72 Hours Clause - Earthquake, Storm Tempest or Flood or other like convulsion nature clause.",
+            "Long_description": null,
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "01 - Warrenty",
+            "Code": "2001006",
+            "Description": "Professional Accountant Clause – Limit upto % of claim amount with maximum limit of  SR.  any one occurrence and in the aggregate. ",
+            "Short_description": "Professional Accountant Clause – Limit upto % of claim amount with maximum limit of  SR.  any one occurrence and in the aggregate. ",
+            "Long_description": null,
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "01 - Warrenty",
+            "Code": "2001006",
+            "Description": "Public Authorities Clause – Limit upto SR  any one occurrence and in the aggregate.",
+            "Short_description": "Public Authorities Clause – Limit upto SR  any one occurrence and in the aggregate. ",
+            "Long_description": null,
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          },
+
+          {
+            "Type": "01 -Warrenty",
+            "Code": "2001007",
+            "Description": "Loss Of Rent-Clause ",
+            "Short_description": "Loss Of Rent-Clause",
+            "Long_description": "Loss of Rent as per the standard authorisation defined in the policy",
+            "Default_yn": true,
+            "Effective_from": null,
+            "Effective_to": null
+          }
+        ],
+        "Deductible": [
+          {
+            "Code": "2001024",
+            "Description": "5% of claim amount",
+            "Short_description": "5% of claim amount",
+            "Default_yn": "0",
+            "Type": "08- % of subject to Maxmium value",
+            "Value": 1000,
+            "Perc": "5",
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+
+          {
+            "Code": "2001025",
+            "Description": "5% Subject to Minimum of 50,000",
+            "Short_description": "5% Subject to Minimum of 50,000",
+            "Default_yn": "0",
+            "Type": "08- % of subject to Maxmium value",
+            "Value": 50000,
+            "Perc": 5,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+
+          {
+            "Code": "2001026",
+            "Description": "7 Days",
+            "Short_description": "7 Days",
+            "Default_yn": "0",
+            "Type": "08- % of subject to Maxmium value",
+            "Value": 7,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          },
+
+          {
+            "Code": "2001026",
+            "Description": "7 Days",
+            "Short_description": "7 Days",
+            "Default_yn": "0",
+            "Type": "08- % of subject to Maxmium value",
+            "Value": 7,
+            "Perc": null,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2000-01-01T00:00:00"
+          }
+        ],
+        "Charge": [
+          {
+            "Code": "1010",
+            "Description": "Vat",
+            "Default_yn": true,
+            "Type": "01- Taxes",
+            "Rat_modify_yn": "1",
+            "Refund_yn": "1",
+            "Mandatory_yn": false,
+            "Cust_share_perc": 100,
+            "Short_Rate": 20,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2099-12-31T00:00:00"
+          },
+          {
+            "Code": "1001",
+            "Description": "Policy Fee",
+            "Default_yn": false,
+            "Type": "03- Levies",
+            "Rat_modify_yn": "0",
+            "Refund_yn": "0",
+            "Mandatory_yn": true,
+            "Short_Rate": 30,
+            "Cust_share_perc": 80,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2099-12-31T00:00:00"
+          },
+          {
+            "Code": "1004",
+            "Description": "Endorsement Fee",
+            "Default_yn": false,
+            "Type": "03- Levies",
+            "Rat_modify_yn": "0",
+            "Refund_yn": "0",
+            "Mandatory_yn": true,
+            "Cust_share_perc": 70,
+            "Short_Rate": 30,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2099-12-31T00:00:00"
+          },
+
+          {
+            "Code": "1003",
+            "Description": "Surveyor Fee",
+            "Default_yn": true,
+            "Type": "03- Levies",
+            "Rat_modify_yn": "0",
+            "Refund_yn": "0",
+            "Mandatory_yn": false,
+            "Cust_share_perc": 100,
+            "Short_Rate": 65,
+            "Effective_from": "2000-01-01T00:00:00",
+            "Effective_to": "2099-12-31T00:00:00"
+          }
+        ],
+        "documentPrints": [
+          {
+            "srl": "01",
+            "documentId": "123",
+            "documentName": "Listing Document",
+            "printBeforeApproval": "false",
+            "reprintAllowed": "true",
+            "transactionType": "Proposal",
+            "numberOfPrints": "5"
+          },
+          {
+            "srl": "02",
+            "documentId": "223",
+            "documentName": "Product Document",
+            "printBeforeApproval": "true",
+            "reprintAllowed": "false",
+            "transactionType": "Quotation",
+            "numberOfPrints": "15"
+          },
+          {
+            "srl": "03",
+            "documentId": "225",
+            "documentName": "Product Document",
+            "printBeforeApproval": "true",
+            "reprintAllowed": "true",
+            "transactionType": "Endorsement",
+            "numberOfPrints": "15"
+          }
+        ],
+
+        "Covers": [
+          {
+            "Type": "Cover",
+            "Code": "3110",
+            "Description": "Fire & Allied Perils",
+            "Sort_order": 4,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set1",
+            "rate": 15,
+            "rate_per": 25
+          },
+          {
+            "Type": "Cover",
+            "Code": "3111",
+            "Description": "Burglary",
+            "Sort_order": 2,
+            "calculation_logic": "Custom1",
+            "short_rate_id": "Set2",
+            "rate": 5,
+            "rate_per": 25
+          },
+          {
+            "Type": "Cover",
+            "Code": "3112",
+            "Description": "Business Interuption",
+            "Sort_order": 8,
+            "calculation_logic": "Fixed",
+            "short_rate_id": "Set1",
+            "rate": 15,
+            "rate_per": 25
+          },
+          {
+            "Type": "Cover",
+            "Code": "3113",
+            "Description": "Loss of Rent",
+            "Sort_order": 8,
+            "calculation_logic": "SI*Rate/Rate Per",
+            "short_rate_id": "Set1",
+            "rate": 15,
+            "rate_per": 25
+          }
+        ],
+        "rules": [
+          {
+            "id": 1,
+            "rule_no": 1,
+            "rule_description": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+            "event": "On Policy Approval",
+            "ruleLibrary": "01-Policy duration should be either 1 or 2 years for Domestic Maid Policy.",
+            "action": "Accept",
+            "source": ""
+          },
+          {
+            "id": 7,
+            "rule_no": 7,
+            "rule_description": "07-Referral Vehicle Make / Model, Need higher authority to approve.",
+            "event": "On Quote Approval",
+            "ruleLibrary": "07-Referral Vehicle Make / Model, Need higher authority to approve.",
+            "action": "Accept",
+            "source": ""
+          }
+        ]
+      }
+    ]
   },
   {
     "key": 2501,

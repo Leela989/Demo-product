@@ -224,7 +224,7 @@ function HomePage() {
             </TabPanel>
             <TabPanel header="Teams task" className="tabs">
               <div className="customTable mt-3">
-              <DataTable
+                <DataTable
                   value={data}
                   scrollable
                   // scrollHeight="200px"
@@ -254,7 +254,7 @@ function HomePage() {
                     body={(rowData) => rowData.task_status}
                   />
 
-<Column
+                  <Column
                     field="initiated_date"
                     header="Initiated Date"
                     body={(rowData, options) => rowData.initiated_date}
@@ -288,12 +288,12 @@ function HomePage() {
                     header="Status"
                     body={(rowData) => rowData.status}
                   />
-                   <Column
+                  <Column
                     field="remarks"
                     header="Remarks"
                     body={(rowData) => rowData.status}
                   />
-                   <Column
+                  <Column
                     field="allocated_to"
                     header="Allocated to"
                     body={(rowData) => rowData.allocated_to}

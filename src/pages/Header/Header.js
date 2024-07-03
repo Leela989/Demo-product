@@ -9,6 +9,8 @@ import "./Header.css";
 import { Tooltip } from "primereact/tooltip";
 import notificationDummyData from "./NotificationList.json";
 import Notes from "./Notes.jsx";
+import DialogueBox from "../../components/DialogueBox/DialogueBox";
+import CustomerView from "./CustomerView";
 
 const Header = ({ setToken }) => {
   const menuLeft = useRef(null);
@@ -21,6 +23,7 @@ const Header = ({ setToken }) => {
   const [isNotesDialogVisible, setIsNotesDialogVisible] = useState(false);
   const [currentUrl, setCurrentUrl] = useState("");
   const [showNotes, setShowNotes] = useState(false);
+  const [show_pop_up, set_show_pop_up] = useState(false);
 
   let userNameIs = localStorage.getItem("username");
 
@@ -112,11 +115,33 @@ const Header = ({ setToken }) => {
   };
 
   const handleNotes = () => {
-    // console.log("params", showNote);
-    // if (showNote) {
+    const currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.append("referenceId", "12345");
+    currentUrl.searchParams.append("description", "Sample description");
+    currentUrl.searchParams.append("reminderDate", "2024-06-30");
+
+    setCurrentUrl(currentUrl.href);
+    setIsNotesDialogVisible(true);
+
     setShowNotes(!showNotes);
     // }
   };
+
+  const show_360_customer_view = () => {
+    set_show_pop_up(true);
+    console.log("trying");
+    return (
+      <CustomerView/>
+    )
+  };
+
+  const handleAddSave = () => {
+    set_show_pop_up(false);
+  }
+
+  const handleClose = () => {
+    set_show_pop_up(false);
+  }
 
   return (
     <div className="header">
@@ -189,7 +214,11 @@ const Header = ({ setToken }) => {
           tooltip="Mail"
           onClick={() => handleMail()}
           tooltipOptions={{ position: "bottom" }}
-          onClick={() => <a href="mailto:myemail@site.com?Subject=Some%20subject"><img src="myImage.jpg"/></a>}
+          onClick={() => (
+            <a href="mailto:myemail@site.com?Subject=Some%20subject">
+              <img src="myImage.jpg" />
+            </a>
+          )}
         />
         <Button
           text
@@ -218,6 +247,7 @@ const Header = ({ setToken }) => {
           className="header-buttons"
           tooltip="360 degree Customer View"
           tooltipOptions={{ position: "bottom" }}
+          onClick={show_360_customer_view}
         />
         <Button
           text
@@ -233,6 +263,18 @@ const Header = ({ setToken }) => {
       <div>
         {showNotes && <Notes visible={showNotes} setVisible={setShowNotes} />}
       </div>
+      {show_pop_up && (
+        <DialogueBox
+          data={<CustomerView/>}
+          visible={show_pop_up}
+          yesButtonText="Save"
+          noButtonText="Cancel"
+          onSave={handleAddSave}
+          onClose={handleClose}
+          showFooter={false}
+          width={'90vw'}
+        />
+      )}
     </div>
   );
 };

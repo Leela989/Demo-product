@@ -84,7 +84,6 @@
 #popup_menu_notification{
     width: 340px !important;
     height: 450px;
-    left: 1115px !important;
     overflow-y: auto;
   }
 
@@ -107,4 +106,166 @@
     display: flex;
     position: relative;
     padding: 2px 5px;
+}
+
+.azentiologo{
+    width: 40px;
+    height: 40px;
+}
+
+.azentioImage{
+    display: flex;
+}
+
+.centerContent{
+    display: flex;
+}
+
+.show_pop_up{
+    width: 90vw !important;
+}
+
+.oneInsuranceHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profileDetails{
+    display: flex;
+    margin-top: 15px;
+}
+.ProfilePhoto{
+    width: 65px;
+    height: 65px;
+}
+
+.EntityImg{
+    width: 90px;
+    height: 90px;
+    margin-top: -18px;
+}
+
+.entityText{
+    font-weight: bold;
+    font-size: 30px;
+    color: #3498db;
+}
+
+.oneText{
+    font-weight: bold;
+    font-size: 20px;
+    color: #3498db;
+}
+
+.entiy_main_text{
+    font-weight: 600;
+    color: #19547c;
+}
+
+.entity_text{
+    color: #3498db;
+    display: flex;
+    width: 130px;
+    justify-content: start;
+}
+
+.AzentioText{
+    display: flex;
+    margin-top: 14px;
+    margin-left: 5px;
+}
+
+.insuranceText{
+    font-size: 20px;
+    color: #3498db;
+}
+
+.viewText{
+    font-weight: 400;
+    font-size: 15px;
+    color: red;
+    margin-top: -8px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.manProfile{
+    width: 170px;
+    height: 150px;
+}
+
+.entity_box{
+    display: flex;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 33.33%;
+    max-height: calc(100% - 100px);
+    margin-left: 20px;
+    width: 100%;
+}
+
+.oneInsuranceHeader{
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 8px;
+    text-align: center;
+    border-radius: 12px;
+    width: 100%;
+    padding: 10px;
+}
+
+.header_search{
+    border-width: 0 !important;
+    border-style: solid !important;
+    border-color: #e5e7eb !important;
+    border: 1px solid #e5e7eb !important;
+    margin-left: 15px;
+}
+
+.profileDetails{
+    display: flex;
+    justify-content: space-between;
+
+}
+.EntityOptions{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.entity_content{
+    width: 100%;
+    padding: 15px;
+}
+
+.periodBox{
+    margin-top: 20px;
+    display: flex;
+}
+
+.tabView{
+    width: 100%;
+}
+
+.period_text{
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+
+
+.filter_period{
+    display: flex;
+    width: 30%;
+    background-color: rgba(0, 60, 149, 0.85);
+    height: 28px;
+    color: rgba(255, 255, 255, 1);
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 10px 10px 0 0;
 }

@@ -72,7 +72,7 @@ const ProductSetup = () => {
         <div className="product_details">
           <div className="flex">
             {/* <p>Product Name:</p> */}
-            <p className="ml-1"> {productData[id].name} </p>
+            <p className="ml-1"> {productData[id]?.name} </p>
           </div>
         </div>
         <div className="product_status">
