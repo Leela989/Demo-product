@@ -176,8 +176,8 @@ function App() {
         </div>
       ) : (
         <Routes>
-           <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
-          <Route path="/" element={<LoginForm setToken={setToken} />} />
+          <Route path="/" element={<Navigate to="/azinsui" />} />
+          <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
         </Routes>
       )}
     </>

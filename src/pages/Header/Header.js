@@ -115,6 +115,8 @@ const Header = ({ setToken }) => {
   };
 
   const handleNotes = () => {
+    // console.log("params", showNote);
+    // if (showNote) {
     const currentUrl = new URL(window.location.href);
     currentUrl.searchParams.append("referenceId", "12345");
     currentUrl.searchParams.append("description", "Sample description");
