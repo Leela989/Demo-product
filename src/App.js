@@ -34,6 +34,11 @@ import UserAuthorisation_setup from "./pages/UserManagement/UserAuthorisation_se
 import juniorOfficer_menu from "../src/pages/Sidebar/JuniorOfficerMenu";
 import UserManagementListingPage from "../src/pages/UserManagement/UserManagementListingPage";
 import PolicyListing from "../src/pages/underWriting/policy/PolicyListing";
+import InstallPaySetup from "./pages/CompanyMaster/installPaySetup/InstallPaySetup";
+import VehicleMatrix from "./pages/productConfigurator/productMaster/vehicleMatrix/VehicleMatrix";
+import BulkRenewalProcessing from "./pages/underWriting/processing/BulkRenewalProcessing";
+import InstallSetupListingPage from "./pages/CompanyMaster/installPaySetup/InstallSetupListingPage";
+import BulkRenewalListing from "./pages/underWriting/processing/BulkRenewalListing";
 
 import CodeMasterList from "./pages/codeMasters/List";
 import VatTaxMasterList from "./pages/vat-tax-master/List";
@@ -107,6 +112,12 @@ function App() {
                   element={<ProductSetup />}
                 />
                 <Route
+                  path="/underwriting/process/bulkRenewalProcessing"
+                  element={<BulkRenewalListing />}
+                />
+                <Route path="/productConfigurator/productMaster/vehicleMatrix"
+                element={<VehicleMatrix/>}/>
+                <Route
                   path="/commonMaster/companyMaster"
                   element={<CompanyMasterSetup />}
                 />
@@ -120,6 +131,15 @@ function App() {
                 <Route
                   path="/commonMaster/companyMaster"
                   element={<CompanyMasterSetup />}
+                />
+                   <Route
+                  path="/commonMaster/installmentPaySetupMaster"
+                  element={<InstallSetupListingPage />}
+                />
+                <Route path="/underwriting/process/bulkRenewalProcessing/create" element={<BulkRenewalProcessing/>}/>
+                <Route 
+                path="/commonMaster/installmentPaySetupMaster/createApplication"
+                element={<InstallPaySetup/>} 
                 />
                 <Route
                   path="/commonMaster/departmentMaster"
@@ -145,22 +165,22 @@ function App() {
                   path="/commonMaster/divisionMaster/edit/:id"
                   element={<DivisionMaster />}
                 />
-                <Route
+                {/* <Route
                   path="/commonMaster/codeMaster"
                   element={<CodeMasterList />}
-                />
-                <Route
+                /> */}
+                {/* <Route
                   path="/commonMaster/vatTaxMaster"
                   element={<VatTaxMasterList />}
-                />
-                <Route
+                /> */}
+                {/* <Route
                   path="/commonMaster/vatTaxMaster/create"
                   element={<VatTaxMaster />}
-                />
-                <Route
+                /> */}
+                {/* <Route
                   path="/commonMaster/vatTaxMaster/edit/:id"
                   element={<VatTaxMaster />}
-                />
+                /> */}
                 <Route
                   path="/commonMaster/currencyExchangeRateMaster"
                   element={<CurrencyAndExchangeList />}

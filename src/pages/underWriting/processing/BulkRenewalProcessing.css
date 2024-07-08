@@ -1,0 +1,18 @@
+.batch_no{
+    margin-top: -14px;
+}
+
+.processing_btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.processing_btn{
+    width: 200px!important;
+}
+
+.processing_btnss{
+    width: 120px !important;
+}

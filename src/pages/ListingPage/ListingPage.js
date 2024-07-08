@@ -181,21 +181,13 @@ export default function ListingPage() {
       <div className="listingTable">
         <DataTable
           value={filteredCustomers}
-          paginator
-          rows={rowsPerPage}
-          first={currentPage}
-          onPage={onPage}
-          rowsPerPageOptions={[5, 10, 25, 50]}
-          totalRecords={filteredCustomers.length}
-          scrollable
-          scrollHeight="400px"
-          tableStyle={{ minWidth: "50rem" }}
+          paginator rows={5} scrollable
         >
           <Column field="name" header="Product" style={{ width: "15%" }} />
           <Column
             field="effectiveFrom"
             header="Effective From"
-            style={{ width: "15%", paddingLeft: "15px" }}
+            style={{ width: "15%"}}
           />
           <Column
             field="effectiveTo"

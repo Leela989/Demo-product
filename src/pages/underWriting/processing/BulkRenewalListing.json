@@ -1,0 +1,58 @@
+[
+  {
+    "batch_no": "QW1234",
+    "branch": "03-Mbeya Branch",
+    "department": "101-Motor",
+    "lob": "1004-Fire Open Cover",
+    "product": "",
+    "business_type": "",
+    "source_of_business": "",
+    "agent_broker": "",
+    "policy_number_from": "",
+    "policy_number_to": "",
+    "policy_expiry_from": "10/01/2024 10:00",
+    "policy_expiry_to": "10/02/2024 10:00"
+  },
+  {
+    "batch_no": "QW5678",
+    "branch": "02-Mwanza Branch",
+    "department": "201-Fire",
+    "lob": "1002-Motor Private",
+    "product": "",
+    "business_type": "",
+    "source_of_business": "",
+    "agent_broker": "",
+    "policy_number_from": "",
+    "policy_number_to": "",
+    "policy_expiry_from": "22/04/2024 11:04",
+    "policy_expiry_to": "11/05/2024 12:42"
+  },
+  {
+    "batch_no": "QW9876",
+    "branch": "05-Dodoma Branch",
+    "department": "301-Marine",
+    "lob": "1003-Marine Open Cover",
+    "product": "",
+    "business_type": "",
+    "source_of_business": "",
+    "agent_broker": "",
+    "policy_number_from": "",
+    "policy_number_to": "",
+    "policy_expiry_from": "01/02/2023 09:21",
+    "policy_expiry_to": "16/03/2024 8:12"
+  },
+  {
+    "batch_no": "QW4876",
+    "branch": "08-Zanzibar Branch",
+    "department": "101-Motor",
+    "lob": "1001-Motor Comprehension",
+    "product": "",
+    "business_type": "",
+    "source_of_business": "",
+    "agent_broker": "",
+    "policy_number_from": "",
+    "policy_number_to": "",
+    "policy_expiry_from": "01/02/2023 09:21",
+    "policy_expiry_to": "16/03/2024 8:12"
+  }
+]

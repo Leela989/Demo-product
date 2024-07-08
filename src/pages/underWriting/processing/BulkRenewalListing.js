@@ -3,29 +3,17 @@ import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 import { Menu } from "primereact/menu";
 import React, { act, useRef, useState } from "react";
-import AutoCompleteField from "../../components/AutoCompleteField/AutoCompleteField";
-import Divisions from "./division.json";
-import "./division.css";
+import BulkRenewalListingData from './BulkRenewalListing.json';
+import "./BulkRenewalProcessing.css";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function DivisionList() {
+export default function BulkRenewalListing() {
   const actionFilter = [{ name: "Edit" }, { name: "View" }];
   const [action, setAction] = useState("Edit");
   const navigate = useNavigate();
   const [editingRowIndex, setEditingRowIndex] = useState(null);
 
-  const getStatusColor = (status) => {
-    switch (status.toLowerCase()) {
-      case "pending":
-        return "orange";
-      case "approved":
-        return "green";
-      case "rejected":
-        return "red";
-      default:
-        return "black";
-    }
-  };
+ 
 
   const options = [
     { label: "View" },
@@ -34,7 +22,7 @@ export default function DivisionList() {
   ];
 
   const onEdit = (rowIndex) => {
-    navigate(`/commonMaster/divisionMaster/edit/${rowIndex}`);
+    navigate(`/underwriting/process/bulkRenewalProcessing/edit/${rowIndex}`);
     setEditingRowIndex(rowIndex);
   };
 
@@ -50,7 +38,7 @@ export default function DivisionList() {
   };
 
   const changeRouteToCreateDepartment = () => {
-    navigate("/commonMaster/divisionMaster/create");
+    navigate("/underwriting/process/bulkRenewalProcessing/create");
   };
 
   const [selectedIndex, setSelectedIndex] = useState(null);
@@ -91,18 +79,19 @@ export default function DivisionList() {
         />
       </div>
       <div>
-        <DataTable value={Divisions} paginator rows={5} scrollable>
-          <Column field="company" header="Company"></Column>
-          <Column field="department" header="Branch"></Column>
-          <Column
-            field="status"
-            header="Status"
-            body={(rowData) => (
-              <span style={{ color: getStatusColor(rowData.status) }}>
-                {rowData.status}
-              </span>
-            )}
-          ></Column>
+        <DataTable value={BulkRenewalListingData} paginator rows={5} scrollable>
+          <Column field="batch_no" header="Batch No."></Column>
+          <Column field="branch" header="Branch"></Column>
+          <Column field="department" header="Department"></Column>
+          <Column field="lob" header="LOB" style={{width: '20%'}}></Column>
+          {/* <Column field="product" header="Product"></Column> */}
+          {/* <Column field="business_type" header="Business Type"></Column>
+          <Column field="source_of_business" header="Source of business"></Column>
+          <Column field="agent_broker" header="Agent/Broker"></Column>
+          <Column field="policy_number_from" header="Policy number from"></Column>
+          <Column field="policy_number_to" header="Policy number to"></Column> */}
+          <Column field="policy_expiry_from" header="Policy expiry from"></Column>
+          <Column field="policy_expiry_to" header="Policy expiry to"></Column>
           <Column
             header="Action"
             headerClassName="action"

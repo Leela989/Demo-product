@@ -15,6 +15,7 @@ import { Accordion, AccordionTab } from "primereact/accordion";
 import AutoCompleteField from "../../../components/AutoCompleteField/AutoCompleteField";
 import productData from "../../ListingPage/ListingPageNew.json";
 import { Toast } from "primereact/toast";
+import { TabView, TabPanel } from "primereact/tabview";
 
 function RatingStep() {
   const menuLeft = useRef(null);
@@ -22,13 +23,11 @@ function RatingStep() {
   // const parameters = ratingStepData.data[0].Tariff_parameters[0].Parameters;
   const tariff_data_column_details =
     ratingStepData.data[0].Tariff_data_table_details[0].Tariff_columns;
-  const [tariff_data_column_data, set_tariff_data_column_data] = useState(
-    ratingStepData.data[0].Tariff_data_table_details[0].Tariff_data
-  );
+  const [tariff_data_column_data, set_tariff_data_column_data] = useState([]);
 
-  const [parameters, set_parameters] = useState(
-    ratingStepData.data[0].Tariff_parameters[0].Parameters
-  );
+  const [parameters, set_parameters] = useState([]);
+  const commission_parameters =
+    ratingStepData.data[0].Tariff_parameters[0].commission_parameters;
   const short_rate_setup_data =
     ratingStepData.data[0].Tariff_data_table_details[0].short_rate_setup;
   const options = [{ label: "Edit" }, { label: "Delete" }];
@@ -48,6 +47,8 @@ function RatingStep() {
     useState(null);
 
   const [unique_key, setKey] = useState(0);
+
+  const [activeIndex, setActiveIndex] = useState(0);
   const handleParameterSelection = (e) => {
     setSelectedParameter(e.value);
     if (e.value && e.value.Para_Type === "Slab") {
@@ -79,29 +80,48 @@ function RatingStep() {
   });
 
   useEffect(() => {
-    const filteredProduct = productData.find((product) => product.key === productKey);
+    console.log("activeIndex", activeIndex);
+    const filteredProduct = productData.find(
+      (product) => product.key === productKey
+    );
     // console.log('filteredProduct.data[0].Covers', filteredProduct.data[0].Covers);
     set_cover_data(filteredProduct?.data?.[0]?.Covers ?? []);
   }, []);
 
   useEffect(() => {
-    const filteredProduct = productData.find((product) => product.key === productKey);
+    const filteredProduct = productData.find(
+      (product) => product.key === productKey
+    );
     const coverRender = filteredProduct.data[0].Covers[0];
-  
-      console.log('selectedRow', coverRender);
-      setFormData({
-        ...formData,
-        type: coverRender.Type,
-        codeDescription: coverRender.Code + '-' + coverRender.Description,
-        Sort_order: coverRender.Sort_order,
-        calculation_logic: coverRender.calculation_logic,
-        short_rate_id: coverRender.short_rate_id,
-        rate: coverRender.rate,
-        rate_per: coverRender.rate_per,
-      });
-      setKey(unique_key+1);
-  
+
+    console.log("selectedRow", coverRender);
+    setFormData({
+      ...formData,
+      type: coverRender.Type,
+      codeDescription: coverRender.Code + "-" + coverRender.Description,
+      Sort_order: coverRender.Sort_order,
+      calculation_logic: coverRender.calculation_logic,
+      short_rate_id: coverRender.short_rate_id,
+      rate: coverRender.rate,
+      rate_per: coverRender.rate_per,
+    });
+    setKey(unique_key + 1);
   }, []);
+
+  useEffect(() => {
+    if (activeIndex == 1) {
+      console.log(
+        "backSpace",
+        tariff_data_column_data[0].parameters
+      );
+      set_parameters(commission_parameters);
+      set_tariff_data_column_data( ratingStepData.data[0].Tariff_data_table_details[0].Tariff_data[0].commission_parameters)
+    } else {
+      set_parameters(ratingStepData.data[0].Tariff_parameters[0].Parameters);
+      set_tariff_data_column_data( ratingStepData.data[0].Tariff_data_table_details[0].Tariff_data[0].parameters)
+    }
+    setKey(unique_key + 1);
+  }, [activeIndex]);
 
   const handleInputChange = (fieldName, value) => {
     setData({ ...data, [fieldName]: value });
@@ -340,7 +360,8 @@ function RatingStep() {
       setFormData({
         ...formData,
         type: selectedRowData.Type,
-        codeDescription: selectedRowData.Code + '-' + selectedRowData.Description,
+        codeDescription:
+          selectedRowData.Code + "-" + selectedRowData.Description,
         Sort_order: selectedRowData.Sort_order,
         calculation_logic: selectedRowData.calculation_logic,
         short_rate_id: selectedRowData.short_rate_id,
@@ -381,11 +402,15 @@ function RatingStep() {
     }
   };
 
-  const renderColumnBody = (rowData, column, options) => {
+  const renderColumnBody = (rowData, column, options, type) => {
     const fieldType = column.field;
-    const fieldValue = rowData[column.field_type];
+    const fieldValue = rowData[fieldType]; 
+    const column_type = column.type;
+    let column_name = fieldType; 
+    console.log('fieldValue', rowData, fieldValue, options);
+    console.log('column', column);
 
-    if (fieldType === "dropdown") {
+    if (column_type === "dropdown") {
       return (
         <AutoCompleteField
           className="w-4/4"
@@ -415,6 +440,8 @@ function RatingStep() {
     { name: "Cover" },
   ];
 
+  const levelOptions = [{ name: "Policy Level" }, { name: "Risk Type Level" }];
+
   const short_rate_id_options = [
     { name: "Set1" },
     { name: "Set2" },
@@ -436,11 +463,11 @@ function RatingStep() {
 
   const onSave_tariff_parameter = () => {
     set_editing_parameter_rowIndex(null);
-  }
+  };
 
   const onCancel_tariff_parameter = () => {
     set_editing_parameter_rowIndex(null);
-  }
+  };
 
   const onCancel = () => {
     setEditingRowIndex(null);
@@ -524,8 +551,6 @@ function RatingStep() {
     }
   };
 
-
-
   const showSuccess = () => {
     toast.current.show({
       severity: "success",
@@ -565,6 +590,37 @@ function RatingStep() {
     );
   };
 
+  const preprocessColumns = (parameters) => {
+    const processedColumns = [];
+
+    parameters.forEach((param) => {
+      if (param.Para_Type === "Equals") {
+        processedColumns.push({
+          field: param.field_type,
+          header: param.Field_Name,
+          type: param.field
+        });
+      } else if (param.Para_Type === "Slab") {
+        processedColumns.push(
+          {
+            field: `${param.field_type}_from`,
+            header: `${param.Field_Name} From`,
+            type: param.field
+          },
+          {
+            field: `${param.field_type}_to`,
+            header: `${param.Field_Name} To`,
+            type: param.field
+          }
+        );
+      }
+    });
+
+    return processedColumns;
+  };
+
+  const columns = preprocessColumns(parameters);
+
   return (
     <div>
       <Toast ref={toast} />
@@ -576,75 +632,121 @@ function RatingStep() {
         />
       </div>
       <div className="flex" key={unique_key}>
-        <div className="ratingHeader">
-          <div className="flex">
-            <AutoCompleField
-              className="w-1/4 p-1"
-              name="type"
-              label="Type"
-              value={formData.type}
-              onChange={handleInputChange}
-              options={typeOptions}
-              dropdown
-            />
+        <div className="ratingHeader1">
+          <TabView
+            className="w-full"
+            activeIndex={activeIndex}
+            onTabChange={(e) => setActiveIndex(e.index)}
+          >
+            <TabPanel header="Premium" className="tabs">
+              <div className="ratingHeader">
+                <div className="flex">
+                  <AutoCompleField
+                    className="w-1/4 p-1"
+                    name="type"
+                    label="Type"
+                    value={formData.type}
+                    onChange={handleInputChange}
+                    options={typeOptions}
+                    dropdown
+                  />
 
-            <AutoCompleteField
-              className="w-4/4"
-              name="cover"
-              options={coverDropdownValue}
-              dropdown
-              value={formData.codeDescription}
-              label="Cover"
-              onChange={(e) => handleInputChange("cover", e.value)}
-            />
-            <AutoCompleField
-              className="w-1/4 p-1"
-              name="calculationLogic"
-              label="Calculation Logic"
-              value={formData.calculation_logic}
-              onChange={handleInputChange}
-              options={calculationLogicData}
-              dropdown
-            />
-            <AutoCompleField
-              className="w-1/3 p-1"
-              name="shortRateId"
-              label="Short Rate Id"
-              value={formData.short_rate_id}
-              onChange={handleInputChange}
-              options={short_rate_id_options}
-              dropdown
-            />
-          </div>
+                  <AutoCompleteField
+                    className="w-4/4"
+                    name="cover"
+                    options={coverDropdownValue}
+                    dropdown
+                    value={formData.codeDescription}
+                    label="Cover"
+                    onChange={(e) => handleInputChange("cover", e.value)}
+                  />
+                  <AutoCompleField
+                    className="w-1/4 p-1"
+                    name="calculationLogic"
+                    label="Calculation Logic"
+                    value={formData.calculation_logic}
+                    onChange={handleInputChange}
+                    options={calculationLogicData}
+                    dropdown
+                  />
+                  <AutoCompleField
+                    className="w-1/3 p-1"
+                    name="shortRateId"
+                    label="Short Rate Id"
+                    value={formData.short_rate_id}
+                    onChange={handleInputChange}
+                    options={short_rate_id_options}
+                    dropdown
+                  />
+                </div>
+                <div className="flex">
+                  <div className="w-1/3 p-1">
+                    <InputField
+                      name="order"
+                      label="Order"
+                      value={formData.Sort_order}
+                    />
+                  </div>
+                  <div className="w-1/3 p-1">
+                    <InputField
+                      name="rate"
+                      label="Rate"
+                      value={formData.rate}
 
-          <div className="flex">
-            <div className="w-1/3 p-1">
-              <InputField
-                name="order"
-                label="Order"
-                value={formData.Sort_order}
-              />
-            </div>
-            <div className="w-1/3 p-1">
-              <InputField name="rate" label="Rate" value={formData.rate} />
-            </div>
-            <div className="w-1/3 p-1">
-              <InputField
-                name="rate_per"
-                label="Rate Per"
-                value={formData.rate_per}
-              />
-            </div>
-            <div className="w-1/3">
-              <CustomButton
-                label="Save"
-                className="w-32 ml-8 mt-6"
-                onClick={handle_rating_header_save}
-              />
-            </div>
-          </div>
+                    />
+                  </div>
+                  <div className="w-1/3 p-1">
+                    <InputField
+                      name="rate_per"
+                      label="Rate Per"
+                      value={formData.rate_per}
+                    />
+                  </div>
+                  <div className="w-1/3">
+                    <CustomButton
+                      label="Save"
+                      className="w-32 ml-8 mt-6"
+                      onClick={handle_rating_header_save}
+                    />
+                  </div>
+                </div>
+              </div>
+            </TabPanel>
+            <TabPanel header="Commission" className="tabs">
+              <div className="flex">
+                <AutoCompleField
+                  className="w-1/2 p-1"
+                  name="level"
+                  label="Level"
+                  value={""}
+                  onChange={handleInputChange}
+                  options={levelOptions}
+                  dropdown
+                />
+
+                <AutoCompleteField
+                  className="w-1/2 p-1"
+                  name="risk_type"
+                  options={coverDropdownValue}
+                  dropdown
+                  value={""}
+                  label="Risk Type"
+                  onChange={(e) => handleInputChange("cover", e.value)}
+                />
+
+                <div className="w-1/3">
+                  <CustomButton
+                    label="Save"
+                    className="w-32 ml-8 mt-6"
+                    onClick={handle_rating_header_save}
+                  />
+                </div>
+              </div>
+            </TabPanel>
+          </TabView>
+
           <div className="table_tariff_Container">
-            <div style={{ display: "flex" }}>
+            <div style={{ display: "flex" }} key={unique_key}>
               <DataTable
                 value={key == 2301 && parameters}
                 header={handle_tariff_parameter_add("Tariff Parameters")}
@@ -696,13 +798,13 @@ function RatingStep() {
                     />
                   )}
                 />
-                  <Column
-              field="action"
-              className="w-5"
-              body={(rowData, options) =>
-                render_Edit_Save_paramter_Button(options.rowIndex)
-              }
-            />
+                <Column
+                  field="action"
+                  className="w-5"
+                  body={(rowData, options) =>
+                    render_Edit_Save_paramter_Button(options.rowIndex)
+                  }
+                />
                 <Column
                   field="action"
                   header="Action"
@@ -716,57 +818,57 @@ function RatingStep() {
           </div>
         </div>
 
-        <div className="cover_card ml-4">
-          <DataTable
-            value={cover_data}
-            scrollable
-          >
-            <Column
-              field="type"
-              header="Type"
-              style={{ width: "30%" }}
-              body={(rowData) => (
-                <InputField
-                  type="text"
-                  // className="w-2/4"
-                  value={rowData.Type}
-                  onChange={(value) => handleInputChange("id", value)}
-                  disabled
-                />
-              )}
-            />
-            <Column
-              field="codeDescription"
-              header="Cover Code"
-              style={{ width: "55%" }}
-              body={(rowData) => (
-                <AutoCompleteField
-                  className="w-4/4"
-                  name="codeDescription"
-                  options={durationIndValues}
-                  dropdown
-                  value={rowData.Code + '-' + rowData.Description}
-                  onChange={(e) => handleInputChange("durationInd", e.value)}
-                  disabled
-                />
-              )}
-            />
-            <Column
-              field="action"
-              className="w-5"
-              body={(rowData, options) =>
-                renderEditSaveButton(rowData, options.rowIndex)
-              }
-            />
-          </DataTable>
-        </div>
-        <div></div>
+        {activeIndex == 0 && (
+          <div className="cover_card ml-4">
+            <DataTable value={cover_data} scrollable>
+              <Column
+                field="type"
+                header="Type"
+                style={{ width: "30%" }}
+                body={(rowData) => (
+                  <InputField
+                    type="text"
+                    // className="w-2/4"
+                    value={rowData.Type}
+                    onChange={(value) => handleInputChange("id", value)}
+                    disabled
+                  />
+                )}
+              />
+              <Column
+                field="codeDescription"
+                header="Cover Code"
+                filter
+                filterPlaceholder="Search by name"
+                style={{ width: "55%" }}
+                body={(rowData) => (
+                  <AutoCompleteField
+                    className="w-4/4"
+                    name="codeDescription"
+                    options={durationIndValues}
+                    dropdown
+                    value={rowData.Code + "-" + rowData.Description}
+                    onChange={(e) => handleInputChange("durationInd", e.value)}
+                    disabled
+                  />
+                )}
+              />
+              <Column
+                field="action"
+                className="w-5"
+                body={(rowData, options) =>
+                  renderEditSaveButton(rowData, options.rowIndex)
+                }
+              />
+            </DataTable>
+          </div>
+        )}
       </div>
 
       <Accordion multiple className="mt-5">
-        <AccordionTab header="Tariff data">
+        <AccordionTab header="Tariff data" key={unique_key}>
           <DataTable
-            value={key == 2301 && tariff_data_column_data}
+            value={tariff_data_column_data}
             header={tableHeaderRender}
             paginator
             rows={5}
@@ -774,16 +876,65 @@ function RatingStep() {
             scrollable
             scrollHeight="200px"
           >
-            {tariff_data_column_details.map((column, index) => (
+            {columns.map((column, index) => (
               <Column
                 key={index}
-                field={column.field_type}
-                header={column.Column}
-                body={(rowData, options) =>
-                  renderColumnBody(rowData, column, options)
+                field={column.field}
+                header={column.header}
+                type={column.type}
+                body={(rowData, options, type) =>
+                  renderColumnBody(rowData, column, options, type)
                 }
               />
             ))}
+            <Column
+              field="rate"
+              header="Rate"
+              body={(rowData, options) => (
+                <InputField
+                  type="text"
+                  value={rowData.rate}
+                  onChange={(e) => handleInputChange("id", e.target.value)}
+                  disabled={editingRowIndex !== options.rowIndex}
+                />
+              )}
+            />
+            <Column
+              field="rate_per"
+              header="Rate Per"
+              body={(rowData, options) => (
+                <InputField
+                  type="text"
+                  value={rowData.rate_per}
+                  onChange={(e) => handleInputChange("id", e.target.value)}
+                  disabled={editingRowIndex !== options.rowIndex}
+                />
+              )}
+            />
+            <Column
+              field="min_premium"
+              header="Min. Premium"
+              body={(rowData, options) => (
+                <InputField
+                  type="text"
+                  value={rowData.min_premium}
+                  onChange={(e) => handleInputChange("id", e.target.value)}
+                  disabled={editingRowIndex !== options.rowIndex}
+                />
+              )}
+            />
+            <Column
+              field="max_premium"
+              header="Max Premium"
+              body={(rowData, options) => (
+                <InputField
+                  type="text"
+                  value={rowData.max_premium}
+                  onChange={(e) => handleInputChange("id", e.target.value)}
+                  disabled={editingRowIndex !== options.rowIndex}
+                />
+              )}
+            />
             <Column
               field="action"
               className="w-5"

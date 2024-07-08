@@ -1,0 +1,26 @@
+[
+    {
+        "installment_method" : "01-Monthly",
+        "number_of_installments" : "2",
+        "min_qualifying_premium" : "4",
+        "period": "1-day"
+    },
+    {
+        "installment_method" : "03-Quarterly",
+        "number_of_installments" : "4",
+        "min_qualifying_premium" : "1",
+        "period": "1-day"
+    },
+    {
+        "installment_method" : "03-Quarterly",
+        "number_of_installments" : "5",
+        "min_qualifying_premium" : "6",
+        "period": "3-month"
+    },
+    {
+        "installment_method" : "04 -Half-Yearly",
+        "number_of_installments" : "2",
+        "min_qualifying_premium" : "4",
+        "period": "1-day"
+    }
+]

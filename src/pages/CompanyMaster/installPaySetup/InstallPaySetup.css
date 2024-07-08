@@ -1,0 +1,16 @@
+.installment-step{
+    display: flex;
+}
+
+.installment_heading{
+    font-weight:600;
+    font-size: 22px;
+}
+
+.installment-step{
+    margin-top: 15px;
+}
+
+.installPay_table{
+    margin-top: 20px;
+}

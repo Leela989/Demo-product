@@ -1,0 +1,20 @@
+[
+    {
+        "inst_no": "1",
+        "inst_perc": "50.00",
+        "period": "3 -Month",
+        "date_arrived_from": "01- Policy Effective From Date",
+        "no_of_days":"0",
+        "renew_date_arrived_from": "01- Policy Effective From Date",
+        "renew_no_of_days": "0"
+    },
+    {
+        "inst_no": "2",
+        "inst_perc": "50.00",
+        "period": "3 -Month",
+        "date_arrived_from": "04- Previous Installment Date",
+        "no_of_days":"6",
+        "renew_date_arrived_from": "04- Previous Installment Date",
+        "renew_no_of_days": "6"
+    }
+]

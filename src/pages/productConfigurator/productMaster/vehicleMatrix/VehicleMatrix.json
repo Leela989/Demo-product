@@ -1,0 +1,28 @@
+[
+    {
+        "code" : "100",
+        "vehicle_make" : "002",
+        "model": "001",
+        "body": "001",
+        "cc": "10",
+        "fuel" : "01",
+        "gvw": "001",
+        "seating_capacity": "4",
+        "no_of_drivers": "",
+        "effective_from_date": "",
+        "effective_to_date": ""
+    },
+    {
+        "code" : "123",
+        "vehicle_make" : "004",
+        "model": "006",
+        "body": "001",
+        "cc": "10",
+        "fuel" : "02",
+        "gvw": "002",
+        "seating_capacity": "2",
+        "no_of_drivers": "",
+        "effective_from_date": "",
+        "effective_to_date": ""
+    }
+]

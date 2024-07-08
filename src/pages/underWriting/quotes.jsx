@@ -41,7 +41,7 @@ const Quotes = () => {
   useEffect(() => {
     let tableData = QuotesList.data.find(set => set.LOB_Code === urlCode);
     console.log(tableData, "samplesample");
-    setQuotesTable(tableData.Quot_list);
+    // setQuotesTable(tableData.Quot_list);
   }, [urlCode])
 
   // useEffect(() => {

@@ -1,31 +1,31 @@
 import './AutoCompleteField.css';
-import {AutoComplete} from 'primereact/autocomplete';
-import { useState } from 'react';  
+import { AutoComplete } from 'primereact/autocomplete';
+import { useState } from 'react';
 
-const AutoCompleteField = ({ value, name,options, className, label, labelType, disabled, invalid,onChange,dropdown,forceSelection }) => {
-
-    let [fieldValue, setFieldValue] = useState(value);
-    // const list = ["aaa","bbb","ccc","abc","c11","bew"]
+const AutoCompleteField = ({ value, name, options, className, label, labelType, disabled, invalid, onChange, dropdown, forceSelection }) => {
+    const [fieldValue, setFieldValue] = useState(value);
     const [filteredOptions, setFilteredOptions] = useState([]);
 
     const search = (event) => {
         const query = event.query;
         const _filteredOptions = options.filter(item => item.name.toLowerCase().startsWith(query.toLowerCase())).map(item => item.name);
-        //const _filteredOptions = list.filter(item => item.toLowerCase().startsWith(query.toLowerCase()));
         setFilteredOptions(_filteredOptions);
     }
 
     const handleInputChange = (event) => {
-        setFieldValue(event.target.value);
-        onChange(name,event.value);
+        const value = event.target.value;
+        setFieldValue(value);
+        onChange({ value });
+    }
 
+    const handleSelect = (event) => {
+        const value = event.value;
+        setFieldValue(value);
+        onChange({ value });
     }
-    const handleSelect=(event)=>{
-        onChange(name,event.value);
-        setFieldValue(event.value)
-    }
-    const field = ()=>{
-        return(
+
+    const field = () => {
+        return (
             <AutoComplete
                 id={name}
                 value={fieldValue}
@@ -36,24 +36,25 @@ const AutoCompleteField = ({ value, name,options, className, label, labelType, d
                 onChange={handleInputChange}
                 onSelect={handleSelect}
                 dropdown={dropdown}
-                forceSelection={forceSelection?forceSelection:true}
+                forceSelection={forceSelection ? forceSelection : true}
             />
-        )
+        );
     }
-    let styleClass= (labelType === "left") ? "left-label" : "top-label";
+
+    let styleClass = (labelType === "left") ? "left-label" : "top-label";
 
     return (
         <div className={`${className}`}>
-            {(labelType === "float") ? 
+            {(labelType === "float") ?
                 <span className="p-float-label">
                     {field()}
                     <label htmlFor={name}>{label}</label>
                 </span>
                 :
                 <div className={styleClass}>
-                <label htmlFor={name} >{label}</label>
-                {field()}
-                </div>   
+                    <label htmlFor={name}>{label}</label>
+                    {field()}
+                </div>
             }
         </div>
     );

@@ -20,8 +20,8 @@ function CheckList({ productData }) {
 
   const items = [
     { label: "View" },
-    { label: "Edit", command: () => onEdit(selectedIndex) },
-    { label: "Save", command: () => onSave(selectedIndex) },
+    { label: "Edit", command: () => onEdit(selectedIndex)},
+    { label: "Save", command: () => onSave(selectedIndex)},
     { label: "Delete" },
   ];
 
