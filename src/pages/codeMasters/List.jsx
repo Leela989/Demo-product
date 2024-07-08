@@ -11,6 +11,7 @@ import DateField from "../../components/DateField/Datefield";
 import { Dropdown } from "primereact/dropdown";
 import { Tooltip } from "primereact/tooltip";
 import "./codemaster.css";
+import { Card } from "primereact/card";
 
 export default function List() {
   const navigate = useNavigate();
@@ -269,7 +270,7 @@ export default function List() {
     return (
       <div className="kebab-menu-container">
         <InputField
-          className="w-1/4"
+          className="w-4/4"
           name="code"
           value={rowData.code}
           disabled={!rowData.showSave}
@@ -383,142 +384,152 @@ export default function List() {
   );
 
   return (
-    <div>
-      <div>
-        <div className="flex flex justify-between">
-          <div className="heading">
-            <h1>Code Master</h1>
+    <div className="flex parent-container">
+      <Card className="business-rule-card left-container">
+        <div className="w-50">
+          <div className="flex flex justify-between">
+            <div className="heading">
+              <h1>Code Master</h1>
+            </div>
+            <div className="justify-end">
+              <Button
+                rounded={false}
+                label="Add"
+                // icon="pi pi-plus"
+                aria-controls="popup_menu_left"
+                onClick={() => addCodeMaster()}
+                aria-haspopup
+              />
+            </div>
           </div>
-          <div className="justify-end">
-            <Button
-              rounded={false}
-              label="Add"
-              icon="pi pi-plus"
-              aria-controls="popup_menu_left"
-              onClick={() => addCodeMaster()}
-              aria-haspopup
-            />
-          </div>
-        </div>
-        <div key={key}>
-          <DataTable value={formData} paginator rows={3} scrollable>
-            <Column
-              headerClassName="action"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                radioActionTemplate(rowData, rowIndex)
-              }
-              style={{ width: "5%" }}
-            />
-            <Column
-              field="id"
-              header="ID"
-              style={{ width: "10%" }}
-              body={(rowData, { rowIndex }) => idTemplate(rowData, rowIndex)}
-            ></Column>
-            <Column
-              field="master_name"
-              header="Master Name"
-              style={{ width: "10%" }}
-              filter
-              filterPlaceholder="Search by Master Name"
-              body={(rowData, { rowIndex }) => nameTemplate(rowData, rowIndex)}
-            ></Column>
-            <Column
-              field="action"
-              body={(rowData, options) =>
-                renderEditSaveButton(options.rowIndex)
-              }
-              style={{ width: "2%" }}
-            />
-            <Column
-              header="Action"
-              headerClassName="action"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                actionBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            />
-          </DataTable>
-        </div>
-      </div>
-      <div className="mt-3" key={subKey}>
-        <div className="heading flex justify-between">
-          <div>
-            <h1>List</h1>
-          </div>
-          <div className="justify-end">
-            <Button
-              rounded={false}
-              label="Add"
-              icon="pi pi-plus"
-              aria-controls="popup_menu_left_1"
-              onClick={() => addSubData()}
-              aria-haspopup
-            />
+          <div key={key} className="table-container">
+            <DataTable value={formData} paginator rows={4} scrollable>
+              <Column
+                headerClassName="action"
+                bodyClassName="action"
+                body={(rowData, { rowIndex }) =>
+                  radioActionTemplate(rowData, rowIndex)
+                }
+                style={{ width: "2%" }}
+              />
+              <Column
+                field="id"
+                header="ID"
+                style={{ width: "10%" }}
+                body={(rowData, { rowIndex }) => idTemplate(rowData, rowIndex)}
+              ></Column>
+              <Column
+                field="master_name"
+                header="Master Name"
+                style={{ width: "10%" }}
+                filter
+                filterPlaceholder="Search by Master Name"
+                body={(rowData, { rowIndex }) =>
+                  nameTemplate(rowData, rowIndex)
+                }
+              ></Column>
+              <Column
+                field="action"
+                body={(rowData, options) =>
+                  renderEditSaveButton(options.rowIndex)
+                }
+                style={{ width: "2%" }}
+              />
+              <Column
+                header="Action"
+                headerClassName="action"
+                bodyClassName="action"
+                body={(rowData, { rowIndex }) =>
+                  actionBodyTemplate(rowData, rowIndex)
+                }
+                style={{ width: "15%" }}
+              />
+            </DataTable>
           </div>
         </div>
-        <DataTable value={subData} paginator rows={5} scrollable>
-          <Column
-            field="code"
-            header="Code"
-            headerClassName="action"
-            bodyClassName="action"
-            body={(rowData, { rowIndex }) => codeTemplate(rowData, rowIndex)}
-            style={{ width: "15%" }}
-          />
-          <Column
-            field="description"
-            header={descriptionHeader}
-            headerClassName="action"
-            bodyClassName="action"
-            body={(rowData, { rowIndex }) =>
-              descriptionTemplate(rowData, rowIndex)
-            }
-            style={{ width: "20%" }}
-          />
-          <Column
-            field="effective_from"
-            header="Effective From"
-            headerClassName="action"
-            bodyClassName="action"
-            body={(rowData, { rowIndex }) =>
-              effectiveFormTemplate(rowData, rowIndex)
-            }
-            style={{ width: "15%" }}
-          />
+      </Card>
+      <Card className="business-rule-card ml-5 right-container">
+        <div className="child-div" key={subKey}>
+          <div className="title flex justify-between">
+            <div>
+              <h1>List of values</h1>
+            </div>
+            <div className="justify-end">
+              <Button
+                rounded={false}
+                label="Add"
+                // icon="pi pi-plus"
+                aria-controls="popup_menu_left_1"
+                onClick={() => addSubData()}
+                aria-haspopup
+              />
+            </div>
+          </div>
+          <div className="table-container">
+            <DataTable value={subData} paginator rows={4} scrollable>
+              <Column
+                field="code"
+                header="Code"
+                headerClassName="action"
+                bodyClassName="action"
+                body={(rowData, { rowIndex }) =>
+                  codeTemplate(rowData, rowIndex)
+                }
+                style={{ width: "20%" }}
+              />
+              <Column
+                field="description"
+                header={descriptionHeader}
+                headerClassName="action"
+                bodyClassName="action"
+                body={(rowData, { rowIndex }) =>
+                  descriptionTemplate(rowData, rowIndex)
+                }
+                style={{ width: "20%" }}
+              />
+              <Column
+                field="effective_from"
+                header="Effective From"
+                headerClassName="action"
+                bodyClassName="action"
+                body={(rowData, { rowIndex }) =>
+                  effectiveFormTemplate(rowData, rowIndex)
+                }
+                style={{ width: "20%" }}
+              />
 
-          <Column
-            field="effective_to"
-            header="Effective To"
-            headerClassName="action"
-            bodyClassName="action"
-            body={(rowData, { rowIndex }) =>
-              effectiveToTemplate(rowData, rowIndex)
-            }
-            style={{ width: "15%" }}
-          />
+              <Column
+                field="effective_to"
+                header="Effective To"
+                headerClassName="action"
+                bodyClassName="action"
+                body={(rowData, { rowIndex }) =>
+                  effectiveToTemplate(rowData, rowIndex)
+                }
+                style={{ width: "10%" }}
+              />
 
-          <Column
-            field="action"
-            body={(rowData, options) =>
-              subRenderEditSaveButton(options.rowIndex)
-            }
-            style={{ width: "2%" }}
-          />
+              <Column
+                field="action"
+                body={(rowData, options) =>
+                  subRenderEditSaveButton(options.rowIndex)
+                }
+                style={{ width: "10%" }}
+              />
 
-          <Column
-            header="Action"
-            headerClassName="action"
-            bodyClassName="action"
-            body={(rowData, { rowIndex }) =>
-              subActionBodyTemplate(rowData, rowIndex)
-            }
-            style={{ width: "10%" }}
-          />
-        </DataTable>
-      </div>
+              <Column
+                header="Action"
+                headerClassName="action"
+                bodyClassName="action"
+                body={(rowData, { rowIndex }) =>
+                  subActionBodyTemplate(rowData, rowIndex)
+                }
+                style={{ width: "10%" }}
+              />
+            </DataTable>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 }

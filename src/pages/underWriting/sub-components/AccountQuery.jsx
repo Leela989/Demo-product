@@ -126,6 +126,7 @@ const AccountQuery = ({ show, setShow }) => {
           value={parseDate(rowData.date)}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           disabled={!rowData.show}
+          showIcon={false}
         />
       </div>
     );
@@ -162,14 +163,12 @@ const AccountQuery = ({ show, setShow }) => {
   const currencyTemplate = (rowData, index) => {
     return (
       <div className="kebab-menu-container">
-        <AutoCompleteField
+        <InputField
           className="w-4/4"
           name="currency"
           value={rowData.currency}
-          options={baseCurrencyOptions}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           disabled={!rowData.show}
-          dropdown
         />
       </div>
     );
@@ -220,13 +219,11 @@ const AccountQuery = ({ show, setShow }) => {
   const cOrDTemplate = (rowData, index) => {
     return (
       <div className="kebab-menu-container">
-        <AutoCompleteField
+        <InputField
           className="w-4/4"
           name="c_or_d"
           value={rowData.c_or_d}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
-          options={options_for_c_or_d}
-          dropdown
           disabled={!rowData.show}
         />
       </div>
@@ -245,8 +242,8 @@ const AccountQuery = ({ show, setShow }) => {
           setShow(false);
         }}
       >
-        <Card className="business-rule-card">
-          <div className="flex mb-7 ">
+        <Card className="business-rule-card account-card">
+          <div className="flex mb-3 ">
             <div className="pl-1">Policy Number</div>
             <div className="ml-10 w-3/4">
               <InputField
@@ -266,7 +263,7 @@ const AccountQuery = ({ show, setShow }) => {
               headerClassName="action"
               bodyClassName="action"
               body={(rowData, { rowIndex }) => srlTemplate(rowData, rowIndex)}
-              style={{ width: "15%" }}
+              style={{ width: "20%" }}
             />
 
             <Column
@@ -275,7 +272,7 @@ const AccountQuery = ({ show, setShow }) => {
               headerClassName="action"
               bodyClassName="action"
               body={(rowData, { rowIndex }) => docTemplate(rowData, rowIndex)}
-              style={{ width: "15%" }}
+              style={{ width: "20%" }}
             />
             <Column
               field="date"
@@ -283,7 +280,7 @@ const AccountQuery = ({ show, setShow }) => {
               headerClassName="action"
               bodyClassName="action"
               body={(rowData, { rowIndex }) => dateTemplate(rowData, rowIndex)}
-              style={{ width: "15%" }}
+              style={{ width: "20%" }}
             />
             <Column
               field="main_ac"
@@ -353,14 +350,26 @@ const AccountQuery = ({ show, setShow }) => {
               body={(rowData, { rowIndex }) => cOrDTemplate(rowData, rowIndex)}
               style={{ width: "15%" }}
             />
-            <Column
+            {/* <Column
               field="action"
               body={(rowData, options) =>
                 renderEditSaveButton(options.rowIndex)
               }
               style={{ width: "2%" }}
-            />
+            /> */}
           </DataTable>
+          {/* <div className="flex mt-3">
+            <div className="pl-1">Total</div>
+            <div className="ml-10 w-3/4">
+              <InputField
+                className="w-4/4"
+                name="rule_id"
+                value="15000"
+                onChange={(e) => handleInputChange(e, options.rowIndex)}
+                disabled
+              />
+            </div>
+          </div> */}
         </Card>
       </Dialog>
     </div>

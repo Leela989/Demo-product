@@ -4,3 +4,21 @@
 .p-column-filter-menu {
   margin-left: 15px !important;
 }
+.parent-container {
+  width: 100%;
+  display: flex;
+}
+.left-container {
+  width: 48%;
+  height: 450px !important;
+}
+.right-container {
+  width: 48%;
+  height: 450px !important;
+  margin-right: 10px;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}

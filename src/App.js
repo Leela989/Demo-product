@@ -35,6 +35,10 @@ import juniorOfficer_menu from "../src/pages/Sidebar/JuniorOfficerMenu";
 import UserManagementListingPage from "../src/pages/UserManagement/UserManagementListingPage";
 import PolicyListing from "../src/pages/underWriting/policy/PolicyListing";
 
+import CodeMasterList from "./pages/codeMasters/List";
+import VatTaxMasterList from "./pages/vat-tax-master/List";
+import VatTaxMaster from "./pages/vat-tax-master/TaxMaster";
+
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
 
