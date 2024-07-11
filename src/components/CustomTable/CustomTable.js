@@ -35,6 +35,16 @@ function CustomTable({
   });
   const [selectedProduct, setSelectedProduct] = useState(null);
 
+  const convertStringToDate = (dateString) => {
+    if(!dateString) {
+      return null;
+    }
+    const [datePart, timePart] = dateString.split(" ");
+    const [day, month, year] = datePart.split("/").map(Number);
+    const [hours, minutes, seconds] = timePart.split(":").map(Number);
+    return new Date(year, month - 1, day, hours, minutes, seconds);
+  };
+
   useEffect(() => {
     setReceivedTableData(data);
   }, [data]);
@@ -159,13 +169,21 @@ function CustomTable({
         );
       }
     } else if (findType === "inputText") {
-      return <InputText placeholder="Text" />;
+      return <InputText value={rowData[rowHeader.field]} placeholder="Text" />;
     } else if (findType === "inputNumber") {
-      return <InputNumber placeholder="Number" useGrouping={false} />;
+      return (
+        <InputNumber
+          value={rowData[rowHeader.field] || 0}
+          placeholder="Number"
+          useGrouping={false}
+        />
+      );
     } else if (findType === "dateField") {
-      return <DateField />;
+      let dataForm = convertStringToDate(rowData[rowHeader.field]);
+      // console.log(dataForm, "datedate");
+      return <DateField value={dataForm} />;
     } else if (findType === "dropDown") {
-      return <Dropdown />;
+      return <Dropdown value={rowData[rowHeader.field]} />;
     } else if (findType === "checkBox") {
       if (name !== "riskTypes") {
         const dropData = rowData;
@@ -213,7 +231,8 @@ function CustomTable({
         )
       );
     } else if (findType === "inputTextarea") {
-      return <InputTextarea />;
+      console.log(rowData[rowHeader.field], "inputtextAreasam");
+      return <InputTextarea value={rowData[rowHeader.field]} />;
     } else {
       return <p>{rowData.name}</p>;
     }
@@ -273,8 +292,8 @@ function CustomTable({
   // }
 
   const handleSelectionChange = (e) => {
-    setSelectedProduct(e.value)
-  }
+    setSelectedProduct(e.value);
+  };
 
   /* Render Below */
   return (
@@ -287,25 +306,30 @@ function CustomTable({
         selection={selectedProduct}
         onSelectionChange={handleSelectionChange}
       >
-          {selectionMode ? <Column style={{minWidth: '60px', width: '60px', maxWidth: '60px'}} selectionMode="single"></Column>: null}
-          {columns.map((column, index) => (
-            <Column
-              headerClassName={`${column.field}-cell ${
-                column.fieldType === "inputNumber" ? "number-cell" : ""
-              } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""} ${
-                column.fieldType === "inputTextarea" ? "textarea-cell" : ""
-              }`}
-              bodyClassName={`${column.field}-cell ${
-                column.fieldType === "inputNumber" ? "number-cell" : ""
-              } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""} ${
-                column.fieldType === "inputTextarea" ? "textarea-cell" : ""
-              }`}
-              key={index}
-              field={column.field}
-              header={column.header}
-              body={customBody}
-            ></Column>
-          ))}
+        {selectionMode ? (
+          <Column
+            style={{ minWidth: "60px", width: "60px", maxWidth: "60px" }}
+            selectionMode="single"
+          ></Column>
+        ) : null}
+        {columns.map((column, index) => (
+          <Column
+            headerClassName={`${column.field}-cell ${
+              column.fieldType === "inputNumber" ? "number-cell" : ""
+            } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""} ${
+              column.fieldType === "inputTextarea" ? "textarea-cell" : ""
+            }`}
+            bodyClassName={`${column.field}-cell ${
+              column.fieldType === "inputNumber" ? "number-cell" : ""
+            } ${column.fieldType === "checkBox" ? "checkbox-cell" : ""} ${
+              column.fieldType === "inputTextarea" ? "textarea-cell" : ""
+            }`}
+            key={index}
+            field={column.field}
+            header={column.header}
+            body={customBody}
+          ></Column>
+        ))}
       </DataTable>
     </>
   );

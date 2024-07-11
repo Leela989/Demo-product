@@ -3,8 +3,8 @@ export const getMasterData = {
   languageDescription: {
     default: "en",
     data: [
-      { lang: "english", code: "en", description: "" },
-      { lang: "franch", code: "fr", description: "" },
+      { lang: "English", code: "en", description: "" },
+      { lang: "Franch", code: "fr", description: "" },
     ],
   },
   plan: {

@@ -22,10 +22,8 @@ const Quotes = () => {
   const { lob, type } = useParams();
   const menuOpen = useRef(null);
   const overlayOpen = useRef(null);
-  const options = getquotesOption.filter((data) => data.type === lob);
-
-  console.log(lob, "location");
   let [urlname, urlCode] = lob.split('-');
+  const options = getquotesOption.filter((data) => data.type === urlname);
 
 
   const [selectedProduct, setSelectedProduct] = useState({
@@ -41,7 +39,7 @@ const Quotes = () => {
   useEffect(() => {
     let tableData = QuotesList.data.find(set => set.LOB_Code === urlCode);
     console.log(tableData, "samplesample");
-    // setQuotesTable(tableData.Quot_list);
+    setQuotesTable(tableData.Quot_list);
   }, [urlCode])
 
   // useEffect(() => {
@@ -147,7 +145,7 @@ const Quotes = () => {
             <div className="flex items-center">
               <label className="pr-3">Line Of Business</label>
               <p style={{ color: "rgba(0, 60, 149, 0.85)", fontWeight: 700 }}>
-              {urlCode} - {urlname}
+              {urlCode} - {`${urlname.charAt(0).toUpperCase()}${urlname.slice(1)}`}
               </p>
             </div>
             <div className="mt-4">

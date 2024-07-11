@@ -20,7 +20,7 @@ import useRenderDropdown from "../../../components/DropDown/dropDown";
 import { useParams } from "react-router-dom";
 import { headerData } from "../../../mock-data/underwriting/editquotes-data";
 
-const Header = () => {
+const Header = ({riskHeaderData}) => {
   const { type, id } = useParams();
   const overlayOpen = useRef(null);
   const partyInitialState = { partyRole: "", partyID: "", address: "" };
@@ -38,18 +38,18 @@ const Header = () => {
   const [searchHeader, setSearchHeader] = useState(searchDisplayHeader);
 
   useEffect(() => {
+    console.log(riskHeaderData, riskHeaderData.dat, "samplesap");
     if (type === "edit") {
-      let headerEditData = headerData.data.find(
-        (data) => data.key === Number(id)
-      );
-      console.log(headerEditData, "headerEditData.partyDetails>");
-      setQuotesFormData(headerEditData);
-      setPartyDetails(headerEditData.partyDetails);
+      // let headerEditData = riskHeaderData.data.find(
+      //   (data) => data.key === Number(id)
+      // );
+      setQuotesFormData(riskHeaderData);
+      setPartyDetails(riskHeaderData.partyDetails);
     } else if (type === "new") {
-      setQuotesFormData(getQuotesHeaderData.formData);
-      setPartyDetails(getQuotesHeaderData.partyDetails);
+      setQuotesFormData(riskHeaderData.formData);
+      setPartyDetails(riskHeaderData.partyDetails);
     }
-  }, [id, type]);
+  }, [id, type, riskHeaderData]);
 
   const dropdownOptions = {
     partyRole: [

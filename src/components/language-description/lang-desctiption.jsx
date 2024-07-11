@@ -80,7 +80,7 @@ const LanguageDescription = ({ langDefault, langData, className, onLangUpdate, l
             />
             <OverlayPanel data-pr-position="right" ref={overlayOpen}>
               <Dropdown
-                value={selectLang?.lang}
+                value={selectLang}
                 onChange={handelDropchange}
                 options={langData}
                 placeholder="Select Language"

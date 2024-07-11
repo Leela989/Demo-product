@@ -416,9 +416,9 @@ export const getQuotesTableHeaderData = {
     header: [
       { field: "currency", header: "Currency", fieldType: "autoComplete" },
       { field: "rateType", header: "Rate Type", fieldType: "dropDown" },
-      { field: "dollar", header: "US Dollar", fieldType: "inputNumber" },
-      { field: "rupee", header: "Indian Rupees", fieldType: "inputText" },
-      { field: "yen", header: "japaneseYen", fieldType: "inputText" },
+      { field: "rate1", header: "US Dollar", fieldType: "inputNumber" },
+      { field: "rate2", header: "Indian Rupees", fieldType: "inputNumber" },
+      { field: "rate3", header: "japaneseYen", fieldType: "inputNumber" },
       { field: "save", header: "" },
       { field: "action", header: "" },
     ],
@@ -556,9 +556,9 @@ export const quotesTabTableInitialData = {
       {
         currency: "",
         rateType: "",
-        dollar: "",
-        rupee: "",
-        yen: "",
+        rate1: "",
+        rate2: "",
+        rate3: "",
         save: "",
       },
     ],
@@ -618,10 +618,58 @@ export const quotesTabTableInitialData = {
   },
 };
 
+export const quotesTabFillTableData = {
+  data: [
+    {
+      key: 76402,
+      conditions: [
+        {
+          code: "3",
+          description: "04   Authorised Repair Limit [Section 1 - 4 (a)]",
+          longDescription:
+            ".................................................... 750,000.00 TSHS",
+          conditionType: "06",
+        },
+        {
+          code: "1",
+          description: "01   Section 1 - 3",
+          longDescription:
+            "(Protection and Removal)/Towing Charges 250,000 TSHS.",
+          conditionType: "06",
+        },
+        {
+          code: "7",
+          description: "02   Section II-1(a) and 2(a)",
+          longDescription:
+            "(Liability to Third Parties death or bodily injury) in respect of any one claim or series of claims arising out of one event - Unlimited.",
+          conditionType: "06",
+        },
+        {
+          code: "9",
+          description: "03   Section II-1(b) and 2(b)",
+          longDescription:
+            "(Liability to Third Parties - Property Damage) in respect of any one claim or series of claims arising out of one event 30,000,000.00 TSHS.",
+          conditionType: "06",
+        },
+      ],
+      applicableCurrency: [
+        {
+          code: "005",
+          rateType: "UGANDA  SHILLINGS",
+          rate1: 1,
+          rate2: 1,
+          rate3: 1,
+        },
+      ],
+    },
+  ],
+};
+
 export const riskBlock = [
   {
     key: 2301,
     Id: "R_01",
+    displayName: "motor",
     name: "vehicleDetails",
     Object_name: "Vehicle Details",
     Parent_Object_Id: null,
@@ -643,6 +691,7 @@ export const riskBlock = [
   {
     key: 2301,
     Id: "R_02",
+    displayName: "motor",
     name: "driverDetails",
     Object_name: "Driver Details",
     Parent_Object_Id: null,
@@ -654,6 +703,7 @@ export const riskBlock = [
   {
     key: 76402,
     Id: "R_102",
+    displayName: "fire",
     name: "locationDetails",
     Object_name: "Location Details",
     Parent_Object_Id: null,
@@ -671,7 +721,7 @@ export const riskBlock = [
         Object_Type: "2",
       },
     ],
-  }
+  },
 ];
 
 export const riskFactor = {
@@ -1733,7 +1783,7 @@ export const riskFactor = {
           },
         ],
       },
-    ]
+    ],
   },
   contentDetails: {
     key: 76402,
@@ -1945,6 +1995,6 @@ export const riskFactor = {
           },
         ],
       },
-    ]
-  }
+    ],
+  },
 };

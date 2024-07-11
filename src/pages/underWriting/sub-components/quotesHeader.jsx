@@ -48,7 +48,6 @@ const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
     let dateFields = renderFormData.filter(
       (data) => data.fieldType === "dateType"
     );
-    // console.log(dateFields, 'dateFields');dataValues !== '' && convertStringToDate(formData[dataValues.name])
     dateFields.map((dataValues) => {
       if (
         typeof quotesFormData[dataValues.name] === "string" &&
@@ -107,7 +106,6 @@ const QuotesHeader = ({ quotesFormData, onUpdateParty }) => {
   }, [customSearch]);
 
   const getDateField = (name, value) => {
-    console.log(name, value, "????");
     setFormData({ ...formData, [name]: value });
     onUpdateParty({ ...formData, [name]: value });
   };

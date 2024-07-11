@@ -49,6 +49,11 @@ function App() {
 
   const [sideBarMenu, set_sidebar_menu] = useState(linkData);
   const current_user = JSON.parse(localStorage.getItem("junior_officer"));
+  // console.log(showNote, "<<<<<")
+
+  // const location = useLocation();
+  // const currentPath = location.pathname;
+  // console.log("currentPath", currentPath);
 
   useEffect(() => {
     if (token) {
