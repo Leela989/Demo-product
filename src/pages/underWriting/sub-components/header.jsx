@@ -38,11 +38,7 @@ const Header = ({riskHeaderData}) => {
   const [searchHeader, setSearchHeader] = useState(searchDisplayHeader);
 
   useEffect(() => {
-    console.log(riskHeaderData, riskHeaderData.dat, "samplesap");
     if (type === "edit") {
-      // let headerEditData = riskHeaderData.data.find(
-      //   (data) => data.key === Number(id)
-      // );
       setQuotesFormData(riskHeaderData);
       setPartyDetails(riskHeaderData.partyDetails);
     } else if (type === "new") {
@@ -106,7 +102,6 @@ const Header = ({riskHeaderData}) => {
           </div>
         );
       case "overlay":
-        console.log(quotesFormData, value, "???????");
         return (
           <div>
             <label className="pr-2">
@@ -211,7 +206,6 @@ const Header = ({riskHeaderData}) => {
     }
   };
 
-  console.log(quotesFormData, "<><>");  
   return (
     quotesFormData && (
       <>
@@ -235,7 +229,7 @@ const Header = ({riskHeaderData}) => {
                 <Button rounded icon="pi pi-plus" onClick={handelPartyAdd} />
               </div>
             </div>
-            {partyDetails?.map((party, index) => (
+            {partyDetails && partyDetails?.map((party, index) => (
               <div className="party-details" key={index}>
                 {getQuotesHeaderFromRender.partyDetails.map((fieldData) => (
                   <div className="pb-3" key={fieldData.name}>

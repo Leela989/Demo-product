@@ -144,10 +144,10 @@ export const headerData = {
       Area: null,
       State: null,
       City: null,
-      partyDetails: {
-        Customer: "DC0001001-Test Customer",
-        Insured: { id: "BL1011470-Test Insured", Insured_address: "ADDRESS2" },
-      },
+      partyDetails: [
+        { partyRole: "Test Customer", partyID: "DC0001001", address: "" },
+        { partyRole: "Test Insured", partyID: "BL1011470", address: "ADDRESS2" },
+      ],
     },
     {
       key: 76402,

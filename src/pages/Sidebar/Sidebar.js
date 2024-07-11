@@ -59,7 +59,6 @@ const Sidebar = ({ linksData }) => {
               </>
             ) : (
               <li key={link.label}>
-                {console.log(link, "sidebarsample")}
                 <NavLink
                   className={({ isActive }) =>
                     isActive ? "active nav-link" : "inactive nav-link"

@@ -231,7 +231,6 @@ function CustomTable({
         )
       );
     } else if (findType === "inputTextarea") {
-      console.log(rowData[rowHeader.field], "inputtextAreasam");
       return <InputTextarea value={rowData[rowHeader.field]} />;
     } else {
       return <p>{rowData.name}</p>;

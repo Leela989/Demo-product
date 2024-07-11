@@ -2,6 +2,7 @@ import { InputText } from "primereact/inputtext";
 import CustomTable from "../../../components/CustomTable/CustomTable";
 import { TabPanel, TabView } from "primereact/tabview";
 import {
+  initialriskValueData,
   riskEditTabTablecontent,
   riskTabTableHeader,
   riskTabTablecontent,
@@ -31,7 +32,7 @@ const QuotesRisk = () => {
   const [singleRiskData, setSingleRiskData] = useState();
 
   useEffect(() => {
-    setRiskTableData(riskValueData);
+    setRiskTableData(riskValueData.riskMainData);
   }, []);
 
   useEffect(() => {
@@ -39,8 +40,6 @@ const QuotesRisk = () => {
     console.log(tempSingleFieldData[0]?.Objects[0], "boomboom");
     setSingleRiskData(tempSingleFieldData[0]?.Objects[0]);
   }, [id]);
-
-  console.log(singleRiskData, "???????");
 
   useEffect(() => {
     let tempRiskQuotesTab = [];
@@ -214,6 +213,12 @@ const QuotesRisk = () => {
     });
   };
 
+  const addRiskTableData = () => {
+    let updatedTableData = riskTabelData;
+    updatedTableData.value.push(initialriskValueData);
+    setRiskTableData({...riskTabelData, value: [...updatedTableData.value]});
+  }
+
   return (
     <div>
       <div className="mt-5 pt-3">
@@ -239,12 +244,15 @@ const QuotesRisk = () => {
         </div>
       </div>
       <Card className="risk-assesment-section">
-        <h2 className="header-text mb-3">Risk Assesment</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="header-text mb-3">Risk Assesment</h2>
+          <Button label="Add" onClick={addRiskTableData} />
+        </div>
         <div className="pt-3 pb-5">
           {riskTabelData && (
             <CustomTable
               selectionMode="radiobutton"
-              data={riskTabelData.riskMainData.value}
+              data={riskTabelData.value}
               columns={riskTableHeaderData.riskMainData.header}
             />
           )}
