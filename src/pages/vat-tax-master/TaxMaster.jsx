@@ -86,6 +86,28 @@ export default function Department() {
     );
   };
 
+  const testCheckBoxBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <CheckBox
+          name="on_policy_commission"
+          // boxChecked={isFreeze || false}
+          // onChange={() => setFreeze()}
+          onChange={handleInputChange}
+        />
+        {/* <AutoCompleteField
+          className="pt-1 parent-container"
+          name="incharge"
+          value={rowData.incharge}
+          onChange={handleInputChange}
+          options={product_from_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        /> */}
+      </div>
+    );
+  };
+
   const productToActionBodyTemplate = (rowData, rowIndex) => {
     return (
       <div className="kebab-menu-container">
@@ -443,7 +465,83 @@ export default function Department() {
             <h1>Applicable At</h1>
           </div>
         </div>
-        <div className="flex">
+        <div>
+          <DataTable value={subData} paginator rows={5} scrollable>
+            <Column
+              field="on_policy_commission"
+              header="On Policy Commission"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="on_policy_premium"
+              header="On Policy Premium"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="on_reinsurance_premium"
+              header="On Reinsurance Premium"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="mdp"
+              header="MDP Y/N"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="on_fac_treaty_commission"
+              header="On Fac/Treaty Commission"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="effective_to"
+              header="On Inward/Outward Commission"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="on_claims_all_expenses"
+              header="On Claims All Expenses"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="on_salvage_and_other_recovery_expenses"
+              header="On Salvage and Other Recovery Expenses"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                testCheckBoxBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+          </DataTable>
+        </div>
+        {/* <div className="flex">
           <div className="w-1/4">
             <CheckBox
               name="on_policy_commission"
@@ -510,9 +608,9 @@ export default function Department() {
               onChange={() => setFreeze()}
             />
           </div>
-        </div>
+        </div> */}
       </div>
-      <div className="mt-10">
+      <div className="mt-5">
         <div className="heading flex justify-between">
           <div>
             <h1>Tax Rates</h1>
