@@ -377,6 +377,15 @@ span.p-steps-number{
   /* background-color: rgb(122, 120, 120) !important; */
 }
 
+.k-2{
+  margin-top: -8px;
+}
+
+.customer_category_heading{
+  font-weight: 500;
+  font-size: 26px;
+}
+
 .cover_card{
   margin-top: 8px;
   width: 30%;

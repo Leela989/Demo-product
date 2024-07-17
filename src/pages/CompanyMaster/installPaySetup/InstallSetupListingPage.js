@@ -6,22 +6,29 @@ import InstallSetupListingPagedata from "./InstallSetupListing.json";
 import { Button } from "primereact/button";
 import { Menu } from "primereact/menu";
 import { useNavigate } from "react-router-dom";
+import { OndemandVideoTwoTone } from "@mui/icons-material";
 
 function InstallSetupListingPage() {
   const menuLeft = useRef(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+
   const navigate = useNavigate();
   const handleCreateNewClick = () => {
     navigate("/commonMaster/installmentPaySetupMaster/createApplication");
   };
 
   const options = [
-    { label: "Edit" },
+    { label: "Edit", command: () => onEdit(selectedRowIndex) },
     { label: "View" },
     { label: "Save" },
     { label: "Delete" },
   ];
+
+  const onEdit = () => {
+    navigate(`/commonMaster/installmentPaySetupMaster/edit/${selectedRowIndex}`);
+  }
 
   const actionBodyTemplate = (rowData, rowIndex) => {
     return (
@@ -31,7 +38,10 @@ function InstallSetupListingPage() {
           rounded
           text
           icon="pi pi-ellipsis-v"
-          onClick={(event) => menuLeft.current.toggle(event)}
+          onClick={(event) => {
+            setSelectedRowIndex(rowIndex)
+            menuLeft.current.toggle(event)}
+          }
           aria-controls="popup_menu_left"
           aria-haspopup
         />

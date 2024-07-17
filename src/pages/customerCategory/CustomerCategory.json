@@ -1,0 +1,39 @@
+{
+    "Account_details": [
+      {
+        "company": "01 -XYZ Company",
+        "control_ac": "12345778",
+        "effective_from": "20/04/2023 10:20",
+        "effective_to": "23/03/2024 11:30"
+      },
+      {
+        "company": "01 -XYZ Company",
+        "control_ac": "12345778",
+        "effective_from": "20/04/2023 10:20",
+        "effective_to": "23/03/2024 11:30"
+      }
+    ],
+    "applicable_roles" : [
+        {
+            "roles": "01-Broker",
+            "effective_from": "20/04/2023 10:20",
+            "effective_to": "23/03/2024 11:30"
+        },
+        {
+            "roles": "01-Sales",
+            "effective_from": "20/04/2023 10:23",
+            "effective_to": "23/03/2024 11:37"
+        }
+    ],
+    "applicable_taxes": [
+        {
+            "tax_category" : "01-VAT",
+            "default_yn": true
+        },
+        {
+            "tax_category" : "01-BIT",
+            "default_yn": false
+        }
+    ]
+  }
+  

@@ -26,7 +26,10 @@ export default function BulkRenewalListing() {
     setEditingRowIndex(rowIndex);
   };
 
-  const handleEdit = (rowIndex) => {};
+  const handleEdit = (rowIndex) => {
+    navigate(`/underwriting/process/bulkRenewalProcessing/edit/${rowIndex}`);
+
+  };
 
   const blockAttributeOptions = (rowData, rowIndex) => [
     { label: "View" },
@@ -38,7 +41,7 @@ export default function BulkRenewalListing() {
   };
 
   const changeRouteToCreateDepartment = () => {
-    navigate("/underwriting/process/bulkRenewalProcessing/create");
+    navigate(`/underwriting/process/bulkRenewalProcessing/create`)
   };
 
   const [selectedIndex, setSelectedIndex] = useState(null);
