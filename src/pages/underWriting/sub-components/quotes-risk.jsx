@@ -9,7 +9,7 @@ import {
   riskTableHeaderData,
   riskValueData,
 } from "../../../mock-data/underwriting/quotes-risk";
-import { riskBlock, riskFactor } from "../../../mock-data/underwriting/quotes";
+import { riskBlock, riskFactor, riskFactorData } from "../../../mock-data/underwriting/quotes";
 import { InputNumber } from "primereact/inputnumber";
 
 import { Calendar } from "primereact/calendar";
@@ -20,6 +20,7 @@ import CustomButton from "../../../components/Button/CustomButton";
 import { Dropdown } from "primereact/dropdown";
 import { useParams } from "react-router-dom";
 import { riskEditData } from "../../../mock-data/underwriting/editquotes-data";
+import CheckBox from "../../../components/CheckBox/CheckBox";
 
 const QuotesRisk = () => {
   const [activeFields, setActiveFields] = useState(null);
@@ -30,6 +31,7 @@ const QuotesRisk = () => {
   const [riskTabelData, setRiskTableData] = useState();
   const [riskQuotesTab, setRiskQuotesTab] = useState([]);
   const [singleRiskData, setSingleRiskData] = useState();
+  const [riskAssesmentFactorData, setRiskAssesmentFactorData] = useState(riskFactorData);
 
   useEffect(() => {
     setRiskTableData(riskValueData.riskMainData);
@@ -141,7 +143,7 @@ const QuotesRisk = () => {
                         <InputText value={fieldValue} />
                       </div>
                     );
-                  } else if (field.Field_type === "Number") {
+                  } else if (field.Field_type === "inputNumber") {
                     return (
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
@@ -167,6 +169,12 @@ const QuotesRisk = () => {
                           hourFormat="24"
                           className="w-full"
                         />
+                      </div>
+                    );
+                  } else if (field.Field_type === "checkBox") {
+                    return (
+                      <div key={index} className="w-1/4 p-2 flex items-center">
+                        <CheckBox onChange={()=>{console.log("checkBox hitted")}} labelName={field.Field_Name} />
                       </div>
                     );
                   }
@@ -246,7 +254,9 @@ const QuotesRisk = () => {
       <Card className="risk-assesment-section">
         <div className="flex items-center justify-between">
           <h2 className="header-text mb-3">Risk Assesment</h2>
-          <Button label="Add" onClick={addRiskTableData} />
+          <div className="small-btn">
+            <Button label="Add" onClick={addRiskTableData} />
+          </div>
         </div>
         <div className="pt-3 pb-5">
           {riskTabelData && (

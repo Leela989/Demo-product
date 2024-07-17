@@ -446,6 +446,127 @@ export const riskEditData = {
         },
       ],
     },
+    {
+      key: 76402,
+      Objects: [
+        {
+          RiskId: "R_102",
+          Object_name: "Location Details",
+          Fields: [
+            {
+              field_Id: 1,
+              field_Name: "Risk ID",
+              Value: 1,
+            },
+            {
+              field_Id: 2,
+              field_Name: "Risk Effective From Date",
+              Value: "01-01-2024",
+            },
+            {
+              field_Id: 3,
+              field_Name: "Risk Effective To Date",
+              Value: "31-12-2024",
+            },
+            {
+              field_Id: 4,
+              field_Name: "Type of Occupancy",
+              Value: "01-Comprehensive",
+            },
+            {
+              field_Id: 5,
+              field_Name: "Risk Category",
+              Value: "001-Private Car",
+            },
+            {
+              field_Id: 6,
+              field_Name: "Risk sub Category",
+              Value: "10101A-SUV",
+            },
+            {
+              field_Id: 7,
+              field_Name: "Risk Class",
+              Value: "101-AUDI",
+            },
+            {
+              field_Id: 8,
+              field_Name: "Building AGe",
+              Value: "10101-AUDI 80",
+            },
+            {
+              field_Id: 9,
+              field_Name: "Vehicle Age",
+              Value: 15,
+            },
+            {
+              field_Id: 10,
+              field_Name: "Google Integration Required",
+              Value: true,
+            },
+            {
+              field_Id: 11,
+              field_Name: "Makini No.",
+              Value: "E10011001",
+            },
+            {
+              field_Id: 12,
+              field_Name: "Location Address",
+              Value: "Address 1",
+            },
+            {
+              field_Id: 13,
+              field_Name: "Latitude",
+              Value: "RE30011001",
+            },
+            {
+              field_Id: 14,
+              field_Name: "Longitude",
+              Value: 'RE30011001',
+            },
+            {
+              field_Id: 15,
+              field_Name: "No. of Floors",
+              Value: 12,
+            },
+            {
+              field_Id: 16,
+              field_Name: "Indemnity Period",
+              Value: 2000000,
+            },
+            {
+              field_Id: 17,
+              field_Name: "PML%",
+              Value: 5,
+            },
+            {
+              field_Id: 18,
+              field_Name: "GVW",
+              Value: 2000,
+            },
+            {
+              field_Id: 19,
+              field_Name: "PML Amount",
+              Value: 0,
+            },
+            {
+              field_Id: 20,
+              field_Name: "Survey Required Y/N",
+              Value: true,
+            },
+            {
+              field_Id: 21,
+              field_Name: "Watchman Y/N",
+              Value: true,
+            },
+            {
+              field_Id: 22,
+              field_Name: "CCTV System",
+              Value: false,
+            },
+          ],
+        },
+      ],
+    },
   ],
 };
 
