@@ -7,10 +7,10 @@ import CheckBox from "../../components/CheckBox/CheckBox";
 import DateField from "../../components/DateField/Datefield";
 import InputField from "../../components/InputField/InputField";
 import Departments from "./data.json";
-import { Calendar } from "primereact/calendar";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Menu } from "primereact/menu";
+import { RadioButton } from "primereact/radiobutton";
 
 export default function Department() {
   const list = [
@@ -37,9 +37,27 @@ export default function Department() {
   const [isFreeze, setIsFreeze] = useState(false);
   const [isPermanantFreeze, setIsPermanantFreeze] = useState(false);
   const [editingRowIndex, setEditingRowIndex] = useState(null);
+  const [editingSubRowIndex, setEditingSubRowIndex] = useState(null);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
+  const [selectedSubRowIndex, setSelectedSubRowIndex] = useState(null);
+  const [subKey, setSubKey] = useState(0);
+
+  const [applicable_data, setApplicableData] = useState([
+    { field: "On Policy Premium", is_selected: true, show: false },
+    { field: "On Reinsurance Premium", is_selected: false, show: false },
+    { field: "MDP Y/N", is_selected: false, show: false },
+    { field: "On Fac/Treaty Commission", is_selected: false, show: false },
+    { field: "On Inward/Outward Commission", is_selected: false, show: false },
+    { field: "On Claims All Expenses", is_selected: false, show: false },
+    {
+      field: "On Salvage and Other Recovery Expenses",
+      is_selected: false,
+      show: false,
+    },
+  ]);
 
   const menuLeft = useRef(null);
+  const sub_menuLeft = useRef(null);
 
   const options = [
     { label: "View" },
@@ -47,9 +65,20 @@ export default function Department() {
     { label: "Delete" },
   ];
 
+  const sub_options = [
+    { label: "View" },
+    { label: "Edit", command: () => onSubEdit(selectedSubRowIndex) },
+    { label: "Delete" },
+  ];
+
   const onEdit = (rowIndex) => {
     subData[rowIndex].showSave = true;
     setEditingRowIndex(rowIndex);
+  };
+
+  const onSubEdit = (rowIndex) => {
+    applicable_data[rowIndex].show = true;
+    setEditingSubRowIndex(rowIndex);
   };
 
   const product_from_options = [
@@ -89,21 +118,13 @@ export default function Department() {
   const testCheckBoxBodyTemplate = (rowData, rowIndex) => {
     return (
       <div className="kebab-menu-container">
-        <CheckBox
-          name="on_policy_commission"
-          // boxChecked={isFreeze || false}
-          // onChange={() => setFreeze()}
+        <InputField
+          className="w-4/4"
+          name="field"
+          value={rowData.field}
           onChange={handleInputChange}
+          disabled={!rowData.show}
         />
-        {/* <AutoCompleteField
-          className="pt-1 parent-container"
-          name="incharge"
-          value={rowData.incharge}
-          onChange={handleInputChange}
-          options={product_from_options}
-          dropdown
-          disabled={id && !rowData.showSave}
-        /> */}
       </div>
     );
   };
@@ -330,6 +351,31 @@ export default function Department() {
     }
   };
 
+  const actionBodyTemplateForApplicableData = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <Menu
+          model={sub_options}
+          popup
+          ref={sub_menuLeft}
+          id="popup_menu_left"
+        />
+        <Button
+          text
+          rounded
+          className="action-menu"
+          icon="pi pi-ellipsis-v"
+          onClick={(event) => {
+            setSelectedSubRowIndex(index);
+            sub_menuLeft.current.toggle(event);
+          }}
+          aria-controls="popup_menu_left"
+          aria-haspopup
+        />
+      </div>
+    );
+  };
+
   const actionBodyTemplate = (rowData, index) => {
     return (
       <div className="kebab-menu-container">
@@ -357,6 +403,79 @@ export default function Department() {
     };
 
     setSubData((prevSubData) => [...prevSubData, newObj]);
+  };
+
+  const radioActionTemplate = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <RadioButton
+          name="is_selected"
+          value={rowData.is_selected}
+          onChange={() => handleRadioAction(index)}
+          checked={rowData.is_selected}
+        />
+      </div>
+    );
+  };
+
+  const handleRadioAction = (index) => {
+    const updatedFormData = applicable_data.map((item, i) => ({
+      ...item,
+      is_selected: i === index,
+    }));
+    setApplicableData(updatedFormData);
+    // setSelectedRowIndex(index);
+    // setSubData(updatedFormData[index].subData);
+    setSubKey(subKey + 1);
+  };
+
+  const add = () => {
+    let newObj = {
+      show: true,
+      showSave: false,
+    };
+
+    setApplicableData((prevSubData) => [...prevSubData, newObj]);
+  };
+
+  const onSaveForApplicableData = (index) => {
+    applicable_data[index].show = false;
+    // setEditingRowIndex(null);
+  };
+
+  const renderEditSaveButtonForApplicableData = (rowIndex) => {
+    if (applicable_data[rowIndex].show) {
+      return (
+        <div className="flex">
+          <i
+            className="pi pi-check"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "rgb(30 211 30 / 79%)",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSaveForApplicableData(rowIndex)}
+          ></i>
+          <i
+            className="pi pi-times ml-5"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "red",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSaveForApplicableData(rowIndex)}
+          ></i>
+        </div>
+      );
+    }
   };
 
   return (
@@ -464,12 +583,30 @@ export default function Department() {
           <div>
             <h1>Applicable At</h1>
           </div>
+          <div className="justify-end">
+            <Button
+              rounded={false}
+              label="Add"
+              // icon="pi pi-plus"
+              aria-controls="popup_menu_left"
+              onClick={() => add()}
+              aria-haspopup
+            />
+          </div>
         </div>
         <div>
-          <DataTable value={subData} paginator rows={5} scrollable>
+          <DataTable value={applicable_data} paginator rows={5} scrollable>
             <Column
-              field="on_policy_commission"
-              header="On Policy Commission"
+              headerClassName="action"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                radioActionTemplate(rowData, rowIndex)
+              }
+              style={{ width: "2%" }}
+            />
+            <Column
+              field="field"
+              header="Applicable At"
               bodyClassName="action"
               body={(rowData, { rowIndex }) =>
                 testCheckBoxBodyTemplate(rowData, rowIndex)
@@ -477,138 +614,23 @@ export default function Department() {
               style={{ width: "15%" }}
             ></Column>
             <Column
-              field="on_policy_premium"
-              header="On Policy Premium"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
+              field="action"
+              body={(rowData, options) =>
+                renderEditSaveButtonForApplicableData(options.rowIndex)
               }
-              style={{ width: "15%" }}
-            ></Column>
+              style={{ width: "2%" }}
+            />
             <Column
-              field="on_reinsurance_premium"
-              header="On Reinsurance Premium"
+              header="Action"
+              headerClassName="action"
               bodyClassName="action"
               body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
+                actionBodyTemplateForApplicableData(rowData, rowIndex)
               }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="mdp"
-              header="MDP Y/N"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="on_fac_treaty_commission"
-              header="On Fac/Treaty Commission"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="effective_to"
-              header="On Inward/Outward Commission"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="on_claims_all_expenses"
-              header="On Claims All Expenses"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="on_salvage_and_other_recovery_expenses"
-              header="On Salvage and Other Recovery Expenses"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
+              style={{ width: "10%" }}
+            />
           </DataTable>
         </div>
-        {/* <div className="flex">
-          <div className="w-1/4">
-            <CheckBox
-              name="on_policy_commission"
-              labelName="On Policy Commission"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-          <div className="w-1/4">
-            <CheckBox
-              name="on_policy_premium"
-              labelName="On Policy Premium"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-          <div className="w-1/4">
-            <CheckBox
-              name="on_reinsurance_premium"
-              labelName="On Reinsurance Premium"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-          <div className="w-1/4">
-            <CheckBox
-              name="mdp"
-              labelName="MDP Y/N"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-        </div>
-        <div className="flex mt-`">
-          <div className="w-1/4 pt-5">
-            <CheckBox
-              name="on_fac_treaty_commission"
-              labelName="On Fac/Treaty Commission"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-          <div className="w-1/4 pt-5">
-            <CheckBox
-              name="on_inward_outward_commission"
-              labelName="On Inward/Outward Commission"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-          <div className="w-1/4 pt-5">
-            <CheckBox
-              name="on_claims_all_expenses"
-              labelName="On Claims All Expenses"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-          <div className="w-1/4 pt-5">
-            <CheckBox
-              name="on_salvage_and_other_recovery_expenses"
-              labelName="On Salvage and Other Recovery Expenses"
-              boxChecked={isFreeze || false}
-              onChange={() => setFreeze()}
-            />
-          </div>
-        </div> */}
       </div>
       <div className="mt-5">
         <div className="heading flex justify-between">
@@ -626,7 +648,7 @@ export default function Department() {
             />
           </div>
         </div>
-        <div>
+        <div key={subKey}>
           <DataTable value={subData} paginator rows={5} scrollable>
             <Column
               field="product_from"
