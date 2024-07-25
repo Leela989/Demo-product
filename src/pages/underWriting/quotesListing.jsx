@@ -17,7 +17,6 @@ import { getQuotesHeaderData } from "../../mock-data/underwriting/quotes";
 
 const QuotesListing = () => {
   const {risk, lob, type, id} = useParams();
-  const {state} = useLocation();
   const navigate = useNavigate();
   const [riskHeaderData, setRiskHeaderData] = useState();
 
