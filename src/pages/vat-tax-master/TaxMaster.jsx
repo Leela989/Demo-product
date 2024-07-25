@@ -6,11 +6,11 @@ import AutoCompleteField from "../../components/AutoCompleteField/AutoCompleteFi
 import CheckBox from "../../components/CheckBox/CheckBox";
 import DateField from "../../components/DateField/Datefield";
 import InputField from "../../components/InputField/InputField";
-import Departments from "./data.json";
 import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Menu } from "primereact/menu";
 import { RadioButton } from "primereact/radiobutton";
+import Data from "./data.json";
 
 export default function Department() {
   const list = [
@@ -38,54 +38,79 @@ export default function Department() {
   const [isPermanantFreeze, setIsPermanantFreeze] = useState(false);
   const [editingRowIndex, setEditingRowIndex] = useState(null);
   const [editingSubRowIndex, setEditingSubRowIndex] = useState(null);
+  const [editingChildRowIndex, setEditingChildRowIndex] = useState(null);
   const [selectedRowIndex, setSelectedRowIndex] = useState(null);
   const [selectedSubRowIndex, setSelectedSubRowIndex] = useState(null);
+  const [selectedChildRowIndex, setSelectedChildRowIndex] = useState(null);
   const [subKey, setSubKey] = useState(0);
+  const [childKey, setChildKey] = useState(0);
 
-  const [applicable_data, setApplicableData] = useState([
-    { field: "On Policy Premium", is_selected: true, show: false },
-    { field: "On Reinsurance Premium", is_selected: false, show: false },
-    { field: "MDP Y/N", is_selected: false, show: false },
-    { field: "On Fac/Treaty Commission", is_selected: false, show: false },
-    { field: "On Inward/Outward Commission", is_selected: false, show: false },
-    { field: "On Claims All Expenses", is_selected: false, show: false },
-    {
-      field: "On Salvage and Other Recovery Expenses",
-      is_selected: false,
-      show: false,
-    },
-  ]);
+  const [applicable_data, setApplicableData] = useState([{ show: true, showSave: false }]);
 
   const menuLeft = useRef(null);
   const sub_menuLeft = useRef(null);
+  const child_menuLeft = useRef(null);
 
   const options = [
     { label: "View" },
-    { label: "Edit", command: () => onEdit(selectedRowIndex) },
+    { label: "Edit", command: () => onSubEdit(selectedRowIndex) },
     { label: "Delete" },
   ];
 
   const sub_options = [
     { label: "View" },
-    { label: "Edit", command: () => onSubEdit(selectedSubRowIndex) },
+    { label: "Edit", command: () => onEdit(selectedSubRowIndex) },
     { label: "Delete" },
   ];
 
-  const onEdit = (rowIndex) => {
+  const child_options = [
+    { label: "View" },
+    { label: "Edit", command: () => onChildEdit(selectedChildRowIndex) },
+    { label: "Delete" },
+  ];
+
+  const onSubEdit = (rowIndex) => {
     subData[rowIndex].showSave = true;
     setEditingRowIndex(rowIndex);
   };
 
-  const onSubEdit = (rowIndex) => {
+  const onEdit = (rowIndex) => {
     applicable_data[rowIndex].show = true;
     setEditingSubRowIndex(rowIndex);
   };
 
+  const onChildEdit = (rowIndex) => {
+    childData[rowIndex].showSave = true;
+    setEditingChildRowIndex(rowIndex);
+  };
+
   const product_from_options = [
-    { name: "10-Motor" },
-    { name: "20-Fire" },
-    { name: "30-Marine" },
+    { name: "10-Motor Commission" },
+    { name: "20-Fire & Allied" },
   ];
+
+  const transaction_options = [
+    { name: "01-On Policy Premium" },
+    { name: "02-On Policy Commission" },
+    { name: "03-On Claim Expenses" },
+  ];
+
+  const tax_flow_options = [
+    { name: "01-Input tax" },
+    { name: "02-Output tax" },
+  ];
+
+  const tax_calc_method_options = [{ name: "01-Inclusive tax" }];
+
+  const tax_classification_options = [
+    { name: "01-Default rate" },
+    { name: "02-Expection rate" },
+    { name: "03-Outof scope" },
+  ];
+
+  const lob_options = [{ name: "01-Motor" }, { name: "02-Fire" }];
+
+  const item_options = [{ name: "01-Cover" }, { name: "02-Charge" }];
 
   const customer_type_from_options = [
     { name: "AG-Agents" },
@@ -99,13 +124,15 @@ export default function Department() {
 
   const [subData, setSubData] = useState([{ show: true, showSave: false }]);
 
+  const [childData, setChildData] = useState([{ show: true, showSave: false }]);
+
   const productFromActionBodyTemplate = (rowData, rowIndex) => {
     return (
       <div className="kebab-menu-container">
         <AutoCompleteField
           className="pt-1 parent-container"
-          name="incharge"
-          value={rowData.incharge}
+          name="product_from"
+          value={rowData.product_from}
           onChange={handleInputChange}
           options={product_from_options}
           dropdown
@@ -115,15 +142,271 @@ export default function Department() {
     );
   };
 
-  const testCheckBoxBodyTemplate = (rowData, rowIndex) => {
+  const childTaxClassificationActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="pt-1 parent-container"
+          name="tax_classification"
+          value={rowData.tax_classification}
+          onChange={handleInputChange}
+          options={tax_classification_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const childTransactionActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="pt-1 parent-container"
+          name="transaction"
+          value={rowData.transaction}
+          onChange={handleInputChange}
+          options={transaction_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const childItemActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="pt-1 parent-container"
+          name="item"
+          value={rowData.item}
+          onChange={handleInputChange}
+          options={item_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const childItemCodeFromActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="pt-1 parent-container"
+          name="item_code_from"
+          value={rowData.item_code_from}
+          onChange={handleInputChange}
+          options={item_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const childItemCodeToActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="pt-1 parent-container"
+          name="item_code_to"
+          value={rowData.item_code_to}
+          onChange={handleInputChange}
+          options={item_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const childEffectiveFromActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        {id && !rowData.showSave ? (
+          <InputField
+            className="pt-1 parent-container"
+            name="effective_from"
+            value={rowData.effective_from}
+            onChange={handleInputChange}
+            disabled={id && !rowData.showSave}
+          />
+        ) : (
+          <DateField
+            value={parseDate(rowData.effective_from)}
+            onChange={(e) => handleInputChange(e, options.rowIndex)}
+            className="pt-1 parent-container"
+            name="effective_from"
+            disabled={id && !rowData.showSave}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const childEffectiveToActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        {id && !rowData.showSave ? (
+          <InputField
+            className="pt-1 parent-container"
+            name="effective_to"
+            value={rowData.effective_to}
+            onChange={handleInputChange}
+            disabled={id && !rowData.showSave}
+          />
+        ) : (
+          <DateField
+            value={parseDate(rowData.effective_to)}
+            onChange={(e) => handleInputChange(e, options.rowIndex)}
+            className="pt-1 parent-container"
+            name="effective_to"
+            disabled={id && !rowData.showSave}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const taxClassificationActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="pt-1 parent-container"
+          name="tax_classification"
+          value={rowData.tax_classification}
+          onChange={handleInputChange}
+          options={tax_classification_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const lobActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="pt-1 parent-container"
+          name="lob"
+          value={rowData.lob}
+          onChange={handleInputChange}
+          options={lob_options}
+          dropdown
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const rateActionBodyTemplate = (rowData, rowIndex) => {
     return (
       <div className="kebab-menu-container">
         <InputField
+          className="pt-1 parent-container"
+          name="rate"
+          value={rowData.rate}
+          onChange={(e) => handleInputChange(e, options.rowIndex)}
+          disabled={id && !rowData.showSave}
+        />
+      </div>
+    );
+  };
+
+  const subDataEffectiveFromActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        {id && !rowData.showSave ? (
+          <InputField
+            className="pt-1 parent-container"
+            name="effective_from"
+            value={rowData.effective_from}
+            onChange={handleInputChange}
+            disabled={id && !rowData.showSave}
+          />
+        ) : (
+          <DateField
+            value={parseDate(rowData.effective_from)}
+            onChange={(e) => handleInputChange(e, options.rowIndex)}
+            className="pt-1 parent-container"
+            name="effective_from"
+            disabled={id && !rowData.showSave}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const subDataEffectiveToActionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        {id && !rowData.showSave ? (
+          <InputField
+            className="pt-1 parent-container"
+            name="effective_to"
+            value={rowData.effective_to}
+            onChange={handleInputChange}
+            disabled={id && !rowData.showSave}
+          />
+        ) : (
+          <DateField
+            value={parseDate(rowData.effective_to)}
+            onChange={(e) => handleInputChange(e, options.rowIndex)}
+            className="pt-1 parent-container"
+            name="effective_to"
+            disabled={id && !rowData.showSave}
+          />
+        )}
+      </div>
+    );
+  };
+
+  const transactionBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
           className="w-4/4"
-          name="field"
-          value={rowData.field}
+          name="transaction"
+          value={rowData.transaction}
           onChange={handleInputChange}
           disabled={!rowData.show}
+          options={transaction_options}
+          dropdown
+        />
+      </div>
+    );
+  };
+
+  const taxFlowBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="w-4/4"
+          name="tax_flow"
+          value={rowData.tax_flow}
+          onChange={handleInputChange}
+          disabled={!rowData.show}
+          options={tax_flow_options}
+          dropdown
+        />
+      </div>
+    );
+  };
+
+  const taxCalcMethodBodyTemplate = (rowData, rowIndex) => {
+    return (
+      <div className="kebab-menu-container">
+        <AutoCompleteField
+          className="w-4/4"
+          name="tax_calc_method"
+          value={rowData.tax_calc_method}
+          onChange={handleInputChange}
+          disabled={!rowData.show}
+          options={tax_calc_method_options}
+          dropdown
         />
       </div>
     );
@@ -134,71 +417,11 @@ export default function Department() {
       <div className="kebab-menu-container">
         <AutoCompleteField
           className="pt-1 parent-container"
-          name="incharge"
-          value={rowData.incharge}
+          name="product_to"
+          value={rowData.product_to}
           onChange={handleInputChange}
           options={product_from_options}
           dropdown
-          disabled={id && !rowData.showSave}
-        />
-      </div>
-    );
-  };
-
-  const customerTypeFromActionBodyTemplate = (rowData, rowIndex) => {
-    return (
-      <div className="kebab-menu-container">
-        <AutoCompleteField
-          className="pt-1 parent-container"
-          name="incharge"
-          value={rowData.incharge}
-          onChange={handleInputChange}
-          options={customer_type_from_options}
-          dropdown
-          disabled={id && !rowData.showSave}
-        />
-      </div>
-    );
-  };
-
-  const customerTypeToActionBodyTemplate = (rowData, rowIndex) => {
-    return (
-      <div className="kebab-menu-container">
-        <AutoCompleteField
-          className="pt-1 parent-container"
-          name="incharge"
-          value={rowData.incharge}
-          onChange={handleInputChange}
-          options={customer_type_from_options}
-          dropdown
-          disabled={id && !rowData.showSave}
-        />
-      </div>
-    );
-  };
-
-  const effectiveFromActionBodyTemplate = (rowData, index) => {
-    return (
-      <div className="kebab-menu-container">
-        <DateField
-          className="w-4/4"
-          name="effective_from"
-          value={parseDate(rowData.effective_from)}
-          onChange={(e) => handleInputChange(e, options.rowIndex)}
-          disabled={id && !rowData.showSave}
-        />
-      </div>
-    );
-  };
-
-  const effectiveToActionBodyTemplate = (rowData, index) => {
-    return (
-      <div className="kebab-menu-container">
-        <DateField
-          className="w-4/4"
-          name="effective_to"
-          value={parseDate(rowData.effective_to)}
-          onChange={(e) => handleInputChange(e, options.rowIndex)}
           disabled={id && !rowData.showSave}
         />
       </div>
@@ -210,8 +433,8 @@ export default function Department() {
       <div className="kebab-menu-container">
         <InputField
           className="w-4/4"
-          name="code"
-          value={rowData.code}
+          name="tax_percent"
+          value={rowData.tax_percent}
           onChange={(e) => handleInputChange(e, options.rowIndex)}
           disabled={id && !rowData.showSave}
         />
@@ -221,20 +444,22 @@ export default function Department() {
 
   useEffect(() => {
     if (id) {
-      const departmentData = Departments.find(
+      const departmentData = Data.find(
         (department, index) => index.toString() === id
       );
       if (departmentData) {
-        const department = departmentData.department || "";
-        let arr = department.split("-");
-        let code = arr[0];
-        let name = arr[1];
+        const applicable_data = departmentData.applicable_at || [];
 
-        setFormData({
-          ...departmentData,
-          code,
-          name,
-        });
+        setApplicableData(applicable_data);
+
+        const subData = applicable_data[0]?.subData || [];
+
+        const childData = subData[0]?.childData || [];
+
+        setSubData(subData);
+
+        setChildData(childData);
+
         setKey(key + 1);
       }
     }
@@ -316,41 +541,6 @@ export default function Department() {
     setKey(key + 1);
   };
 
-  const renderEditSaveButton = (rowIndex) => {
-    if (subData[rowIndex].showSave) {
-      return (
-        <div className="flex">
-          <i
-            className="pi pi-check"
-            style={{
-              fontSize: "1rem",
-              border: "none",
-              borderRadius: "50%",
-              padding: "5px",
-              backgroundColor: "rgb(30 211 30 / 79%)",
-              color: "white",
-              cursor: "pointer",
-            }}
-            onClick={() => onSave(rowIndex)}
-          ></i>
-          <i
-            className="pi pi-times ml-5"
-            style={{
-              fontSize: "1rem",
-              border: "none",
-              borderRadius: "50%",
-              padding: "5px",
-              backgroundColor: "red",
-              color: "white",
-              cursor: "pointer",
-            }}
-            onClick={() => onSave(rowIndex)}
-          ></i>
-        </div>
-      );
-    }
-  };
-
   const actionBodyTemplateForApplicableData = (rowData, index) => {
     return (
       <div className="kebab-menu-container">
@@ -368,6 +558,51 @@ export default function Department() {
           onClick={(event) => {
             setSelectedSubRowIndex(index);
             sub_menuLeft.current.toggle(event);
+          }}
+          aria-controls="popup_menu_left"
+          aria-haspopup
+        />
+      </div>
+    );
+  };
+
+  const actionBodyTemplateForSubData = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <Menu model={options} popup ref={menuLeft} id="popup_menu_left" />
+        <Button
+          text
+          rounded
+          className="action-menu"
+          icon="pi pi-ellipsis-v"
+          onClick={(event) => {
+            setSelectedRowIndex(index);
+            menuLeft.current.toggle(event);
+          }}
+          aria-controls="popup_menu_left"
+          aria-haspopup
+        />
+      </div>
+    );
+  };
+
+  const actionBodyTemplateForChildData = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <Menu
+          model={child_options}
+          popup
+          ref={child_menuLeft}
+          id="popup_menu_left"
+        />
+        <Button
+          text
+          rounded
+          className="action-menu"
+          icon="pi pi-ellipsis-v"
+          onClick={(event) => {
+            setSelectedChildRowIndex(index);
+            child_menuLeft.current.toggle(event);
           }}
           aria-controls="popup_menu_left"
           aria-haspopup
@@ -405,6 +640,15 @@ export default function Department() {
     setSubData((prevSubData) => [...prevSubData, newObj]);
   };
 
+  const addChildRow = () => {
+    let newObj = {
+      show: true,
+      showSave: false,
+    };
+
+    setChildData((prevSubData) => [...prevSubData, newObj]);
+  };
+
   const radioActionTemplate = (rowData, index) => {
     return (
       <div className="kebab-menu-container">
@@ -418,15 +662,52 @@ export default function Department() {
     );
   };
 
+  const radioSubActionTemplate = (rowData, index) => {
+    return (
+      <div className="kebab-menu-container">
+        <RadioButton
+          name="is_selected"
+          onChange={() => handleRadioActionForSubData(index)}
+          value={rowData.is_selected}
+          checked={rowData.is_selected}
+        />
+      </div>
+    );
+  };
+
+  const handleRadioActionForSubData = (index) => {
+    const updatedFormData = subData.map((item, i) => ({
+      ...item,
+      is_selected: i === index,
+    }));
+
+    setSubData(updatedFormData);
+
+    const childData = updatedFormData[index]?.childData || [];
+
+    setChildData(childData);
+
+    setKey(key + 1);
+
+    setSubKey(subKey + 5);
+
+    setChildKey(childKey + 1);
+  };
+
   const handleRadioAction = (index) => {
     const updatedFormData = applicable_data.map((item, i) => ({
       ...item,
       is_selected: i === index,
     }));
     setApplicableData(updatedFormData);
-    // setSelectedRowIndex(index);
-    // setSubData(updatedFormData[index].subData);
-    setSubKey(subKey + 1);
+
+    const subData = updatedFormData[index]?.subData || [];
+
+    const childData = subData[index]?.childData || [];
+
+    setSubData(subData);
+
+    setChildData(childData);
   };
 
   const add = () => {
@@ -440,11 +721,80 @@ export default function Department() {
 
   const onSaveForApplicableData = (index) => {
     applicable_data[index].show = false;
-    // setEditingRowIndex(null);
   };
 
   const renderEditSaveButtonForApplicableData = (rowIndex) => {
     if (applicable_data[rowIndex].show) {
+      return (
+        <div className="flex">
+          <i
+            className="pi pi-check"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "rgb(30 211 30 / 79%)",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSaveForApplicableData(rowIndex)}
+          ></i>
+          <i
+            className="pi pi-times ml-5"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "red",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSaveForApplicableData(rowIndex)}
+          ></i>
+        </div>
+      );
+    }
+  };
+
+  const renderEditSaveButtonForSubData = (rowIndex) => {
+    if (subData[rowIndex].showSave) {
+      return (
+        <div className="flex">
+          <i
+            className="pi pi-check"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "rgb(30 211 30 / 79%)",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSaveForApplicableData(rowIndex)}
+          ></i>
+          <i
+            className="pi pi-times ml-5"
+            style={{
+              fontSize: "1rem",
+              border: "none",
+              borderRadius: "50%",
+              padding: "5px",
+              backgroundColor: "red",
+              color: "white",
+              cursor: "pointer",
+            }}
+            onClick={() => onSaveForApplicableData(rowIndex)}
+          ></i>
+        </div>
+      );
+    }
+  };
+
+  const renderEditSaveButtonForChildData = (rowIndex) => {
+    if (childData[rowIndex].showSave) {
       return (
         <div className="flex">
           <i
@@ -533,14 +883,14 @@ export default function Department() {
             mandatory={true}
           />
           <InputField
-            className="w-1/4 p-1"
+            className="w-1/4 p-1 pt-3"
             name="short_description"
             label="Short Description"
             value={formData.short_description}
             onChange={handleChange}
           />
           <AutoCompleteField
-            className="w-1/4 p-1 pt-2"
+            className="w-1/4 p-1 pt-3"
             name="status"
             label="Status"
             value={formData.status}
@@ -605,11 +955,29 @@ export default function Department() {
               style={{ width: "2%" }}
             />
             <Column
-              field="field"
-              header="Applicable At"
+              field="transaction"
+              header="Transaction"
               bodyClassName="action"
               body={(rowData, { rowIndex }) =>
-                testCheckBoxBodyTemplate(rowData, rowIndex)
+                transactionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="tax_flow"
+              header="Tax Flow"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                taxFlowBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="tax_calc_method"
+              header="Tax Calc Method"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                taxCalcMethodBodyTemplate(rowData, rowIndex)
               }
               style={{ width: "15%" }}
             ></Column>
@@ -632,7 +1000,7 @@ export default function Department() {
           </DataTable>
         </div>
       </div>
-      <div className="mt-5">
+      <div className="mt-5" key={subKey}>
         <div className="heading flex justify-between">
           <div>
             <h1>Tax Rates</h1>
@@ -648,8 +1016,34 @@ export default function Department() {
             />
           </div>
         </div>
-        <div key={subKey}>
+        <div>
           <DataTable value={subData} paginator rows={5} scrollable>
+            <Column
+              headerClassName="action"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                radioSubActionTemplate(rowData, rowIndex)
+              }
+              style={{ width: "2%" }}
+            />
+            <Column
+              field="tax_classification"
+              header="Tax Classification"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                taxClassificationActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="lob"
+              header="Lob"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                lobActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
             <Column
               field="product_from"
               header="Product From"
@@ -669,38 +1063,11 @@ export default function Department() {
               style={{ width: "15%" }}
             ></Column>
             <Column
-              field="customer_type_from"
-              header="Customer Type From"
+              field="rate"
+              header="Rate"
               bodyClassName="action"
               body={(rowData, { rowIndex }) =>
-                customerTypeFromActionBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="customer_type_to"
-              header="Customer Type To"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                customerTypeToActionBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="effective_from"
-              header="Effective From"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                effectiveFromActionBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="effective_to"
-              header="Effective To"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                effectiveToActionBodyTemplate(rowData, rowIndex)
+                rateActionBodyTemplate(rowData, rowIndex)
               }
               style={{ width: "15%" }}
             ></Column>
@@ -714,9 +1081,27 @@ export default function Department() {
               style={{ width: "15%" }}
             ></Column>
             <Column
+              field="effective_from"
+              header="Effective From"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                subDataEffectiveFromActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="effective_to"
+              header="Effective To"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                subDataEffectiveToActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
               field="action"
               body={(rowData, options) =>
-                renderEditSaveButton(options.rowIndex)
+                renderEditSaveButtonForSubData(options.rowIndex)
               }
               style={{ width: "2%" }}
             />
@@ -725,7 +1110,105 @@ export default function Department() {
               headerClassName="action"
               bodyClassName="action"
               body={(rowData, { rowIndex }) =>
-                actionBodyTemplate(rowData, rowIndex)
+                actionBodyTemplateForSubData(rowData, rowIndex)
+              }
+              style={{ width: "10%" }}
+            />
+          </DataTable>
+        </div>
+        <div className="heading flex justify-between">
+          <div className="mt-5">
+            <h1>Applicable Items</h1>
+          </div>
+          <div className="mt-5">
+            <Button
+              rounded={false}
+              label="Add"
+              icon="pi pi-plus"
+              onClick={() => addChildRow()}
+              aria-controls="popup_menu_left"
+              aria-haspopup
+            />
+          </div>
+        </div>
+        <div key={childKey}>
+          <DataTable value={childData} paginator rows={5} scrollable>
+            <Column
+              field="tax_classification"
+              header="Tax Classification"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                childTaxClassificationActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="transaction"
+              header="Transaction"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                childTransactionActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="item"
+              header="Item"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                childItemActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="item_code_from"
+              header="Item Code From"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                childItemCodeFromActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="item_code_to"
+              header="Item Code To"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                childItemCodeToActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="effective_from"
+              header="Effective From"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                childEffectiveFromActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="effective_to"
+              header="Effective To"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                childEffectiveToActionBodyTemplate(rowData, rowIndex)
+              }
+              style={{ width: "15%" }}
+            ></Column>
+            <Column
+              field="action"
+              body={(rowData, options) =>
+                renderEditSaveButtonForChildData(options.rowIndex)
+              }
+              style={{ width: "2%" }}
+            />
+            <Column
+              header="Action"
+              headerClassName="action"
+              bodyClassName="action"
+              body={(rowData, { rowIndex }) =>
+                actionBodyTemplateForChildData(rowData, rowIndex)
               }
               style={{ width: "10%" }}
             />

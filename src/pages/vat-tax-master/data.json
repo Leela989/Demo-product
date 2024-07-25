@@ -8,33 +8,116 @@
     "effective_to": "31-12-2023",
     "status": "Approved",
     "show": false,
-    "subData": [{ "showSave": true }]
+    "applicable_at": [
+      {
+        "transaction": "01-On Policy Premium",
+        "tax_flow": "01-Input tax",
+        "tax_calc_method": "01-Inclusive tax",
+        "is_selected": true,
+        "show": false,
+        "subData": [
+          {
+            "showSave": false,
+            "is_selected": true,
+            "tax_classification": "01-Default rate",
+            "lob": "01-Motor",
+            "product_from": "01-Motor Commission",
+            "product_to": "01-Motor Commission",
+            "rate": 0,
+            "tax_percent": 0,
+            "effective_from": "01-01-2023",
+            "effective_to": "31-12-2023",
+            "childData": [
+              {
+                "showSave": false,
+                "tax_classification": "01-Default rate",
+                "transaction": "01-On Policy Premium",
+                "item": "01-Coverage",
+                "item_code_from": "01-Cover",
+                "item_code_to": "01-Cover",
+                "effective_from": "01-01-2023",
+                "effective_to": "31-12-2023"
+              }
+            ]
+          },
+          {
+            "showSave": false,
+            "is_selected": false,
+            "tax_classification": "02-Expection rate",
+            "lob": "02-Fire",
+            "product_from": "10-Fire & Allied",
+            "product_to": "10-Fire & Allied",
+            "rate": 0,
+            "tax_percent": 0,
+            "effective_from": "01-01-2023",
+            "effective_to": "31-12-2023",
+            "childData": [
+              {
+                "showSave": false,
+                "tax_classification": "02-Expection rate",
+                "transaction": "01-On Policy Premium",
+                "item": "01-Coverage",
+                "item_code_from": "01-Cover",
+                "item_code_to": "01-Cover",
+                "effective_from": "01-01-2023",
+                "effective_to": "31-12-2023"
+              }
+            ]
+          },
+          {
+            "showSave": false,
+            "is_selected": false,
+            "tax_classification": "03-Outof scope",
+            "lob": "02-Fire",
+            "product_from": "10-Fire & Allied",
+            "product_to": "10-Fire & Allied",
+            "rate": 0,
+            "tax_percent": 0,
+            "effective_from": "01-01-2023",
+            "effective_to": "31-12-2023",
+            "childData": []
+          }
+        ]
+      },
+      {
+        "transaction": "02-On Policy Commission",
+        "tax_flow": "02-Output tax",
+        "tax_calc_method": "01-Inclusive tax",
+        "is_selected": false,
+        "show": false
+      },
+      {
+        "transaction": "03-On Claim Expenses",
+        "tax_flow": "01-Input tax",
+        "tax_calc_method": "01-Inclusive tax",
+        "is_selected": false,
+        "show": false
+      }
+    ]
   },
   {
-    "tax_code": 101,
+    "tax_code": 102,
     "tax_description": "description ",
     "short_description": "short description",
     "refundable": "No",
     "effective_from": "01-01-2023",
     "effective_to": "31-12-2023",
     "status": "Pending",
-    "show": false,
-    "subData": [{ "showSave": true }]
+    "show": false
   },
   {
-    "tax_code": 101,
+    "tax_code": 103,
     "tax_description": "description ",
     "short_description": "short description",
     "refundable": "No",
     "effective_from": "01-01-2023",
     "effective_to": "31-12-2023",
     "status": "Rejected",
-    "show": false,
-    "subData": [{ "showSave": true }]
+    "show": false
   },
 
   {
-    "tax_code": 101,
+    "tax_code": 104,
     "tax_description": "description ",
     "short_description": "short description",
     "refundable": "Yes",
@@ -45,7 +128,7 @@
     "subData": [{ "showSave": true }]
   },
   {
-    "tax_code": 101,
+    "tax_code": 105,
     "tax_description": "description ",
     "short_description": "short description",
     "refundable": "No",
