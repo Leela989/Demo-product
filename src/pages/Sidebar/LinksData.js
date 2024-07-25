@@ -131,10 +131,10 @@ const linksData = [
         {
           label: "Policy",
           subLinks: [
-            { label: "Motor", link: "/underwriting/policy/motor" },
-            { label: "Fire", link: "/underwriting/policy/fire" },
-            { label: "Fire Declaration", link: "/underwriting/policy/fireDeclaration" },
-            { label: "Marine",  subLinks: [
+            // { label: "Fire Declaration", link: "/underwriting/policy/fireDeclaration" },
+            { code: '10', label: "Motor", link: "/underwriting/policy/motor" },
+            { code: '11', label: "Fire", link: "/underwriting/policy/fire" },
+            { code: '12', label: "Marine",  subLinks: [
               {label: "Direct", link: "/underwriting/policy/marine/direct"},
               {label: "Open Cover", link: "/underwriting/policy/marine/overCover"},
               {label: "Certificate", link: "/underwriting/policy/marine/direct"},

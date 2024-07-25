@@ -20,7 +20,7 @@ import useRenderDropdown from "../../../components/DropDown/dropDown";
 import { useParams } from "react-router-dom";
 import { headerData } from "../../../mock-data/underwriting/editquotes-data";
 
-const Header = () => {
+const Header = ({riskHeaderData}) => {
   const { type, id } = useParams();
   const overlayOpen = useRef(null);
   const partyInitialState = { partyRole: "", partyID: "", address: "" };
@@ -39,17 +39,13 @@ const Header = () => {
 
   useEffect(() => {
     if (type === "edit") {
-      let headerEditData = headerData.data.find(
-        (data) => data.key === Number(id)
-      );
-      console.log(headerEditData, "headerEditData.partyDetails>");
-      setQuotesFormData(headerEditData);
-      setPartyDetails(headerEditData.partyDetails);
+      setQuotesFormData(riskHeaderData);
+      setPartyDetails(riskHeaderData.partyDetails);
     } else if (type === "new") {
-      setQuotesFormData(getQuotesHeaderData.formData);
-      setPartyDetails(getQuotesHeaderData.partyDetails);
+      setQuotesFormData(riskHeaderData.formData);
+      setPartyDetails(riskHeaderData.partyDetails);
     }
-  }, [id, type]);
+  }, [id, type, riskHeaderData]);
 
   const dropdownOptions = {
     partyRole: [
@@ -106,7 +102,6 @@ const Header = () => {
           </div>
         );
       case "overlay":
-        console.log(quotesFormData, value, "???????");
         return (
           <div>
             <label className="pr-2">
@@ -211,7 +206,6 @@ const Header = () => {
     }
   };
 
-  console.log(quotesFormData, "<><>");  
   return (
     quotesFormData && (
       <>
@@ -235,7 +229,7 @@ const Header = () => {
                 <Button rounded icon="pi pi-plus" onClick={handelPartyAdd} />
               </div>
             </div>
-            {partyDetails?.map((party, index) => (
+            {partyDetails && partyDetails?.map((party, index) => (
               <div className="party-details" key={index}>
                 {getQuotesHeaderFromRender.partyDetails.map((fieldData) => (
                   <div className="pb-3" key={fieldData.name}>

@@ -51,6 +51,11 @@ function App() {
 
   const [sideBarMenu, set_sidebar_menu] = useState(linkData);
   const current_user = JSON.parse(localStorage.getItem("junior_officer"));
+  // console.log(showNote, "<<<<<")
+
+  // const location = useLocation();
+  // const currentPath = location.pathname;
+  // console.log("currentPath", currentPath);
 
   useEffect(() => {
     if (token) {
@@ -122,6 +127,10 @@ function App() {
                   element={<VehicleMatrix />}
                 />
                 <Route
+                  path="/productConfigurator/productMaster/vehicleMatrix"
+                  element={<VehicleMatrix />}
+                />
+                <Route
                   path="/commonMaster/companyMaster"
                   element={<CompanyMasterSetup />}
                 />
@@ -148,6 +157,7 @@ function App() {
                   path="/commonMaster/companyMaster"
                   element={<CompanyMasterSetup />}
                 />
+                <Route
                 <Route
                   path="/commonMaster/installmentPaySetupMaster"
                   element={<InstallSetupListingPage />}
@@ -193,20 +203,28 @@ function App() {
                   element={<DivisionMaster />}
                 />
                 <Route
+                <Route
                   path="/commonMaster/codeMaster"
                   element={<CodeMasterList />}
+                />
+                <Route
                 />
                 <Route
                   path="/commonMaster/vatTaxMaster"
                   element={<VatTaxMasterList />}
                 />
                 <Route
+                />
+                <Route
                   path="/commonMaster/vatTaxMaster/create"
                   element={<VatTaxMaster />}
                 />
                 <Route
+                />
+                <Route
                   path="/commonMaster/vatTaxMaster/edit/:id"
                   element={<VatTaxMaster />}
+                />
                 />
                 <Route
                   path="/commonMaster/currencyExchangeRateMaster"

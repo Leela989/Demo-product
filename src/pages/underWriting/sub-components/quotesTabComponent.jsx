@@ -2,6 +2,7 @@ import { TabPanel, TabView } from "primereact/tabview";
 import { useState } from "react";
 import {
   getQuotesTableHeaderData,
+  quotesTabFillTableData,
   quotesTabTableInitialData,
 } from "../../../mock-data/underwriting/quotes";
 import CustomTable from "../../../components/CustomTable/CustomTable";
@@ -24,12 +25,12 @@ const QuotesTabComponent = () => {
   const quotesTabData = [
     {
       header: "Conditions",
-      tableInitialData: quotesTabTableData.conditions.value,
+      tableInitialData: quotesTabFillTableData.data[0].conditions,
       tableHeaderData: conditions.header,
     },
     {
       header: "Applicable Currencies",
-      tableInitialData: quotesTabTableData.applicableCurrency.value,
+      tableInitialData: quotesTabFillTableData.data[0].applicableCurrency,
       tableHeaderData: applicableCurrency.header,
     },
     {

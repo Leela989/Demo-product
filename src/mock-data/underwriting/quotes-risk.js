@@ -29,6 +29,21 @@ export const riskTableHeaderData = {
   },
 };
 
+export const initialriskValueData = {
+  id: "",
+  type: "",
+  effectiveFrom: "",
+  effectiveTo: "",
+  aoaLimit: "",
+  aoyLimit: "",
+  siCurrency: "",
+  siTc: "",
+  siLc: "",
+  preCurrency: "",
+  premTc: "",
+  premLc: "",
+};
+
 export const riskValueData = {
   riskMainData: {
     value: [
@@ -54,7 +69,11 @@ export const riskTabTableHeader = {
   covers: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputTextarea" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       { field: "siTC", header: "Si TC", fieldType: "inputNumber" },
       { field: "siLC", header: "Si LC", fieldType: "inputNumber" },
       { field: "rate", header: "Rate", fieldType: "inputNumber" },
@@ -80,7 +99,11 @@ export const riskTabTableHeader = {
   discountLoading: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputTextarea" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       { field: "rate", header: "Rate", fieldType: "inputNumber" },
       { field: "ratePer", header: "Rate Per", fieldType: "inputNumber" },
       { field: "amountTc", header: "Amount TC", fieldType: "inputNumber" },
@@ -100,7 +123,11 @@ export const riskTabTableHeader = {
   deductible: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputTextarea" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       {
         field: "deductible",
         header: "Deductible Type",
@@ -116,7 +143,11 @@ export const riskTabTableHeader = {
   conditions: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputTextarea" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       {
         field: "longDescription1",
         header: "Long Description 1",
@@ -139,7 +170,11 @@ export const riskTabTableHeader = {
   smi: {
     header: [
       { field: "code", header: "Code", fieldType: "dropDown" },
-      { field: "description", header: "Description", fieldType: "inputTextarea" },
+      {
+        field: "description",
+        header: "Description",
+        fieldType: "inputTextarea",
+      },
       { field: "siTc", header: "Sum Insured TC", fieldType: "inputText" },
       { field: "siLc", header: "Sum Insured LC", fieldType: "inputText" },
       { field: "rate", header: "Rate", fieldType: "inputNumber" },
@@ -193,6 +228,164 @@ export const riskTabTablecontent = {
         appliedOn: "",
         brokerCommApplication: "",
         ncb: "",
+      },
+    ],
+  },
+  deductible: {
+    value: [
+      {
+        code: "",
+        description: "",
+        deductible: "",
+        percentage: "",
+        amountFc: "",
+        amountTc: "",
+      },
+    ],
+  },
+  conditions: {
+    value: [
+      {
+        code: "",
+        description: "",
+        longDescription1: "",
+        longDescription2: "",
+        conditionType: "",
+      },
+    ],
+  },
+  smi: {
+    value: [
+      {
+        code: "",
+        description: "",
+        siTc: "",
+        siLc: "",
+        rate: "",
+        premiumTc: "",
+        deposite: "",
+        effectiveFromDate: "",
+        effectiveToDate: "",
+      },
+    ],
+  },
+};
+
+export const riskEditTabTablecontent = {
+  key: 76402,
+  covers: {
+    value: [
+      {
+        code: "3176",
+        description: "Third party Bodily Injury / Death ",
+        siTC: 0,
+        siLC: 0,
+        rate: 0,
+        ratePer: 100,
+        premTC: 100000,
+        permLC: 1000,
+        effectiveFromDate: "20/05/2024 00:00:00",
+        effectiveToDate: "10/05/2025 23:59:00",
+      },
+      {
+        code: "3103",
+        description: "Agency Repair",
+        siTC: null,
+        siLC: null,
+        rate: null,
+        ratePer: 100,
+        premTC: 0,
+        permLC: 0,
+        effectiveFromDate: "21/05/2024 00:00:00",
+        effectiveToDate: "11/05/2025 21:59:00",
+      },
+      {
+        code: "3104",
+        description: "Natural Calamity Cover",
+        siTC: null,
+        siLC: null,
+        rate: null,
+        ratePer: 100,
+        premTC: 0,
+        permLC: 0,
+        effectiveFromDate: "22/05/2024 00:00:00",
+        effectiveToDate: "12/05/2025 20:59:00",
+      },
+      {
+        code: "3196",
+        description: "Replacement Car",
+        siTC: null,
+        siLC: null,
+        rate: null,
+        ratePer: 100,
+        premTC: 0,
+        permLC: 0,
+        effectiveFromDate: "23/05/2024 00:00:00",
+        effectiveToDate: "13/05/2025 19:59:00",
+      },
+      {
+        code: "3195",
+        description: "Road Assistance",
+        siTC: null,
+        siLC: null,
+        rate: null,
+        ratePer: 100,
+        premTC: 0,
+        permLC: 0,
+        effectiveFromDate: "24/05/2024 00:00:00",
+        effectiveToDate: "13/05/2025 18:59:00",
+      },
+      {
+        code: "3106",
+        description: "PA Benefit to Driver",
+        siTC: null,
+        siLC: null,
+        rate: null,
+        ratePer: 1,
+        premTC: 0,
+        permLC: 0,
+        effectiveFromDate: "25/05/2024 00:00:00",
+        effectiveToDate: "14/05/2025 17:59:00",
+      },
+    ],
+  },
+  discountLoading: {
+    value: [
+      {
+        code: "5007",
+        description: "Claim Loading",
+        type: "L",
+        rate: null,
+        ratePer: 100,
+        amountTc: 0,
+        amountLc: 0,
+        cascadeOrder: null,
+        appliedOn: null,
+        brokerCommApplication: "1",
+      },
+      {
+        code: "4005",
+        description: "No Claim Bonus/Discount",
+        type: "D",
+        rate: null,
+        ratePer: 100,
+        amountTc: 0,
+        amountLc: 0,
+        cascadeOrder: null,
+        appliedOn: null,
+        brokerCommApplication: "1",
+      },
+      {
+        code: "4001",
+        description: "Special Discount",
+        type: "D",
+        rate: null,
+        ratePer: 100,
+        amountTc: 0,
+        amountLc: 0,
+        cascadeOrder: null,
+        appliedOn: null,
+        brokerCommApplication: "1",
       },
     ],
   },

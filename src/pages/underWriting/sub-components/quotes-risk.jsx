@@ -2,12 +2,14 @@ import { InputText } from "primereact/inputtext";
 import CustomTable from "../../../components/CustomTable/CustomTable";
 import { TabPanel, TabView } from "primereact/tabview";
 import {
+  initialriskValueData,
+  riskEditTabTablecontent,
   riskTabTableHeader,
   riskTabTablecontent,
   riskTableHeaderData,
   riskValueData,
 } from "../../../mock-data/underwriting/quotes-risk";
-import { riskBlock, riskFactor } from "../../../mock-data/underwriting/quotes";
+import { riskBlock, riskFactor, riskFactorData } from "../../../mock-data/underwriting/quotes";
 import { InputNumber } from "primereact/inputnumber";
 
 import { Calendar } from "primereact/calendar";
@@ -18,65 +20,99 @@ import CustomButton from "../../../components/Button/CustomButton";
 import { Dropdown } from "primereact/dropdown";
 import { useParams } from "react-router-dom";
 import { riskEditData } from "../../../mock-data/underwriting/editquotes-data";
+import CheckBox from "../../../components/CheckBox/CheckBox";
 
 const QuotesRisk = () => {
   const [activeFields, setActiveFields] = useState(null);
-
-  const { id } = useParams();
+  const { id, type, lob } = useParams();
+  const lobType = lob.split("-")[0];
 
   const [riskAssesmentFactor, setRiskAssesmentFactor] = useState(riskFactor);
   const [riskTabelData, setRiskTableData] = useState();
-  const [riskTabelHeaderData, setRiskTableHeaderData] = useState();
+  const [riskQuotesTab, setRiskQuotesTab] = useState([]);
+  const [singleRiskData, setSingleRiskData] = useState();
+  const [riskAssesmentFactorData, setRiskAssesmentFactorData] = useState(riskFactorData);
 
   useEffect(() => {
-    // console.log(riskEditData,"samplesample");
-    // let formTableData = riskEditData.data.map(field => {
-    //   console.log(field, "samplesample");
-    //   if(field.key === Number(id)) {
-    //     field.Objects
-    //   }
-    // })
-    setRiskTableData(riskValueData);
+    setRiskTableData(riskValueData.riskMainData);
   }, []);
 
-  const riskQuotesTab = [
-    {
-      header: "Covers",
-      tableinitialData: riskTabTablecontent.covers.value,
-      tableHeaderData: riskTabTableHeader.covers.header,
-    },
-    {
-      header: "Discount Loading",
-      tableinitialData: riskTabTablecontent.discountLoading.value,
-      tableHeaderData: riskTabTableHeader.discountLoading.header,
-    },
-    {
-      header: "Deductible",
-      tableinitialData: riskTabTablecontent.deductible.value,
-      tableHeaderData: riskTabTableHeader.deductible.header,
-    },
-    {
-      header: "Conditions",
-      tableinitialData: riskTabTablecontent.conditions.value,
-      tableHeaderData: riskTabTableHeader.conditions.header,
-    },
-    {
-      header: "SMI",
-      tableinitialData: riskTabTablecontent.smi.value,
-      tableHeaderData: riskTabTableHeader.smi.header,
-    },
-  ];
+  useEffect(() => {
+    let tempSingleFieldData = riskEditData.data.filter(value => value.key === Number(id));
+    console.log(tempSingleFieldData[0]?.Objects[0], "boomboom");
+    setSingleRiskData(tempSingleFieldData[0]?.Objects[0]);
+  }, [id]);
+
+  useEffect(() => {
+    let tempRiskQuotesTab = [];
+    if(type === "edit") {
+      tempRiskQuotesTab = [
+        {
+          header: "Covers",
+          tableinitialData: riskEditTabTablecontent.covers.value,
+          tableHeaderData: riskTabTableHeader.covers.header,
+        },
+        {
+          header: "Discount Loading",
+          tableinitialData: riskEditTabTablecontent.discountLoading.value,
+          tableHeaderData: riskTabTableHeader.discountLoading.header,
+        },
+        {
+          header: "Deductible",
+          tableinitialData: riskTabTablecontent.deductible.value,
+          tableHeaderData: riskTabTableHeader.deductible.header,
+        },
+        {
+          header: "Conditions",
+          tableinitialData: riskTabTablecontent.conditions.value,
+          tableHeaderData: riskTabTableHeader.conditions.header,
+        },
+        {
+          header: "SMI",
+          tableinitialData: riskTabTablecontent.smi.value,
+          tableHeaderData: riskTabTableHeader.smi.header,
+        },
+      ];
+    } else {
+      tempRiskQuotesTab = [
+        {
+          header: "Covers",
+          tableinitialData: riskTabTablecontent.covers.value,
+          tableHeaderData: riskTabTableHeader.covers.header,
+        },
+        {
+          header: "Discount Loading",
+          tableinitialData: riskTabTablecontent.discountLoading.value,
+          tableHeaderData: riskTabTableHeader.discountLoading.header,
+        },
+        {
+          header: "Deductible",
+          tableinitialData: riskTabTablecontent.deductible.value,
+          tableHeaderData: riskTabTableHeader.deductible.header,
+        },
+        {
+          header: "Conditions",
+          tableinitialData: riskTabTablecontent.conditions.value,
+          tableHeaderData: riskTabTableHeader.conditions.header,
+        },
+        {
+          header: "SMI",
+          tableinitialData: riskTabTablecontent.smi.value,
+          tableHeaderData: riskTabTableHeader.smi.header,
+        },
+      ];
+    }
+    setRiskQuotesTab(tempRiskQuotesTab);
+  }, [id, type]);
 
   const handleExpansion = (id) => {
     setActiveFields(activeFields === id ? null : id);
   };
 
   const renderFields = (element) => {
-    // if(element.key !== riskAssesmentFactor[element.name].key) {
-    //   console.log(riskAssesmentFactor[element.name].Objects[0].Fields, ">>>>>>");
-    // }
     const listValue = riskAssesmentFactor[element.name].Objects[0].Fields;
     const subFields = element.Submenu;
+
     return (
       <div
         className={`${
@@ -97,27 +133,28 @@ const QuotesRisk = () => {
           </p>
           {activeFields === riskAssesmentFactor[element.name].Objects[0].Id && (
             <div className="field-container flex align-start">
-              <div className="flex flex-wrap form-container active-field items-end flex-1">
+              <div className="flex flex-wrap form-container active-field flex-1">
                 {listValue.map((field, index) => {
+                  const fieldValue = singleRiskData?.Fields.find(f => f.field_Name === field.Field_Name)?.Value || "";
                   if (field.Field_type === "inputText") {
                     return (
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
-                        <InputText />
+                        <InputText value={fieldValue} />
                       </div>
                     );
-                  } else if (field.Field_type === "Number") {
+                  } else if (field.Field_type === "inputNumber") {
                     return (
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
-                        <InputNumber />
+                        <InputNumber value={fieldValue} />
                       </div>
                     );
                   } else if (field.Field_type === "dropDown") {
                     return (
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
-                        <Dropdown />
+                        <Dropdown value={fieldValue} />
                       </div>
                     );
                   } else if (field.Field_type === "Date") {
@@ -125,12 +162,19 @@ const QuotesRisk = () => {
                       <div key={index} className="w-1/4 p-2">
                         <label>{field.Field_Name}</label>
                         <Calendar
+                          value={new Date(fieldValue)}
                           showIcon
                           showTime
                           dateFormat="dd/mm/yy"
                           hourFormat="24"
                           className="w-full"
                         />
+                      </div>
+                    );
+                  } else if (field.Field_type === "checkBox") {
+                    return (
+                      <div key={index} className="w-1/4 p-2 flex items-center">
+                        <CheckBox onChange={()=>{console.log("checkBox hitted")}} labelName={field.Field_Name} />
                       </div>
                     );
                   }
@@ -142,9 +186,6 @@ const QuotesRisk = () => {
               {element.Level === 1 && element.Serial_no === 1 ? null : (
                 <Card className="w-1/4 risk-list ml-2 h-full">
                   <div className="flex items-center justify-end pb-3 small-btn">
-                    {/* <h2 className="text-xl font-bold">
-                    {riskAssesmentFactor[element.name].Objects[0].Object_name}
-                  </h2> */}
                     <Button label="Add" />
                   </div>
                   <div className="py-3">
@@ -161,7 +202,6 @@ const QuotesRisk = () => {
         {subFields && subFields.length > 0 && (
           <div className="sub-menu">
             {subFields.map((data, index) => {
-              // console.log(data, ">>>>>>");
               return <div key={index}>{renderFields(data)}</div>;
             })}
           </div>
@@ -170,33 +210,22 @@ const QuotesRisk = () => {
     );
   };
 
-  // const renderLevel = (objects) => {
-  //   const objDict = {};
-  //   objects.forEach(obj => {
-  //     objDict[obj.Id] = { ...obj, Submenu: [] };
-  //   });
-  //   const menu = [];
-
-  //   objects.forEach(obj => {
-  //     if (obj.Parent_Object_Id === null) {
-  //       menu.push(objDict[obj.Id]);
-  //     } else {
-  //       const parent = objDict[obj.Parent_Object_Id];
-  //       if (parent) {
-  //         parent.Submenu.push(objDict[obj.Id]);
-  //       }
-  //     }
-  //   });
-  //   return menu;
-  // }
-
   const renderRiskField = () => {
     return riskBlock.map((element, index) => {
-      if (element.key === Number(id)) {
+      if (
+        element.key === Number(id) ||
+        (type === "new" && element.displayName === lobType)
+      ) {
         return <div key={index}>{renderFields(element)}</div>;
       }
     });
   };
+
+  const addRiskTableData = () => {
+    let updatedTableData = riskTabelData;
+    updatedTableData.value.push(initialriskValueData);
+    setRiskTableData({...riskTabelData, value: [...updatedTableData.value]});
+  }
 
   return (
     <div>
@@ -223,12 +252,17 @@ const QuotesRisk = () => {
         </div>
       </div>
       <Card className="risk-assesment-section">
-        <h2 className="header-text mb-3">Risk Assesment</h2>
+        <div className="flex items-center justify-between">
+          <h2 className="header-text mb-3">Risk Assesment</h2>
+          <div className="small-btn">
+            <Button label="Add" onClick={addRiskTableData} />
+          </div>
+        </div>
         <div className="pt-3 pb-5">
           {riskTabelData && (
             <CustomTable
               selectionMode="radiobutton"
-              data={riskTabelData.riskMainData.value}
+              data={riskTabelData.value}
               columns={riskTableHeaderData.riskMainData.header}
             />
           )}
@@ -239,7 +273,7 @@ const QuotesRisk = () => {
       </Card>
       <Card className="plan-tab-container">
         <TabView>
-          {riskQuotesTab.map((data, index) => {
+          {riskQuotesTab.length && riskQuotesTab.map((data, index) => {
             return (
               <TabPanel header={data.header} key={index}>
                 <CustomTable

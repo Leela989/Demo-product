@@ -82,25 +82,27 @@ const PlanFormfields = ({ data, onUpdate }) => {
         <>
           <InputField
             value={formData.code}
-            className={"p-1 w-1/4 form-field"}
+            className={"p-1 w-1/4 form-field top-label"}
             type={"text"}
             name={"code"}
             label={"Code"}
             onChange={handleChange}
           />
-          <div className="dropdown-container form-field p-1 w-1/4">
+          <div className="dropdown-container form-field p-1 w-1/4 top-label">
             <label>Product-Type</label>
             {memoizedDropdown}
           </div>
           <div className={"p-1 w-2/4 form-field"}>
             <LanguageDescription
+              labelName = "Description"
+              className={'top-label'}
               langDefault={languageDescription.default}
               langData={formData.description}
               onLangUpdate={handleLangChnages}
             />
           </div>
           <AutoCompleteField
-            className={"p-1 w-1/4 form-field"}
+            className={"p-1 w-1/4 form-field top-label"}
             name={"product"}
             label={"Product"}
             value={formData.product}
@@ -110,14 +112,14 @@ const PlanFormfields = ({ data, onUpdate }) => {
             dropdown
           />
           <DateField
-            className={"p-1 w-1/4 form-field"}
+            className={"p-1 w-1/4 form-field top-label"}
             name="effectiveFrom"
             label="Effective From"
             value={formData.effectiveFrom}
             onChange={handleChange}
           />
           <DateField
-            className={"p-1 w-1/4 form-field"}
+            className={"p-1 w-1/4 form-field top-label"}
             name="effectiveTo"
             label="Effective To"
             value={formData.effectiveFrom}
