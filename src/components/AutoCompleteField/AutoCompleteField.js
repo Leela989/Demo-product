@@ -2,7 +2,7 @@ import './AutoCompleteField.css';
 import { AutoComplete } from 'primereact/autocomplete';
 import { useState } from 'react';
 
-const AutoCompleteField = ({ value, name, options, className, label, labelType, disabled, invalid, onChange, dropdown, forceSelection }) => {
+const AutoCompleteField = ({ value, name, options, className, label, labelType, disabled, invalid, onChange, dropdown, forceSelection ,mandatory}) => {
     const [fieldValue, setFieldValue] = useState(value);
     const [filteredOptions, setFilteredOptions] = useState([]);
 
@@ -44,19 +44,29 @@ const AutoCompleteField = ({ value, name, options, className, label, labelType, 
     let styleClass = (labelType === "left") ? "left-label" : "top-label";
 
     return (
-        <div className={`${className}`}>
-            {(labelType === "float") ?
-                <span className="p-float-label">
-                    {field()}
-                    <label htmlFor={name}>{label}</label>
-                </span>
-                :
-                <div className={styleClass}>
-                    <label htmlFor={name}>{label}</label>
-                    {field()}
-                </div>
-            }
-        </div>
+      <div className={`${className}`}>
+        {labelType === "float" ? (
+          <span className="p-float-label">
+            {field()}
+            <label htmlFor={name}>
+              {label}
+              {mandatory && (
+                <span className="text-red-600 text-xl pl-1">*</span>
+              )}
+            </label>
+          </span>
+        ) : (
+          <div className={styleClass}>
+            <label htmlFor={name}>
+              {label}
+              {mandatory && (
+                <span className="text-red-600 text-xl pl-1">*</span>
+              )}
+            </label>
+            {field()}
+          </div>
+        )}
+      </div>
     );
 }
 

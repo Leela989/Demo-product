@@ -92,6 +92,7 @@ export default function DepartmentList() {
       </div>
       <div>
         <DataTable value={Departments} paginator rows={5} scrollable>
+          <Column field="tax_type" header="Tax Type"></Column>
           <Column field="tax_code" header="Tax Code"></Column>
           <Column field="tax_description" header="Tax Description"></Column>
           <Column field="refundable" header="Refundable Y/N"></Column>

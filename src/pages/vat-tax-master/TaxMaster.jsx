@@ -45,7 +45,9 @@ export default function Department() {
   const [subKey, setSubKey] = useState(0);
   const [childKey, setChildKey] = useState(0);
 
-  const [applicable_data, setApplicableData] = useState([{ show: true, showSave: false }]);
+  const [applicable_data, setApplicableData] = useState([
+    { show: true, showSave: false },
+  ]);
 
   const menuLeft = useRef(null);
   const sub_menuLeft = useRef(null);
@@ -110,7 +112,32 @@ export default function Department() {
 
   const lob_options = [{ name: "01-Motor" }, { name: "02-Fire" }];
 
-  const item_options = [{ name: "01-Cover" }, { name: "02-Charge" }];
+  const item_options = [
+    { name: "01-Cover" },
+    { name: "02-Charge" },
+    { name: "03-Party Location" },
+    { name: "04-Product" },
+  ];
+
+  const item_code_options = [{ name: "01-Cover" }, { name: "02-Charge" }];
+
+  const tax_type_options = [
+    { name: "BIT" },
+    { name: "GST" },
+    { name: "TOT" },
+    { name: "VAT" },
+    { name: "WHT" },
+  ];
+
+  const tax_code_options = [
+    { name: "BIT" },
+    { name: "GST" },
+    { name: "TOT" },
+    { name: "VAT_BUS" },
+    { name: "BASE_WHT" },
+  ];
+
+  const [itemCodeOption, setItemCodeOption] = useState(item_code_options);
 
   const customer_type_from_options = [
     { name: "AG-Agents" },
@@ -174,6 +201,45 @@ export default function Department() {
     );
   };
 
+  const handleItemChange = (e) => {
+    if (e.value === "01-Cover") {
+      const temp_options = [
+        { name: "100-No Claim Bonus" },
+        { name: "1001-Own Damage" },
+        { name: "1002-Third Party Liability" },
+        { name: "100226-Vehicle age loading" },
+        { name: "1003-PA benefit to danger" },
+        { name: "1004-PA benefit to passenger" },
+        { name: "1005-Towing Charges" },
+        { name: "100501-Motor Trade combined cover" },
+        { name: "100502-Motor Trade Internal cover" },
+      ];
+
+      setItemCodeOption(temp_options);
+    } else if (e.value === "03-Party Location") {
+      const temp_options = [
+        { name: "01-GCC" },
+        { name: "02-Non GCC/Foreign" },
+        { name: "03-Local" },
+      ];
+
+      setItemCodeOption(temp_options);
+    } else if (e.value === "04-Product") {
+      const temp_options = [
+        { name: "1001-Motor Private" },
+        { name: "1002-Motor Commercial" },
+        { name: "10022-Motor Commercial clone" },
+        { name: "1004-Motor Fleet" },
+        { name: "1005-Motor Trade" },
+        { name: "1006-Motor Cycle" },
+        { name: "1017-Motor Third Party" },
+        { name: "1220-MC Commercial Vehicle" },
+      ];
+
+      setItemCodeOption(temp_options);
+    }
+  };
+
   const childItemActionBodyTemplate = (rowData, rowIndex) => {
     return (
       <div className="kebab-menu-container">
@@ -181,7 +247,7 @@ export default function Department() {
           className="pt-1 parent-container"
           name="item"
           value={rowData.item}
-          onChange={handleInputChange}
+          onChange={(e) => handleItemChange(e, rowData)}
           options={item_options}
           dropdown
           disabled={id && !rowData.showSave}
@@ -198,7 +264,7 @@ export default function Department() {
           name="item_code_from"
           value={rowData.item_code_from}
           onChange={handleInputChange}
-          options={item_options}
+          options={itemCodeOption}
           dropdown
           disabled={id && !rowData.showSave}
         />
@@ -214,7 +280,7 @@ export default function Department() {
           name="item_code_to"
           value={rowData.item_code_to}
           onChange={handleInputChange}
-          options={item_options}
+          options={itemCodeOption}
           dropdown
           disabled={id && !rowData.showSave}
         />
@@ -448,6 +514,8 @@ export default function Department() {
         (department, index) => index.toString() === id
       );
       if (departmentData) {
+        setFormData(departmentData);
+
         const applicable_data = departmentData.applicable_at || [];
 
         setApplicableData(applicable_data);
@@ -508,8 +576,8 @@ export default function Department() {
   };
 
   const validateForm = () => {
-    const { tax_code, tax_description } = formData;
-    return tax_code && tax_description;
+    const { tax_code, tax_description, tax_type } = formData;
+    return tax_code && tax_description && tax_type;
   };
 
   const onClickingSave = () => {
@@ -634,7 +702,7 @@ export default function Department() {
   const addRow = () => {
     let newObj = {
       show: true,
-      showSave: false,
+      showSave: true,
     };
 
     setSubData((prevSubData) => [...prevSubData, newObj]);
@@ -643,7 +711,7 @@ export default function Department() {
   const addChildRow = () => {
     let newObj = {
       show: true,
-      showSave: false,
+      showSave: true,
     };
 
     setChildData((prevSubData) => [...prevSubData, newObj]);
@@ -866,14 +934,30 @@ export default function Department() {
           </div>
         </div>
         <div className="flex">
-          <InputField
-            className="w-1/4 p-1"
-            name="tax_code"
-            label="Tax Code"
-            value={formData.tax_code || ""}
-            onChange={handleChange}
-            mandatory={true}
-          />
+          <div className="w-1/4 p-1 pt-4">
+            <AutoCompleteField
+              className="w-4/4 p-1 pt-1"
+              name="tax_type"
+              label="Tax Type"
+              value={formData.tax_type || ""}
+              onChange={handleChange}
+              mandatory={true}
+              options={tax_type_options}
+              dropdown
+            />
+          </div>
+          <div className="w-1/4 p-1 pt-4">
+            <AutoCompleteField
+              className="w-4/4 p-1"
+              name="tax_code"
+              label="Tax Code"
+              value={formData.tax_code || ""}
+              onChange={handleChange}
+              mandatory={true}
+              options={tax_code_options}
+              dropdown
+            />
+          </div>
           <InputField
             className="w-1/4 p-1"
             name="tax_description"
@@ -889,23 +973,25 @@ export default function Department() {
             value={formData.short_description}
             onChange={handleChange}
           />
-          <AutoCompleteField
-            className="w-1/4 p-1 pt-3"
-            name="status"
-            label="Status"
-            value={formData.status}
-            onChange={handleChange}
-            options={list}
-            dropdown
-          />
         </div>
         <div className="flex">
           <div className="w-1/4 pt-8 pl-1">
             <CheckBox
               name="refundable"
               labelName="Refundable"
-              boxChecked={isFreeze || false}
+              boxChecked={formData.refundable || false}
               onChange={() => setFreeze()}
+            />
+          </div>
+          <div className="w-1/4 pt-5 pl-1 pr-1">
+            <AutoCompleteField
+              className="w-4/4"
+              name="status"
+              label="Status"
+              value={formData.status}
+              onChange={handleChange}
+              options={list}
+              dropdown
             />
           </div>
           <div className="w-1/4">
@@ -913,7 +999,7 @@ export default function Department() {
               className="w-4/4 pt-5 mr-1 ml-1"
               name="effective_from"
               label="Effective From"
-              value={formData.effective_from}
+              value={new Date(formData.effective_from)}
               onChange={handleChange}
             />
           </div>
@@ -922,7 +1008,7 @@ export default function Department() {
               className="w-4/4 pl-2 pt-5"
               name="effective_to"
               label="Effective To"
-              value={formData.effective_to}
+              value={new Date(formData.effective_to)}
               onChange={handleChange}
             />
           </div>
@@ -947,12 +1033,12 @@ export default function Department() {
         <div>
           <DataTable value={applicable_data} paginator rows={5} scrollable>
             <Column
-              headerClassName="action"
-              bodyClassName="action"
+              headerClassName="action-class"
+              bodyClassName="action-class"
               body={(rowData, { rowIndex }) =>
                 radioActionTemplate(rowData, rowIndex)
               }
-              style={{ width: "2%" }}
+              style={{ width: "1%" }}
             />
             <Column
               field="transaction"
@@ -1019,12 +1105,12 @@ export default function Department() {
         <div>
           <DataTable value={subData} paginator rows={5} scrollable>
             <Column
-              headerClassName="action"
-              bodyClassName="action"
+              headerClassName="action-class"
+              bodyClassName="action-class"
               body={(rowData, { rowIndex }) =>
                 radioSubActionTemplate(rowData, rowIndex)
               }
-              style={{ width: "2%" }}
+              style={{ width: "1%" }}
             />
             <Column
               field="tax_classification"
@@ -1059,15 +1145,6 @@ export default function Department() {
               bodyClassName="action"
               body={(rowData, { rowIndex }) =>
                 productToActionBodyTemplate(rowData, rowIndex)
-              }
-              style={{ width: "15%" }}
-            ></Column>
-            <Column
-              field="rate"
-              header="Rate"
-              bodyClassName="action"
-              body={(rowData, { rowIndex }) =>
-                rateActionBodyTemplate(rowData, rowIndex)
               }
               style={{ width: "15%" }}
             ></Column>
