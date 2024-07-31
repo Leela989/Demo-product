@@ -1,0 +1,41 @@
+[
+    {
+        "smiGroup": "2001SG",
+        "description": "Fire Loss of SMI Group",
+        "shortDescription": "Fire SMI Group",
+        "longDescription": "Fire SMI Group",
+        "effective_from": "10/02/2023 10:00",
+        "effective_to": "15/01/2024 11:21",
+        "products": [
+            { "product": "2001-Fire Loss of profit", "code": "200104-Stocks" },
+            { "product": "2001-Fire Loss of profit", "code": "200123-Stock in process" },
+            { "product": "2001-Fire Loss of profit", "code": "200124-Building" }
+        ]
+    },
+    {
+        "smiGroup": "2002SG",
+        "description": "Fire SMI Group",
+        "shortDescription": "Fire SMI Group",
+        "longDescription": "Fire SMI Group",
+        "effective_from": "13/04/2023 11:23",
+        "effective_to": "15/04/2024 13:21",
+        "products": [
+            { "product": "2002-Fire Loss of profit", "code": "200204-Stocks" },
+            { "product": "2002-Fire Loss of profit", "code": "200223-Stock in process" },
+            { "product": "2002-Fire Loss of profit", "code": "200224-Building" }
+        ]
+    },
+    {
+        "smiGroup": "2003SG",
+        "description": "Marine SMI Group",
+        "shortDescription": "Marine SMI Group",
+        "longDescription": "Marine SMI Group",
+        "effective_from": "18/05/2023 15:45",
+        "effective_to": "17/01/2024 17:11",
+        "products": [
+            { "product": "2003-Marine Loss of profit", "code": "200304-Stocks" },
+            { "product": "2003-Marine Loss of profit", "code": "200323-Stock in process" },
+            { "product": "2003-Marine Loss of profit", "code": "200324-Building" }
+        ]
+    }
+]

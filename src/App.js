@@ -39,12 +39,14 @@ import VehicleMatrix from "./pages/productConfigurator/productMaster/vehicleMatr
 import BulkRenewalProcessing from "./pages/underWriting/processing/BulkRenewalProcessing";
 import InstallSetupListingPage from "./pages/CompanyMaster/installPaySetup/InstallSetupListingPage";
 import BulkRenewalListing from "./pages/underWriting/processing/BulkRenewalListing";
-
 import CodeMasterList from "./pages/codeMasters/List";
 import VatTaxMasterList from "./pages/vat-tax-master/List";
 import VatTaxMaster from "./pages/vat-tax-master/TaxMaster";
 import CustomerCategory from "./pages/customerCategory/CustomerCategory";
 import CustomerCategoryListingPage from "./pages/customerCategory/CustomerCategoryListingPage";
+import SMIGroup from "./pages/productMaster/coverGroup/SMIGroup";
+import CoverGroup from "./pages/productMaster/SMIGroup/CoverGroup";
+import Cover_Group from "./pages/productMaster/SMIGroup/Cover_Group";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -158,7 +160,6 @@ function App() {
                   element={<CompanyMasterSetup />}
                 />
                 <Route
-                <Route
                   path="/commonMaster/installmentPaySetupMaster"
                   element={<InstallSetupListingPage />}
                 />
@@ -170,6 +171,8 @@ function App() {
                   path="/underwriting/process/bulkRenewalProcessing/edit/:key"
                   element={<BulkRenewalProcessing />}
                 />
+                <Route path="/productConfigurator/productMaster/smiGroupMaster"
+                       element={<SMIGroup/>}/>
                 <Route
                   path="/commonMaster/installmentPaySetupMaster/createApplication"
                   element={<InstallPaySetup />}
@@ -203,28 +206,20 @@ function App() {
                   element={<DivisionMaster />}
                 />
                 <Route
-                <Route
                   path="/commonMaster/codeMaster"
                   element={<CodeMasterList />}
-                />
-                <Route
                 />
                 <Route
                   path="/commonMaster/vatTaxMaster"
                   element={<VatTaxMasterList />}
                 />
                 <Route
-                />
-                <Route
                   path="/commonMaster/vatTaxMaster/create"
                   element={<VatTaxMaster />}
                 />
                 <Route
-                />
-                <Route
                   path="/commonMaster/vatTaxMaster/edit/:id"
                   element={<VatTaxMaster />}
-                />
                 />
                 <Route
                   path="/commonMaster/currencyExchangeRateMaster"
@@ -237,6 +232,10 @@ function App() {
                 <Route
                   path="/commonMaster/currencyExchangeRateMaster/edit/:id/:showNote"
                   element={<CurrencyAndExchangeMaster />}
+                />
+                <Route 
+                  path="/productConfigurator/productMaster/coverGroup"
+                  element={<Cover_Group/>}
                 />
                 <Route path="/productSetup" element={<ListingPage />} />
               </Routes>

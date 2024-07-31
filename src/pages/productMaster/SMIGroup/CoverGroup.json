@@ -1,0 +1,86 @@
+[
+    {
+        "coverGroup": "1001CG",
+        "description": "Motor Cover Group",
+        "shortDescription": "Motor Cover Group",
+        "longDescription": "Motor Cover Group",
+        "effective_from": "10/02/2023 10:00",
+        "effective_to": "15/01/2024 11:21",
+        "products": [
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "01-Risk",
+                "coverCode": "1001- Own Damage",
+                "coverType": "Cover"
+            },
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "02-Policy",
+                "coverCode": "1002 - Agency Rep",
+                "coverType": "Cover"
+            },
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "02-Policy",
+                "coverCode": "1001 - Personal Accident",
+                "coverType": "Cover"
+            }
+        ]
+    },
+    {
+        "coverGroup": "21001FG",
+        "description": "Fire Cover Group",
+        "shortDescription": "Fire Cover Group",
+        "longDescription": "Fire Cover Group",
+        "effective_from": "10/02/2023 10:00",
+        "effective_to": "15/01/2024 11:21",
+        "products": [
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "01-Risk",
+                "coverCode": "1001- Own Damage",
+                "coverType": "Cover"
+            },
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "02-Policy",
+                "coverCode": "1002 - Agency Rep",
+                "coverType": "Cover"
+            },
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "02-Policy",
+                "coverCode": "1001 - Personal Accident",
+                "coverType": "Cover"
+            }
+        ]
+    },
+    {
+        "coverGroup": "31001MG",
+        "description": "Marine Cover Group",
+        "shortDescription": "Marine Cover Group",
+        "longDescription": "Marine Cover Group",
+        "effective_from": "18/05/2023 15:45",
+        "effective_to": "17/01/2024 17:11",
+        "products": [
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "01-Risk",
+                "coverCode": "1001- Own Damage",
+                "coverType": "Cover"
+            },
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "02-Policy",
+                "coverCode": "1002 - Agency Rep",
+                "coverType": "Cover"
+            },
+            { 
+                "product": "01-Motor Commercial", 
+                "coverLevel": "02-Policy",
+                "coverCode": "1001 - Personal Accident",
+                "coverType": "Cover"
+            }
+        ]
+    }
+]

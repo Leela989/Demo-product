@@ -31,6 +31,8 @@ function BulkRenewalProcessing() {
   const [error_log, set_error_log] = useState(false);
   const [process, set_process] = useState(false);
   const [data, setData] = useState(BulkRenewalProcessingData);
+  const [new_batch_creation, set_new_batch_creation] = useState(false);
+  const [unique_key, set_unique_key] = useState(0);
   const { key } = useParams();
   const bulkKey = parseInt(key, 10);
 
@@ -44,6 +46,17 @@ function BulkRenewalProcessing() {
     { code: "07", name: "Digital-sure Branch" },
     { code: "08", name: "Zanzibar Branch" },
   ];
+
+  useEffect(() => {
+    // Initialize data with all process_yn checkboxes checked
+    const initialData = BulkRenewalProcessingData.map((row) => ({
+      ...row,
+      process_yn: true,
+      hold_yn: false,
+      renewed_yn: false,
+    }));
+    setData(initialData);
+  }, [BulkRenewalProcessingData]);
 
   const handleInputChange = (rowIndex, name, value) => {
     const newData = [...data];
@@ -59,20 +72,25 @@ function BulkRenewalProcessing() {
       newData[rowIndex]["renewed_yn"] = false;
     }
 
+    if (name === "renewed_yn" && value) {
+      newData[rowIndex]["process_yn"] = false;
+      newData[rowIndex]["hold_yn"] = false;
+    }
+
     setData(newData);
   };
 
   const handleHeaderCheckboxChange = (name, value) => {
-    const newData = data.map((row) => {
-      row[name] = value;
-      if (name === "process_yn" && value) {
-        row.hold_yn = false;
-        row.renewed_yn = false;
-      }
-      return row;
-    });
+    const newData = data.map((row) => ({
+      ...row,
+      [name]: value,
+      ...(name === "process_yn" && value
+        ? { hold_yn: false, renewed_yn: false }
+        : {}),
+    }));
     setData(newData);
   };
+
 
   const lob_options = [
     { name: "1001-Motor Comprehension" },
@@ -89,7 +107,7 @@ function BulkRenewalProcessing() {
 
   const options = [
     { label: "Edit" },
-    { label: "Save", command: () => onSave() },
+    { label: "Save"},
   ];
 
   const handle_Fetch_policies = () => {
@@ -108,15 +126,14 @@ function BulkRenewalProcessing() {
     set_ex_policies(false);
   };
 
-  const onSave = () => {
-    showSuccess();
-  };
+
 
   const showSuccess = () => {
+    const batch_no = createRandomString();
     toast.current.show({
       severity: "success",
       summary: "Success",
-      detail: "Saved Successfully",
+      detail:  `Saved successfully`,
       life: 3000,
     });
   };
@@ -312,7 +329,7 @@ function BulkRenewalProcessing() {
   const render_process_modal = () => (
     <div>
       <h1 className="text-gray-500 font-normal text-2xl">
-        Number of policies Renewed : 1 Batch ID: {BulkRenewalProcessingData.length + 1}
+        Number of policies Renewed : 12 Batch ID: {BulkRenewalProcessingData.length + 1}
       </h1>
     </div>
   );
@@ -343,6 +360,35 @@ function BulkRenewalProcessing() {
     { name: "Broker" },
   ];
 
+  function getFirstDateOfCurrentMonth() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 1);
+  }
+
+  function getLastDateOfCurrentMonth() {
+    const now = new Date();
+    return new Date(now.getFullYear(), now.getMonth(), 31);
+  }
+
+  const saveBatch = () => {
+    console.log('saved');
+    set_new_batch_creation(true);
+    set_unique_key(unique_key+1);
+    showSuccess();
+  }
+
+  function generateRandomNumber() {
+    return Math.floor(Math.random() * 10000); 
+  }
+  
+  function createRandomString() {
+    const prefix = "QW";
+    const randomNumber = generateRandomNumber();
+    return `${prefix}${randomNumber}`;
+  }
+  
+  
+
   // const handleHeaderCheckboxChange = () => {};
 
   const list = [{ name: "All" }];
@@ -356,23 +402,22 @@ function BulkRenewalProcessing() {
             className="w-1/3 p-1"
             name="policy_expiry_from"
             label="Policy expiry from"
-            value={bulkKey >= 0 && new Date()}
+            value={bulkKey >= 0 ? new Date() : getFirstDateOfCurrentMonth()}
             onChange={handleInputChange}
           />
           <DateField
             className="w-1/3 p-1"
             name="policy_expiry_to"
             label="Policy expiry to"
-            value={""}
+            value={(bulkKey >= 0 && !new_batch_creation) ? new Date() : getLastDateOfCurrentMonth()}
             onChange={handleInputChange}
           />
           <InputField
             className="w-1/3 p-1 batch_no"
+            key={unique_key}
             name="batch_no"
             label="Batch no"
-            value={
-              bulkKey >= 0 ? BulkRenewalListingData[bulkKey]?.batch_no : ""
-            }
+            value={new_batch_creation ? createRandomString() : ""}
             onChange={handleInputChange}
             mandatory={true}
           />
@@ -382,7 +427,7 @@ function BulkRenewalProcessing() {
             className="w-1/3 p-1"
             name="branch"
             label="Branch"
-            value={bulkKey >= 0 && BulkRenewalListingData[bulkKey].branch}
+            value={bulkKey >= 0 ? BulkRenewalListingData[bulkKey].branch : "All"}
             onChange={handleInputChange}
             options={OptionsForBranches}
             dropdown
@@ -391,7 +436,7 @@ function BulkRenewalProcessing() {
             className="w-1/3 p-1"
             name="department"
             label="Department"
-            value={bulkKey >= 0 && BulkRenewalListingData[bulkKey].department}
+            value={bulkKey >= 0 ? BulkRenewalListingData[bulkKey].department : "All"}
             onChange={handleInputChange}
             options={department_options}
             dropdown
@@ -400,7 +445,7 @@ function BulkRenewalProcessing() {
             className="w-1/3 p-1"
             name="lineOfBusiness"
             label="Line of Business"
-            value={bulkKey >= 0 && BulkRenewalListingData[bulkKey].lob}
+            value={bulkKey >= 0 ? BulkRenewalListingData[bulkKey].lob : "All"}
             onChange={handleInputChange}
             options={lob_options}
             dropdown
@@ -488,13 +533,20 @@ function BulkRenewalProcessing() {
         </div>
         <div className="flex">
           <InputField
-            className="w-3/4 p-1"
+            className="w-2/4 p-1"
             name="remark"
             label="Remark"
             value={""}
             onChange={handleInputChange}
           />
-          <CustomButton label="SAVE" className="ml-4 mt-7" />
+            <InputField
+            className="w-1/4 p-1"
+            name="process_date"
+            label="Process Date"
+            value={bulkKey >= 0 ? '' : new Date()}
+            onChange={handleInputChange}
+          />
+          <CustomButton label="SAVE" className="ml-4 mt-7" onClick={saveBatch} />
         </div>
         <div className="processing_btns">
           <CustomButton
@@ -537,203 +589,90 @@ function BulkRenewalProcessing() {
                     field="customer"
                     header="Customer"
                     style={{ width: "10%" }}
-                    // body={(rowData, options) => (
-                    //   <InputField
-                    //     type="text"
-                    //     value={rowData.customer}
-                    //     disabled={true}
-                    //   />
-                    // )}
                   />
                   <Column
                     field="issue_date"
                     header="Issue Date"
                     style={{ width: "12%" }}
-                    // body={(rowData, options) => (
-                    //   <InputField
-                    //     type="text"
-                    //     value={rowData.issue_date}
-                    //     disabled={true}
-                    //   />
-                    // )}
                   />
                   <Column
                     field="from_date"
                     header="From Date"
                     style={{ width: "12%" }}
-                    // body={(rowData, options) => (
-                    //   <InputField
-                    //     type="text"
-                    //     value={rowData.from_date}
-                    //     disabled={true}
-                    //   />
-                    // )}
                   />
                   <Column
                     field="to_date"
                     header="To Date"
                     style={{ width: "12%" }}
-                    // body={(rowData, options) => (
-                    //   <InputField
-                    //     type="text"
-                    //     value={rowData.to_date}
-                    //     disabled={true}
-                    //   />
-                    // )}
                   />
                   <Column
                     field="claim_ratio"
                     header="Claim Ratio"
-                    // body={(rowData, options) => (
-                    //   <InputField
-                    //     type="text"
-                    //     value={rowData.claim_ratio}
-                    //     disabled={true}
-                    //   />
-                    // )}
                   />
                   <Column
                     field="est_amount"
                     header="Est.Amount"
-                    // body={(rowData, options) => (
-                    //   <InputField
-                    //     type="text"
-                    //     value={rowData.est_amount}
-                    //     disabled={true}
-                    //   />
-                    // )}
                   />
                   <Column
                     field="os_amount"
                     header="O/s amount"
-                    // body={(rowData, options) => (
-                    //   <InputField
-                    //     type="text"
-                    //     value={rowData.os_amount}
-                    //     disabled={true}
-                    //   />
-                    // )}
                   />
+      <Column
+        field="process_yn"
+        header={
+          <div>
+            <Checkbox
+              className="mr-2"
+              checked={data.every((row) => row.process_yn)}
+              onChange={(e) => handleHeaderCheckboxChange("process_yn", e.checked)}
+            />
+            Process Y/N
+          </div>
+        }
+        style={{ width: "3%" }}
+        body={(rowData, options) => (
+          <Checkbox
+            checked={data[options.rowIndex].process_yn}
+            onChange={(e) => handleInputChange(options.rowIndex, "process_yn", e.checked)}
+          />
+        )}
+      />
+      <Column
+        field="hold_yn"
+        header="Hold Y/N"
+        style={{ width: "3%" }}
+        body={(rowData, options) => (
+          <Checkbox
+            checked={data[options.rowIndex].hold_yn}
+            disabled={data[options.rowIndex].process_yn || data[options.rowIndex].renewed_yn}
+            onChange={(e) => handleInputChange(options.rowIndex, "hold_yn", e.checked)}
+          />
+        )}
+      />
+      <Column
+        field="exclude_yn"
+        header="Exclude Y/N"
+        style={{ width: "3%" }}
+        body={(rowData, options) => (
+          <Checkbox
+            checked={data[options.rowIndex].exclude_yn}
+            disabled={data[options.rowIndex].process_yn || data[options.rowIndex].hold_yn}
+            onChange={(e) => handleInputChange(options.rowIndex, "exclude_yn", e.checked)}
+          />
+        )}
+      />
                   <Column
-                    field="process_yn"
-                    header={
-                      <div>
-                        <Checkbox
-                          className="mr-2"
-                          checked={BulkRenewalProcessingData.every(
-                            (row) => row.process_yn
-                          )}
-                          onChange={(e) =>
-                            handleHeaderCheckboxChange("process_yn", e.checked)
-                          }
-                        />
-                        Process Y/N
-                      </div>
-                    }
-                    style={{ width: "3%" }}
-                    body={(rowData, options) => (
-                      <Checkbox
-                        checked={rowData.process_yn}
-                        onChange={(e) =>
-                          handleInputChange(
-                            options.rowIndex,
-                            "process_yn",
-                            e.checked
-                          )
-                        }
-                      />
-                    )}
-                  />
-                  <Column
-                    field="exclude_yn"
-                    header={
-                      <div>
-                        <Checkbox
-                          className="mr-2"
-                          checked={BulkRenewalProcessingData.every(
-                            (row) => row.exclude_yn
-                          )}
-                          onChange={(e) =>
-                            handleHeaderCheckboxChange("exclude_yn", e.checked)
-                          }
-                        />
-                        Exclude Y/N
-                      </div>
-                    }
-                    style={{ width: "3%" }}
-                    body={(rowData, options) => (
-                      <Checkbox
-                        checked={rowData.exclude_yn}
-                        onChange={(e) =>
-                          handleInputChange(
-                            options.rowIndex,
-                            "exclude_yn",
-                            e.checked
-                          )
-                        }
-                      />
-                    )}
-                  />
-                  <Column
-                    field="hold_yn"
-                    header={
-                      <div>
-                        <Checkbox
-                          className="mr-2"
-                          checked={BulkRenewalProcessingData.every(
-                            (row) => row.hold_yn
-                          )}
-                          onChange={(e) =>
-                            handleHeaderCheckboxChange("hold_yn", e.checked)
-                          }
-                        />
-                        Hold Y/N
-                      </div>
-                    }
-                    style={{ width: "3%" }}
-                    body={(rowData, options) => (
-                      <Checkbox
-                        checked={rowData.hold_yn}
-                        onChange={(e) =>
-                          handleInputChange(
-                            options.rowIndex,
-                            "hold_yn",
-                            e.checked
-                          )
-                        }
-                      />
-                    )}
-                  />
-                  <Column
-                    field="renewed_yn"
-                    header={
-                      <div>
-                        <Checkbox
-                          className="mr-2"
-                          checked={BulkRenewalProcessingData.every(
-                            (row) => row.renewed_yn
-                          )}
-                          onChange={(e) =>
-                            handleHeaderCheckboxChange("renewed_yn", e.checked)
-                          }
-                        />
-                        Renewed Y/N
-                      </div>
-                    }
-                    style={{ width: "3%" }}
-                    body={(rowData, options) => (
-                      <Checkbox
-                        checked={rowData.renewed_yn}
-                        onChange={(e) =>
-                          handleInputChange(
-                            options.rowIndex,
-                            "renewed_yn",
-                            e.checked
-                          )
-                        }
-                      />
-                    )}
-                  />
+        field="hold_yn"
+        header="Hold Y/N"
+        style={{ width: "3%" }}
+        body={(rowData, options) => (
+          <Checkbox
+            checked={data[options.rowIndex].hold_yn}
+            disabled={true}
+            onChange={(e) => handleInputChange(options.rowIndex, "hold_yn", e.checked)}
+          />
+        )}
+      />
 
                   <Column
                     field="action"
@@ -886,6 +825,7 @@ function BulkRenewalProcessing() {
           onSave={handleSave}
           onClose={closeModal}
           noButtonText="Cancel"
+          showFooter={false}
         />
       )}
       {process && (
@@ -897,6 +837,7 @@ function BulkRenewalProcessing() {
           onSave={process_handle_save}
           onClose={process_handle_cancel}
           noButtonText="Cancel"
+          showFooter={false}
         />
       )}
       {ex_policies && (
@@ -908,6 +849,7 @@ function BulkRenewalProcessing() {
           onSave={ex_handle_save}
           onClose={ex_handle_close}
           noButtonText="Cancel"
+          showFooter={false}
         />
       )}
     </div>

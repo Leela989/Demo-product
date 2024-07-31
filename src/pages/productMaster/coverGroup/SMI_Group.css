@@ -1,0 +1,20 @@
+.maintableHeading{
+    display: flex;
+    gap: 180px;
+    justify-content: space-between;
+    padding-left: 40px;
+}
+
+.maintableData{
+    display: flex;
+    /* gap: 450px; */
+    justify-content: space-between;
+}
+
+.table_data{
+    width: 50%;
+}
+
+.smiButton{
+    margin-left: 50px;
+}
