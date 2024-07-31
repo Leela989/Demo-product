@@ -45,7 +45,7 @@
 }
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-thead th,
 .p-datatable .p-datatable-wrapper .p-datatable-table .p-datatable-tbody td {
-    min-width: 200px;
+    min-width: 100px;
     width: 200px;
     max-width: 200px;
     transition: all linear 0.3s;
