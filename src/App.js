@@ -47,6 +47,7 @@ import CustomerCategoryListingPage from "./pages/customerCategory/CustomerCatego
 import SMIGroup from "./pages/productMaster/coverGroup/SMIGroup";
 import CoverGroup from "./pages/productMaster/SMIGroup/CoverGroup";
 import Cover_Group from "./pages/productMaster/SMIGroup/Cover_Group";
+import ApplicationList from "./pages/Application/ApplicationList";
 
 function App() {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -210,6 +211,10 @@ function App() {
                   element={<CodeMasterList />}
                 />
                 <Route
+                  path="/commonMaster/ProductList"
+                  element={<ApplicationList />}
+                />
+                <Route
                   path="/commonMaster/vatTaxMaster"
                   element={<VatTaxMasterList />}
                 />
@@ -244,9 +249,11 @@ function App() {
         </div>
       ) : (
         <Routes>
-          <Route path="/" element={<Navigate to="/azinsui" />} />
+          <Route path="/" element={<LoginForm setToken={setToken} />} />
           <Route path="/azinsui" element={<LoginForm setToken={setToken} />} />
         </Routes>
+
+      
       )}
     </>
   );

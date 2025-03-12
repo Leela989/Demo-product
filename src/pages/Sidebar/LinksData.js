@@ -1,34 +1,34 @@
 const linksData = [
-    { 
-      label: 'My Tasks', 
+    {
+      label: 'My Tasks',
       link: '/tasks',
     },
-    { 
-      label: 'User Management', 
+    {
+      label: 'User Management',
       subLinks: [
         { label: 'User Master', link: '/userManagement/userMaster' },
         { label: 'User Group Mapping', link: '/userManagement/userGroupMapping' },
         { label: 'User Authorisation setup', link: '/userManagement/userAuthorisationSetup/listing' }
       ]
     },
-    { 
-      label: 'Workflow Management', 
+    {
+      label: 'Workflow Management',
       subLinks: [
         { label: 'Workflow Master', link: '/workFlowManagement/userMaster' },
         { label: 'Workflow Group Mapping', link: '/workFlowManagement/userGroupMapping' },
         { label: 'Workflow Authorisation setup', link: '/workFlowManagement/userAuthorisationSetup' }
       ]
     },
-    { 
-      label: 'Menu Management', 
+    {
+      label: 'Menu Management',
       subLinks: [
         { label: 'Menu Creation', link: '/menuManagement/menuCreation' },
         { label: 'Menu Parameter Mapping', link: '/menuManagement/menuParameterMapping' },
         { label: 'Menu User Privilege Setup', link: '/menuManagement/menuUserPrivilegeSetup' }
       ]
     },
-    { 
-      label: 'Party Management', 
+    {
+      label: 'Party Management',
       subLinks: [
         { label: 'Party Role Master', link: '/partyManagement/partyRoleMaster' },
         { label: 'Party Master', link: '/partyManagement/partyMaster' },
@@ -36,8 +36,8 @@ const linksData = [
         { label: 'Agency Commission Setup', link: '/partyManagement/agencyCommissionSetup' }
       ]
     },
-    { 
-      label: 'Common Master', 
+    {
+      label: 'Common Master',
       subLinks: [
         { label: 'Company Master', link: '/commonMaster/companyMaster' },
         { label: 'Branch Master', link: '/commonMaster/divisionMaster' },
@@ -46,15 +46,16 @@ const linksData = [
         { label: 'Installment Pay Setup Master', link: '/commonMaster/installmentPaySetupMaster' },
         { label: 'VAT/TAX Master', link: '/commonMaster/vatTaxMaster' },
         { label: 'Checklist Master', link: '/commonMaster/checklistMaster' },
-        { label: 'Codes Master', link: '/commonMaster/codeMaster' }
+        { label: 'Codes Master', link: '/commonMaster/codeMaster' },
+        { label: 'Product List', link: '/commonMaster/ProductList' }
       ]
     },
-    { 
-      label: 'Product Configurator', 
+    {
+      label: 'Product Configurator',
       subLinks: [
         { label: "Line Of Business", link: "/productConfigurator/lineofbusiness" },
-        { 
-          label: "Product Master", 
+        {
+          label: "Product Master",
           subLinks: [
             { label: 'Cover Master', link: '/productConfigurator/productMaster/coverMaster' },
             { label: 'Cover Group', link: '/productConfigurator/productMaster/coverGroup' },
@@ -71,10 +72,10 @@ const linksData = [
         },
         { label: "Product Setup", link: "/productSetup" },
         { label: "Plan/Scheme Master", link: "/plan" }
-      ] 
+      ]
     },
-    { 
-      label: 'Underwriting', 
+    {
+      label: 'Underwriting',
       subLinks: [
         {
           label: "Masters",

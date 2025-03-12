@@ -102,7 +102,6 @@ function Associates() {
               />
             )}
           />
-            
           <Column
             field="telephone"
             header="Telehone"
@@ -191,8 +190,7 @@ function Associates() {
               />
             )}
           />
-
-<Column
+          <Column
             style={{ width: "25%" }}
             field="effective_from"
             header="Effective From"
